@@ -55,7 +55,7 @@ public class SwtTextBoxUI extends DisplayableImplUI implements TextBoxUI {
 	@Override
 	public void insert(String text, int position) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

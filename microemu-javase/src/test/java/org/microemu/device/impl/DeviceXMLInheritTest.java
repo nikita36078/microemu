@@ -31,7 +31,7 @@ import nanoxml.XMLElement;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class DeviceXMLInheritTest extends TestCase {
 
@@ -99,12 +99,13 @@ public class DeviceXMLInheritTest extends TestCase {
 
 	public void testValueOverrideFonts() {
 		verifyXML("<device><fonts>" + "<font face=\"system\" style=\"plain\" size=\"small\">F1</font>"
-				+ "<font face=\"system\" style=\"plain\" size=\"medium\">F2</font>" + "</fonts></device>",
+						+ "<font face=\"system\" style=\"plain\" size=\"medium\">F2</font>" + "</fonts></device>",
 
-		"<device><fonts>" + "<font face=\"system\" style=\"plain\" size=\"medium\">F2m</font>" + "</fonts></device>",
+				"<device><fonts>" + "<font face=\"system\" style=\"plain\" size=\"medium\">F2m</font>" +
+						"</fonts></device>",
 
-		"<device><fonts>" + "<font face=\"system\" style=\"plain\" size=\"small\">F1</font>"
-				+ "<font face=\"system\" style=\"plain\" size=\"medium\">F2m</font>" + "</fonts></device>");
+				"<device><fonts>" + "<font face=\"system\" style=\"plain\" size=\"small\">F1</font>"
+						+ "<font face=\"system\" style=\"plain\" size=\"medium\">F2m</font>" + "</fonts></device>");
 	}
 
 }

@@ -33,9 +33,9 @@ import javax.microedition.newjsr2.NewJSR2Facade;
  *
  */
 public class OverrideNewJSR2Client {
-	
+
 	public String doJSR2Stuff(String data) {
 		return NewJSR2Facade.createWorker().doStuff(data);
 	}
-	
+
 }

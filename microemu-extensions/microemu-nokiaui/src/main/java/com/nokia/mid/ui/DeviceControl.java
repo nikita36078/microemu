@@ -21,36 +21,29 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package com.nokia.mid.ui;
 
 // only empty methods. the emulator cant vibrate or switch light on
 
-public class DeviceControl 
-{
-   
-    static void setLightOn(int val) 
-    {
-    }
-    
-    static int getLightOn() 
-    {
-        return 0;
-    }
-        
-    public static void startVibra(int frequency, long duration) 
-    {
-    }
-    
-    public static void stopVibra() 
-    {
-    }
-        
-    public static void setLights(int num, int level) 
-    {
-    }
-        
-    public static void flashLights(long duration) 
-    {
-    }
+public class DeviceControl {
+
+	static void setLightOn(int val) {
+	}
+
+	static int getLightOn() {
+		return 0;
+	}
+
+	public static void startVibra(int frequency, long duration) {
+	}
+
+	public static void stopVibra() {
+	}
+
+	public static void setLights(int num, int level) {
+	}
+
+	public static void flashLights(long duration) {
+	}
 }

@@ -34,10 +34,10 @@ import java.io.PrintStream;
  *
  * This code is added to MIDlet application to solve problems while running in applet.
  * The code is attached to application jar.
- * 
+ *
  * You need to use "Save for Web..." in MicroEmulator Tools Menu.
  * The result jar is safe to run on any other Emulator or device. 
- * 
+ *
  * This class is not used while application is running in Applet with MicroEmulator. 
  * Different class with the same name is used from microemu-javase-applet.jar.    
  */
@@ -54,9 +54,9 @@ public final class Injected {
 	 * We don't need to instantiate the class, all access is static
 	 */
 	private Injected() {
-		
+
 	}
-	
+
 	private static PrintStream outPrintStream() {
 		return System.out;
 	}
@@ -64,20 +64,20 @@ public final class Injected {
 	private static PrintStream errPrintStream() {
 		return System.err;
 	}
-	
+
 	/**
 	 * Redirect throwable.printStackTrace() to MicroEmulator console
 	 */
 	public static void printStackTrace(Throwable t) {
 		t.printStackTrace();
 	}
-	
+
 	/**
 	 * This code Ingected By MicroEmulator to enable access to System properties while running in Applet
-     *
-     * @param      key   the name of the system property.
-     * @return     the string value of the system property,
-     *             or <code>null</code> if there is no property with that key.
+	 *
+	 * @param      key   the name of the system property.
+	 * @return the string value of the system property,
+	 *             or <code>null</code> if there is no property with that key.
 	 */
 	public static String getProperty(String key) {
 		try {
@@ -86,29 +86,29 @@ public final class Injected {
 			return null;
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * Returns an input stream for reading the specified resource.
-     *
-     * <p> The search order is described in the documentation for {@link
-     * #getResource(String)}.  </p>
-     *
-     * @param  origClass
-     * @param  name  The resource name
-     *
-     * @return  An input stream for reading the resource, or <tt>null</tt>
-     *          if the resource could not be found
+	 *
+	 * <p> The search order is described in the documentation for {@link
+	 * #getResource(String)}.  </p>
+	 *
+	 * @param  origClass
+	 * @param  name  The resource name
+	 *
+	 * @return An input stream for reading the resource, or <tt>null</tt>
+	 *          if the resource could not be found
 	 */
-	public static InputStream getResourceAsStream(Class origClass, String name)  {
+	public static InputStream getResourceAsStream(Class origClass, String name) {
 		return origClass.getResourceAsStream(name);
 	}
-	
+
 	/**
 	 * Enhanced Catch Block
 	 */
 	public static Throwable handleCatchThrowable(Throwable t) {
 		return t;
 	}
-	
+
 }

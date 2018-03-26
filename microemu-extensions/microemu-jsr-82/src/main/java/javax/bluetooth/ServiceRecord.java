@@ -5,14 +5,14 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 
 import java.io.IOException;
 
 /**
- * 
+ *
  * The {@code ServiceRecord} interface describes characteristics of a Bluetooth 
  * service. A {@code ServiceRecord} contains a set of service attributes, where 
  * each service attribute is an (ID, value) pair. A Bluetooth attribute 
@@ -89,7 +89,7 @@ public interface ServiceRecord {
 	 * service. Used with {@link #getConnectionURL(int, boolean)} method. 
 	 * <p>
 	 * {@code NOAUTHENTICATE_NOENCRYPT} is set to the constant value 0x00 (0).
-	 * 
+	 *
 	 * @see #getConnectionURL(int, boolean)
 	 */
 	public static final int NOAUTHENTICATE_NOENCRYPT = 0;
@@ -100,7 +100,7 @@ public interface ServiceRecord {
 	 * connection. Used with {@link #getConnectionURL(int, boolean)} method. 
 	 * <p>
 	 * {@code AUTHENTICATE_NOENCRYPT} is set to the constant value 0x01 (1).
-	 * 
+	 *
 	 * @see #getConnectionURL(int, boolean)
 	 */
 	public static final int AUTHENTICATE_NOENCRYPT = 1;
@@ -116,7 +116,7 @@ public interface ServiceRecord {
 	/**
 	 * Returns the value of the service attribute ID provided it is present in
 	 * the service record, otherwise this method returns {@code null}. 
-	 * 
+	 *
 	 * @param attrID the attribute whose value is to be returned 
 	 * @return the value of the attribute ID if present in the service record, 
 	 * 				otherwise {@code null}
@@ -131,7 +131,7 @@ public interface ServiceRecord {
 	 * that provided the value might not be reachable anymore, since it can
 	 * move, turn off, or change its security mode denying all further
 	 * transactions. 
-	 * 
+	 *
 	 * @return the remote Bluetooth device that populated the
 	 * service record, or {@code null} if the local device populated this {@code ServiceRecord}
 	 */
@@ -141,7 +141,7 @@ public interface ServiceRecord {
 	 * Returns the service attribute IDs whose value could be retrieved by a
 	 * call to {@link #getAttributeValue(int)}. The list of attributes being returned is not
 	 * sorted and includes default attributes. 
-	 * 
+	 *
 	 * @return an array of service
 	 * attribute IDs that are in this object and have values for them; if there
 	 * are no attribute IDs that have values, this method will return an array
@@ -163,7 +163,7 @@ public interface ServiceRecord {
 	 * service record. If there exist attribute IDs for which values are
 	 * retrieved this will cause the old values to be overwritten. If the remote
 	 * device cannot be reached, an {link java.lang.IOException} will be thrown. 
-	 * 
+	 *
 	 * @param attrIDs  the list of service attributes IDs whose value are to be
 	 * retrieved; the number of attributes cannot exceed the property
 	 * {@code bluetooth.sd.attr.retrievable.max}; the attributes in the request must be
@@ -205,7 +205,7 @@ public interface ServiceRecord {
 	 * {@link javax.bluetooth.LocalDevice#getRecord(javax.microedition.io.Connection)},
 	 * it will return the connection string that a remote device will use to
 	 * connect to this service.
-	 * 
+	 *
 	 * @param requiredSecurity
 	 *            determines whether authentication or encryption are required
 	 *            for a connection
@@ -246,7 +246,7 @@ public interface ServiceRecord {
 	 * DeviceClass for the server that accurately describes all of the services
 	 * being offered.
 	 * <p>
-	 * 
+	 *
 	 * When {@code acceptAndOpen()} is
 	 * invoked for the first time on the notifier associated with this
 	 * {@code ServiceRecord}, the classes argument from the
@@ -259,14 +259,14 @@ public interface ServiceRecord {
 	 * cause the major service class bits to be OR'ed with the current settings
 	 * and updated.
 	 * <p>
-	 * 
+	 *
 	 * The documentation for {@link javax.bluetooth.DeviceClass} gives examples
 	 * of the integers that describe each of the major service classes and
 	 * provides a URL for the complete list. These integers can be used
 	 * individually or OR'ed together to describe the appropriate value for
 	 * classes.
 	 * <p>
-	 * 
+	 *
 	 * Later, when this {@code ServiceRecord} is removed from the SDDB, the
 	 * implementation will automatically deactivate the device bits that were
 	 * activated as a result of the call to setDeviceServiceClasses. The only
@@ -274,7 +274,7 @@ public interface ServiceRecord {
 	 * is in the SDDB and {@link #setDeviceServiceClasses(int)} has been sent to
 	 * that other {@code ServiceRecord} to request that some of the same bits be
 	 * activated.
-	 * 
+	 *
 	 * @param classes
 	 *            an integer whose binary representation indicates the major
 	 *            service class bits that should be activated
@@ -303,7 +303,7 @@ public interface ServiceRecord {
 	 * from this {@code ServiceRecord} object. If attrValue is null and attrID
 	 * does not exist in this object, this method will return false.
 	 * <p>
-	 * 
+	 *
 	 * This method makes no modifications to a service record in the SDDB. In
 	 * order for any changes made by this method to be reflected in the SDDB, a
 	 * call must be made to the acceptAndOpen() method of the associated
@@ -312,10 +312,10 @@ public interface ServiceRecord {
 	 * to modify the version of this {@code ServiceRecord} that is already in
 	 * the SDDB.
 	 * <p>
-	 * 
+	 *
 	 * This method prevents the {@code ServiceRecordHandle} from being modified
 	 * by throwing an IllegalArgumentException.
-	 * 
+	 *
 	 * @param attrID
 	 *            the service attribute ID
 	 * @param attrValue

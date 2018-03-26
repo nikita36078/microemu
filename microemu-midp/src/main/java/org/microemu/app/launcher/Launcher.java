@@ -38,7 +38,9 @@ import org.microemu.app.CommonInterface;
 
 public class Launcher extends MIDlet implements CommandListener {
 
-	protected static final Command CMD_LAUNCH = new Command("Start", Command.ITEM, 0);;
+	protected static final Command CMD_LAUNCH = new Command("Start", Command.ITEM, 0);
+
+	;
 
 	protected static final String NOMIDLETS = "[no midlets]";
 

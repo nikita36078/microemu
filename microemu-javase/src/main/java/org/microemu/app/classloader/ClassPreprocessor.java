@@ -50,7 +50,7 @@ public class ClassPreprocessor {
 		} catch (IOException e) {
 			Logger.error("Error loading MIDlet class", e);
 			return null;
-		} 
-    }
-	
+		}
+	}
+
 }

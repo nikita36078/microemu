@@ -35,7 +35,7 @@ import javax.microedition.lcdui.Graphics;
 public class OverrideNewJSRCanvas extends BaseTestsCanvas {
 
 	public static final boolean enabled = true;
-	
+
 	public OverrideNewJSRCanvas() {
 		super("OverrideNew IO JSR");
 	}
@@ -45,17 +45,17 @@ public class OverrideNewJSRCanvas extends BaseTestsCanvas {
 	 */
 	protected void paint(Graphics g) {
 		int width = getWidth();
-        int height = getHeight();
+		int height = getHeight();
 
 		g.setGrayScale(255);
 		g.fillRect(0, 0, width, height);
-		
+
 		g.setColor(0);
 		int line = 0;
 		writeln(g, line++, "Override New JSR");
-		
+
 		String result;
-		
+
 		try {
 			result = new OverrideNewJSRClient().doJSRStuff("Can use new classes");
 			writeln(g, line++, "success");
@@ -63,7 +63,7 @@ public class OverrideNewJSRCanvas extends BaseTestsCanvas {
 			writeln(g, line++, "failure");
 			result = e.toString();
 		}
-		
+
 		writeln(g, line++, result);
 	}
 

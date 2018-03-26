@@ -66,8 +66,7 @@ import org.microemu.device.impl.Rectangle;
 import org.microemu.device.impl.Shape;
 import org.microemu.device.impl.SoftButton;
 
-public class J2SEDeviceDisplay implements DeviceDisplayImpl 
-{
+public class J2SEDeviceDisplay implements DeviceDisplayImpl {
 	EmulatorContext context;
 
 	Rectangle displayRectangle;
@@ -89,9 +88,9 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 	PositionedImage modeAbcUpperImage;
 
 	PositionedImage modeAbcLowerImage;
-	
+
 	Image gameCanvasImage = null;
-	
+
 	javax.microedition.lcdui.Graphics gameCanvasGraphics;
 
 	boolean resizable;
@@ -99,7 +98,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 	public J2SEDeviceDisplay(EmulatorContext context) {
 		this.context = context;
 	}
-	
+
 	public boolean flashBacklight(int duration) {
 		// TODO
 		return false;
@@ -159,7 +158,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 				- displayPaintable.y - displayPaintable.height);
 
 		g.setColor(foregroundColor);
-		for (Enumeration s = device.getSoftButtons().elements(); s.hasMoreElements();) {
+		for (Enumeration s = device.getSoftButtons().elements(); s.hasMoreElements(); ) {
 			((J2SESoftButton) s.nextElement()).paint(g);
 		}
 
@@ -189,7 +188,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 		if (current == null) {
 			return;
 		}
-		
+
 		Graphics g = graphicsSurface.getGraphics();
 		g.setColor(foregroundColor);
 		java.awt.Shape oldclip = g.getClip();
@@ -435,30 +434,28 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 		}
 	}
 
-    public javax.microedition.lcdui.Graphics getGraphics(GameCanvas gameCanvas)
-    {
-        if (gameCanvasImage == null) {
-            gameCanvasImage = createImage(gameCanvas.getWidth(), gameCanvas.getHeight(), true, 0x00000000);
-        }
-        
-        return gameCanvasImage.getGraphics();
-    }
-    
-    public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height) {
-        if (gameCanvasImage != null) {
-            J2SEGraphicsSurface surface = ((SwingDisplayComponent) context.getDisplayComponent()).getGraphicsSurface();
-            if (surface != null) {
-                surface.getGraphics().drawImage(
-                        ((J2SEMutableImage) gameCanvasImage).getImage(), 
-                        x, y, x + width, y + height, 
-                        x, y, x + width, y + height, 
-                        null);
-                ((SwingDisplayComponent) context.getDisplayComponent()).fireDisplayRepaint(
-                        surface, 0, 0, surface.getImage().getWidth(), surface.getImage().getHeight());
-            }
-        }
-    }
+	public javax.microedition.lcdui.Graphics getGraphics(GameCanvas gameCanvas) {
+		if (gameCanvasImage == null) {
+			gameCanvasImage = createImage(gameCanvas.getWidth(), gameCanvas.getHeight(), true, 0x00000000);
+		}
 
+		return gameCanvasImage.getGraphics();
+	}
+
+	public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height) {
+		if (gameCanvasImage != null) {
+			J2SEGraphicsSurface surface = ((SwingDisplayComponent) context.getDisplayComponent()).getGraphicsSurface();
+			if (surface != null) {
+				surface.getGraphics().drawImage(
+						((J2SEMutableImage) gameCanvasImage).getImage(),
+						x, y, x + width, y + height,
+						x, y, x + width, y + height,
+						null);
+				((SwingDisplayComponent) context.getDisplayComponent()).fireDisplayRepaint(
+						surface, 0, 0, surface.getImage().getWidth(), surface.getImage().getHeight());
+			}
+		}
+	}
 
 	public void setNumAlphaLevels(int i) {
 		numAlphaLevels = i;
@@ -466,7 +463,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setNumColors(int)
 	 */
 	public void setNumColors(int i) {
@@ -475,7 +472,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setIsColor(boolean)
 	 */
 	public void setIsColor(boolean b) {
@@ -484,7 +481,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setBackgroundColor(java.awt.Color)
 	 */
 	public void setBackgroundColor(Color color) {
@@ -493,7 +490,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setForegroundColor(java.awt.Color)
 	 */
 	public void setForegroundColor(Color color) {
@@ -502,7 +499,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setDisplayRectangle(java.awt.Rectangle)
 	 */
 	public void setDisplayRectangle(Rectangle rectangle) {
@@ -511,7 +508,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setDisplayPaintable(java.awt.Rectangle)
 	 */
 	public void setDisplayPaintable(Rectangle rectangle) {
@@ -520,7 +517,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setMode123Image(com.barteo.emulator.device.impl.PositionedImage)
 	 */
 	public void setMode123Image(PositionedImage object) {
@@ -529,7 +526,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setModeAbcLowerImage(com.barteo.emulator.device.impl.PositionedImage)
 	 */
 	public void setModeAbcLowerImage(PositionedImage object) {
@@ -538,7 +535,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setModeAbcUpperImage(com.barteo.emulator.device.impl.PositionedImage)
 	 */
 	public void setModeAbcUpperImage(PositionedImage object) {

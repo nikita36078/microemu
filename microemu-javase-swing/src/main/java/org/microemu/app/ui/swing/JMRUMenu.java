@@ -37,7 +37,7 @@ import org.microemu.app.util.MRUListListener;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class JMRUMenu extends JMenu implements MRUListListener {
 

@@ -61,19 +61,19 @@ public class SwtListUI extends DisplayableImplUI implements ListUI {
 	@Override
 	public void delete(int elementNum) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteAll() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setSelectedIndex(int elementNum, boolean selected) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

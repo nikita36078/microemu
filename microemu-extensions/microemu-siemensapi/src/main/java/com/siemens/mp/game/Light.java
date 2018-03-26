@@ -27,14 +27,13 @@ import javax.microedition.midlet.*;
 
 /**
  *
- * @author  markus
+ * @author markus
  * @version
  */
 public class Light {
-    public static void setLightOn()
-    {
-    }
-    
-    public static void setLightOff()
-    {}
+	public static void setLightOn() {
+	}
+
+	public static void setLightOff() {
+	}
 }

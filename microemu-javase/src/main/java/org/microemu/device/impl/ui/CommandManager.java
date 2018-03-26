@@ -37,59 +37,52 @@ import org.microemu.device.DeviceFactory;
 import org.microemu.device.impl.SoftButton;
 import org.microemu.device.ui.CommandUI;
 
-public class CommandManager 
-{
+public class CommandManager {
 	public static final Command CMD_MENU = new Command("Menu", Command.EXIT, 0);
 
 	private static final Command CMD_BACK = new Command("Back", Command.BACK, 0);
+
 	private static final Command CMD_SELECT = new Command("Select", Command.OK, 0);
-	
+
 	private static CommandManager instance = new CommandManager();
-	
+
 	private List menuList = null;
+
 	private Vector menuCommands;
+
 	private Displayable previous;
-	
-	private CommandListener menuCommandListener = new CommandListener()
-	{
-		public void commandAction(Command c, Displayable d) 
-		{
+
+	private CommandListener menuCommandListener = new CommandListener() {
+		public void commandAction(Command c, Displayable d) {
 			if (menuList == null) {
 				lateInit();
 			}
 
 			MIDletBridge.getMIDletAccess().getDisplayAccess().setCurrent(previous);
-			
+
 			if ((c == CMD_SELECT) || c == List.SELECT_COMMAND) {
 				MIDletBridge.getMIDletAccess().getDisplayAccess().commandAction(
-						(Command) menuCommands.elementAt(menuList.getSelectedIndex()), 
+						(Command) menuCommands.elementAt(menuList.getSelectedIndex()),
 						previous);
 			}
-		}		
+		}
 	};
-		
-	
-	private CommandManager()
-	{	
+
+	private CommandManager() {
 	}
-	
-	
+
 	private void lateInit() {
 		menuList = new List("Menu", List.IMPLICIT);
 		menuList.addCommand(CMD_BACK);
 		menuList.addCommand(CMD_SELECT);
 		menuList.setCommandListener(menuCommandListener);
 	}
-	
-	
-	public static CommandManager getInstance()
-	{
+
+	public static CommandManager getInstance() {
 		return instance;
 	}
-	
-	
-	public void commandAction(Command command)
-	{
+
+	public void commandAction(Command command) {
 		if (menuList == null) {
 			lateInit();
 		}
@@ -97,14 +90,12 @@ public class CommandManager
 		previous = MIDletBridge.getMIDletAccess().getDisplayAccess().getCurrent();
 		MIDletBridge.getMIDletAccess().getDisplayAccess().setCurrent(menuList);
 	}
-	
-	
-	public void updateCommands(Vector commands)
-	{
+
+	public void updateCommands(Vector commands) {
 		if (menuList == null) {
 			lateInit();
 		}
-		
+
 		Vector buttons = DeviceFactory.getDevice().getSoftButtons();
 		int numOfButtons = 0;
 		Enumeration en = buttons.elements();
@@ -115,21 +106,21 @@ public class CommandManager
 				numOfButtons++;
 			}
 		}
-		
-		if (commands == null) {			
+
+		if (commands == null) {
 			return;
 		}
-		
+
 		Vector commandsTable = new Vector();
 		for (int i = 0; i < commands.size(); i++) {
 			commandsTable.addElement(null);
 		}
-		
+
 		// Sort commands using priority
 		en = commands.elements();
 		while (en.hasMoreElements()) {
 			Command commandToSort = ((CommandUI) en.nextElement()).getCommand();
-			
+
 			for (int i = 0; i < commandsTable.size(); i++) {
 				if (commandsTable.elementAt(i) == null) {
 					commandsTable.setElementAt(commandToSort, i);
@@ -142,35 +133,33 @@ public class CommandManager
 						}
 					}
 				}
-			}			
+			}
 		}
-		
+
 		if (commandsTable.size() <= numOfButtons) {
-			fillPossibleCommands(buttons, commandsTable);			
+			fillPossibleCommands(buttons, commandsTable);
 			return;
 		}
-		
+
 		// Menu is needed
 		commandsTable.insertElementAt(CMD_MENU, 0);
 		fillPossibleCommands(buttons, commandsTable);
 		while (menuList.size() > 0) {
-	        menuList.delete(0);
-	    }
+			menuList.delete(0);
+		}
 		for (int i = 0; i < commandsTable.size(); i++) {
 			menuCommands = commandsTable;
 			menuList.append(((Command) commandsTable.elementAt(i)).getLabel(), null);
 		}
 	}
-	
-	
-	private void fillPossibleCommands(Vector buttons, Vector commandsTable)
-	{
+
+	private void fillPossibleCommands(Vector buttons, Vector commandsTable) {
 		for (int i = 0; i < commandsTable.size(); i++) {
 			Enumeration en = buttons.elements();
 			while (en.hasMoreElements()) {
 				SoftButton button = (SoftButton) en.nextElement();
 				if (button.getType() == SoftButton.TYPE_COMMAND
-						&& button.getCommand() == null 
+						&& button.getCommand() == null
 						&& button.preferredCommandType((Command) commandsTable.elementAt(i))) {
 					button.setCommand((Command) commandsTable.elementAt(i));
 					commandsTable.removeElementAt(i);
@@ -192,7 +181,7 @@ public class CommandManager
 				}
 			}
 		}
-		
+
 		// if there are unassigned softbuttons with paintable != null
 		//   then fill these with commands from softbuttons with paintable == null
 		Enumeration hiddenEn = buttons.elements();
@@ -200,7 +189,7 @@ public class CommandManager
 			SoftButton hiddenButton = (SoftButton) hiddenEn.nextElement();
 			if (hiddenButton.getType() == SoftButton.TYPE_COMMAND
 					&& hiddenButton.getPaintable() == null
-					&& hiddenButton.getCommand() != null) {				
+					&& hiddenButton.getCommand() != null) {
 				Enumeration en = buttons.elements();
 				while (en.hasMoreElements()) {
 					SoftButton button = (SoftButton) en.nextElement();
@@ -214,5 +203,5 @@ public class CommandManager
 			}
 		}
 	}
-		
+
 }

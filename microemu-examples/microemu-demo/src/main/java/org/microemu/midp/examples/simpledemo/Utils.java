@@ -34,22 +34,22 @@ import java.util.Date;
  *
  */
 public class Utils {
-    
-    public static String d00(int i) {
-        if (i > 9) {
-            return String.valueOf(i);
-        } else {
-            return "0" + String.valueOf(i);
-        }
-    }
-    
-    public static String when() {
-        StringBuffer sb = new StringBuffer();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
-        sb.append(d00(calendar.get(Calendar.HOUR_OF_DAY))).append(":");
-        sb.append(d00(calendar.get(Calendar.MINUTE))).append(":");
-        sb.append(d00(calendar.get(Calendar.SECOND)));
-        return sb.toString();
-    }
+
+	public static String d00(int i) {
+		if (i > 9) {
+			return String.valueOf(i);
+		} else {
+			return "0" + String.valueOf(i);
+		}
+	}
+
+	public static String when() {
+		StringBuffer sb = new StringBuffer();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		sb.append(d00(calendar.get(Calendar.HOUR_OF_DAY))).append(":");
+		sb.append(d00(calendar.get(Calendar.MINUTE))).append(":");
+		sb.append(d00(calendar.get(Calendar.SECOND)));
+		return sb.toString();
+	}
 }

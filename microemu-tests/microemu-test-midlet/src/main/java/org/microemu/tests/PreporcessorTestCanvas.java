@@ -34,7 +34,7 @@ import javax.microedition.lcdui.Graphics;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class PreporcessorTestCanvas extends BaseTestsCanvas {
 
@@ -46,7 +46,7 @@ public class PreporcessorTestCanvas extends BaseTestsCanvas {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.microedition.lcdui.Canvas#paint(javax.microedition.lcdui.Graphics)
 	 */
 	protected void paint(Graphics g) {

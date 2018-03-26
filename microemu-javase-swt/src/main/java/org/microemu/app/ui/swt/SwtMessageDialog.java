@@ -21,7 +21,7 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu.app.ui.swt;
 
 import org.eclipse.swt.SWT;
@@ -35,60 +35,54 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-
-public class SwtMessageDialog extends SwtDialog 
-{
+public class SwtMessageDialog extends SwtDialog {
 	public final static int ERROR = 1;
+
 	public final static int WARNING = 2;
+
 	public final static int INFORMATION = 3;
+
 	public final static int QUESTION = 4;
-	
+
 	private String title;
+
 	private String message;
+
 	private String[] buttonLabels;
+
 	private int defaultIndex;
 
-
-	public SwtMessageDialog(Shell parentShell, String title, String message, int imageType, String[] buttonLabels, int defaultIndex) 
-	{
+	public SwtMessageDialog(Shell parentShell, String title, String message, int imageType, String[] buttonLabels,
+			int defaultIndex) {
 		super(parentShell);
-		
+
 		this.title = title;
 		this.message = message;
 		this.buttonLabels = buttonLabels;
 		this.defaultIndex = defaultIndex;
 	}
 
-
-	public static void openMessageDialog(Shell parent, String title, String message, int messageType) 
-	{
-		SwtMessageDialog dialog = 
-				new SwtMessageDialog(parent, title, message, messageType, new String[] {"OK"}, 0);
-		dialog.open();	
+	public static void openMessageDialog(Shell parent, String title, String message, int messageType) {
+		SwtMessageDialog dialog =
+				new SwtMessageDialog(parent, title, message, messageType, new String[] { "OK" }, 0);
+		dialog.open();
 	}
-	
-	
-	public static boolean openQuestion(Shell parent, String title, String message) 
-	{
-		SwtMessageDialog dialog = 
-				new SwtMessageDialog(parent, title, message, QUESTION, new String[] {"Yes", "No"}, 0);
+
+	public static boolean openQuestion(Shell parent, String title, String message) {
+		SwtMessageDialog dialog =
+				new SwtMessageDialog(parent, title, message, QUESTION, new String[] { "Yes", "No" }, 0);
 		return dialog.open() == 0;
 	}
-	
 
-
-	protected void configureShell(Shell shell) 
-	{
+	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		
+
 		if (title != null) {
 			shell.setText(title);
 		}
 	}
-	
-	
-	protected Control createDialogArea(Composite composite) 
-	{
+
+	protected Control createDialogArea(Composite composite) {
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 1;
 		composite.setLayout(gridLayout);
@@ -100,11 +94,9 @@ public class SwtMessageDialog extends SwtDialog
 		return composite;
 	}
 
-
-	protected Control createButtonBar(Composite parent) 
-	{
+	protected Control createButtonBar(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
-		
+
 		composite.setLayout(new GridLayout(buttonLabels.length, false));
 		composite.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER));
 		composite.setFont(parent.getFont());
@@ -113,14 +105,12 @@ public class SwtMessageDialog extends SwtDialog
 			Button button = new Button(composite, SWT.PUSH);
 			button.setText(buttonLabels[i]);
 			button.setData(new Integer(i));
-			button.addSelectionListener(new SelectionAdapter() 
-			{
-				public void widgetSelected(SelectionEvent event) 
-				{
+			button.addSelectionListener(new SelectionAdapter() {
+				public void widgetSelected(SelectionEvent event) {
 					buttonPressed(((Integer) event.widget.getData()).intValue());
 				}
 			});
-			
+
 			if (i == defaultIndex) {
 				Shell shell = parent.getShell();
 				if (shell != null) {
@@ -132,12 +122,9 @@ public class SwtMessageDialog extends SwtDialog
 		return composite;
 	}
 
-
-	protected void buttonPressed(int buttonId) 
-	{
+	protected void buttonPressed(int buttonId) {
 		setReturnCode(buttonId);
 		close();
 	}
-	
 
 }

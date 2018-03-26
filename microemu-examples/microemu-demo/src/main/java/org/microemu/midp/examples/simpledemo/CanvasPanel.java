@@ -54,9 +54,9 @@ public class CanvasPanel extends BaseExamplesCanvas implements HasRunnable {
 	private int posX = 0, posY = 0;
 
 	private int ballMoveX = 2, ballMoveY = -3;
-	
+
 	private int ballPosX = 15, ballPosY = 15;
-	
+
 	private int ballColor = 0x5691F0;
 
 	private Random ballRandom = new Random();
@@ -114,7 +114,6 @@ public class CanvasPanel extends BaseExamplesCanvas implements HasRunnable {
 		thread.start();
 	}
 
-
 	public void stopRunnable() {
 		cancel = true;
 	}
@@ -138,7 +137,7 @@ public class CanvasPanel extends BaseExamplesCanvas implements HasRunnable {
 					moveX = 1;
 					moveY = 1;
 					moving = true;
-				} 
+				}
 			}
 		}
 		super.commandAction(c, d);
@@ -191,7 +190,7 @@ public class CanvasPanel extends BaseExamplesCanvas implements HasRunnable {
 
 	public void paint(Graphics g) {
 		int width = getWidth();
-        int height = getHeight();
+		int height = getHeight();
 
 		g.setGrayScale(255);
 		g.fillRect(0, 0, width, height);
@@ -223,12 +222,12 @@ public class CanvasPanel extends BaseExamplesCanvas implements HasRunnable {
 		int arcWidth = w;
 		int arcHeight = h;
 		g.setColor(0xFFCC11);
-		g.drawRoundRect((width - w)/2, (height - h)/2, w, h, arcWidth, arcHeight);
+		g.drawRoundRect((width - w) / 2, (height - h) / 2, w, h, arcWidth, arcHeight);
 		g.setColor(0xFFEE99);
-		g.fillRoundRect((width - w)/2, (height - h)/2, w, h, arcWidth, arcHeight);
+		g.fillRoundRect((width - w) / 2, (height - h) / 2, w, h, arcWidth, arcHeight);
 
 		g.setColor(0xBB5500);
-		g.drawString(text, width/2, (height - f.getHeight())/2, Graphics.HCENTER | Graphics.TOP);
+		g.drawString(text, width / 2, (height - f.getHeight()) / 2, Graphics.HCENTER | Graphics.TOP);
 
 		// Pint Ball
 		g.setColor(ballColor);
@@ -250,6 +249,5 @@ public class CanvasPanel extends BaseExamplesCanvas implements HasRunnable {
 			ballColor = ballRandom.nextInt(0xFF) + (ballRandom.nextInt(0xFF) << 8) + (ballRandom.nextInt(0xFF) << 16);
 		}
 	}
-
 
 }

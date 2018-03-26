@@ -20,7 +20,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  @version $Id$
  */
 
@@ -39,82 +39,84 @@ import javax.swing.text.PlainDocument;
 
 public class ResizeDeviceDisplayDialog extends SwingDialogPanel {
 
-    private static final long serialVersionUID = 1L;
-    
-    private class IntegerField extends JTextField {
+	private static final long serialVersionUID = 1L;
 
-        private static final long serialVersionUID = 1L;
-        
-        private int minValue;
-        
-        private int maxValue;
+	private class IntegerField extends JTextField {
 
-        public IntegerField(int cols, int minValue, int maxValue) {
-            super(cols);
-            
-            this.minValue = minValue;
-            this.maxValue = maxValue;
-        }
+		private static final long serialVersionUID = 1L;
 
-        protected Document createDefaultModel() {
-            return new IntegerDocument();
-        }
+		private int minValue;
 
-        class IntegerDocument extends PlainDocument {
+		private int maxValue;
 
-            private static final long serialVersionUID = 1L;
+		public IntegerField(int cols, int minValue, int maxValue) {
+			super(cols);
 
-            public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
-                if (str == null) {
-                    return;
-                }
-                char[] test = str.toCharArray();
-                for (int i = 0; i < test.length; i++) {
-                    if (!Character.isDigit(test[i])) {
-                        return;
-                    }
-                }
-                String prevText = getText(0, getLength());
-                super.insertString(offs, str, a);
-                int testValue = Integer.parseInt(getText(0, getLength()));
-                if (testValue < minValue | testValue > maxValue) {
-                    replace(0, getLength(), prevText, a);
-                }                
-            }
-        }
-    };    
-    
-    private IntegerField widthField = new IntegerField(5, 1, 9999);
-    
-    private IntegerField heightField = new IntegerField(5, 1, 9999);
+			this.minValue = minValue;
+			this.maxValue = maxValue;
+		}
 
-    public ResizeDeviceDisplayDialog() {
-        add(new JLabel("Width:"));
-        add(this.widthField);
-        add(new JLabel("Height:"));
-        add(this.heightField);
-        JButton swapButton = new JButton("Swap");
-        swapButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String tmp = widthField.getText();
-                widthField.setText(heightField.getText());
-                heightField.setText(tmp);
-            }
-        });
-        add(swapButton);
-    }
+		protected Document createDefaultModel() {
+			return new IntegerDocument();
+		}
 
-    public void setDeviceDisplaySize(int width, int height) {
-        widthField.setText("" + width);
-        heightField.setText("" + height);
-    }
-    
-    public int getDeviceDisplayWidth() {
-        return Integer.parseInt(widthField.getText());
-    }
-    
-    public int getDeviceDisplayHeight() {
-        return Integer.parseInt(heightField.getText());
-    }
+		class IntegerDocument extends PlainDocument {
+
+			private static final long serialVersionUID = 1L;
+
+			public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+				if (str == null) {
+					return;
+				}
+				char[] test = str.toCharArray();
+				for (int i = 0; i < test.length; i++) {
+					if (!Character.isDigit(test[i])) {
+						return;
+					}
+				}
+				String prevText = getText(0, getLength());
+				super.insertString(offs, str, a);
+				int testValue = Integer.parseInt(getText(0, getLength()));
+				if (testValue < minValue | testValue > maxValue) {
+					replace(0, getLength(), prevText, a);
+				}
+			}
+		}
+	}
+
+	;
+
+	private IntegerField widthField = new IntegerField(5, 1, 9999);
+
+	private IntegerField heightField = new IntegerField(5, 1, 9999);
+
+	public ResizeDeviceDisplayDialog() {
+		add(new JLabel("Width:"));
+		add(this.widthField);
+		add(new JLabel("Height:"));
+		add(this.heightField);
+		JButton swapButton = new JButton("Swap");
+		swapButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String tmp = widthField.getText();
+				widthField.setText(heightField.getText());
+				heightField.setText(tmp);
+			}
+		});
+		add(swapButton);
+	}
+
+	public void setDeviceDisplaySize(int width, int height) {
+		widthField.setText("" + width);
+		heightField.setText("" + height);
+	}
+
+	public int getDeviceDisplayWidth() {
+		return Integer.parseInt(widthField.getText());
+	}
+
+	public int getDeviceDisplayHeight() {
+		return Integer.parseInt(heightField.getText());
+	}
 
 }

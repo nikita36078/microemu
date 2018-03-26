@@ -32,14 +32,14 @@ import java.net.URLConnection;
 import java.util.Hashtable;
 
 public class ResURLConnection extends URLConnection {
-	
+
 	private static final String PREFIX = "res:";
 
 	private Hashtable entries;
-	
+
 	protected ResURLConnection(URL url, Hashtable entries) {
 		super(url);
-		
+
 		this.entries = entries;
 	}
 
@@ -59,5 +59,5 @@ public class ResURLConnection extends URLConnection {
 		}
 		return new ByteArrayInputStream(data);
 	}
-	
+
 }

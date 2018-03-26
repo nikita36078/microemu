@@ -30,38 +30,39 @@ import org.microemu.device.ui.ImageStringItemUI;
 public class StringItem extends Item {
 
 	private StringComponent stringComponent;
+
 	private int appearanceMode;
 
 	public StringItem(String label, String text) {
 		this(label, text, PLAIN);
 	}
-	
+
 	public StringItem(String label, String text, int appearanceMode) {
 		super(label);
 		this.appearanceMode = appearanceMode;
 		super.setUI(DeviceFactory.getDevice().getUIFactory().createImageStringItemUI(this));
-		
+
 		stringComponent = new StringComponent();
 		setText(text);
 	}
-	
+
 	public int getAppearanceMode() {
 		return appearanceMode;
 	}
-	
+
 	public Font getFont() {
-    	// TODO implement
+		// TODO implement
 		return Font.getDefaultFont();
 	}
-	
+
 	public void setFont(Font font) {
-    	// TODO implement
+		// TODO implement
 	}
 
 	public void setPreferredSize(int width, int height) {
-    	// TODO implement
+		// TODO implement
 	}
-	
+
 	public String getText() {
 		return stringComponent.getText();
 	}

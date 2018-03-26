@@ -33,7 +33,7 @@ package org;
 public class DynamicallyLoadedStatus {
 
 	static boolean runnerSuccess = false;
-	
+
 	static {
 		runnerSuccess = false;
 	}

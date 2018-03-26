@@ -69,13 +69,13 @@ import org.microemu.device.ui.UIFactory;
 public class J2SEDevice extends DeviceImpl {
 
 	private UIFactory ui = new UIFactory() {
-		
+
 		public EventDispatcher createEventDispatcher(Display display) {
 			EventDispatcher eventDispatcher = new EventDispatcher();
 			Thread thread = new Thread(eventDispatcher, EventDispatcher.EVENT_DISPATCHER_NAME);
 			thread.setDaemon(true);
 			thread.start();
-			
+
 			return eventDispatcher;
 		}
 
@@ -90,7 +90,7 @@ public class J2SEDevice extends DeviceImpl {
 		public CanvasUI createCanvasUI(Canvas canvas) {
 			return new J2SECanvasUI(canvas);
 		}
-		
+
 		public FormUI createFormUI(Form form) {
 			return new J2SEFormUI(form);
 		}
@@ -122,7 +122,7 @@ public class J2SEDevice extends DeviceImpl {
 		public ImageStringItemUI createImageStringItemUI(Item item) {
 			return new J2SEImageStringItemUI(item);
 		}
-		
+
 		public TextFieldUI createTextFieldUI(TextField textField) {
 			return new J2SETextFieldUI(textField);
 		}

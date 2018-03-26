@@ -38,13 +38,13 @@ import org.microemu.microedition.Implementation;
 
 /**
  * Delegate for javax.microedition.Connector
- * 
+ *
  * @author vlads
  */
 public interface ConnectorDelegate extends Implementation {
 
 	public Connection open(String name) throws IOException;
-	
+
 	public Connection open(String name, int mode) throws IOException;
 
 	public Connection open(String name, int mode, boolean timeouts) throws IOException;
@@ -54,7 +54,7 @@ public interface ConnectorDelegate extends Implementation {
 	public DataOutputStream openDataOutputStream(String name) throws IOException;
 
 	public InputStream openInputStream(String name) throws IOException;
-  
+
 	public OutputStream openOutputStream(String name) throws IOException;
-	
+
 }

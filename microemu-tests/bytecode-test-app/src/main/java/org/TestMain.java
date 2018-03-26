@@ -29,31 +29,31 @@ package org;
 public class TestMain implements Runnable {
 
 	public static boolean verbose = false;
-	
+
 	public static void main(String[] args) {
 		(new TestMain()).run();
 	}
 
 	public void run() {
-		
+
 		if (System.getProperty("test.verbose") != null) {
 			verbose = true;
 		}
-		
+
 		if (verbose) {
-			System.out.println("ClassLoader " + this.getClass().getClassLoader().hashCode() +  " TestMain");
+			System.out.println("ClassLoader " + this.getClass().getClassLoader().hashCode() + " TestMain");
 		}
-		
+
 		assertProperty("test.property1", "1");
 		assertProperty("microedition.platform", null);
-		
+
 		if (verbose) {
 			System.out.println("System.getProperty OK");
 		}
-		
+
 		(new TestResourceLoad()).run();
 		(new TestStaticInitializer()).run();
-		
+
 		try {
 			(new OverrideMicroeditionClient()).run();
 			throw new RuntimeException("Can execute OverrideMicroeditionClient");
@@ -66,7 +66,7 @@ public class TestMain implements Runnable {
 				throw new RuntimeException("Can acess java.microedition from MIDlet jar " + e.toString());
 			}
 		}
-		
+
 		try {
 			Class.forName("javax.microedition.NotAccessible");
 			throw new RuntimeException("Can acess java.microedition from MIDlet jar using Class.forName");
@@ -74,37 +74,36 @@ public class TestMain implements Runnable {
 			if (verbose) {
 				System.out.println("no acess to java.microedition in MIDlet jar OK " + e.toString());
 			}
-		} 
-		
+		}
+
 		String runnerName = "org.DynamicallyLoadedRunner";
 		Class drunner;
 		try {
 			drunner = Class.forName(runnerName);
 			if (verbose) {
-				System.out.println("Class.forName("+ runnerName +") OK ");
+				System.out.println("Class.forName(" + runnerName + ") OK ");
 			}
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Can't load "+ runnerName +" from MIDlet jar using Class.forName", e);
+			throw new RuntimeException("Can't load " + runnerName + " from MIDlet jar using Class.forName", e);
 		}
 		Object r;
 		try {
 			r = drunner.newInstance();
 			if (verbose) {
-				System.out.println("Class.forName("+ runnerName +").newInstance() OK ");
+				System.out.println("Class.forName(" + runnerName + ").newInstance() OK ");
 			}
 		} catch (Exception e) {
-			throw new RuntimeException("Can't create "+ runnerName +" from MIDlet jar using Class.forName", e);
+			throw new RuntimeException("Can't create " + runnerName + " from MIDlet jar using Class.forName", e);
 		}
-		
-		((Runnable)r).run();
+
+		((Runnable) r).run();
 		if (!DynamicallyLoadedStatus.runnerSuccess) {
-			throw new RuntimeException("Can execute DynamicallyLoadedRunner from MIDlet jar" );
+			throw new RuntimeException("Can execute DynamicallyLoadedRunner from MIDlet jar");
 		}
-		
-		
+
 		System.out.println("All tests OK");
 	}
-	
+
 	private void assertProperty(String key, String expected) {
 		String value = System.getProperty(key);
 		if (verbose) {

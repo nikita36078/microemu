@@ -30,7 +30,7 @@ import org.microemu.app.ui.Message;
 import org.microemu.app.ui.MessageListener;
 
 public class SwtErrorMessageDialogPanel implements MessageListener {
-	
+
 	private Shell shell;
 
 	public SwtErrorMessageDialogPanel(Shell shell) {

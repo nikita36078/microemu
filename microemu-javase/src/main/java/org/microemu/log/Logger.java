@@ -41,12 +41,12 @@ import java.util.Vector;
 import org.microemu.app.util.IOUtils;
 
 /**
- * 
+ *
  * This class is used as abstraction layer for log messages Minimum Log4j implemenation with multiple overloaded
  * functions
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public class Logger {
 
@@ -295,7 +295,7 @@ public class Logger {
 	}
 
 	private static void callAppenders(LoggingEvent event) {
-		for (Iterator iter = loggerAppenders.iterator(); iter.hasNext();) {
+		for (Iterator iter = loggerAppenders.iterator(); iter.hasNext(); ) {
 			LoggerAppender a = (LoggerAppender) iter.next();
 			a.append(event);
 		}
@@ -304,7 +304,7 @@ public class Logger {
 
 	/**
 	 * Add the Class which serves as entry point for log message location.
-	 * 
+	 *
 	 * @param origin
 	 *            Class
 	 */
@@ -328,7 +328,7 @@ public class Logger {
 		try {
 			StringBuffer out = new StringBuffer("Full ThreadDump\n");
 			Map traces = Thread.getAllStackTraces();
-			for (Iterator iterator = traces.entrySet().iterator(); iterator.hasNext();) {
+			for (Iterator iterator = traces.entrySet().iterator(); iterator.hasNext(); ) {
 				Map.Entry entry = (Map.Entry) iterator.next();
 				Thread thread = (Thread) entry.getKey();
 				out.append("Thread= " + thread.getName() + " " + (thread.isDaemon() ? "daemon" : "") + " prio="
@@ -355,7 +355,7 @@ public class Logger {
 			File file = new File("ThreadDump-" + fmt.format(new Date()) + ".log");
 			out = new FileWriter(file);
 			Map traces = Thread.getAllStackTraces();
-			for (Iterator iterator = traces.entrySet().iterator(); iterator.hasNext();) {
+			for (Iterator iterator = traces.entrySet().iterator(); iterator.hasNext(); ) {
 				Map.Entry entry = (Map.Entry) iterator.next();
 				Thread thread = (Thread) entry.getKey();
 				out.write("Thread= " + thread.getName() + " " + (thread.isDaemon() ? "daemon" : "") + " prio="

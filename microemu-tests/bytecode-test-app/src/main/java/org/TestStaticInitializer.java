@@ -33,22 +33,21 @@ package org;
 public class TestStaticInitializer implements Runnable {
 
 	private static int count = 0;
-	
+
 	static {
 		count = 1;
 	}
-	
-	
+
 	public void run() {
-		
+
 		if (count != 1) {
 			throw new RuntimeException("Same class is used again " + count);
 		}
-		
+
 		if (TestMain.verbose) {
 			System.out.println("Static initializer OK");
 		}
-		
+
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package javax.microedition.rms;
 
@@ -20,29 +20,29 @@ import org.microemu.util.RecordStoreImpl;
 
 /**
  * @author radoshi
- * 
+ *
  */
 public final class RecordStoreTest extends TestCase {
 
-	private static final class MockRecordStoreManager	implements
-														RecordStoreManager {
+	private static final class MockRecordStoreManager implements
+			RecordStoreManager {
 
 		private final Hashtable stores = new Hashtable();
 
 		private ExtendedRecordListener recordListener = null;
-		
-		public void init(MicroEmulator emulator) {			
+
+		public void init(MicroEmulator emulator) {
 		}
-		
+
 		public String getName() {
 			return this.getClass().toString();
 		}
 
-		public void deleteRecordStore(String name)	throws RecordStoreNotFoundException,
-													RecordStoreException {
+		public void deleteRecordStore(String name) throws RecordStoreNotFoundException,
+				RecordStoreException {
 
 			stores.remove(name);
-			
+
 			fireRecordStoreListener(ExtendedRecordListener.RECORDSTORE_DELETE, name);
 		}
 
@@ -64,15 +64,15 @@ public final class RecordStoreTest extends TestCase {
 
 			String[] keys = new String[stores.size()];
 			int index = 0;
-			for (Enumeration names = stores.keys(); names.hasMoreElements();) {
+			for (Enumeration names = stores.keys(); names.hasMoreElements(); ) {
 
 				keys[index++] = (String) names.nextElement();
 			}
 			return keys;
 		}
 
-		public RecordStore openRecordStore(	String recordStoreName,
-											boolean createIfNecessary) throws RecordStoreException {
+		public RecordStore openRecordStore(String recordStoreName,
+				boolean createIfNecessary) throws RecordStoreException {
 
 			if (stores.contains(recordStoreName)) {
 				RecordStoreImpl store = (RecordStoreImpl) stores.get(recordStoreName);
@@ -92,22 +92,19 @@ public final class RecordStoreTest extends TestCase {
 			}
 
 			throw new RecordStoreNotFoundException("Unable to find store: "
-													+ recordStoreName);
+					+ recordStoreName);
 		}
 
-		public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId) 
-				throws RecordStoreNotOpenException, RecordStoreException 
-		{
+		public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId)
+				throws RecordStoreNotOpenException, RecordStoreException {
 		}
 
 		public void loadRecord(RecordStoreImpl recordStoreImpl, int recordId)
-				throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException 
-		{
+				throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException {
 		}
 
-		public void saveRecord(RecordStoreImpl recordStoreImpl, int recordId) 
-				throws RecordStoreNotOpenException, RecordStoreException 
-		{
+		public void saveRecord(RecordStoreImpl recordStoreImpl, int recordId)
+				throws RecordStoreNotOpenException, RecordStoreException {
 		}
 
 		public void setRecordListener(ExtendedRecordListener recordListener) {
@@ -137,14 +134,14 @@ public final class RecordStoreTest extends TestCase {
 
 	/**
 	 * Test method for {@link javax.microedition.rms.RecordStore#getSize()}.
-	 * 
+	 *
 	 * @throws RecordStoreException
 	 * @throws RecordStoreFullException
 	 * @throws RecordStoreNotOpenException
 	 */
-	public void testGetSize()	throws RecordStoreNotOpenException,
-								RecordStoreFullException,
-								RecordStoreException {
+	public void testGetSize() throws RecordStoreNotOpenException,
+			RecordStoreFullException,
+			RecordStoreException {
 
 		rs.addRecord(new byte[100], 0, 100);
 		rs.addRecord(new byte[100], 50, 50);
@@ -152,9 +149,9 @@ public final class RecordStoreTest extends TestCase {
 		assertEquals(150, rs.getSize());
 	}
 
-	private static int addRecord(RecordStore recordStore, long value)	throws IOException,
-																		RecordStoreNotOpenException,
-																		RecordStoreException {
+	private static int addRecord(RecordStore recordStore, long value) throws IOException,
+			RecordStoreNotOpenException,
+			RecordStoreException {
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(baos);
@@ -198,8 +195,8 @@ public final class RecordStoreTest extends TestCase {
 	};
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public void testRecordComparator() throws Exception {
 
@@ -214,9 +211,9 @@ public final class RecordStoreTest extends TestCase {
 		addRecord(rs, 3);
 		addRecord(rs, 1);
 
-		RecordEnumeration re = rs.enumerateRecords(	null,
-													recordComparator,
-													false);
+		RecordEnumeration re = rs.enumerateRecords(null,
+				recordComparator,
+				false);
 		assertEquals(1, extractFromByteArray(re.nextRecord()));
 		assertEquals(2, extractFromByteArray(re.nextRecord()));
 		assertEquals(3, extractFromByteArray(re.nextRecord()));

@@ -32,9 +32,9 @@ public class HttpConnectionTest extends BaseTestHttpConnection {
 
 	private static final String testInetHTTPUrl = "http://" + TEST_HOST + testFile;
 
-    public void testConnection() throws IOException {
-    	HttpConnection hc = (HttpConnection)Connector.open(testInetHTTPUrl, Connector.READ, true);
-        try {
+	public void testConnection() throws IOException {
+		HttpConnection hc = (HttpConnection) Connector.open(testInetHTTPUrl, Connector.READ, true);
+		try {
 			assertEquals("getResponseCode()", HttpConnection.HTTP_OK, hc.getResponseCode());
 			assertEquals("getPort()", 80, hc.getPort());
 			assertEquals("getProtocol()", "http", hc.getProtocol());
@@ -43,9 +43,9 @@ public class HttpConnectionTest extends BaseTestHttpConnection {
 		} finally {
 			hc.close();
 		}
-    }
-    
-    protected HttpConnection openHttpConnection(String query) throws IOException {
-    	return (HttpConnection)Connector.open("http://" + TEST_HOST + query, Connector.READ, true);
-    }
+	}
+
+	protected HttpConnection openHttpConnection(String query) throws IOException {
+		return (HttpConnection) Connector.open("http://" + TEST_HOST + query, Connector.READ, true);
+	}
 }

@@ -35,19 +35,19 @@ import org.microemu.device.InputMethodListener;
 public abstract class InputMethodImpl extends InputMethod implements Runnable {
 
 	protected boolean resetKey;
-	
+
 	protected Button lastButton;
-	
+
 	protected int lastButtonCharIndex;
 
 	private boolean cancel;
-	
+
 	private Thread t;
 
 	public InputMethodImpl() {
 		this.lastButton = null;
 		this.lastButtonCharIndex = -1;
-		
+
 		this.cancel = false;
 		this.t = new Thread(this, "InputMethodThread");
 		this.t.setDaemon(true);
@@ -63,8 +63,7 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 	}
 
 	// Runnable
-	public void run() 
-	{
+	public void run() {
 		while (!cancel) {
 			try {
 				resetKey = true;
@@ -76,25 +75,26 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 			synchronized (this) {
 				if (resetKey && lastButton != null && inputMethodListener != null) {
 					int caret = inputMethodListener.getCaretPosition() + 1;
-                    if (caret <= inputMethodListener.getText().length()) {
-    					lastButton = null;
-    					lastButtonCharIndex = -1;
-						InputMethodEvent event = new InputMethodEvent(InputMethodEvent.CARET_POSITION_CHANGED, caret, inputMethodListener.getText());
+					if (caret <= inputMethodListener.getText().length()) {
+						lastButton = null;
+						lastButtonCharIndex = -1;
+						InputMethodEvent event = new InputMethodEvent(InputMethodEvent.CARET_POSITION_CHANGED, caret,
+								inputMethodListener.getText());
 						inputMethodListener.caretPositionChanged(event);
-                    }
+					}
 				}
 			}
 		}
 	}
-	
-    public void setInputMethodListener(InputMethodListener l) {
-        super.setInputMethodListener(l);
 
-        lastButton = null;
-        lastButtonCharIndex = -1;
-    }
-	
-	public void pointerPressed(int x, int y) {		
+	public void setInputMethodListener(InputMethodListener l) {
+		super.setInputMethodListener(l);
+
+		lastButton = null;
+		lastButtonCharIndex = -1;
+	}
+
+	public void pointerPressed(int x, int y) {
 		if (DeviceFactory.getDevice().hasPointerEvents()) {
 			MIDletBridge.getMIDletAccess().getDisplayAccess().pointerPressed(x, y);
 		}
@@ -111,7 +111,7 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 			MIDletBridge.getMIDletAccess().getDisplayAccess().pointerDragged(x, y);
 		}
 	}
-	
+
 	protected void insertText(String str) {
 		if (str.length() > 0) {
 			int caret = inputMethodListener.getCaretPosition();
@@ -131,9 +131,9 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 				}
 				caret += str.length();
 			}
-            if (!validate(tmp, inputMethodListener.getConstraints())) {
-                return;
-            }
+			if (!validate(tmp, inputMethodListener.getConstraints())) {
+				return;
+			}
 			InputMethodEvent event = new InputMethodEvent(InputMethodEvent.INPUT_METHOD_TEXT_CHANGED, caret, tmp);
 			inputMethodListener.inputMethodTextChanged(event);
 			event = new InputMethodEvent(InputMethodEvent.CARET_POSITION_CHANGED, caret, tmp);
@@ -146,39 +146,40 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 		int i, j;
 
 		for (i = 0, j = 0; i < chars.length; i++) {
-            switch (inputMethodListener.getConstraints() & TextField.CONSTRAINT_MASK) {
-                case TextField.ANY :
-                    result[j] = chars[i];
-                    j++;
-                    break;
-                case TextField.EMAILADDR :
-                    // TODO
-                    break;
-                case TextField.NUMERIC :
-                    if (Character.isDigit(chars[i]) || chars[i] == '-') {
-                        result[j] = chars[i];
-                        j++;
-                    }
-                    break;
-                case TextField.PHONENUMBER :
-                    if (Character.isDigit(chars[i]) || chars[i] == '-' || chars[i] == '.' || chars[i] == ' ' || chars[i] == '+') {
-                        result[j] = chars[i];
-                        j++;
-                    }
-                    break;
-                case TextField.URL :
-                    if (chars[i] != '\n') {
-                        result[j] = chars[i];
-                        j++;
-                    }
-                    break;
-                case TextField.DECIMAL :
-                    if (Character.isDigit(chars[i]) || chars[i] == '-' || chars[i] == '.') {
-                        result[j] = chars[i];
-                        j++;
-                    }
-                    break;
-            }
+			switch (inputMethodListener.getConstraints() & TextField.CONSTRAINT_MASK) {
+			case TextField.ANY:
+				result[j] = chars[i];
+				j++;
+				break;
+			case TextField.EMAILADDR:
+				// TODO
+				break;
+			case TextField.NUMERIC:
+				if (Character.isDigit(chars[i]) || chars[i] == '-') {
+					result[j] = chars[i];
+					j++;
+				}
+				break;
+			case TextField.PHONENUMBER:
+				if (Character.isDigit(chars[i]) || chars[i] == '-' || chars[i] == '.' || chars[i] == ' ' ||
+						chars[i] == '+') {
+					result[j] = chars[i];
+					j++;
+				}
+				break;
+			case TextField.URL:
+				if (chars[i] != '\n') {
+					result[j] = chars[i];
+					j++;
+				}
+				break;
+			case TextField.DECIMAL:
+				if (Character.isDigit(chars[i]) || chars[i] == '-' || chars[i] == '.') {
+					result[j] = chars[i];
+					j++;
+				}
+				break;
+			}
 		}
 		if (i != j) {
 			char[] newresult = new char[j];
@@ -190,10 +191,10 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 	}
 
 	protected char[] filterInputMode(char[] chars) {
-	    if (chars == null) {
-	        return new char[0];
-	    }
-	    
+		if (chars == null) {
+			return new char[0];
+		}
+
 		int inputMode = getInputMode();
 		char[] result = new char[chars.length];
 		int i, j;
@@ -206,7 +207,8 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 				result[j] = Character.toLowerCase(chars[i]);
 				j++;
 			} else if (inputMode == InputMethod.INPUT_123) {
-				if (Character.isDigit(chars[i]) || chars[i] == '-' || chars[i] == '.' || chars[i] == ' ' || chars[i] == '+') {
+				if (Character.isDigit(chars[i]) || chars[i] == '-' || chars[i] == '.' || chars[i] == ' ' ||
+						chars[i] == '+') {
 					result[j] = chars[i];
 					j++;
 				}
@@ -220,5 +222,5 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 
 		return result;
 	}
-	
+
 }

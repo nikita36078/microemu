@@ -28,17 +28,15 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 
 /** This class is a placeholder for utility methods. It contains methods for converting standard lcdui classes to Nokia UI classes and vice versa, and a method for creating images that are empty with pixels either transparent or colored, and creating mutable images from encoded image byte arrays. */
-public class DirectUtils
-{
+public class DirectUtils {
 
 	/** Converts standard javax.microedition.lcdui.Graphics to DirectGraphics. The returned object refers to the same graphics context. This means that calling draw operations or changing the state, for example, drawing color etc., via the original Graphics reference affect the DirectGraphics object, and vice versa.
 	 *
 	 * Note that even though the graphics context that the DirectGraphics and Graphics refer to is the same, the object reference returned from this method may or may not be equal compared to the Graphics reference passed to this method. This means that purely casting Graphics object (g) passed in paint method of lcdui Canvas to DirectGraphics may not work ok. The safest way is to always do the conversion with this method.
 	 * @param g Graphics object for which DirectGraphics should be returned
 	 * @return the DirectGraphics object based on Graphics
-	 */    
-	public static DirectGraphics getDirectGraphics(Graphics g)
-	{
+	 */
+	public static DirectGraphics getDirectGraphics(Graphics g) {
 		return new DirectGraphicsImp(g);
 	}
 
@@ -49,12 +47,11 @@ public class DirectUtils
 	 * @param imageOffset the offset of the start of the data in the array
 	 * @param imageLength the length of the data in the array
 	 * @return the created mutable image
-	 */    
-	public static Image createImage(byte imageData[], int imageOffset, int imageLength)
-	{
+	 */
+	public static Image createImage(byte imageData[], int imageOffset, int imageLength) {
 		Image source = Image.createImage(imageData, imageOffset, imageLength);
 		Image target = Image.createImage(source.getWidth(), source.getHeight());
-		target.getGraphics().drawImage(source,0,0,0);
+		target.getGraphics().drawImage(source, 0, 0, 0);
 		return target;
 	}
 
@@ -64,13 +61,12 @@ public class DirectUtils
 	 * @param argb the initial color for image<br>Note: This is argb color, but alpha channel is currently
 	 * not supported by this emulation.
 	 * @return the created image
-	 */    
-	public static Image createImage(int width, int height, int argb)
-	{
+	 */
+	public static Image createImage(int width, int height, int argb) {
 		Image img = Image.createImage(width, height);
 		Graphics g = img.getGraphics();
 		g.setColor(argb);
-		g.fillRect(0,0, width,height);
+		g.fillRect(0, 0, width, height);
 		g.setColor(0);
 		return img;
 	}

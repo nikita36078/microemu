@@ -21,12 +21,10 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package javax.microedition.lcdui;
 
-
-public class AlertType
-{
+public class AlertType {
 
 	public static final AlertType INFO = new AlertType();
 
@@ -38,16 +36,12 @@ public class AlertType
 
 	public static final AlertType CONFIRMATION = new AlertType();
 
-
-	protected AlertType()
-	{
+	protected AlertType() {
 	}
 
-
-  public boolean playSound(Display display)
-  {
-    // Not implemented
-    return true;
-  }
+	public boolean playSound(Display display) {
+		// Not implemented
+		return true;
+	}
 
 }

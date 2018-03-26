@@ -33,17 +33,17 @@ import java.util.Map;
 import javax.microedition.lcdui.Canvas;
 
 /**
- * 
+ *
  * This class defines default device key codes and game actions for buttons.
- * 
+ *
  * Key code is reported to MIDP application by Canvas.keyPressed()
- * 
+ *
  * Game action is reported to MIDP application by Canvas.getGameAction()
- * 
+ *
  * Use 'device.xml' to redefine codes for your device if required.
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public abstract class ButtonDetaultDeviceKeyCodes {
 
@@ -70,7 +70,7 @@ public abstract class ButtonDetaultDeviceKeyCodes {
 	public static ButtonName getButtonNameByGameAction(int gameAction) {
 		Integer value = new Integer(gameAction);
 		if (gameActions.containsValue(value)) {
-			for (Iterator iterator = gameActions.entrySet().iterator(); iterator.hasNext();) {
+			for (Iterator iterator = gameActions.entrySet().iterator(); iterator.hasNext(); ) {
 				Map.Entry v = (Map.Entry) iterator.next();
 				if (v.getValue().equals(value)) {
 					return (ButtonName) v.getKey();

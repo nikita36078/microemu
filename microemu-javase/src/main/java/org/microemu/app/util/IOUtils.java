@@ -35,7 +35,7 @@ import java.io.Writer;
 /**
  * General IO stream manipulation utilities.
  * Some functions are based on org.apache.commons.io
- * 
+ *
  * <p>
  * This class provides static utility methods for input/output operations.
  * <ul>
@@ -65,7 +65,7 @@ public class IOUtils {
 		}
 		return "file:" + path;
 	}
-	
+
 	public static String getCanonicalFileClassLoaderURL(File file) {
 		String url = getCanonicalFileURL(file);
 		if ((file.isDirectory()) && (!url.endsWith("/"))) {
@@ -73,82 +73,82 @@ public class IOUtils {
 		}
 		return url;
 	}
-	
+
 	public static void copyFile(File src, File dst) throws IOException {
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(src);
 			copyToFile(fis, dst);
 		} finally {
-			closeQuietly(fis); 
+			closeQuietly(fis);
 		}
 	}
-	
+
 	public static void copyToFile(InputStream is, File dst) throws IOException {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(dst);
-			byte[] buf = new byte[1024]; 
+			byte[] buf = new byte[1024];
 			int i = 0;
-			while ((i = is.read(buf)) != -1) { 
+			while ((i = is.read(buf)) != -1) {
 				fos.write(buf, 0, i);
 			}
 		} finally {
-			closeQuietly(fos);	
+			closeQuietly(fos);
 		}
 	}
-	
-    /**
-     * Unconditionally close an <code>InputStream</code>.
-     * <p>
-     * Equivalent to {@link InputStream#close()}, except any exceptions will be ignored.
-     * This is typically used in finally blocks.
-     *
-     * @param input  the InputStream to close, may be null or already closed
-     */
-    public static void closeQuietly(InputStream input) {
-        try {
-            if (input != null) {
-                input.close();
-            }
-        } catch (IOException ignore) {
-            // ignore
-        }
-    }
-    
-    /**
-     * Unconditionally close an <code>OutputStream</code>.
-     * <p>
-     * Equivalent to {@link OutputStream#close()}, except any exceptions will be ignored.
-     * This is typically used in finally blocks.
-     *
-     * @param output  the OutputStream to close, may be null or already closed
-     */
-    public static void closeQuietly(OutputStream output) {
-        try {
-            if (output != null) {
-                output.close();
-            }
-        } catch (IOException ignore) {
-            // ignore
-        }
-    }
-    
-    /**
-     * Unconditionally close a <code>Writer</code>.
-     * <p>
-     * Equivalent to {@link Writer#close()}, except any exceptions will be ignored.
-     * This is typically used in finally blocks.
-     *
-     * @param output  the Writer to close, may be null or already closed
-     */
-    public static void closeQuietly(Writer output) {
-        try {
-            if (output != null) {
-                output.close();
-            }
-        } catch (IOException ioe) {
-            // ignore
-        }
-    }
+
+	/**
+	 * Unconditionally close an <code>InputStream</code>.
+	 * <p>
+	 * Equivalent to {@link InputStream#close()}, except any exceptions will be ignored.
+	 * This is typically used in finally blocks.
+	 *
+	 * @param input  the InputStream to close, may be null or already closed
+	 */
+	public static void closeQuietly(InputStream input) {
+		try {
+			if (input != null) {
+				input.close();
+			}
+		} catch (IOException ignore) {
+			// ignore
+		}
+	}
+
+	/**
+	 * Unconditionally close an <code>OutputStream</code>.
+	 * <p>
+	 * Equivalent to {@link OutputStream#close()}, except any exceptions will be ignored.
+	 * This is typically used in finally blocks.
+	 *
+	 * @param output  the OutputStream to close, may be null or already closed
+	 */
+	public static void closeQuietly(OutputStream output) {
+		try {
+			if (output != null) {
+				output.close();
+			}
+		} catch (IOException ignore) {
+			// ignore
+		}
+	}
+
+	/**
+	 * Unconditionally close a <code>Writer</code>.
+	 * <p>
+	 * Equivalent to {@link Writer#close()}, except any exceptions will be ignored.
+	 * This is typically used in finally blocks.
+	 *
+	 * @param output  the Writer to close, may be null or already closed
+	 */
+	public static void closeQuietly(Writer output) {
+		try {
+			if (output != null) {
+				output.close();
+			}
+		} catch (IOException ioe) {
+			// ignore
+		}
+	}
 }

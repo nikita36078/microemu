@@ -31,13 +31,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
+ *
  * This class defines Buttons available on Device
- * 
+ *
  * Implementation is Java 5 enum in java 1.4
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public final class ButtonName {
 

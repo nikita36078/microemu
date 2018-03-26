@@ -31,23 +31,23 @@ import javax.microedition.lcdui.StringItem;
 
 import junit.framework.TestCase;
 
-public class ItemsOnFormTest  extends TestCase {
+public class ItemsOnFormTest extends TestCase {
 
 	public ItemsOnFormTest() {
-		
+
 	}
-	
+
 	public ItemsOnFormTest(String name) {
 		super(name);
 	}
-	
+
 	public void testAddItems() {
-		int step= 0;
-		Item[] items= new Item[1];
-		items[step]= new StringItem(null, "one");
-		
+		int step = 0;
+		Item[] items = new Item[1];
+		items[step] = new StringItem(null, "one");
+
 		ItemsOnForm f = new ItemsOnForm(items);
-		for (int i = 1 ; i < 15; i++) {
+		for (int i = 1; i < 15; i++) {
 			f.commandAction(ItemsOnForm.addCommand, f);
 		}
 	}

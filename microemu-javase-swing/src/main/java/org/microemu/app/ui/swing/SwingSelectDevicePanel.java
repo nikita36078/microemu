@@ -104,7 +104,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 						manifestDeviceName = attrs.getValue("Device-Name");
 					}
 
-					for (Enumeration en = jar.entries(); en.hasMoreElements();) {
+					for (Enumeration en = jar.entries(); en.hasMoreElements(); ) {
 						String entry = ((JarEntry) en.nextElement()).getName();
 						if ((entry.toLowerCase().endsWith(".xml") || entry.toLowerCase().endsWith("device.txt"))
 								&& !entry.toLowerCase().startsWith("meta-inf")) {
@@ -136,7 +136,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 
 				ClassLoader classLoader = Common.createExtensionsClassLoader(urls);
 				HashMap devices = new HashMap();
-				for (Iterator it = descriptorEntries.iterator(); it.hasNext();) {
+				for (Iterator it = descriptorEntries.iterator(); it.hasNext(); ) {
 					String entryName = (String) it.next();
 					try {
 						devices.put(entryName, DeviceImpl.create(emulatorContext, classLoader, entryName,
@@ -147,7 +147,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 					}
 				}
 
-				for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements();) {
+				for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements(); ) {
 					DeviceEntry entry = (DeviceEntry) en.nextElement();
 					if (devices.containsKey(entry.getDescriptorLocation())) {
 						devices.remove(entry.getDescriptorLocation());
@@ -166,11 +166,12 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 					IOUtils.copyFile(fileChooser.getSelectedFile(), deviceFile);
 
 					DeviceEntry entry = null;
-					for (Iterator it = devices.keySet().iterator(); it.hasNext();) {
+					for (Iterator it = devices.keySet().iterator(); it.hasNext(); ) {
 						String descriptorLocation = (String) it.next();
 						Device device = (Device) devices.get(descriptorLocation);
 						if (manifestDeviceName != null) {
-							entry = new DeviceEntry(manifestDeviceName, deviceFile.getName(), descriptorLocation, false);
+							entry = new DeviceEntry(manifestDeviceName, deviceFile.getName(), descriptorLocation,
+									false);
 						} else {
 							entry = new DeviceEntry(device.getName(), deviceFile.getName(), descriptorLocation, false);
 						}
@@ -191,7 +192,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 			DeviceEntry entry = (DeviceEntry) lsDevices.getSelectedValue();
 
 			boolean canDeleteFile = true;
-			for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements();) {
+			for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements(); ) {
 				DeviceEntry test = (DeviceEntry) en.nextElement();
 				if (test != entry && test.getFileName() != null && test.getFileName().equals(entry.getFileName())) {
 					canDeleteFile = false;
@@ -204,7 +205,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 			}
 
 			if (entry.isDefaultDevice()) {
-				for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements();) {
+				for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements(); ) {
 					DeviceEntry tmp = (DeviceEntry) en.nextElement();
 					if (!tmp.canRemove()) {
 						tmp.setDefaultDevice(true);
@@ -220,7 +221,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 	private ActionListener btDefaultListener = new ActionListener() {
 		public void actionPerformed(ActionEvent ev) {
 			DeviceEntry entry = (DeviceEntry) lsDevices.getSelectedValue();
-			for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements();) {
+			for (Enumeration en = lsDevicesModel.elements(); en.hasMoreElements(); ) {
 				DeviceEntry tmp = (DeviceEntry) en.nextElement();
 				if (tmp == entry) {
 					tmp.setDefaultDevice(true);
@@ -283,7 +284,7 @@ public class SwingSelectDevicePanel extends SwingDialogPanel {
 
 		add(panel, BorderLayout.SOUTH);
 
-		for (Enumeration e = Config.getDeviceEntries().elements(); e.hasMoreElements();) {
+		for (Enumeration e = Config.getDeviceEntries().elements(); e.hasMoreElements(); ) {
 			DeviceEntry entry = (DeviceEntry) e.nextElement();
 			lsDevicesModel.addElement(entry);
 			if (entry.isDefaultDevice()) {

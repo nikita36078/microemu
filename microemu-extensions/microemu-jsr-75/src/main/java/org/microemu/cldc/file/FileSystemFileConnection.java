@@ -81,7 +81,8 @@ public class FileSystemFileConnection implements FileConnection {
 
 	private static boolean java15 = false;
 
-	FileSystemFileConnection(String fsRootConfig, String name, FileSystemConnectorImpl notifyClosed) throws IOException {
+	FileSystemFileConnection(String fsRootConfig, String name, FileSystemConnectorImpl notifyClosed)
+			throws IOException {
 		// <host>/<path>
 		int hostEnd = name.indexOf(DIR_SEP);
 		if (hostEnd == -1) {
@@ -390,10 +391,12 @@ public class FileSystemFileConnection implements FileConnection {
 		if (filter != null) {
 			filenameFilter = new FilenameFilter() {
 				private Pattern pattern;
+
 				{
 					/* convert simple search pattern to regexp */
 					pattern = Pattern.compile(filter.replaceAll("\\.", "\\\\.").replaceAll("\\*", ".*"));
 				}
+
 				public boolean accept(File dir, String name) {
 					return pattern.matcher(name).matches();
 				}
@@ -497,35 +500,35 @@ public class FileSystemFileConnection implements FileConnection {
 		}
 		// we cannot truncate the file here since it could already have content
 		// which should be overridden instead of wiped.
-		
+
 		return openOutputStream(true, byteOffset);
 	}
 
-    private OutputStream openOutputStream(boolean appendToFile, final long byteOffset) throws IOException {
-        throwClosed();
-        throwOpenDirectory();
+	private OutputStream openOutputStream(boolean appendToFile, final long byteOffset) throws IOException {
+		throwClosed();
+		throwOpenDirectory();
 
-        if (this.opendOutputStream != null) {
-            throw new IOException("OutputStream already opened");
-        }
-        /**
-         * Trying to open more than one InputStream or more than one
-         * OutputStream from a StreamConnection causes an IOException.
-         */
-        this.opendOutputStream = (OutputStream) doPrivilegedIO(new PrivilegedExceptionAction() {
-            public Object run() throws IOException {
-                RandomAccessFile raf = new RandomAccessFile(file, "rw");
-                raf.seek(byteOffset);
-                return new FileOutputStream(raf.getFD()) {
-                    public void close() throws IOException {
-                        FileSystemFileConnection.this.opendOutputStream = null;
-                        super.close();
-                    }
-                };
-            }
-        });
-        return this.opendOutputStream;
-    }
+		if (this.opendOutputStream != null) {
+			throw new IOException("OutputStream already opened");
+		}
+		/**
+		 * Trying to open more than one InputStream or more than one
+		 * OutputStream from a StreamConnection causes an IOException.
+		 */
+		this.opendOutputStream = (OutputStream) doPrivilegedIO(new PrivilegedExceptionAction() {
+			public Object run() throws IOException {
+				RandomAccessFile raf = new RandomAccessFile(file, "rw");
+				raf.seek(byteOffset);
+				return new FileOutputStream(raf.getFD()) {
+					public void close() throws IOException {
+						FileSystemFileConnection.this.opendOutputStream = null;
+						super.close();
+					}
+				};
+			}
+		});
+		return this.opendOutputStream;
+	}
 
 	public void rename(final String newName) throws IOException {
 		throwClosed();

@@ -45,7 +45,7 @@ public interface Device {
 	FontManager getFontManager();
 
 	DeviceDisplay getDeviceDisplay();
-	
+
 	UIFactory getUIFactory();
 
 	Image getNormalImage();

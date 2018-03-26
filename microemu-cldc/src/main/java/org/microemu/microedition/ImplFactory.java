@@ -36,9 +36,9 @@ import org.microemu.microedition.io.ConnectorDelegate;
 
 /**
  * This class allows to unbind implemenation with CLDC or MIDP declarations.
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public class ImplFactory {
 
@@ -84,9 +84,9 @@ public class ImplFactory {
 	}
 
 	/**
-	 * 
+	 *
 	 * Register Generic Connection Framework scheme implementation.
-	 * 
+	 *
 	 * @param implementation
 	 *            instance of ConnectorDelegate
 	 * @param scheme
@@ -154,7 +154,7 @@ public class ImplFactory {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param name
 	 *            The URL for the connection.
 	 * @return UTL scheme
@@ -164,7 +164,7 @@ public class ImplFactory {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param name
 	 *            The URL for the connection.
 	 * @return

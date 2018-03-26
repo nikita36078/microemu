@@ -32,15 +32,15 @@ import org.eclipse.swt.graphics.Font;
 public class SwtTrueTypeFont implements SwtFont {
 
 	private URL url;
-	
+
 	private String style;
-	
+
 	private int size;
-	
+
 	private boolean antialiasing;
-	
+
 	private boolean initialized;
-	
+
 	private Font font;
 
 	public SwtTrueTypeFont(URL url, String style, int size, boolean antialiasing) {
@@ -48,7 +48,7 @@ public class SwtTrueTypeFont implements SwtFont {
 		this.style = style.toLowerCase();
 		this.size = size;
 		this.antialiasing = antialiasing;
-		
+
 		this.initialized = false;
 	}
 

@@ -34,9 +34,9 @@ import java.util.Stack;
 import nanoxml.XMLElement;
 
 /**
- * 
+ *
  * Most Recently Used (MRU) list
- * 
+ *
  * @author vlads
  */
 public class MRUList implements XMLItem {
@@ -108,7 +108,7 @@ public class MRUList implements XMLItem {
 		}
 		xml.removeChildren();
 		xml.setAttribute("maxCapacity", String.valueOf(maxCapacity));
-		for (Iterator iter = items.iterator(); iter.hasNext();) {
+		for (Iterator iter = items.iterator(); iter.hasNext(); ) {
 			XMLItem element = (XMLItem) iter.next();
 			element.save(xml.addChild(itemsName));
 		}
@@ -119,7 +119,7 @@ public class MRUList implements XMLItem {
 		modified = false;
 		items.removeAllElements();
 		this.maxCapacity = xml.getIntAttribute("maxCapacity", MAXCAPACITY_DEFAULT);
-		for (Enumeration en = xml.enumerateChildren(); en.hasMoreElements();) {
+		for (Enumeration en = xml.enumerateChildren(); en.hasMoreElements(); ) {
 			XMLElement xmlChild = (XMLElement) en.nextElement();
 			if (xmlChild.getName().equals(itemsName)) {
 				try {
@@ -136,7 +136,7 @@ public class MRUList implements XMLItem {
 
 		if (!items.empty()) {
 			// Fire Listener in reverse order
-			for (ListIterator iter = items.listIterator(items.size()); iter.hasPrevious();) {
+			for (ListIterator iter = items.listIterator(items.size()); iter.hasPrevious(); ) {
 				XMLItem element = (XMLItem) iter.previous();
 				fireListener(element);
 			}

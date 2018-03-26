@@ -53,7 +53,7 @@ public class ListPanel extends BaseExamplesList {
 		if (d == this) {
 			if (c == List.SELECT_COMMAND) {
 				SimpleDemoMIDlet.setCurrentDisplayable(lists[getSelectedIndex()]);
-			} 
+			}
 		} else if (c == BaseExamplesForm.backCommand) {
 			for (int i = 0; i < lists.length; i++) {
 				if (d == lists[i]) {

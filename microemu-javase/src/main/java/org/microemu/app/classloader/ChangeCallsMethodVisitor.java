@@ -44,21 +44,21 @@ import org.objectweb.asm.Opcodes;
 public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 
 	private static final String INJECTED_CLASS = codeName(Injected.class);
-	
+
 	static String NEW_SYSTEM_OUT_CLASS = INJECTED_CLASS;
-	
+
 	static String NEW_SYSTEM_PROPERTIES_CLASS = INJECTED_CLASS;
-	
+
 	static String NEW_RESOURCE_LOADER_CLASS = INJECTED_CLASS;
-	
+
 	private HashMap catchInfo;
-	
+
 	private InstrumentationConfig config;
-	
+
 	private static class CatchInformation {
-		
-		Label label; 
-		
+
+		Label label;
+
 		String type;
 
 		public CatchInformation(String type) {
@@ -66,7 +66,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 			this.type = type;
 		}
 	}
-	
+
 	public ChangeCallsMethodVisitor(MethodVisitor mv, InstrumentationConfig config) {
 		super(mv);
 		this.config = config;
@@ -76,7 +76,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		return klass.getName().replace('.', '/');
 	}
 
-    public void visitFieldInsn(final int opcode, final String owner, final String name, final String desc) {
+	public void visitFieldInsn(final int opcode, final String owner, final String name, final String desc) {
 		switch (opcode) {
 		case GETSTATIC:
 			if ((name.equals("out")) && (owner.equals("java/lang/System"))) {
@@ -96,14 +96,14 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		}
 		mv.visitFieldInsn(opcode, owner, name, desc);
 	}
-    
+
 	public void visitMethodInsn(int opcode, String owner, String name, String desc) {
 		switch (opcode) {
 		case INVOKESTATIC:
 			//System.out.println("Method owner " + owner + " name " + name + " desc " + desc);
 			if ((name.equals("getProperty")) && (owner.equals("java/lang/System"))) {
 				// INVOKESTATIC
-                // java/lang/System.getProperty(Ljava/lang/String;)Ljava/lang/String;
+				// java/lang/System.getProperty(Ljava/lang/String;)Ljava/lang/String;
 				mv.visitMethodInsn(opcode, NEW_SYSTEM_PROPERTIES_CLASS, name, desc);
 				return;
 			}
@@ -111,9 +111,10 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		case INVOKEVIRTUAL:
 			if ((name.equals("getResourceAsStream")) && (owner.equals("java/lang/Class"))) {
 				// INVOKEVIRTUAL
-		        // java/lang/Class.getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;
+				// java/lang/Class.getResourceAsStream(Ljava/lang/String;)Ljava/io/InputStream;
 				// "org/microemu/ResourceLoader", "getResourceAsStream", "(Ljava/lang/Class;Ljava/lang/String;)Ljava/io/InputStream;");
-				mv.visitMethodInsn(INVOKESTATIC, NEW_RESOURCE_LOADER_CLASS, name, "(Ljava/lang/Class;Ljava/lang/String;)Ljava/io/InputStream;");
+				mv.visitMethodInsn(INVOKESTATIC, NEW_RESOURCE_LOADER_CLASS, name,
+						"(Ljava/lang/Class;Ljava/lang/String;)Ljava/io/InputStream;");
 				return;
 			} else if ((name.equals("printStackTrace")) && (owner.equals("java/lang/Throwable"))) {
 				// INVOKEVIRTUAL java/lang/Throwable.printStackTrace()V
@@ -122,7 +123,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 			}
 			break;
 		case INVOKESPECIAL:
-			if  ((config.isEnhanceThreadCreation()) && (name.equals("<init>"))) {
+			if ((config.isEnhanceThreadCreation()) && (name.equals("<init>"))) {
 				if (owner.equals("java/util/Timer")) {
 					owner = codeName(MIDletTimer.class);
 				} else if (owner.equals("java/util/TimerTask")) {
@@ -136,49 +137,50 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 
 		mv.visitMethodInsn(opcode, owner, name, desc);
 	}
-	
-    public void visitTypeInsn(final int opcode, String desc) {
-    	if ((opcode == NEW) && (config.isEnhanceThreadCreation())) {
-    		if ("java/util/Timer".equals(desc)) {
-    			desc = codeName(MIDletTimer.class);
-    		} else if ("java/util/TimerTask".equals(desc)) {
-    			desc = codeName(MIDletTimerTask.class);
-    		} else if ("java/lang/Thread".equals(desc)) {
-    			desc = codeName(MIDletThread.class);
-    		}
-    	} 
-    	mv.visitTypeInsn(opcode, desc);
-    }
-    
-    public void visitTryCatchBlock(final Label start, final Label end, final Label handler, final String type) {
-    	if (config.isEnhanceCatchBlock() && type != null) {
-    		if (catchInfo == null) {
-    			catchInfo = new HashMap(); 
-    		}
-    		CatchInformation newHandler = (CatchInformation)catchInfo.get(handler);
-    		if (newHandler == null) {
-    			newHandler = new CatchInformation(type);
-    			catchInfo.put(handler, newHandler);
-    		}
-    		mv.visitTryCatchBlock(start, end, newHandler.label, type);
-    	} else {
-    		mv.visitTryCatchBlock(start, end, handler, type);
-    	}
+
+	public void visitTypeInsn(final int opcode, String desc) {
+		if ((opcode == NEW) && (config.isEnhanceThreadCreation())) {
+			if ("java/util/Timer".equals(desc)) {
+				desc = codeName(MIDletTimer.class);
+			} else if ("java/util/TimerTask".equals(desc)) {
+				desc = codeName(MIDletTimerTask.class);
+			} else if ("java/lang/Thread".equals(desc)) {
+				desc = codeName(MIDletThread.class);
+			}
+		}
+		mv.visitTypeInsn(opcode, desc);
 	}
-    
-    //TODO make this work for gMaps case
-    public void visitLabel(Label label) {
-    	if (config.isEnhanceCatchBlock() && catchInfo != null) {
-    		CatchInformation newHandler = (CatchInformation)catchInfo.get(label);
-    		if (newHandler != null) {
-    			mv.visitLabel(newHandler.label);
-    			// no push, just use current Throwable in stack
-    			mv.visitMethodInsn(INVOKESTATIC, INJECTED_CLASS, "handleCatchThrowable", "(Ljava/lang/Throwable;)Ljava/lang/Throwable;");
-    			// stack contains Throwable, just verify that it is right type for this handler
-        		mv.visitTypeInsn(CHECKCAST, newHandler.type);
-    		}	
-    	}
-    	mv.visitLabel(label);
-    }
-	
+
+	public void visitTryCatchBlock(final Label start, final Label end, final Label handler, final String type) {
+		if (config.isEnhanceCatchBlock() && type != null) {
+			if (catchInfo == null) {
+				catchInfo = new HashMap();
+			}
+			CatchInformation newHandler = (CatchInformation) catchInfo.get(handler);
+			if (newHandler == null) {
+				newHandler = new CatchInformation(type);
+				catchInfo.put(handler, newHandler);
+			}
+			mv.visitTryCatchBlock(start, end, newHandler.label, type);
+		} else {
+			mv.visitTryCatchBlock(start, end, handler, type);
+		}
+	}
+
+	//TODO make this work for gMaps case
+	public void visitLabel(Label label) {
+		if (config.isEnhanceCatchBlock() && catchInfo != null) {
+			CatchInformation newHandler = (CatchInformation) catchInfo.get(label);
+			if (newHandler != null) {
+				mv.visitLabel(newHandler.label);
+				// no push, just use current Throwable in stack
+				mv.visitMethodInsn(INVOKESTATIC, INJECTED_CLASS, "handleCatchThrowable",
+						"(Ljava/lang/Throwable;)Ljava/lang/Throwable;");
+				// stack contains Throwable, just verify that it is right type for this handler
+				mv.visitTypeInsn(CHECKCAST, newHandler.type);
+			}
+		}
+		mv.visitLabel(label);
+	}
+
 }

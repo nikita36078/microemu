@@ -90,10 +90,10 @@ public class DatagramImpl implements Datagram {
 
 	/**
 	 * Instantiates a new {@link DatagramImpl} with the given buffer size.
-	 * 
+	 *
 	 * @param size
 	 *            the buffer size
-	 * 
+	 *
 	 * @throws IllegalAccessException
 	 *             if <tt>size</tt> is negative or equal to zero
 	 */
@@ -107,7 +107,7 @@ public class DatagramImpl implements Datagram {
 
 	/**
 	 * Instantiates a new {@link DatagramImpl} with the given buffer.
-	 * 
+	 *
 	 * @param buff
 	 *            the buffer to use
 	 * @param length
@@ -302,7 +302,7 @@ public class DatagramImpl implements Datagram {
 
 	/**
 	 * Answers the underlying {@link DatagramPacket}.
-	 * 
+	 *
 	 * @return the encapsulated packet
 	 */
 	DatagramPacket getDatagramPacket() {

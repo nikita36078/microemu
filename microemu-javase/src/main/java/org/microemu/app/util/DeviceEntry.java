@@ -27,7 +27,7 @@ package org.microemu.app.util;
 import org.microemu.device.EmulatorContext;
 
 public class DeviceEntry {
-	
+
 	private String name;
 
 	private String fileName;
@@ -52,7 +52,8 @@ public class DeviceEntry {
 		this(name, fileName, descriptorLocation, defaultDevice, true);
 	}
 
-	public DeviceEntry(String name, String fileName, String descriptorLocation, boolean defaultDevice, boolean canRemove) {
+	public DeviceEntry(String name, String fileName, String descriptorLocation, boolean defaultDevice,
+			boolean canRemove) {
 		this.name = name;
 		this.fileName = fileName;
 		this.descriptorLocation = descriptorLocation;

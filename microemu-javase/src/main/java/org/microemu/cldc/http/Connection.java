@@ -305,8 +305,8 @@ public class Connection implements HttpConnection, ConnectionImplementation {
 		return cn.getHeaderFieldKey(getImplIndex(n));
 	}
 
-	private int getImplIndex(int index){
-		if (cn.getHeaderFieldKey(0) == null && cn.getHeaderField(0) != null){
+	private int getImplIndex(int index) {
+		if (cn.getHeaderFieldKey(0) == null && cn.getHeaderField(0) != null) {
 			index++;
 		}
 		return index;

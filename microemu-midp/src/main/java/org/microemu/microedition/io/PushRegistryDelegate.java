@@ -45,6 +45,6 @@ public interface PushRegistryDelegate {
 
 	public long registerAlarm(String midlet, long time)
 
-	throws ClassNotFoundException, ConnectionNotFoundException;
+			throws ClassNotFoundException, ConnectionNotFoundException;
 
 }

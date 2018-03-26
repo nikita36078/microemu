@@ -24,5 +24,5 @@
 package com.siemens.mp.io;
 
 public interface ConnectionListener {
-    public void receiveData(byte[] data);
+	public void receiveData(byte[] data);
 }

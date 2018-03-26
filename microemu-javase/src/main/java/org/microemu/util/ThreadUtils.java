@@ -33,19 +33,19 @@ import java.util.Timer;
 public class ThreadUtils {
 
 	private static boolean java13 = false;
-	
+
 	private static boolean java14 = false;
-	
+
 	/**
-     * Creates a new timer whose associated thread has the specified name in Java 1.5.
-	 * 
+	 * Creates a new timer whose associated thread has the specified name in Java 1.5.
+	 *
 	 * @param name the name of the associated thread
-     *
+	 *
 	 */
 	public static Timer createTimer(String name) {
 		try {
 			Constructor c = Timer.class.getConstructor(new Class[] { String.class });
-			return (Timer)c.newInstance(new Object[]{name});
+			return (Timer) c.newInstance(new Object[] { name });
 		} catch (Throwable e) {
 			// In cany case create new Timer
 			return new Timer();
@@ -72,7 +72,7 @@ public class ThreadUtils {
 		}
 		return null;
 	}
-	
+
 	public static String getTreadStackTrace(Thread t) {
 		if (java14) {
 			return "";
@@ -80,11 +80,11 @@ public class ThreadUtils {
 		try {
 			// Java 1.5 thread.getStackTrace();
 			Method m = t.getClass().getMethod("getStackTrace", null);
-			
-			StackTraceElement[] trace = (StackTraceElement[])m.invoke(t, null);
-			StringBuffer b = new StringBuffer();  
-			for (int i=0; i < trace.length; i++) {
-			    b.append("\n\tat ").append(trace[i]);
+
+			StackTraceElement[] trace = (StackTraceElement[]) m.invoke(t, null);
+			StringBuffer b = new StringBuffer();
+			for (int i = 0; i < trace.length; i++) {
+				b.append("\n\tat ").append(trace[i]);
 			}
 			return b.toString();
 		} catch (Throwable e) {

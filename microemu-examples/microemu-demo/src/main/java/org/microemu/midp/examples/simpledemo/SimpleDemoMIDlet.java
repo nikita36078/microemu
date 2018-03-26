@@ -76,7 +76,7 @@ public class SimpleDemoMIDlet extends MIDlet implements CommandListener {
 					new ListPanel(),
 					new TextFieldPanel(),
 					new TextBoxPanel(),
-					new HTTPPanel()};
+					new HTTPPanel() };
 
 			Ticker ticker = new Ticker("This is SimpleDemo ticker");
 
@@ -85,7 +85,7 @@ public class SimpleDemoMIDlet extends MIDlet implements CommandListener {
 			for (int i = 0; i < screenPanels.length; i++) {
 				menuList.append(screenPanels[i].getTitle(), null);
 				if ((screenPanels[i] instanceof Screen) && (i < 4)) {
-					((Screen)screenPanels[i]).setTicker(ticker);
+					((Screen) screenPanels[i]).setTicker(ticker);
 				}
 			}
 			menuList.addCommand(exitCommand);
@@ -102,7 +102,7 @@ public class SimpleDemoMIDlet extends MIDlet implements CommandListener {
 	public static void showMenu() {
 		setCurrentDisplayable(instance.menuList);
 	}
-	
+
 	public static void setCurrentDisplayable(Displayable nextDisplayable) {
 		Display display = Display.getDisplay(instance);
 		Displayable current = display.getCurrent();
@@ -114,7 +114,7 @@ public class SimpleDemoMIDlet extends MIDlet implements CommandListener {
 		}
 		display.setCurrent(nextDisplayable);
 	}
-	
+
 	public void commandAction(Command c, Displayable d) {
 		if (d == menuList) {
 			if (c == List.SELECT_COMMAND) {

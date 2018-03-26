@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.obex;
 
@@ -37,56 +37,56 @@ import javax.microedition.io.ContentConnection;
  * <P>
  * <STRONG>PUT example</STRONG>
  * <P>
- * 
+ *
  * <pre>
  * void putObjectViaOBEX(ClientSession conn, HeaderSet head, byte[] obj) throws IOException {
- * 
+ *
  * 	// Include the length header
  * 	head.setHeader(head.LENGTH, new Long(obj.length));
- * 
+ *
  * 	// Initiate the PUT request
  * 	Operation op = conn.put(head);
- * 
+ *
  * 	// Open the output stream to put the object to it
  * 	DataOutputStream out = op.openDataOutputStream();
- * 
+ *
  * 	// Send the object to the server
  * 	out.write(obj);
- * 
+ *
  * 	// End the transaction
  * 	out.close();
  * 	op.close();
  * }
  * </pre>
- * 
+ *
  * <P>
  * <STRONG>GET example</STRONG>
  * <P>
- * 
+ *
  * <pre>
  * byte[] getObjectViaOBEX(ClientSession conn, HeaderSet head) throws IOException {
- * 
+ *
  * 	// Send the initial GET request to the server
  * 	Operation op = conn.get(head);
- * 
+ *
  * 	// Retrieve the length of the object being sent back
  * 	int length = op.getLength();
- * 
+ *
  * 	// Create space for the object
  * 	byte[] obj = new byte[length];
- * 
+ *
  * 	// Get the object from the input stream
  * 	DataInputStream in = trans.openDataInputStream();
  * 	in.read(obj);
- * 
+ *
  * 	// End the transaction
  * 	in.close();
  * 	op.close();
- * 
+ *
  * 	return obj;
  * }
  * </pre>
- * 
+ *
  * <H3>Client PUT Operation Flow</H3>
  * For PUT operations, a call to <code>close()</code> the
  * <code>OutputStream</code> returned from <code>openOutputStream()</code>
@@ -102,7 +102,7 @@ import javax.microedition.io.ContentConnection;
  * (In OBEX terms, the final bit in the request will be set.) A call to
  * <code>getResponseCode()</code> will cause an implicit close on the
  * <code>InputStream</code>. No further data may be read at this point.
- * 
+ *
  * @version 1.0 February 11, 2002
  */
 public interface Operation extends ContentConnection {
@@ -112,7 +112,7 @@ public interface Operation extends ContentConnection {
 	 * corresponding input and output streams will be closed along with this
 	 * object. No headers are sent in the abort request. This will end the
 	 * operation since <code>close()</code> will be called by this method.
-	 * 
+	 *
 	 * @exception IOException
 	 *                if the transaction has already ended or if an OBEX server
 	 *                calls this method
@@ -123,9 +123,9 @@ public interface Operation extends ContentConnection {
 	 * Returns the headers that have been received during the operation.
 	 * Modifying the object returned has no effect on the headers that are sent
 	 * or retrieved.
-	 * 
+	 *
 	 * @return the headers received during this <code>Operation</code>
-	 * 
+	 *
 	 * @exception IOException
 	 *                if this <code>Operation</code> has been closed
 	 */
@@ -134,20 +134,20 @@ public interface Operation extends ContentConnection {
 	/**
 	 * Specifies the headers that should be sent in the next OBEX message that
 	 * is sent.
-	 * 
+	 *
 	 * @param headers
 	 *            the headers to send in the next message
-	 * 
+	 *
 	 * @exception IOException
 	 *                if this <code>Operation</code> has been closed or the
 	 *                transaction has ended and no further messages will be
 	 *                exchanged
-	 * 
+	 *
 	 * @exception IllegalArgumentException
 	 *                if <code>headers</code> was not created by a call to
 	 *                <code>ServerRequestHandler.createHeaderSet()</code> or
 	 *                <code>ClientSession.createHeaderSet()</code>
-	 * 
+	 *
 	 * @exception NullPointerException
 	 *                if <code>headers</code> if <code>null</code>
 	 */
@@ -156,11 +156,11 @@ public interface Operation extends ContentConnection {
 	/**
 	 * Returns the response code received from the server. Response codes are
 	 * defined in the <code>ResponseCodes</code> class.
-	 * 
+	 *
 	 * @see ResponseCodes
-	 * 
+	 *
 	 * @return the response code retrieved from the server
-	 * 
+	 *
 	 * @exception IOException
 	 *                if an error occurred in the transport layer during the
 	 *                transaction; if this object was created by an OBEX server

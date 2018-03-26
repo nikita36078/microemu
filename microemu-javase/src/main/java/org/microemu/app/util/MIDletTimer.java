@@ -43,7 +43,7 @@ import org.microemu.log.Logger;
 /**
  * Terminate all timers on MIDlet exit. TODO Name all the timer Threads created
  * by MIDlet in Java 5
- * 
+ *
  * @author vlads
  */
 public class MIDletTimer extends Timer implements Runnable {
@@ -53,14 +53,14 @@ public class MIDletTimer extends Timer implements Runnable {
 	private String name;
 
 	private MIDletContext midletContext;
-	
+
 	// TODO use better data structure
 	List tasks;
-	
+
 	private boolean cancelled;
 
 	private MIDletThread thread;
-	
+
 	public MIDletTimer() {
 		super();
 		StackTraceElement[] ste = new Throwable().getStackTrace();
@@ -109,10 +109,10 @@ public class MIDletTimer extends Timer implements Runnable {
 
 	public void cancel() {
 		unregister(this);
-		
+
 		terminate();
 	}
-	
+
 	public void run() {
 		while (!cancelled) {
 			MIDletTimerTask task = null;
@@ -145,7 +145,7 @@ public class MIDletTimer extends Timer implements Runnable {
 					tasks.remove(task);
 				}
 			}
-			
+
 			if (task != null) {
 				try {
 					task.run();
@@ -161,12 +161,12 @@ public class MIDletTimer extends Timer implements Runnable {
 						}
 					}
 				} catch (Throwable t) {
-				    if (MIDletThread.debug) {
-				        Logger.debug("MIDletTimerTask throws", t);
-				    }
+					if (MIDletThread.debug) {
+						Logger.debug("MIDletTimerTask throws", t);
+					}
 				}
 			}
-			
+
 			synchronized (tasks) {
 				try {
 					if (nextTimeTask == Long.MAX_VALUE) {
@@ -186,7 +186,7 @@ public class MIDletTimer extends Timer implements Runnable {
 	private void terminate() {
 		cancelled = true;
 	}
-	
+
 	private void schedule(TimerTask task, long time, long period, boolean fixedRate) {
 		synchronized (tasks) {
 			((MIDletTimerTask) task).timer = this;
@@ -243,7 +243,7 @@ public class MIDletTimer extends Timer implements Runnable {
 	}
 
 	private static void terminateTimers(Map timers) {
-		for (Iterator iter = timers.keySet().iterator(); iter.hasNext();) {
+		for (Iterator iter = timers.keySet().iterator(); iter.hasNext(); ) {
 			Object o = iter.next();
 			if (o == null) {
 				continue;

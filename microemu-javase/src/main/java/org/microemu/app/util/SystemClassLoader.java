@@ -27,11 +27,11 @@ package org.microemu.app.util;
 import java.net.URL;
 
 /**
- * 
+ *
  * @deprecated use MIDletClassLoader 
  */
 public class SystemClassLoader /*extends ClassLoader*/ {
-	
+
 //	private static MIDletClassLoader childClassLoader = null; 
 //	
 //	public SystemClassLoader(ClassLoader parent) {

@@ -42,9 +42,9 @@ import org.microemu.log.Logger;
 
 /**
  * Maps keyboard and mouse events to Buttons
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public class J2SEDeviceButtonsHelper {
 
@@ -74,7 +74,7 @@ public class J2SEDeviceButtonsHelper {
 	}
 
 	public static J2SEButton getSkinButton(MouseEvent ev) {
-		for (Enumeration en = DeviceFactory.getDevice().getButtons().elements(); en.hasMoreElements();) {
+		for (Enumeration en = DeviceFactory.getDevice().getButtons().elements(); en.hasMoreElements(); ) {
 			J2SEButton button = (J2SEButton) en.nextElement();
 			if (button.getShape() != null) {
 				if (button.getShape().contains(ev.getX(), ev.getY())) {
@@ -114,7 +114,7 @@ public class J2SEDeviceButtonsHelper {
 	private static DeviceInformation createDeviceInformation(Device dev) {
 		DeviceInformation inf = new DeviceInformation();
 		boolean hasModeChange = false;
-		for (Enumeration en = dev.getButtons().elements(); en.hasMoreElements();) {
+		for (Enumeration en = dev.getButtons().elements(); en.hasMoreElements(); ) {
 			J2SEButton button = (J2SEButton) en.nextElement();
 			int keyCodes[] = button.getKeyboardKeyCodes();
 			for (int i = 0; i < keyCodes.length; i++) {

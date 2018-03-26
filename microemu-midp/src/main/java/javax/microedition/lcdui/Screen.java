@@ -24,28 +24,21 @@
 
 package javax.microedition.lcdui;
 
-
 // TODO implement pointer events
-public abstract class Screen extends Displayable
-{
-	
-    Screen(String title)
-    {
-        super(title);
-    }
+public abstract class Screen extends Displayable {
 
-    
-    void scroll(int gameKeyCode) {
-    	viewPortY += traverse(gameKeyCode, viewPortY, viewPortY + viewPortHeight);
-    	repaint();
-    }
-    
-	
+	Screen(String title) {
+		super(title);
+	}
+
+	void scroll(int gameKeyCode) {
+		viewPortY += traverse(gameKeyCode, viewPortY, viewPortY + viewPortHeight);
+		repaint();
+	}
+
 	abstract int traverse(int gameKeyCode, int top, int bottom);
 
-	
-	void keyPressed(int keyCode) 
-	{
+	void keyPressed(int keyCode) {
 		int gameKeyCode = Display.getGameAction(keyCode);
 
 		if (gameKeyCode == Canvas.UP || gameKeyCode == Canvas.DOWN) {
@@ -54,21 +47,15 @@ public abstract class Screen extends Displayable
 		}
 	}
 
-	
-	void hideNotify() 
-	{
+	void hideNotify() {
 		super.hideNotify();
 	}
 
-	
-	void keyRepeated(int keyCode) 
-	{
+	void keyRepeated(int keyCode) {
 		keyPressed(keyCode);
 	}
 
-	
-	final void paint(Graphics g) 
-	{
+	final void paint(Graphics g) {
 		int contentHeight = 0;
 		int translatedY;
 
@@ -83,7 +70,7 @@ public abstract class Screen extends Displayable
 
 		g.setGrayScale(0);
 
-        // TODO move to Displayable
+		// TODO move to Displayable
 		if (getTicker() != null) {
 			contentHeight += getTicker().paintContent(g);
 		}
@@ -91,9 +78,9 @@ public abstract class Screen extends Displayable
 		g.translate(0, contentHeight);
 		translatedY = contentHeight;
 
-        // TODO move to Displayable
-        // TODO remove this StringComponent object when native UI is completed
-        StringComponent title = new StringComponent(getTitle());
+		// TODO move to Displayable
+		// TODO remove this StringComponent object when native UI is completed
+		StringComponent title = new StringComponent(getTitle());
 		contentHeight += title.paint(g);
 		g.drawLine(0, title.getHeight(), getWidth(), title.getHeight());
 		contentHeight += 1;
@@ -113,19 +100,14 @@ public abstract class Screen extends Displayable
 		}
 		g.translate(0, -translatedY);
 	}
-	
 
 	abstract int paintContent(Graphics g);
 
-	
-	void repaint() 
-	{
+	void repaint() {
 		super.repaint();
 	}
 
-	
-	void showNotify() 
-	{
+	void showNotify() {
 		viewPortY = 0;
 
 		super.showNotify();

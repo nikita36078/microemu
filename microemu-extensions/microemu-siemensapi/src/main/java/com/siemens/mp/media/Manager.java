@@ -25,45 +25,45 @@ package com.siemens.mp.media;
 
 import com.siemens.mp.game.Sound;
 import com.siemens.mp.media.protocol.DataSource;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-
 public final class Manager {
-    private Manager() {
-    }
-    
-    public static String[] getSupportedContentTypes(String protocol) {
-        return new String[0];
-    }
-    
-    public static String[] getSupportedProtocols(String content_type) {
-        return new String[0];
-    }
-    
-    public static Player createPlayer(String locator)
-    throws IOException, MediaException {
-        throw new MediaException("Not implemented");
-    }
-    
-    public static Player createPlayer(InputStream stream, String type) throws IOException, MediaException {
-           throw new MediaException("Content not supported");
-    }
-    
-    public static Player createPlayer(DataSource source)
-    throws IOException, MediaException {
-        throw new MediaException("Not implemented");
-    }
-    
-    public static void playTone(int note, int duration, int volume)
-    throws MediaException {
-    }
-    
-    public static TimeBase getSystemTimeBase() {
-        if(sysTimeBase == null)
-            sysTimeBase = new SystemTimeBase();
-        return sysTimeBase;
-    }
-    
-    private static SystemTimeBase sysTimeBase;
+	private Manager() {
+	}
+
+	public static String[] getSupportedContentTypes(String protocol) {
+		return new String[0];
+	}
+
+	public static String[] getSupportedProtocols(String content_type) {
+		return new String[0];
+	}
+
+	public static Player createPlayer(String locator)
+			throws IOException, MediaException {
+		throw new MediaException("Not implemented");
+	}
+
+	public static Player createPlayer(InputStream stream, String type) throws IOException, MediaException {
+		throw new MediaException("Content not supported");
+	}
+
+	public static Player createPlayer(DataSource source)
+			throws IOException, MediaException {
+		throw new MediaException("Not implemented");
+	}
+
+	public static void playTone(int note, int duration, int volume)
+			throws MediaException {
+	}
+
+	public static TimeBase getSystemTimeBase() {
+		if (sysTimeBase == null)
+			sysTimeBase = new SystemTimeBase();
+		return sysTimeBase;
+	}
+
+	private static SystemTimeBase sysTimeBase;
 }

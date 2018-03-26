@@ -93,7 +93,7 @@ public class SwtDeviceComponent extends Canvas {
 
 			Device device = DeviceFactory.getDevice();
 
-			for (Iterator it = device.getButtons().iterator(); it.hasNext();) {
+			for (Iterator it = device.getButtons().iterator(); it.hasNext(); ) {
 				SwtButton button = (SwtButton) it.next();
 				if (ev.keyCode == button.getKeyboardKey()) {
 					ev.keyCode = button.getKeyCode();
@@ -122,7 +122,7 @@ public class SwtDeviceComponent extends Canvas {
 
 			Device device = DeviceFactory.getDevice();
 
-			for (Iterator it = device.getButtons().iterator(); it.hasNext();) {
+			for (Iterator it = device.getButtons().iterator(); it.hasNext(); ) {
 				SwtButton button = (SwtButton) it.next();
 				if (ev.keyCode == button.getKeyboardKey()) {
 					ev.keyCode = button.getKeyCode();
@@ -464,7 +464,7 @@ public class SwtDeviceComponent extends Canvas {
 	}
 
 	private SwtButton getButton(int x, int y) {
-		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements();) {
+		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements(); ) {
 			SwtButton button = (SwtButton) e.nextElement();
 			if (button.getShape() != null) {
 				try {

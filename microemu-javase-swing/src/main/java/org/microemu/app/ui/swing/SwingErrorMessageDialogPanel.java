@@ -51,13 +51,13 @@ public class SwingErrorMessageDialogPanel extends SwingDialogPanel implements Me
 	private static final long serialVersionUID = 1L;
 
 	private Frame parent;
-	
+
 	private JLabel iconLabel;
-	
+
 	private JLabel textLabel;
-	
+
 	private JTextArea stackTraceArea;
-	
+
 	private JScrollPane stackTracePane;
 
 	/**
@@ -65,30 +65,30 @@ public class SwingErrorMessageDialogPanel extends SwingDialogPanel implements Me
 	 */
 	public SwingErrorMessageDialogPanel(Frame parent) {
 		this.parent = parent;
-		
+
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
-		
+
 		c.ipadx = 10;
 		c.ipady = 10;
 		c.gridx = 0;
 		c.gridy = 0;
 		iconLabel = new JLabel();
 		add(iconLabel, c);
-		
+
 		c.gridx = 1;
 		c.gridy = 0;
 		c.weightx = 1;
 		textLabel = new JLabel();
 		add(textLabel, c);
-		
+
 		stackTraceArea = new JTextArea();
 		stackTraceArea.setEditable(false);
 		stackTracePane = new JScrollPane(stackTraceArea);
 		stackTracePane.setPreferredSize(new Dimension(250, 250));
-		
+
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.microemu.app.ui.MessageListener#showMessage(int, java.lang.String, java.lang.String, java.lang.Throwable)
 	 */
@@ -105,7 +105,7 @@ public class SwingErrorMessageDialogPanel extends SwingDialogPanel implements Me
 		}
 
 		textLabel.setText(text);
-		
+
 		if (throwable != null) {
 			StringWriter writer = new StringWriter();
 			throwable.printStackTrace(new PrintWriter(writer));
@@ -120,9 +120,9 @@ public class SwingErrorMessageDialogPanel extends SwingDialogPanel implements Me
 			c.weighty = 1;
 			add(stackTracePane, c);
 		}
-		
+
 		SwingDialogWindow.show(parent, title, this, false);
-		
+
 		if (throwable != null) {
 			remove(stackTracePane);
 		}

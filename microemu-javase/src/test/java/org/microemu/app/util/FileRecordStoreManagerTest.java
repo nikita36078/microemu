@@ -30,7 +30,7 @@ import junit.framework.TestCase;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class FileRecordStoreManagerTest extends TestCase {
 

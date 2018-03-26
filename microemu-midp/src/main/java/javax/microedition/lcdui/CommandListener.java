@@ -21,13 +21,10 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package javax.microedition.lcdui;
 
-
-public interface CommandListener
-{
-
+public interface CommandListener {
 
 	void commandAction(Command c, Displayable d);
 

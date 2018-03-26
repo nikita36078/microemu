@@ -41,7 +41,7 @@ import org.microemu.log.Logger;
  * This code is added to MIDlet application to solve problems with security policy  while running in Applet and Webstart.
  * Also solves resource resource loading paterns commonly used in MIDlet and not aceptable in Java SE application
  * The calls to this code is injected by ClassLoader or "Save for Web...".
- * 
+ *
  * This class is used instead injected one when application is running in Applet with MicroEmulator. 
  *
  * Serializable is just internal flag to verify tha proper class is loaded by application.
@@ -60,14 +60,14 @@ public final class Injected implements Serializable {
 	static {
 		Logger.addLogOrigin(Injected.class);
 	}
-	
+
 	/**
 	 * We don't need to instantiate the class, all access is static
 	 */
 	private Injected() {
-		
+
 	}
-	
+
 	private static PrintStream outPrintStream() {
 		//return System.out;
 		return MIDletOutputStreamRedirector.out;
@@ -77,39 +77,39 @@ public final class Injected implements Serializable {
 		//return System.err;
 		return MIDletOutputStreamRedirector.err;
 	}
-	
+
 	/**
 	 * Redirect throwable.printStackTrace() to MicroEmulator console
 	 */
 	public static void printStackTrace(Throwable t) {
 		Logger.error("MIDlet caught", t);
 	}
-	
+
 	/**
 	 * This code Ingected By MicroEmulator to enable access to System properties while running in Applet
-     *
-     * @param      key   the name of the system property.
-     * @return     the string value of the system property,
-     *             or <code>null</code> if there is no property with that key.
+	 *
+	 * @param      key   the name of the system property.
+	 * @return the string value of the system property,
+	 *             or <code>null</code> if there is no property with that key.
 	 */
 	public static String getProperty(String key) {
 		return MIDletSystemProperties.getProperty(key);
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * Returns an input stream for reading the specified resource.
-     *
-     * <p> The search order is described in the documentation for {@link
-     * #getResource(String)}.  </p>
-     *
-     * @param  origClass
-     * @param  name  The resource name
-     *
-     * @return  An input stream for reading the resource, or <tt>null</tt>
-     *          if the resource could not be found
+	 *
+	 * <p> The search order is described in the documentation for {@link
+	 * #getResource(String)}.  </p>
+	 *
+	 * @param  origClass
+	 * @param  name  The resource name
+	 *
+	 * @return An input stream for reading the resource, or <tt>null</tt>
+	 *          if the resource could not be found
 	 */
-	public static InputStream getResourceAsStream(Class origClass, String name)  {
+	public static InputStream getResourceAsStream(Class origClass, String name) {
 		return MIDletResourceLoader.getResourceAsStream(origClass, name);
 	}
 

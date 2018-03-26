@@ -35,13 +35,13 @@ import javax.microedition.lcdui.Graphics;
 public abstract class BaseExamplesCanvas extends Canvas implements CommandListener {
 
 	protected boolean fullScreenMode = false;
-	
+
 	protected static final Command fullScreenModeCommand = new Command("Full Screen", Command.ITEM, 5);
-	
+
 	public BaseExamplesCanvas(String title) {
 		super();
 		super.setTitle(title);
-		
+
 		addCommand(BaseExamplesForm.backCommand);
 		addCommand(fullScreenModeCommand);
 		setCommandListener(this);
@@ -52,7 +52,7 @@ public abstract class BaseExamplesCanvas extends Canvas implements CommandListen
 		g.drawString(s, 0, y, Graphics.LEFT | Graphics.TOP);
 		return y;
 	}
-	
+
 	public void commandAction(Command c, Displayable d) {
 		if (d == this) {
 			if (c == BaseExamplesForm.backCommand) {
@@ -63,7 +63,7 @@ public abstract class BaseExamplesCanvas extends Canvas implements CommandListen
 			}
 		}
 	}
-	
+
 	public void setFullScreenMode(boolean mode) {
 		fullScreenMode = mode;
 		super.setFullScreenMode(mode);

@@ -29,7 +29,7 @@ public interface SourceStream extends Controllable {
 	public static final int SEEKABLE_TO_START = 1;
 
 	public static final int RANDOM_ACCESSIBLE = 2;
-	
+
 	public abstract ContentDescriptor getContentDescriptor();
 
 	public abstract long getContentLength();

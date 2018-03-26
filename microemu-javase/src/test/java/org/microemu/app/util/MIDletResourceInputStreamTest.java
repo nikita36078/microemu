@@ -33,7 +33,7 @@ import junit.framework.TestCase;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class MIDletResourceInputStreamTest extends TestCase {
 

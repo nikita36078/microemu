@@ -20,8 +20,8 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
- *  @version $Id$ 
+ *
+ *  @version $Id$
  */
 
 package org.microemu.device.j2se;
@@ -57,7 +57,7 @@ public class J2SEButton implements Button {
 	/**
 	 * Create special functional buttons. e.g. ButtonName.DELETE and
 	 * ButtonName.BACK_SPACE if not defined in 'device.xml'
-	 * 
+	 *
 	 * @param name
 	 */
 	J2SEButton(ButtonName functionalName) {

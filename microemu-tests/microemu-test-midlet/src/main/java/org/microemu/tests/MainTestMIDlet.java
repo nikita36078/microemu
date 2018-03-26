@@ -79,7 +79,7 @@ public class MainTestMIDlet extends MIDlet implements CommandListener, MIDletUnd
 
 			menuList = new List("Manual Tests", List.IMPLICIT);
 
-			for (Enumeration iter = testPanels.elements(); iter.hasMoreElements();) {
+			for (Enumeration iter = testPanels.elements(); iter.hasMoreElements(); ) {
 				menuList.append(((Displayable) iter.nextElement()).getTitle(), null);
 			}
 			menuList.addCommand(exitCommand);

@@ -26,5 +26,5 @@ package com.siemens.mp.media.control;
 import javax.microedition.midlet.*;
 
 public interface VolumeControl {
-    
+
 }

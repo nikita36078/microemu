@@ -26,22 +26,18 @@ package org.microemu.media.audio;
 
 import javax.microedition.media.control.ToneControl;
 
-public class PCToneControl implements ToneControl
-{
-   public byte[] sequence;
+public class PCToneControl implements ToneControl {
+	public byte[] sequence;
 
-   public PCToneControl()
-   {
-   }
-   
-   public void setSequence(byte[] sequence)
-   {
-      this.sequence = sequence;
-   }
+	public PCToneControl() {
+	}
 
-   public byte[] getSequence()
-   {
-      return sequence;
-   }
+	public void setSequence(byte[] sequence) {
+		this.sequence = sequence;
+	}
+
+	public byte[] getSequence() {
+		return sequence;
+	}
 
 }

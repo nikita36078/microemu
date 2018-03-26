@@ -43,29 +43,29 @@ import javax.microedition.lcdui.TextField;
  * @author vlads
  *
  */
-public class FileEditor extends TextBox  implements CommandListener {
+public class FileEditor extends TextBox implements CommandListener {
 
 	static final Command saveCommand = new Command("Save", Command.OK, 1);
-	
+
 	static final Command backCommand = new Command("Back", Command.BACK, 5);
-	
+
 	private Displayable back;
-	
+
 	FileConnection file;
-	
+
 	public FileEditor(FileConnection fc, Displayable back) {
 		super("Edit " + fc.getName(), null, 128, TextField.ANY);
 		this.back = back;
 		addCommand(saveCommand);
 		addCommand(backCommand);
 		setCommandListener(this);
-		
+
 		file = fc;
 		load();
 	}
 
 	private void load() {
-		DataInputStream is = null; 
+		DataInputStream is = null;
 		try {
 			is = file.openDataInputStream();
 			this.setString(is.readUTF());
@@ -74,7 +74,7 @@ public class FileEditor extends TextBox  implements CommandListener {
 		} finally {
 			try {
 				if (is != null) {
-					((InputStream)is).close();
+					((InputStream) is).close();
 				}
 			} catch (IOException ignore) {
 			}
@@ -82,7 +82,7 @@ public class FileEditor extends TextBox  implements CommandListener {
 	}
 
 	private void save() {
-		DataOutputStream os = null; 
+		DataOutputStream os = null;
 		try {
 			os = file.openDataOutputStream();
 			os.writeUTF(this.getString());
@@ -91,13 +91,13 @@ public class FileEditor extends TextBox  implements CommandListener {
 		} finally {
 			try {
 				if (os != null) {
-					((OutputStream)os).close();
+					((OutputStream) os).close();
 				}
 			} catch (IOException ignore) {
 			}
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see javax.microedition.lcdui.CommandListener#commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable)
 	 */
@@ -111,6 +111,6 @@ public class FileEditor extends TextBox  implements CommandListener {
 		} else if (c == saveCommand) {
 			save();
 		}
-		
+
 	}
 }

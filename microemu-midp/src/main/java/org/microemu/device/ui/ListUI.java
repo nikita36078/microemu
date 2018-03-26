@@ -12,17 +12,17 @@ public interface ListUI extends DisplayableUI {
 	String getString(int elementNum);
 
 	void setSelectCommand(Command command);
-	
+
 	void setSelectedIndex(int elementNum, boolean selected);
 
 	void delete(int elementNum);
-  
+
 	void deleteAll();
-	
+
 	void insert(int elementNum, String stringPart, Image imagePart);
-	
+
 	void set(int elementNum, String stringPart, Image imagePart);
-	
+
 	int size();
-	
+
 }

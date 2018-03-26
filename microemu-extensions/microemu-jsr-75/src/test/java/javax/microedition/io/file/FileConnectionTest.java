@@ -48,53 +48,53 @@ public class FileConnectionTest extends TestCase {
 
 	public void testRoot() throws Exception {
 		FileConnection fconn = (FileConnection) Connector.open("file:///test/");
-	
+
 		assertTrue("should exists", fconn.exists());
-		
+
 		assertTrue("is directory", fconn.isDirectory());
-		
+
 		assertEquals("", fconn.getName());
-		
+
 		assertEquals("/test/", fconn.getPath());
-		
+
 		assertEquals("file:///test/", fconn.getURL());
-		
+
 		fconn.close();
 	}
-	
+
 	public void testDirectory() throws Exception {
 		FileConnection fconn = (FileConnection) Connector.open("file:///test/dir1/");
-	
+
 		assertTrue("should exists", fconn.exists());
-		
+
 		assertTrue("is directory", fconn.isDirectory());
-		
+
 		assertEquals("dir1/", fconn.getName());
-		
+
 		assertEquals("/test/", fconn.getPath());
-		
+
 		assertEquals("file:///test/dir1/", fconn.getURL());
-		
+
 		fconn.close();
 	}
-	
+
 	public void testFile() throws Exception {
 		FileConnection fconn = (FileConnection) Connector.open("file:///test/dir1/f1.txt");
-	
+
 		// If no exception is thrown, then the URI is valid, but the file may or may not exist.
 		assertTrue("should exists", fconn.exists());
-		
+
 		assertFalse("not directory", fconn.isDirectory());
-		
+
 		assertEquals("f1.txt", fconn.getName());
-		
+
 		assertEquals("/test/dir1/", fconn.getPath());
-		
+
 		assertEquals("file:///test/dir1/f1.txt", fconn.getURL());
-		
+
 		fconn.close();
 	}
-	
+
 	public void testFileWrite() throws Exception {
 		final String fileName = "file:///test/dir1/write.txt";
 		FileConnection fconn = null;
@@ -107,11 +107,11 @@ public class FileConnectionTest extends TestCase {
 			dos.writeChars(testData);
 			dos.close();
 			dos = null;
-			
+
 			dis = fconn.openDataInputStream();
 			StringBuffer data = new StringBuffer();
-			for(int i = 0; i < testData.length(); i ++) {
-				data.append(dis.readChar()); 
+			for (int i = 0; i < testData.length(); i++) {
+				data.append(dis.readChar());
 			}
 			assertEquals(testData, data.toString());
 			dis.close();
@@ -137,23 +137,23 @@ public class FileConnectionTest extends TestCase {
 		final String testData = testDataBase + "Data";
 		try {
 			fconn = (FileConnection) Connector.open(fileName);
-			
+
 			os = fconn.openOutputStream();
 			os.write(testData.getBytes());
 			os.close();
 			os = null;
-			
+
 			fconn.truncate(testDataBase.length());
-			
+
 			is = fconn.openInputStream();
 			StringBuffer data = new StringBuffer();
-			for(int i = 0; i < testDataBase.length(); i ++) {
-				data.append((char)is.read()); 
+			for (int i = 0; i < testDataBase.length(); i++) {
+				data.append((char) is.read());
 			}
 			assertEquals(testDataBase, data.toString());
-			
+
 			assertEquals("available", 0, is.available());
-			
+
 			try {
 				int eof = is.read();
 				if (eof != -1) {
@@ -162,7 +162,7 @@ public class FileConnectionTest extends TestCase {
 			} catch (IOException eof) {
 			}
 			is.close();
-			
+
 		} finally {
 			if (is != null) {
 				is.close();
@@ -175,7 +175,7 @@ public class FileConnectionTest extends TestCase {
 			}
 		}
 	}
-	
+
 	public void testFileAppend() throws Exception {
 		final String fileName = "file:///test/dir1/append.txt";
 		FileConnection fconn = null;
@@ -184,28 +184,28 @@ public class FileConnectionTest extends TestCase {
 		final String testDataBase = "Test";
 		final String testData = testDataBase + "Data";
 		final String testDataAppend = "Append";
-		final String testDataAppended = testDataBase +  testDataAppend;
+		final String testDataAppended = testDataBase + testDataAppend;
 		try {
 			fconn = (FileConnection) Connector.open(fileName);
-			
+
 			os = fconn.openOutputStream();
 			os.write(testData.getBytes());
 			os.close();
 			os = null;
-			
+
 			os = fconn.openOutputStream(testDataBase.length());
 			os.write(testDataAppend.getBytes());
 			os.close();
 			os = null;
-			
+
 			is = fconn.openInputStream();
 			StringBuffer data = new StringBuffer();
-			for(int i = 0; i < testDataAppended.length(); i ++) {
-				data.append((char)is.read()); 
+			for (int i = 0; i < testDataAppended.length(); i++) {
+				data.append((char) is.read());
 			}
 			assertEquals(testDataAppended, data.toString());
 			is.close();
-			
+
 		} finally {
 			if (is != null) {
 				is.close();

@@ -24,24 +24,22 @@
 package com.siemens.mp.io;
 
 public class Connection extends com.siemens.mp.misc.NativeMem {
-    ConnectionListener listener;
-    /** Creates a new instance of Connection */
-    public Connection(String connectTo) {
-       System.out.println("Connectiong to: "+connectTo);
-    }
-    
-    public ConnectionListener getListener() 
-    {
-        return listener;
-    }
-    
-    public void send(byte[] data) 
-    {
-        
-    }
-    
-    public void setListener(ConnectionListener listener) 
-    {
-        this.listener=listener;
-    }
+	ConnectionListener listener;
+
+	/** Creates a new instance of Connection */
+	public Connection(String connectTo) {
+		System.out.println("Connectiong to: " + connectTo);
+	}
+
+	public ConnectionListener getListener() {
+		return listener;
+	}
+
+	public void send(byte[] data) {
+
+	}
+
+	public void setListener(ConnectionListener listener) {
+		this.listener = listener;
+	}
 }

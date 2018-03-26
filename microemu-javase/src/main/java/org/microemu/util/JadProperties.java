@@ -20,7 +20,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  @version $Id$
  */
 
@@ -98,7 +98,7 @@ public class JadProperties extends Manifest {
 			midletEntries = new Vector();
 
 			Attributes attributes = super.getMainAttributes();
-			for (Iterator it = attributes.keySet().iterator(); it.hasNext();) {
+			for (Iterator it = attributes.keySet().iterator(); it.hasNext(); ) {
 				Attributes.Name key = (Attributes.Name) it.next();
 				if (key.toString().startsWith(MIDLET_PREFIX)) {
 					try {
@@ -135,67 +135,67 @@ public class JadProperties extends Manifest {
 	public String getProperty(String key) {
 		return getProperty(key, null);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.util.jar.Manifest#read(java.io.InputStream)
-	 * overwritten since the manifest parser wont accept jads with spaces 
+	 * overwritten since the manifest parser wont accept jads with spaces
 	 * and newlines which is causing problems when passing in jads via
 	 * commandline
 	 */
 	public void read(InputStream is) throws IOException {
-	    // TODO Auto-generated method stub
-	    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	    byte[] block = new byte[1024];
-	    int bytesRead = 0;
-	    while (bytesRead >= 0) {
-	        bytesRead = is.read(block);
-	        if (bytesRead == -1) {
-	            break;
-	        }
-	        bos.write(block, 0, bytesRead);
-	    }
-	    bos.close();
-	    byte[] jadBuffer = bos.toByteArray();
-	    is.close();
-	    
-	    ByteArrayInputStream bin = new ByteArrayInputStream(jadBuffer);
-	    ByteArrayInputStream bin2 = new ByteArrayInputStream(jadBuffer);
-	    try {
-	        super.read(bin);
-	    } catch (IOException e) {
-	        // didnt like the format, try our own jad parser
-	        readJad(bin2);
-	    } finally {
-	        bin.close();
-	        bin2.close();
-	    }
+		// TODO Auto-generated method stub
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		byte[] block = new byte[1024];
+		int bytesRead = 0;
+		while (bytesRead >= 0) {
+			bytesRead = is.read(block);
+			if (bytesRead == -1) {
+				break;
+			}
+			bos.write(block, 0, bytesRead);
+		}
+		bos.close();
+		byte[] jadBuffer = bos.toByteArray();
+		is.close();
+
+		ByteArrayInputStream bin = new ByteArrayInputStream(jadBuffer);
+		ByteArrayInputStream bin2 = new ByteArrayInputStream(jadBuffer);
+		try {
+			super.read(bin);
+		} catch (IOException e) {
+			// didnt like the format, try our own jad parser
+			readJad(bin2);
+		} finally {
+			bin.close();
+			bin2.close();
+		}
 	}
 
-    /**
-     * @param bin2
-     * @throws IOException 
-     */
-    private void readJad(ByteArrayInputStream bin2) throws IOException {
-        BufferedReader din = null;
-        try {
-            din = new BufferedReader(new InputStreamReader(bin2));
-            String line = "";
-            while ((line = din.readLine()) != null) {
-                int pos = line.indexOf(':');
-                final String key;
-                final String value;
-                if (pos > 0) {
-                    key = line.substring(0, pos).trim();
-                    value = line.substring(pos + 1).trim();
-                    Attributes.Name name = new Attributes.Name(key);
-                    this.getMainAttributes().put(name, value);
-                }
-            }
-        } catch (IOException e) {
-            
-        } finally {
-            din.close();
-        }
-    }
+	/**
+	 * @param bin2
+	 * @throws IOException
+	 */
+	private void readJad(ByteArrayInputStream bin2) throws IOException {
+		BufferedReader din = null;
+		try {
+			din = new BufferedReader(new InputStreamReader(bin2));
+			String line = "";
+			while ((line = din.readLine()) != null) {
+				int pos = line.indexOf(':');
+				final String key;
+				final String value;
+				if (pos > 0) {
+					key = line.substring(0, pos).trim();
+					value = line.substring(pos + 1).trim();
+					Attributes.Name name = new Attributes.Name(key);
+					this.getMainAttributes().put(name, value);
+				}
+			}
+		} catch (IOException e) {
+
+		} finally {
+			din.close();
+		}
+	}
 
 }

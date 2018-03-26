@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 package javax.obex;
 
 /**
@@ -41,13 +41,13 @@ package javax.obex;
  * able to read Body data from this <code>InputStream</code>. For a
  * CREATE-EMPTY request, there will be no Body data to read. Therefore, a call
  * to <code>InputStream.read()</code> will return -1.
- * 
+ *
  * @version 1.0 February 11, 2002
  */
 public class ServerRequestHandler {
 
 	private long connectionID;
-	
+
 	/**
 	 * Creates a ServerRequestHandler.
 	 */
@@ -58,7 +58,7 @@ public class ServerRequestHandler {
 	/**
 	 * Creates a <code>HeaderSet</code> object that may be used in put and get
 	 * operations.
-	 * 
+	 *
 	 * @return the <code>HeaderSet</code> object to use in put and get
 	 *         operations
 	 */
@@ -68,11 +68,11 @@ public class ServerRequestHandler {
 
 	/**
 	 * Sets the connection ID header to include in the reply packets.
-	 * 
+	 *
 	 * @param id
 	 *            the connection ID to use; -1 if no connection ID should be
 	 *            sent
-	 * 
+	 *
 	 * @exception IllegalArgumentException
 	 *                if <code>id</code> is not in the range -1 to 2<sup>32</sup>-1
 	 */
@@ -86,7 +86,7 @@ public class ServerRequestHandler {
 	/**
 	 * Retrieves the connection ID that is being used in the present connection.
 	 * This method will return -1 if no connection ID is being used.
-	 * 
+	 *
 	 * @return the connection id being used or -1 if no connection ID is being
 	 *         used
 	 */
@@ -104,15 +104,15 @@ public class ServerRequestHandler {
 	 * The headers received in the request can be retrieved from the
 	 * <code>request</code> argument. The headers that should be sent in the
 	 * reply must be specified in the <code>reply</code> argument.
-	 * 
+	 *
 	 * @param request
 	 *            contains the headers sent by the client; <code>request</code>
 	 *            will never be <code>null</code>
-	 * 
+	 *
 	 * @param reply
 	 *            the headers that should be sent in the reply;
 	 *            <code>reply</code> will never be <code>null</code>
-	 * 
+	 *
 	 * @return a response code defined in <code>ResponseCodes</code> that will
 	 *         be returned to the client; if an invalid response code is
 	 *         provided, the <code>OBEX_HTTP_INTERNAL_ERROR</code> response
@@ -128,11 +128,11 @@ public class ServerRequestHandler {
 	 * The headers received in the request can be retrieved from the
 	 * <code>request</code> argument. The headers that should be sent in the
 	 * reply must be specified in the <code>reply</code> argument.
-	 * 
+	 *
 	 * @param request
 	 *            contains the headers sent by the client; <code>request</code>
 	 *            will never be <code>null</code>
-	 * 
+	 *
 	 * @param reply
 	 *            the headers that should be sent in the reply;
 	 *            <code>reply</code> will never be <code>null</code>
@@ -150,27 +150,27 @@ public class ServerRequestHandler {
 	 * The headers received in the request can be retrieved from the
 	 * <code>request</code> argument. The headers that should be sent in the
 	 * reply must be specified in the <code>reply</code> argument.
-	 * 
+	 *
 	 * @param request
 	 *            contains the headers sent by the client; <code>request</code>
 	 *            will never be <code>null</code>
-	 * 
+	 *
 	 * @param reply
 	 *            the headers that should be sent in the reply;
 	 *            <code>reply</code> will never be <code>null</code>
-	 * 
+	 *
 	 * @param backup
 	 *            <code>true</code> if the client requests that the server
 	 *            back up one directory before changing to the path described by
 	 *            <code>name</code>; <code>false</code> to apply the
 	 *            request to the present path
-	 * 
+	 *
 	 * @param create
 	 *            <code>true</code> if the path should be created if it does
 	 *            not already exist; <code>false</code> if the path should not
 	 *            be created if it does not exist and an error code should be
 	 *            returned
-	 * 
+	 *
 	 * @return a response code defined in <code>ResponseCodes</code> that will
 	 *         be returned to the client; if an invalid response code is
 	 *         provided, the <code>OBEX_HTTP_INTERNAL_ERROR</code> response
@@ -190,15 +190,15 @@ public class ServerRequestHandler {
 	 * The headers received in the request can be retrieved from the
 	 * <code>request</code> argument. The headers that should be sent in the
 	 * reply must be specified in the <code>reply</code> argument.
-	 * 
+	 *
 	 * @param request
 	 *            contains the headers sent by the client; <code>request</code>
 	 *            will never be <code>null</code>
-	 * 
+	 *
 	 * @param reply
 	 *            the headers that should be sent in the reply;
 	 *            <code>reply</code> will never be <code>null</code>
-	 * 
+	 *
 	 * @return a response code defined in <code>ResponseCodes</code> that will
 	 *         be returned to the client; if an invalid response code is
 	 *         provided, the <code>OBEX_HTTP_INTERNAL_ERROR</code> response
@@ -217,12 +217,12 @@ public class ServerRequestHandler {
 	 * <P>
 	 * If an ABORT request is received during the processing of a PUT request,
 	 * <code>op</code> will be closed by the implementation.
-	 * 
+	 *
 	 * @param op
 	 *            contains the headers sent by the client and allows new headers
 	 *            to be sent in the reply; <code>op</code> will never be
 	 *            <code>null</code>
-	 * 
+	 *
 	 * @return a response code defined in <code>ResponseCodes</code> that will
 	 *         be returned to the client; if an invalid response code is
 	 *         provided, the <code>OBEX_HTTP_INTERNAL_ERROR</code> response
@@ -241,12 +241,12 @@ public class ServerRequestHandler {
 	 * <P>
 	 * If an ABORT request is received during the processing of a GET request,
 	 * <code>op</code> will be closed by the implementation.
-	 * 
+	 *
 	 * @param op
 	 *            contains the headers sent by the client and allows new headers
 	 *            to be sent in the reply; <code>op</code> will never be
 	 *            <code>null</code>
-	 * 
+	 *
 	 * @return a response code defined in <code>ResponseCodes</code> that will
 	 *         be returned to the client; if an invalid response code is
 	 *         provided, the <code>OBEX_HTTP_INTERNAL_ERROR</code> response
@@ -263,7 +263,7 @@ public class ServerRequestHandler {
 	 * <P>
 	 * If this method is not implemented by the class that extends this class,
 	 * this method will do nothing.
-	 * 
+	 *
 	 * @param userName
 	 *            the user name returned in the authentication response;
 	 *            <code>null</code> if no user name was provided in the

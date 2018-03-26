@@ -32,7 +32,7 @@ import javax.microedition.lcdui.Graphics;
 public interface CustomItemAccess {
 
 	CustomItem getCustomItem();
-	
+
 	int getPrefContentHeight(int width);
 
 	int getPrefContentWidth(int height);

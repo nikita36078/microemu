@@ -32,7 +32,7 @@ import java.util.Properties;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class BuildVersion {
 

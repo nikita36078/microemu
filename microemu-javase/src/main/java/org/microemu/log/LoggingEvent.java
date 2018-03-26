@@ -39,12 +39,12 @@ public class LoggingEvent {
 	public final static int WARN = 3;
 
 	public final static int ERROR = 4;
-	
+
 	protected int level;
 
 	protected String message;
-    
-	protected StackTraceElement location; 
+
+	protected StackTraceElement location;
 
 	protected boolean hasData = false;
 
@@ -54,11 +54,10 @@ public class LoggingEvent {
 
 	protected long eventTime;
 
+	public LoggingEvent() {
+		this.eventTime = System.currentTimeMillis();
+	}
 
-    public LoggingEvent() {
-    	this.eventTime = System.currentTimeMillis();
-    }
-    
 	public LoggingEvent(int level, String message, StackTraceElement location, Throwable throwable) {
 		this();
 		this.level = level;
@@ -66,7 +65,7 @@ public class LoggingEvent {
 		this.location = location;
 		this.throwable = throwable;
 	}
-	
+
 	public LoggingEvent(int level, String message, StackTraceElement location, Throwable throwable, Object data) {
 		this(level, message, location, throwable);
 		setData(data);
@@ -96,7 +95,7 @@ public class LoggingEvent {
 			return "";
 		}
 	}
-	
+
 	public long getEventTime() {
 		return this.eventTime;
 	}

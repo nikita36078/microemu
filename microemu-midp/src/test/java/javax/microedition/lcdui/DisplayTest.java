@@ -1,7 +1,7 @@
 /**
  * MicroEmulator 
  * Copyright (C) 2007 Rushabh Doshi <radoshi@cs.stanford.edu> Pelago, Inc
- * 
+ *
  *  It is licensed under the following two licenses as alternatives:
  *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
  *    2. Apache License (the "AL") Version 2.0
@@ -20,11 +20,11 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- * 
+ *
  * Contributor(s): 
  *   3GLab
  *   Andres Navarro
- *   
+ *
  *  @version $Id$
  */
 package javax.microedition.lcdui;
@@ -48,7 +48,7 @@ import org.microemu.device.ui.UIFactory;
 
 /**
  * @author radoshi
- * 
+ *
  */
 public class DisplayTest extends TestCase {
 
@@ -57,7 +57,7 @@ public class DisplayTest extends TestCase {
 		volatile int prePaintCount = 0, postPaintCount = 0;
 
 		/**
-		 * 
+		 *
 		 */
 		public MockDisplayable() {
 
@@ -133,9 +133,9 @@ public class DisplayTest extends TestCase {
 			return null;
 		}
 
-		public Image createImage(	byte[] imageData,
-									int imageOffset,
-									int imageLength) {
+		public Image createImage(byte[] imageData,
+				int imageOffset,
+				int imageLength) {
 
 			return null;
 		}
@@ -145,20 +145,20 @@ public class DisplayTest extends TestCase {
 			return null;
 		}
 
-		public Image createImage(	Image image,
-									int x,
-									int y,
-									int width,
-									int height,
-									int transform) {
+		public Image createImage(Image image,
+				int x,
+				int y,
+				int width,
+				int height,
+				int transform) {
 
 			return null;
 		}
 
 		public Image createRGBImage(int[] rgb,
-									int width,
-									int height,
-									boolean processAlpha) {
+				int width,
+				int height,
+				boolean processAlpha) {
 
 			return null;
 		}
@@ -167,7 +167,7 @@ public class DisplayTest extends TestCase {
 
 			return null;
 		}
-		
+
 		public boolean flashBacklight(int duration) {
 
 			return false;
@@ -226,14 +226,14 @@ public class DisplayTest extends TestCase {
 
 		}
 
-        public Graphics getGraphics(GameCanvas gameCanvas) {
+		public Graphics getGraphics(GameCanvas gameCanvas) {
 
-            return null;
-        }
+			return null;
+		}
 
-        public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height) {
-        }
-        
+		public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height) {
+		}
+
 	}
 
 	private static final class MockFontManager implements FontManager {
@@ -271,7 +271,7 @@ public class DisplayTest extends TestCase {
 
 			return 0;
 		}
-		
+
 	}
 
 	private static final class MockDevice implements Device {
@@ -390,7 +390,7 @@ public class DisplayTest extends TestCase {
 	 * event thread after the paints have been serviced. Please see
 	 * http://archives.java.sun.com/cgi-bin/wa?A2=ind0606&L=kvm-interest&D=0&P=2189
 	 * for more details
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void testConcurrency() throws Exception {
@@ -424,9 +424,9 @@ public class DisplayTest extends TestCase {
 	 * @param b
 	 * @param runner
 	 */
-	private void assertEventuallyRun(	boolean value,
-										MockRunner runner,
-										int timeout) {
+	private void assertEventuallyRun(boolean value,
+			MockRunner runner,
+			int timeout) {
 
 		long start = System.currentTimeMillis();
 		while (System.currentTimeMillis() < start + timeout) {
@@ -448,9 +448,9 @@ public class DisplayTest extends TestCase {
 	 * @param conditional
 	 * @param timeout
 	 */
-	private final void assertPrePaintValue(	int value,
-											MockDisplayable disp,
-											int timeout) {
+	private final void assertPrePaintValue(int value,
+			MockDisplayable disp,
+			int timeout) {
 
 		long start = System.currentTimeMillis();
 		while (System.currentTimeMillis() < start + timeout) {

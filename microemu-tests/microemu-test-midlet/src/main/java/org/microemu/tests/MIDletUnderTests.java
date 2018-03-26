@@ -34,6 +34,6 @@ public interface MIDletUnderTests {
 	public static final Command exitCommand = new Command("Exit", Command.EXIT, 1);
 
 	public void showMainPage();
-	
+
 	public void setCurrentDisplayable(Displayable nextDisplayable);
 }

@@ -38,44 +38,44 @@ import javax.net.ssl.TrustManagerFactory;
 
 /**
  * @author vlads
- * 
+ *
  * See src/test/ssl/read-me.txt
- * 
+ *
  */
 public class SSLContextSetup {
-	
+
 	private static boolean initialized = false;
-	
+
 	public static synchronized void setUp() {
-    	if (initialized) {
-    		return;
-    	}
-    	InputStream is = null;
-        try {
-            KeyStore trustStore = KeyStore.getInstance("JKS");
-            is = SSLContextSetup.class.getResourceAsStream("/test-servers.keystore"); 
-            if (is == null) {
-            	new Error("keystore not found");
-            }
-            trustStore.load(is, "microemu2006".toCharArray());
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");  
-            trustManagerFactory.init(trustStore);  
-            TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
-            
-            SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
-            SSLContext context = SSLContext.getInstance("TLS");
-            context.init(null, trustManagers, secureRandom);
-            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-            initialized = true;
-        } catch (Throwable e) {
-            throw new Error(e);
-        } finally {
-        	if (is != null) {
-        		try {
+		if (initialized) {
+			return;
+		}
+		InputStream is = null;
+		try {
+			KeyStore trustStore = KeyStore.getInstance("JKS");
+			is = SSLContextSetup.class.getResourceAsStream("/test-servers.keystore");
+			if (is == null) {
+				new Error("keystore not found");
+			}
+			trustStore.load(is, "microemu2006".toCharArray());
+			TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
+			trustManagerFactory.init(trustStore);
+			TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+
+			SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+			SSLContext context = SSLContext.getInstance("TLS");
+			context.init(null, trustManagers, secureRandom);
+			HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+			initialized = true;
+		} catch (Throwable e) {
+			throw new Error(e);
+		} finally {
+			if (is != null) {
+				try {
 					is.close();
 				} catch (IOException ignore) {
 				}
-        	}
-        }
-    }
+			}
+		}
+	}
 }

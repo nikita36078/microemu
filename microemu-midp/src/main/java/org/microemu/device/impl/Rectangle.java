@@ -20,16 +20,16 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  @version $Id$
  */
 
 package org.microemu.device.impl;
 
 public class Rectangle extends Shape {
-	
+
 	private boolean initialized;
-	
+
 	public int x;
 
 	public int y;
@@ -41,7 +41,7 @@ public class Rectangle extends Shape {
 	public Rectangle() {
 		this.initialized = false;
 	}
-	
+
 	public Rectangle(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;
@@ -55,15 +55,15 @@ public class Rectangle extends Shape {
 		this.y = rect.y;
 		this.width = rect.width;
 		this.height = rect.height;
-		
+
 		this.initialized = false;
 	}
-	
+
 	public void add(int newx, int newy) {
 		if (initialized) {
 			if (newx < x) {
 				width += x - newx;
-				x = newx;			
+				x = newx;
 			} else if (newx > x + width) {
 				width = newx - x;
 			}
@@ -92,11 +92,11 @@ public class Rectangle extends Shape {
 	public Rectangle getBounds() {
 		return this;
 	}
-	
+
 	public String toString() {
-	    StringBuffer buf = new StringBuffer();
-	    buf.append(x).append(",").append(y).append(" ").append(this.width).append("x").append(this.height);
-	    return buf.toString();
+		StringBuffer buf = new StringBuffer();
+		buf.append(x).append(",").append(y).append(" ").append(this.width).append("x").append(this.height);
+		return buf.toString();
 	}
 
 }

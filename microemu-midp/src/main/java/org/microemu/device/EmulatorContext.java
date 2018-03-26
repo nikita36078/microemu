@@ -42,9 +42,9 @@ public interface EmulatorContext {
 	DeviceDisplay getDeviceDisplay();
 
 	FontManager getDeviceFontManager();
-	
+
 	InputStream getResourceAsStream(Class origClass, String name);
 
 	boolean platformRequest(final String URL) throws ConnectionNotFoundException;
-	
+
 }

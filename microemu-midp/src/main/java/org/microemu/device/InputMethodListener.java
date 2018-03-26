@@ -21,21 +21,19 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu.device;
 
-
-public interface InputMethodListener
-{
+public interface InputMethodListener {
 
 	public void caretPositionChanged(InputMethodEvent event);
 
 	public void inputMethodTextChanged(InputMethodEvent event);
 
 	public int getCaretPosition();
-	
+
 	public String getText();
-    
-    public int getConstraints();
-	
+
+	public int getConstraints();
+
 }

@@ -34,7 +34,7 @@ import java.io.InputStreamReader;
 /**
  * This class illustrate Resource usage paterns commonly used in MIDlet and not
  * aceptable in Java SE application
- * 
+ *
  * @author vlads
  */
 

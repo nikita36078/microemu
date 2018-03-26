@@ -90,7 +90,7 @@ public class ImageItem extends Item {
 		}
 		this.img = img;
 		repaint();
-		
+
 		((ImageStringItemUI) ui).setImage(img);
 	}
 

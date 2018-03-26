@@ -24,6 +24,7 @@ public class Base64Coder {
 
 	//	 Mapping table from 6-bit nibbles to Base64 characters.
 	private static char[] map1 = new char[64];
+
 	static {
 		int i = 0;
 		for (char c = 'A'; c <= 'Z'; c++)
@@ -38,6 +39,7 @@ public class Base64Coder {
 
 	//	 Mapping table from Base64 characters to 6-bit nibbles.
 	private static byte[] map2 = new byte[128];
+
 	static {
 		for (int i = 0; i < map2.length; i++)
 			map2[i] = -1;
@@ -49,7 +51,7 @@ public class Base64Coder {
 	 * Encodes a string into Base64 format.
 	 * No blanks or line breaks are inserted.
 	 * @param s  a String to be encoded.
-	 * @return   A String with the Base64 encoded data.
+	 * @return A String with the Base64 encoded data.
 	 */
 	public static String encode(String s) {
 		return new String(encode(s.getBytes()));
@@ -59,7 +61,7 @@ public class Base64Coder {
 	 * Encodes a byte array into Base64 format.
 	 * No blanks or line breaks are inserted.
 	 * @param in  an array containing the data bytes to be encoded.
-	 * @return    A character array with the Base64 encoded data.
+	 * @return A character array with the Base64 encoded data.
 	 */
 	public static char[] encode(byte[] in) {
 		int iLen = in.length;
@@ -89,8 +91,8 @@ public class Base64Coder {
 	/**
 	 * Decodes a Base64 string.
 	 * @param s  a Base64 String to be decoded.
-	 * @return   A String containing the decoded data.
-	 * @throws   IllegalArgumentException if the input is not valid Base64 encoded data.
+	 * @return A String containing the decoded data.
+	 * @throws IllegalArgumentException if the input is not valid Base64 encoded data.
 	 */
 	public static String decode(String s) {
 		return new String(decode(s.toCharArray()));
@@ -100,8 +102,8 @@ public class Base64Coder {
 	 * Decodes Base64 data.
 	 * No blanks or line breaks are allowed within the Base64 encoded data.
 	 * @param in  a character array containing the Base64 encoded data.
-	 * @return    An array containing the decoded data bytes.
-	 * @throws    IllegalArgumentException if the input is not valid Base64 encoded data.
+	 * @return An array containing the decoded data bytes.
+	 * @throws IllegalArgumentException if the input is not valid Base64 encoded data.
 	 */
 	public static byte[] decode(char[] in) {
 		int iLen = in.length;

@@ -27,11 +27,13 @@ import javax.microedition.midlet.*;
 
 /**
  *
- * @author  markus
+ * @author markus
  * @version
  */
 public class Melody {
-    public void play()
-    {}
-    public static void stop(){}
+	public void play() {
+	}
+
+	public static void stop() {
+	}
 }

@@ -122,12 +122,12 @@ public class Polygon extends Shape {
 	}
 
 	/**
-     * Tests to see if a point is contained by this polygon.
-     * 
-     * @param p
-     *            The GeoPoint to test.
-     * @return boolean True if point is contained by this polygon.
-     */
+	 * Tests to see if a point is contained by this polygon.
+	 *
+	 * @param p
+	 *            The GeoPoint to test.
+	 * @return boolean True if point is contained by this polygon.
+	 */
 	public boolean contains(int x, int y) {
 
 		/*if(!getMultiPartBounds().contains(p)){
@@ -140,12 +140,13 @@ public class Polygon extends Shape {
 			boolean c = false;
 			for (int i = 0, j = npoints - 1; i < npoints; j = i++) {
 				if ((((ypoints[i] <= y) && (y < ypoints[j])) || ((ypoints[j] <= y) && (y < ypoints[i])))
-						&& (x < ((double)(xpoints[j] - xpoints[i]) * (y - ypoints[i])) / (ypoints[j] - ypoints[i]) + xpoints[i])) {
+						&& (x < ((double) (xpoints[j] - xpoints[i]) * (y - ypoints[i])) / (ypoints[j] - ypoints[i]) +
+						xpoints[i])) {
 					c = !c;
 				}
 			}
 			return c;
-			
+
 //           This code does not work as expected even after fixes for double
 //
 //			/* Start andys code */

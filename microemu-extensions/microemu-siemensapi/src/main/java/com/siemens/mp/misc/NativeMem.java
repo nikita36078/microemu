@@ -27,9 +27,9 @@ import javax.microedition.midlet.*;
 
 /**
  *
- * @author  markus
+ * @author markus
  * @version
  */
 public class NativeMem {
-    
+
 }

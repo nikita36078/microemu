@@ -39,7 +39,7 @@ import org.objectweb.asm.MethodVisitor;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class ChangeCallsClassVisitor extends ClassAdapter {
 

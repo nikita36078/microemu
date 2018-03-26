@@ -42,64 +42,62 @@ import javax.sound.midi.Transmitter;
 
 import org.microemu.media.control.J2SEVolumeControl;
 
-class MidiAudioPlayer implements Player, MetaEventListener 
-{
-    private int state;
-    
-	private Sequence  sequence = null;             // The contents of a MIDI file
+class MidiAudioPlayer implements Player, MetaEventListener {
+	private int state;
+
+	private Sequence sequence = null;             // The contents of a MIDI file
+
 	private Sequencer sequencer = null;            // We play MIDI Sequences with a Sequencer
-	private Vector    vListeners = null;           // All PlayerListeners for this audio
-	private int       iLoopCount = 1;
-	
-	public boolean open( InputStream stream, String type ) 
-	{
+
+	private Vector vListeners = null;           // All PlayerListeners for this audio
+
+	private int iLoopCount = 1;
+
+	public boolean open(InputStream stream, String type) {
 		try {
-    		// First, get a Sequencer to play sequences of MIDI events
-    		//That is, to send events to a Synthesizer at the right time.
-    		sequencer = MidiSystem.getSequencer( ); // Used to play sequences
-    		sequencer.open(); // Turn it on.
-    		//Get a Synthesizer for the Sequencer to send notes to
-    		Synthesizer synth = MidiSystem.getSynthesizer( );
-    		synth.open( ); // acquire whatever resources it needs
-    		//The Sequencer obtained above may be connected to a Synthesizer
-    		//by default, or it may not. Therefore, we explicitly connect it.
-    		Transmitter transmitter = sequencer.getTransmitter( );
-    		Receiver receiver = synth.getReceiver( );
-    		transmitter.setReceiver(receiver);
-    		//Read the sequence from the file and tell the sequencer about it
-    		sequence = MidiSystem.getSequence( stream );
-    		sequencer.setSequence(sequence);
-	    } catch(UnsatisfiedLinkError e) { 
-	        e.printStackTrace(); 
-	    } catch(IOException e) { 
-	        e.printStackTrace(); 
-	    } catch(MidiUnavailableException e) {
-	        e.printStackTrace(); 
-	    } catch( InvalidMidiDataException e ) { 
-	        e.printStackTrace(); 
-	    }
-	    
-	    state = UNREALIZED;
-	    
+			// First, get a Sequencer to play sequences of MIDI events
+			//That is, to send events to a Synthesizer at the right time.
+			sequencer = MidiSystem.getSequencer(); // Used to play sequences
+			sequencer.open(); // Turn it on.
+			//Get a Synthesizer for the Sequencer to send notes to
+			Synthesizer synth = MidiSystem.getSynthesizer();
+			synth.open(); // acquire whatever resources it needs
+			//The Sequencer obtained above may be connected to a Synthesizer
+			//by default, or it may not. Therefore, we explicitly connect it.
+			Transmitter transmitter = sequencer.getTransmitter();
+			Receiver receiver = synth.getReceiver();
+			transmitter.setReceiver(receiver);
+			//Read the sequence from the file and tell the sequencer about it
+			sequence = MidiSystem.getSequence(stream);
+			sequencer.setSequence(sequence);
+		} catch (UnsatisfiedLinkError e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (MidiUnavailableException e) {
+			e.printStackTrace();
+		} catch (InvalidMidiDataException e) {
+			e.printStackTrace();
+		}
+
+		state = UNREALIZED;
+
 		return false;
 	}
 
-	protected void dispose() 
-	{
-        close();
-	}
-	
-	public void addPlayerListener(PlayerListener playerListener) 
-	{
-		if( vListeners == null )
-			vListeners = new Vector();
-		vListeners.add( playerListener );
+	protected void dispose() {
+		close();
 	}
 
-	public void close() 
-	{
-		Manager.mediaDone( this );
-		if( sequencer != null )
+	public void addPlayerListener(PlayerListener playerListener) {
+		if (vListeners == null)
+			vListeners = new Vector();
+		vListeners.add(playerListener);
+	}
+
+	public void close() {
+		Manager.mediaDone(this);
+		if (sequencer != null)
 			sequencer.close();
 	}
 
@@ -114,9 +112,8 @@ class MidiAudioPlayer implements Player, MetaEventListener
 		return 0;
 	}
 
-	public long getMediaTime() 
-	{
-		if( sequencer != null )
+	public long getMediaTime() {
+		if (sequencer != null)
 			return sequencer.getMicrosecondPosition();
 		return 0;
 	}
@@ -135,51 +132,47 @@ class MidiAudioPlayer implements Player, MetaEventListener
 
 	}
 
-	public void removePlayerListener(PlayerListener playerListener) 
-	{
-	   if( vListeners == null )
-		   return;
-	   for( Iterator it = vListeners.iterator (); it.hasNext (); ) 
-	   {
-		    PlayerListener listener = (PlayerListener) it.next ();
-		    if( listener == playerListener )
-		    {
-		    	vListeners.remove( listener );
-		    	break;
-	   		}
-	   }
+	public void removePlayerListener(PlayerListener playerListener) {
+		if (vListeners == null)
+			return;
+		for (Iterator it = vListeners.iterator(); it.hasNext(); ) {
+			PlayerListener listener = (PlayerListener) it.next();
+			if (listener == playerListener) {
+				vListeners.remove(listener);
+				break;
+			}
+		}
 	}
 
-	public void setLoopCount(int count) 
-	{
+	public void setLoopCount(int count) {
 		iLoopCount = count;
 	}
 
 	public long setMediaTime(long now) throws MediaException {
-		if( sequencer != null )
-			sequencer.setMicrosecondPosition( now );
+		if (sequencer != null)
+			sequencer.setMicrosecondPosition(now);
 		return now;
 	}
 
 	public void start() throws MediaException {
 		if (sequencer != null) {
-			sequencer.addMetaEventListener( this );
+			sequencer.addMetaEventListener(this);
 			sequencer.start();
 			state = STARTED;
 		}
 	}
 
 	public void stop() throws MediaException {
-		if( sequencer != null ) {
+		if (sequencer != null) {
 			sequencer.stop();
 			state = PREFETCHED;
 		}
 	}
 
 	public Control getControl(String controlType) {
-	    if ("VolumeControl".equals(controlType)) {
-	        return new J2SEVolumeControl();
-	    }
+		if ("VolumeControl".equals(controlType)) {
+			return new J2SEVolumeControl();
+		}
 
 		return null;
 	}
@@ -189,33 +182,29 @@ class MidiAudioPlayer implements Player, MetaEventListener
 		return null;
 	}
 
-    public void meta( MetaMessage event )
-    {
-        if (event.getType() == 47) //End of Track type
-        {
-            if (iLoopCount > 0) 
-            {
-                iLoopCount--;
-            }
-            if( iLoopCount > 0 || iLoopCount == -1)
-        	{
-        		sequencer.setMicrosecondPosition( 0 );
-        		try{ start(); } 
-        		catch( MediaException e ) { e.printStackTrace(); }
-        	}
-        	else
-        	{
-    			close();
-    			if( vListeners != null )
-    			{
-    				for( Iterator it = vListeners.iterator (); it.hasNext (); ) 
-    				{
-    				    PlayerListener listener = (PlayerListener) it.next ();
-    				    listener.playerUpdate( this, PlayerListener.END_OF_MEDIA, null );
-    				}
-    			}
-        	}
-        }
-    }
+	public void meta(MetaMessage event) {
+		if (event.getType() == 47) //End of Track type
+		{
+			if (iLoopCount > 0) {
+				iLoopCount--;
+			}
+			if (iLoopCount > 0 || iLoopCount == -1) {
+				sequencer.setMicrosecondPosition(0);
+				try {
+					start();
+				} catch (MediaException e) {
+					e.printStackTrace();
+				}
+			} else {
+				close();
+				if (vListeners != null) {
+					for (Iterator it = vListeners.iterator(); it.hasNext(); ) {
+						PlayerListener listener = (PlayerListener) it.next();
+						listener.playerUpdate(this, PlayerListener.END_OF_MEDIA, null);
+					}
+				}
+			}
+		}
+	}
 
 }

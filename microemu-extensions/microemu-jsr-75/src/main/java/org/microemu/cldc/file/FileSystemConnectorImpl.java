@@ -42,7 +42,7 @@ import org.microemu.microedition.io.ConnectorAdapter;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class FileSystemConnectorImpl extends ConnectorAdapter implements ImplementationUnloadable {
 
@@ -95,7 +95,7 @@ public class FileSystemConnectorImpl extends ConnectorAdapter implements Impleme
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationUnloadable#unregisterImplementation()
 	 */
 	public void unregisterImplementation() {

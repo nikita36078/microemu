@@ -23,9 +23,9 @@
  */
 package org.microemu.media;
 
-public interface RunnableInterface extends Runnable
-{
-   public boolean isRunning();
-   public void setRunning(boolean isRunning);
+public interface RunnableInterface extends Runnable {
+	public boolean isRunning();
+
+	public void setRunning(boolean isRunning);
 }
 

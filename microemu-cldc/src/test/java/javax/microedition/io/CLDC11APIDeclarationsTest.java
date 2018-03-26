@@ -34,12 +34,12 @@ import net.sf.jour.signature.SignatureTestCase;
  */
 public class CLDC11APIDeclarationsTest extends SignatureTestCase {
 
-    public String getAPIPath() {
-        return getClassPath(Connection.class);
-    }
+	public String getAPIPath() {
+		return getClassPath(Connection.class);
+	}
 
-    public String getSignatureXMLPath() {
-        return "cldcapi_10_11-javax.microedition.io-signature.xml";
-    }
+	public String getSignatureXMLPath() {
+		return "cldcapi_10_11-javax.microedition.io-signature.xml";
+	}
 
 }

@@ -20,13 +20,12 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  @version $Id$
  */
 package javax.microedition.io;
 
 import java.io.IOException;
-
 
 public interface Connection {
 

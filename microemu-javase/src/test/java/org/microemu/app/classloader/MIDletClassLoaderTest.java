@@ -45,7 +45,7 @@ import org.microemu.log.LoggingEvent;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class MIDletClassLoaderTest extends TestCase {
 

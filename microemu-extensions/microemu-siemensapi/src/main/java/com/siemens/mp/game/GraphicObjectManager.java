@@ -28,69 +28,62 @@ import javax.microedition.lcdui.*;
 
 /**
  *
- * @author  markus
+ * @author markus
  * @version
  */
-public class GraphicObjectManager  extends com.siemens.mp.misc.NativeMem{
-    Vector v=new Vector();
-    
-    public void addObject(GraphicObject gobject) {
-        //System.out.println("void addObject(GraphicObject "+gobject+")");
-        v.addElement(gobject);
-    }
-    
-    public static byte[] createTextureBits(int width, int height, byte[] texture) {
-        System.out.println("static byte[] createTextureBits(int width, int height, byte[] texture)");
-        return null;
-    }
-    
-    
-    public void deleteObject(GraphicObject gobject) {
-        //System.out.println("void deleteObject(GraphicObject gobject)");
-        v.removeElement(gobject);
-    }
-    
-    
-    public void deleteObject(int position) {
-        //System.out.println("void deleteObject(int position)");
-        v.removeElementAt(position);
-    }
-    
-    
-    public GraphicObject getObjectAt(int index) {
-        //System.out.println("GraphicObject getObjectAt(int index)");
-        Object o=v.elementAt(index);
-        return (GraphicObject)o;
-    }
-    
-    
-    public int getObjectPosition(GraphicObject gobject) {
-        //System.out.println("int getObjectPosition(GraphicObject gobject)");
-        return v.indexOf(gobject);
-    }
-    
-    
-    public void insertObject(GraphicObject gobject, int position) {
-        //System.out.println("void insertObject(GraphicObject gobject, int position)");
-        v.insertElementAt(gobject, position);
-    }
-    
-    
-    public void paint(ExtendedImage eimage, int x, int y) {
-        this.paint(eimage.getImage(),x,y);
-    }
-    
-    
-    public void  paint(Image image, int x, int y) {
-        Graphics g=image.getGraphics();
-        g.translate(x, y);
+public class GraphicObjectManager extends com.siemens.mp.misc.NativeMem {
+	Vector v = new Vector();
 
-        for (int i=0;i<v.size();i++) {
-            GraphicObject go=(GraphicObject)v.elementAt(i);
-            go.paint(g);
-        }
-        g.translate(-x, -y);
-        
-    }
-    
+	public void addObject(GraphicObject gobject) {
+		//System.out.println("void addObject(GraphicObject "+gobject+")");
+		v.addElement(gobject);
+	}
+
+	public static byte[] createTextureBits(int width, int height, byte[] texture) {
+		System.out.println("static byte[] createTextureBits(int width, int height, byte[] texture)");
+		return null;
+	}
+
+	public void deleteObject(GraphicObject gobject) {
+		//System.out.println("void deleteObject(GraphicObject gobject)");
+		v.removeElement(gobject);
+	}
+
+	public void deleteObject(int position) {
+		//System.out.println("void deleteObject(int position)");
+		v.removeElementAt(position);
+	}
+
+	public GraphicObject getObjectAt(int index) {
+		//System.out.println("GraphicObject getObjectAt(int index)");
+		Object o = v.elementAt(index);
+		return (GraphicObject) o;
+	}
+
+	public int getObjectPosition(GraphicObject gobject) {
+		//System.out.println("int getObjectPosition(GraphicObject gobject)");
+		return v.indexOf(gobject);
+	}
+
+	public void insertObject(GraphicObject gobject, int position) {
+		//System.out.println("void insertObject(GraphicObject gobject, int position)");
+		v.insertElementAt(gobject, position);
+	}
+
+	public void paint(ExtendedImage eimage, int x, int y) {
+		this.paint(eimage.getImage(), x, y);
+	}
+
+	public void paint(Image image, int x, int y) {
+		Graphics g = image.getGraphics();
+		g.translate(x, y);
+
+		for (int i = 0; i < v.size(); i++) {
+			GraphicObject go = (GraphicObject) v.elementAt(i);
+			go.paint(g);
+		}
+		g.translate(-x, -y);
+
+	}
+
 }

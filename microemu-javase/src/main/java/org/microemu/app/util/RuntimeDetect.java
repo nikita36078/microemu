@@ -28,7 +28,7 @@ package org.microemu.app.util;
 
 /**
  * Detect Java runtime environment.
- * 
+ *
  * @author vlads
  */
 public class RuntimeDetect {

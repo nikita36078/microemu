@@ -83,7 +83,7 @@ public class MemoryRecordStoreManager implements RecordStoreManager {
 		String[] result = null;
 
 		int i = 0;
-		for (Enumeration e = recordStores.keys(); e.hasMoreElements();) {
+		for (Enumeration e = recordStores.keys(); e.hasMoreElements(); ) {
 			if (result == null) {
 				result = new String[recordStores.size()];
 			}
@@ -96,7 +96,7 @@ public class MemoryRecordStoreManager implements RecordStoreManager {
 
 	public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId) {
 	}
-	
+
 	public void loadRecord(RecordStoreImpl recordStoreImpl, int recordId) {
 	}
 

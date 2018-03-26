@@ -5,8 +5,8 @@
  *
  *
  *  @version $Id$
- */ 
- 
+ */
+
 package javax.bluetooth;
 
 /**
@@ -57,19 +57,19 @@ public class DeviceClass {
 
 	private int record;
 
-    /**
-     * Creates a <code>DeviceClass</code> from the class of device record
-     * provided.  <code>record</code> must follow the format of the
-     * class of device record in the Bluetooth specification.
-     *
-     * @param record describes the classes of a device
-     *
-     * @exception IllegalArgumentException if <code>record</code> has any bits
-     * between 24 and 31 set
+	/**
+	 * Creates a <code>DeviceClass</code> from the class of device record
+	 * provided.  <code>record</code> must follow the format of the
+	 * class of device record in the Bluetooth specification.
+	 *
+	 * @param record describes the classes of a device
+	 *
+	 * @exception IllegalArgumentException if <code>record</code> has any bits
+	 * between 24 and 31 set
 	 */
 
 	public DeviceClass(int record) {
-		
+
 		this.record = record;
 
 		if ((record & 0xff000000) != 0)
@@ -78,31 +78,31 @@ public class DeviceClass {
 
 	/**
 	 * Retrieves the major service classes. A device may have multiple major
-     * service classes.  When this occurs, the major service classes are
-     * bitwise OR'ed together.
-     *
-     * @return the major service classes
+	 * service classes.  When this occurs, the major service classes are
+	 * bitwise OR'ed together.
+	 *
+	 * @return the major service classes
 	 */
 
 	public int getServiceClasses() {
 		return record & SERVICE_MASK;
 	}
 
-    /**
+	/**
 	 * Retrieves the major device class. A device may have only a single major
-     * device class.
-     *
-     * @return the major device class
+	 * device class.
+	 *
+	 * @return the major device class
 	 */
 
 	public int getMajorDeviceClass() {
 		return record & MAJOR_MASK;
 	}
 
-    /**
-     * Retrieves the minor device class.
-     *
-     * @return the minor device class
+	/**
+	 * Retrieves the minor device class.
+	 *
+	 * @return the minor device class
 	 */
 
 	public int getMinorDeviceClass() {

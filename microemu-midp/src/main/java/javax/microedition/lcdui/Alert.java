@@ -20,34 +20,35 @@
  *  Contributor(s):
  *    3GLab
  */
- 
+
 package javax.microedition.lcdui;
 
 import org.microemu.device.DeviceFactory;
 import org.microemu.device.ui.AlertUI;
 
-
-public class Alert extends Screen
-{
+public class Alert extends Screen {
 	public static final int FOREVER = -2;
 
 	ImageStringItem alertContent;
+
 	AlertType type;
+
 	// XXX actually the label for this should be an empty String
 	// but the implementation is free to show a label
 	// so the label should be set to "" and on the Command render
 	// we should check if it was the dismiss command and
 	// display a predefined label...
 	public static final Command DISMISS_COMMAND = new Command("OK", Command.OK, 0);
+
 	int time;
+
 	Gauge indicator;
 
 	// this is for alertListener
 	static Displayable nextDisplayable;
-	static CommandListener defaultListener = new CommandListener()
-	{
-		public void commandAction(Command cmd, Displayable d)
-		{
+
+	static CommandListener defaultListener = new CommandListener() {
+		public void commandAction(Command cmd, Displayable d) {
 			// XXX if nextDisplayable == null
 			// then it means that this Alert was
 			// setted current when there was not a previous
@@ -58,18 +59,15 @@ public class Alert extends Screen
 			nextDisplayable = null;
 		}
 	};
-	
-	public Alert(String title)
-	{
+
+	public Alert(String title) {
 		this(title, null, null, null);
 	}
 
-
-	public Alert(String title, String alertText, Image alertImage, AlertType alertType)
-	{
+	public Alert(String title, String alertText, Image alertImage, AlertType alertType) {
 		super(title);
 		super.setUI(DeviceFactory.getDevice().getUIFactory().createAlertUI(this));
-		
+
 		setTimeout(getDefaultTimeout());
 		setString(alertText);
 		setImage(alertImage);
@@ -78,9 +76,7 @@ public class Alert extends Screen
 		super.setCommandListener(defaultListener);
 	}
 
-
-	public void addCommand(Command cmd)
-	{
+	public void addCommand(Command cmd) {
 		if (cmd == Alert.DISMISS_COMMAND) {
 			return;
 		} else {
@@ -100,68 +96,53 @@ public class Alert extends Screen
 		}
 	}
 
-	public int getDefaultTimeout()
-	{
+	public int getDefaultTimeout() {
 		return Alert.FOREVER;
 	}
 
-
-	public String getString()
-	{
+	public String getString() {
 		return alertContent.getText();
 	}
 
-
-	public int getTimeout()
-	{
+	public int getTimeout() {
 		return time;
 	}
 
+	public AlertType getType() {
+		return type;
+	}
 
-  public AlertType getType()
-  {
-    return type;
-  }
-  
-  
-  public void setType(AlertType type)
-	{
+	public void setType(AlertType type) {
 		this.type = type;
 		repaint();
 	}
 
-
-	public void setCommandListener(CommandListener l)
-	{
+	public void setCommandListener(CommandListener l) {
 		if (l == null)
 			l = defaultListener;
 		super.setCommandListener(l);
 	}
 
-
-	public Image getImage()
-	{
+	public Image getImage() {
 		return alertContent.getImage();
 	}
 
-
-	public void setImage(Image img)
-	{
+	public void setImage(Image img) {
 		if (alertContent == null) {
 			alertContent = new ImageStringItem(null, img, null);
 		}
 
 		if (img != null && img.isMutable()) {
-	      img = Image.createImage(img);
-	    }
-	    alertContent.setImage(img);
-	    repaint();
+			img = Image.createImage(img);
+		}
+		alertContent.setImage(img);
+		repaint();
 	}
-	
+
 	public Gauge getIndicator() {
 		return indicator;
 	}
-	
+
 	public void setIndicator(Gauge indicator) {
 		if (indicator == null) {
 			if (this.indicator != null)
@@ -170,16 +151,16 @@ public class Alert extends Screen
 			repaint();
 			return;
 		}
-		
+
 		// validate the gauge against the restrictrions
-		if (indicator.getLayout() != 0 || 
-					indicator.getLabel() != null ||
-					indicator.prefHeight != -1 ||
-					indicator.prefWidth != -1 ||
-					indicator.commandListener != null ||
-					indicator.isInteractive() ||
-					indicator.getOwner() != null ||
-					!indicator.commands.isEmpty()) {
+		if (indicator.getLayout() != 0 ||
+				indicator.getLabel() != null ||
+				indicator.prefHeight != -1 ||
+				indicator.prefWidth != -1 ||
+				indicator.commandListener != null ||
+				indicator.isInteractive() ||
+				indicator.getOwner() != null ||
+				!indicator.commands.isEmpty()) {
 			// if the command vector is empty then
 			// there is no default command
 			throw new IllegalArgumentException(
@@ -190,13 +171,11 @@ public class Alert extends Screen
 		repaint();
 	}
 
-
-	public void setString(String str)
-	{
+	public void setString(String str) {
 		if (ui.getClass().getName().equals("org.microemu.android.device.ui.AndroidAlertUI")) {
 			((AlertUI) ui).setString(str);
 		}
-		
+
 		if (alertContent == null) {
 			alertContent = new ImageStringItem(null, null, str);
 		}
@@ -205,41 +184,31 @@ public class Alert extends Screen
 		repaint();
 	}
 
-
-	public void setTimeout(int time)
-	{
-	    if (time != FOREVER && time <= 0) {
-	      throw new IllegalArgumentException();
-	    }
-	    // XXX stop timeout thread!
+	public void setTimeout(int time) {
+		if (time != FOREVER && time <= 0) {
+			throw new IllegalArgumentException();
+		}
+		// XXX stop timeout thread!
 		if (time != FOREVER && getCommands().size() > 1)
 			time = FOREVER;
-	    
-	    this.time = time;
+
+		this.time = time;
 	}
 
-
-	private int getContentHeight()
-	{
+	private int getContentHeight() {
 		return alertContent.getHeight();
 	}
 
-
-	int paintContent(Graphics g)
-	{
+	int paintContent(Graphics g) {
 		return alertContent.paint(g);
 	}
 
-
-	void showNotify()
-	{
+	void showNotify() {
 		super.showNotify();
 		viewPortY = 0;
 	}
 
-
-	int traverse(int gameKeyCode, int top, int bottom)
-	{
+	int traverse(int gameKeyCode, int top, int bottom) {
 		Font f = Font.getDefaultFont();
 
 		if (gameKeyCode == 1 && top != 0) {

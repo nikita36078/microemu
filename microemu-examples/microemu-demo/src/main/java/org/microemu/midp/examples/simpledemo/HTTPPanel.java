@@ -47,32 +47,32 @@ import javax.microedition.lcdui.TextField;
 public class HTTPPanel extends BaseExamplesForm {
 
 	static final Command goCommand = new Command("Go", Command.OK, 1);
-	
+
 	// See file src/site/resources/test/index.php
 	static String demoLocation;
-	
+
 	TextField url;
-	
+
 	StringItem message;
-	
+
 	StringItem status;
-	
+
 	Thread requestThread = null;
-	
+
 	public HTTPPanel() {
 		super("HTTP Connection");
-		
+
 		String host = SimpleDemoMIDlet.instance.getAppProperty("microemu.accessible.host");
 		if (host == null) {
 			demoLocation = "http://www.microemu.org/test/";
 		} else {
 			demoLocation = "http://" + host + "/test/";
 		}
-		
+
 		append(url = new TextField("URL:", demoLocation, 128, TextField.URL));
 		append(message = new StringItem("Message:", null));
 		append(status = new StringItem("Status:", null));
-		
+
 		addCommand(goCommand);
 	}
 
@@ -81,17 +81,17 @@ public class HTTPPanel extends BaseExamplesForm {
 			requestThread = new Thread(new ConnectionRun());
 			requestThread.start();
 		} else {
-			message.setText("Request still running");  
+			message.setText("Request still running");
 		}
 	}
-	
+
 	class ConnectionRun implements Runnable {
 
 		public void run() {
 			tryConnect();
 		}
 	}
-	
+
 	private void tryConnect() {
 		Connection c = null;
 		InputStream is = null;
@@ -99,36 +99,37 @@ public class HTTPPanel extends BaseExamplesForm {
 			status.setText("Connecting...");
 			c = Connector.open(url.getString(), Connector.READ, true);
 			HttpConnection hcon = (HttpConnection) c;
-			status.setText("http:" + String.valueOf(hcon.getResponseCode()) + " len:" + String.valueOf(hcon.getLength()));
+			status.setText(
+					"http:" + String.valueOf(hcon.getResponseCode()) + " len:" + String.valueOf(hcon.getLength()));
 			int length = (int) hcon.getLength();
-            byte[] data = null;
-            if (length != -1) {
-                data = new byte[length];
-                is = new DataInputStream(hcon.openInputStream());
-                ((DataInputStream)is).readFully(data);
-            } else {
-            	// If content length is not given, read in chunks.
-                int chunkSize = 512;
-                is = hcon.openInputStream();
-                byte[] readData = new byte[chunkSize];
-                int index = 0;
-                do {
-                    int onebyte = is.read();
-                    if (onebyte == -1) {
-                        break;
-                    }
-                    readData[index] = (byte)onebyte;
-                    index ++;
-                    if (readData.length <= index) {
-                        byte[] newData = new byte[index + chunkSize];
-                        System.arraycopy(readData, 0, newData, 0, readData.length);
-                        readData = newData;
-                    }
-                } while (index < 1000);
-                data = new byte[index];
-                System.arraycopy(readData, 0, data, 0, index);
-            }
-            message.setText(new String(data));            
+			byte[] data = null;
+			if (length != -1) {
+				data = new byte[length];
+				is = new DataInputStream(hcon.openInputStream());
+				((DataInputStream) is).readFully(data);
+			} else {
+				// If content length is not given, read in chunks.
+				int chunkSize = 512;
+				is = hcon.openInputStream();
+				byte[] readData = new byte[chunkSize];
+				int index = 0;
+				do {
+					int onebyte = is.read();
+					if (onebyte == -1) {
+						break;
+					}
+					readData[index] = (byte) onebyte;
+					index++;
+					if (readData.length <= index) {
+						byte[] newData = new byte[index + chunkSize];
+						System.arraycopy(readData, 0, newData, 0, readData.length);
+						readData = newData;
+					}
+				} while (index < 1000);
+				data = new byte[index];
+				System.arraycopy(readData, 0, data, 0, index);
+			}
+			message.setText(new String(data));
 		} catch (Throwable e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
@@ -140,20 +141,20 @@ public class HTTPPanel extends BaseExamplesForm {
 		} finally {
 			requestThread = null;
 			if (is != null) {
-                try {
+				try {
 					is.close();
 				} catch (IOException e) {
 				}
 			}
-            if (c != null) {
-                try {
+			if (c != null) {
+				try {
 					c.close();
 				} catch (IOException e) {
 				}
-            }
+			}
 		}
 	}
-	
+
 	public void commandAction(Command c, Displayable d) {
 		if (c == goCommand) {
 			makeConnection();

@@ -38,11 +38,11 @@ import org.microemu.device.ui.CommandUI;
 import org.microemu.device.ui.DisplayableUI;
 
 public class DisplayableImplUI implements DisplayableUI {
-	
+
 	protected Displayable displayable;
-	
+
 	private Vector commands = new Vector();
-	
+
 	protected DisplayableImplUI(Displayable displayable) {
 		this.displayable = displayable;
 	}
@@ -68,7 +68,7 @@ public class DisplayableImplUI implements DisplayableUI {
 		if (inserted == false) {
 			// Not inserted just place it at the end
 			commands.addElement(cmd);
-		}		
+		}
 
 		if (displayable.isShown()) {
 			updateCommands();
@@ -77,7 +77,7 @@ public class DisplayableImplUI implements DisplayableUI {
 
 	public void removeCommandUI(CommandUI cmd) {
 		commands.removeElement(cmd);
-		
+
 		if (displayable.isShown()) {
 			updateCommands();
 		}
@@ -87,7 +87,7 @@ public class DisplayableImplUI implements DisplayableUI {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public CommandListener getCommandListener() {
 		// TODO Auto-generated method stub
 
@@ -106,9 +106,8 @@ public class DisplayableImplUI implements DisplayableUI {
 	public void invalidate() {
 		// TODO implement invalidate
 	}
-	
-	public Vector getCommandsUI()
-	{
+
+	public Vector getCommandsUI() {
 		return commands;
 	}
 

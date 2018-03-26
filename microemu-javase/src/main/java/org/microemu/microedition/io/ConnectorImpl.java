@@ -45,7 +45,7 @@ import com.sun.cdc.io.ConnectionBaseInterface;
 /**
  * @author vlads Original MicroEmulator implementation of
  *         javax.microedition.Connector
- * 
+ *
  * TODO integrate with ImplementationInitialization
  */
 public class ConnectorImpl extends ConnectorAdapter {

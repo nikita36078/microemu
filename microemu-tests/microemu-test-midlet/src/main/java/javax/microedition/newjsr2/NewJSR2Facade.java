@@ -39,11 +39,11 @@ public class NewJSR2Facade {
 			System.out.println("Working on " + data);
 			return data;
 		}
-		
+
 	}
-	
+
 	public static NewJSR2Interface createWorker() {
 		return new WorkerImpl();
 	}
-	
+
 }

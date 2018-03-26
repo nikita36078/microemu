@@ -1,7 +1,7 @@
 /*
- * MicroEmulator 
+ * MicroEmulator
  * Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- * 
+ *
  *  It is licensed under the following two licenses as alternatives:
  *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
  *    2. Apache License (the "AL") Version 2.0
@@ -70,7 +70,9 @@ public class SwtInputMethod extends InputMethodImpl {
 				}
 			}
 		}
-	};
+	}
+
+	;
 
 	public SwtInputMethod() {
 		super();
@@ -100,15 +102,15 @@ public class SwtInputMethod extends InputMethodImpl {
 		case SWT.CR:
 			return Canvas.FIRE;
 
-			/*
-			 * case KeyEvent.VK_1: case KeyEvent.VK_A: return Canvas.GAME_A;
-			 * 
-			 * case KeyEvent.VK_3: case KeyEvent.VK_B: return Canvas.GAME_B;
-			 * 
-			 * case KeyEvent.VK_7: case KeyEvent.VK_C: return Canvas.GAME_C;
-			 * 
-			 * case KeyEvent.VK_9: case KeyEvent.VK_D: return Canvas.GAME_D;
-			 */
+		/*
+		 * case KeyEvent.VK_1: case KeyEvent.VK_A: return Canvas.GAME_A;
+		 *
+		 * case KeyEvent.VK_3: case KeyEvent.VK_B: return Canvas.GAME_B;
+		 *
+		 * case KeyEvent.VK_7: case KeyEvent.VK_C: return Canvas.GAME_C;
+		 *
+		 * case KeyEvent.VK_9: case KeyEvent.VK_D: return Canvas.GAME_D;
+		 */
 
 		default:
 			return 0;
@@ -133,15 +135,15 @@ public class SwtInputMethod extends InputMethodImpl {
 		case Canvas.FIRE:
 			return SWT.CR;
 
-			/*
-			 * case Canvas.GAME_A: return KeyEvent.VK_1;
-			 * 
-			 * case Canvas.GAME_B: return KeyEvent.VK_3;
-			 * 
-			 * case Canvas.GAME_C: return KeyEvent.VK_7;
-			 * 
-			 * case Canvas.GAME_D: return KeyEvent.VK_9;
-			 */
+		/*
+		 * case Canvas.GAME_A: return KeyEvent.VK_1;
+		 *
+		 * case Canvas.GAME_B: return KeyEvent.VK_3;
+		 *
+		 * case Canvas.GAME_C: return KeyEvent.VK_7;
+		 *
+		 * case Canvas.GAME_D: return KeyEvent.VK_9;
+		 */
 
 		default:
 			throw new IllegalArgumentException();
@@ -149,14 +151,14 @@ public class SwtInputMethod extends InputMethodImpl {
 	}
 
 	public String getKeyName(int keyCode) throws IllegalArgumentException {
-		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext();) {
+		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext(); ) {
 			SwtButton button = (SwtButton) it.next();
 			if (button.getKeyCode() == keyCode) {
 				return button.getName();
 			}
 		}
 
-		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext();) {
+		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext(); ) {
 			SwtButton button = (SwtButton) it.next();
 			if (button.getKeyboardKey() == keyCode) {
 				return button.getName();
@@ -367,7 +369,7 @@ public class SwtInputMethod extends InputMethodImpl {
 		}
 
 		if (inputMethodListener.getText().length() < maxSize) {
-			for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements();) {
+			for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements(); ) {
 				SwtButton button = (SwtButton) e.nextElement();
 				if (ev.keyCode == button.getKeyCode()) {
 					int caret = inputMethodListener.getCaretPosition();
@@ -445,7 +447,7 @@ public class SwtInputMethod extends InputMethodImpl {
 	}
 
 	public SwtButton getButton(KeyEvent ev) {
-		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements();) {
+		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements(); ) {
 			SwtButton button = (SwtButton) e.nextElement();
 			if (ev.keyCode == button.getKeyCode()) {
 				return button;

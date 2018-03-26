@@ -42,7 +42,7 @@ import javax.microedition.lcdui.List;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class FilesList extends List implements CommandListener {
 

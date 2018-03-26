@@ -28,7 +28,7 @@ package org;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class TimerAnonymousClass implements Runnable {
 

@@ -28,12 +28,12 @@ package javax.microedition.newjsr2;
 
 /**
  * @author vlads
- * 
+ *
  * To test if MIDlet can override javax.microedition package on the device.
- * 
+ *
  */
 public interface NewJSR2Interface {
 
 	public String doStuff(String data);
-	
+
 }

@@ -71,13 +71,6 @@
         <module>microemulator</module>
         <!-- ignore for release -->
         <module>microemu-tests</module>
-
-        <!-- Only during build on server
-            Use mvn -P webstart  to include  microemu-webstart
-        -->
-        <!--
-        <module>microemu-webstart</module>
-        -->
     </modules>
 
 
@@ -148,7 +141,7 @@
         <!-- See OS X profile -->
         <javaRunTimeJar>${java.home}/lib/rt.jar</javaRunTimeJar>
         <javaRunTimeSecurityJar>${java.home}/lib/jsse.jar</javaRunTimeSecurityJar>
-        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+        <assemblyPluginVersion>3.1.0</assemblyPluginVersion>
 
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
     </properties>
@@ -330,7 +323,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>3.7.0</version>
                     <configuration>
                         <source>1.5</source>
                         <target>1.5</target>
@@ -340,7 +333,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.3</version>
+                    <version>3.0.2</version>
                     <configuration>
                         <encoding>ISO-8859-1</encoding>
                     </configuration>
@@ -349,13 +342,13 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.3.1</version>
+                    <version>3.0.2</version>
                 </plugin>
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.4.3</version>
+                    <version>2.21.0</version>
                 </plugin>
 
                 <plugin>
@@ -379,13 +372,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.1</version>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <version>2.8</version>
+                    <version>2.5.3</version>
                 </plugin>
 
                 <plugin>
@@ -421,42 +408,27 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Version>${label}</Version>
-                            <Build-Time>${cctimestamp}</Build-Time>
                             <Implementation-Version>${project.version}</Implementation-Version>
-                            <SVN-Revision>${scm.revision}</SVN-Revision>
                             <License>GNU Lesser General Public License (LGPL)</License>
                         </manifestEntries>
                     </archive>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>site-fix-css</id>
-                        <phase>site</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <!-- Set build number -->
-                                <replace dir="${project.build.directory}/site">
-                                    <include name="*.html"></include>
-                                    <replacefilter token="#build#" value="${buildLabel}"/>
-                                    <replacefilter token="#version#" value="${project.version}"/>
-                                </replace>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
 
     </build>
 
     <profiles>
+        <profile>
+            <id>disable-java8-doclint</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+        </profile>
+
         <profile>
             <id>osx</id>
             <activation>
@@ -491,17 +463,10 @@
                 </repository>
 
             </distributionManagement>
-
-            <modules>
-                <module>microemu-webstart</module>
-            </modules>
         </profile>
 
         <profile>
             <id>build</id>
-            <modules>
-                <module>microemu-webstart</module>
-            </modules>
 
             <build>
                 <plugins>
@@ -519,54 +484,10 @@
                             </execution>
                         </executions>
                     </plugin>
-            <!--
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>exec-ant-build</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>${env.BUILD_HOME}/bin/ant456</executable>
-                                    <workingDirectory>${basedir}</workingDirectory>
-                                    <arguments>
-                                        <argument>build</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-            -->
                 </plugins>
             </build>
 
         </profile>
-
-        <profile>
-            <id>webstart</id>
-            <modules>
-                <module>microemu-webstart</module>
-            </modules>
-        </profile>
-
-<!--
-        <profile>
-            <id>swt</id>
-            <activation>
-                <property>
-                    <name>buildByMicroEmulatorTeam</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <modules>
-                <module>microemu-javase-swt</module>
-            </modules>
-        </profile>
--->
 
         <profile>
             <id>hasBuildLabel</id>
@@ -578,183 +499,6 @@
             <properties>
                 <buildLabel>${label}</buildLabel>
             </properties>
-        </profile>
-
-        <profile>
-            <id>maven3</id>
-            <activation>
-                <file>
-                    <!--  This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
-                    <exists>${basedir}</exists>
-                </file>
-            </activation>
-            <build>
-                <plugins>
-                <!-- reporting section  -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-site-plugin</artifactId>
-                        <version>3.0-beta-3</version>
-                        <executions>
-                            <execution>
-                                <id>attach-descriptor</id>
-                                <goals>
-                                    <goal>attach-descriptor</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <outputEncoding>UTF-8</outputEncoding>
-                            <reportPlugins>
-                                    <!-- TODO -->
-                            </reportPlugins>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>maven2</id>
-            <activation>
-                <file>
-                    <!--  This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
-                    <missing>${basedir}</missing>
-                </file>
-            </activation>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-site-plugin</artifactId>
-                        <!-- fix for site.xml and div in xdoc TODO see version 7 -->
-                        <version>2.0-beta-5</version>
-                        <configuration>
-                            <outputEncoding>UTF-8</outputEncoding>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-project-info-reports-plugin</artifactId>
-                        <version>2.0.1</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.4.3</version>
-                        <configuration>
-                            <forkMode>always</forkMode>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-report-plugin</artifactId>
-                        <version>2.6</version>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>report-only</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jxr-plugin</artifactId>
-                        <version>2.2</version>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.5</version>
-                        <configuration>
-                            <quiet>true</quiet>
-                            <!-- For Linux 64-bit -->
-                            <maxmemory>256m</maxmemory>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-pmd-plugin</artifactId>
-                        <version>2.5</version>
-                        <configuration>
-                            <linkXref>true</linkXref>
-                            <minimumTokens>100</minimumTokens>
-                            <targetJdk>1.5</targetJdk>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>jdepend-maven-plugin</artifactId>
-                        <version>2.0-beta-2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>
-                        <version>2.3.1</version>
-                    </plugin>
-                    <plugin>
-                        <!-- This is TO-DO list -->
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>taglist-maven-plugin</artifactId>
-                        <version>2.4</version>
-                    </plugin>
-                    <!--
-                    <plugin>
-                       <groupId>org.codehaus.mojo</groupId>
-                       <artifactId>simian-report-maven-plugin</artifactId>
-                       <version>1.0-tmp</version>
-                    </plugin>
-                    -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-changes-plugin</artifactId>
-                        <version>2.3</version>
-                        <inherited>false</inherited>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>changes-report</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                        <configuration>
-                            <xmlPath>${basedir}/src/changes.xml</xmlPath>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-changelog-plugin</artifactId>
-                        <version>2.2</version>
-                        <inherited>false</inherited>
-                        <configuration>
-                            <basedir>${basedir}</basedir>
-                        </configuration>
-                        <reportSets>
-                            <reportSet>
-                                <id>dual-report</id>
-                                <configuration>
-                                    <type>range</type>
-                                    <range>30</range>
-                                </configuration>
-                                <reports>
-                                    <report>changelog</report>
-                                    <report>file-activity</report>
-                                    <report>dev-activity</report>
-                                </reports>
-                          </reportSet>
-                        </reportSets>
-                    </plugin>
-                </plugins>
-            </reporting>
         </profile>
 
     </profiles>

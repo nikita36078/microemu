@@ -87,19 +87,19 @@ public class SwtFormUI extends DisplayableImplUI implements FormUI {
 	@Override
 	public void insert(int itemNum, ItemUI item) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void set(int itemNum, ItemUI item) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void setItemStateListener(ItemStateListener itemStateListener) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -43,11 +43,13 @@ import org.microemu.device.impl.SoftButton;
 public class SwtSoftButton extends SwtButton implements SoftButton {
 
 	public static int LEFT = 1;
+
 	public static int RIGHT = 2;
 
 	private int type;
 
 	private Image normalImage;
+
 	private Image pressedImage;
 
 	private Vector commandTypes = new Vector();
@@ -61,7 +63,7 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 	private boolean visible;
 
 	private boolean pressed;
-	
+
 	private Font font;
 
 	/**
@@ -93,7 +95,7 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 			}
 		}
 
-		for (Enumeration e = commands.elements(); e.hasMoreElements();) {
+		for (Enumeration e = commands.elements(); e.hasMoreElements(); ) {
 			String tmp = (String) e.nextElement();
 			try {
 				addCommandType(Command.class.getField(tmp).getInt(null));
@@ -105,25 +107,24 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 
 	public SwtSoftButton(String name, Rectangle paintable, Image normalImage, Image pressedImage) {
 		super(name, null, Integer.MIN_VALUE, null, null);
-		
+
 		this.type = TYPE_ICON;
-		
+
 		this.paintable = paintable;
 		this.normalImage = normalImage;
 		this.pressedImage = pressedImage;
-		
+
 		this.visible = true;
 		this.pressed = false;
 	}
 
-	
 	public int getType() {
 		return type;
 	}
 
 	/**
 	 * Sets the command attribute of the SoftButton object
-	 * 
+	 *
 	 * @param cmd
 	 *            The new command value
 	 */
@@ -135,7 +136,7 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 
 	/**
 	 * Gets the command attribute of the SoftButton object
-	 * 
+	 *
 	 * @return The command value
 	 */
 	public Command getCommand() {
@@ -163,12 +164,12 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 	}
 
 	public void paint(SwtGraphics g) {
-		if (!visible  || paintable == null) {
+		if (!visible || paintable == null) {
 			return;
 		}
 
 		org.eclipse.swt.graphics.Rectangle clip = g.getClipping();
-		
+
 		g.setClipping(paintable.x, paintable.y, paintable.width, paintable.height);
 		if (type == TYPE_COMMAND) {
 			int xoffset = 0;
@@ -212,7 +213,7 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 					g.drawString(command.getLabel(), paintable.x + xoffset,
 							paintable.y
 									+ (paintable.height - g.getFontMetrics()
-											.getHeight()), true);
+									.getHeight()), true);
 				}
 			}
 		} else if (type == TYPE_ICON) {
@@ -222,12 +223,12 @@ public class SwtSoftButton extends SwtButton implements SoftButton {
 				g.drawImage(((SwtImmutableImage) normalImage).getImage(), paintable.x, paintable.y);
 			}
 		}
-		
+
 		g.setClipping(clip);
 	}
 
 	public boolean preferredCommandType(Command cmd) {
-		for (Enumeration ct = commandTypes.elements(); ct.hasMoreElements();) {
+		for (Enumeration ct = commandTypes.elements(); ct.hasMoreElements(); ) {
 			if (cmd.getCommandType() == ((Integer) ct.nextElement()).intValue()) {
 				return true;
 			}

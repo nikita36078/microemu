@@ -20,7 +20,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  @version $Id$
  */
 
@@ -31,15 +31,15 @@ import javax.swing.JTextField;
 import org.microemu.app.ui.swing.SwingDialogPanel;
 
 public class MIDletUrlPanel extends SwingDialogPanel {
-	
-    private static final long serialVersionUID = 1L;
-    
-    private JTextField jadUrlField = new JTextField(50);
 
-	public MIDletUrlPanel() {		
+	private static final long serialVersionUID = 1L;
+
+	private JTextField jadUrlField = new JTextField(50);
+
+	public MIDletUrlPanel() {
 		add(jadUrlField);
 	}
-	
+
 	public String getText() {
 		return jadUrlField.getText();
 	}
@@ -47,5 +47,5 @@ public class MIDletUrlPanel extends SwingDialogPanel {
 	protected void showNotify() {
 		jadUrlField.setText("");
 	}
-	
+
 }

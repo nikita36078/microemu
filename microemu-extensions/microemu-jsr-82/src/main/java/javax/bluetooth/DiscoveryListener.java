@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 
@@ -14,16 +14,16 @@ package javax.bluetooth;
  * receive device discovery and service discovery events. This interface
  * provides four methods, two for discovering devices and two for discovering
  * services.
- * 
+ *
  * @version 1.0 February 11, 2002
- * 
+ *
  * @since 1.1 The JSR 82 specification does not require that implementations
  *        create individual threads for event delivery. Thus, if a
  *        DiscoveryListener method does not return or the return is delayed, the
  *        system may be blocked. So the following note is given for application
  *        developers :
  *        <p>
- * 
+ *
  * The following DiscoveryListener methods SHOULD return immediately :
  * <ul>
  * <li>DiscoveryListener.deviceDiscovered</li>
@@ -31,7 +31,7 @@ package javax.bluetooth;
  * <li>DiscoveryListener.servicesDiscovered</li>
  * <li>DiscoveryListener.serviceSearchCompleted</li>
  * </ul>
- * 
+ *
  */
 public interface DiscoveryListener {
 
@@ -40,7 +40,7 @@ public interface DiscoveryListener {
 	 * {@link #inquiryCompleted(int)} method. 
 	 * <p>
 	 * The value of INQUIRY_COMPLETED is 0x00 (0).
-	 * 
+	 *
 	 * @see #inquiryCompleted(int)
 	 * @see DiscoveryAgent#startInquiry(int, javax.bluetooth.DiscoveryListener)
 	 */
@@ -51,7 +51,7 @@ public interface DiscoveryListener {
 	 * not complete. Used with the {@link #inquiryCompleted(int)} method. 
 	 * <p>
 	 * The value of INQUIRY_TERMINATED is 0x05 (5).
-	 * 
+	 *
 	 * @see  #inquiryCompleted(int)
 	 * @see DiscoveryAgent#startInquiry(int, javax.bluetooth.DiscoveryListener)
 	 * @see DiscoveryAgent#cancelInquiry(javax.bluetooth.DiscoveryListener)
@@ -63,7 +63,7 @@ public interface DiscoveryListener {
 	 * not cancelled. 
 	 * <p>
 	 * The value of INQUIRY_ERROR is 0x07 (7).
-	 * 
+	 *
 	 * @see  #inquiryCompleted(int)
 	 * @see DiscoveryAgent#startInquiry(int, javax.bluetooth.DiscoveryListener)
 	 */
@@ -74,7 +74,7 @@ public interface DiscoveryListener {
 	 * {@link #serviceSearchCompleted(int, int)} method. 
 	 * <p>
 	 * The value of SERVICE_SEARCH_COMPLETED is 0x01 (1).
-	 * 
+	 *
 	 * @see #serviceSearchCompleted(int, int)
 	 * @see DiscoveryAgent#searchServices(int[], javax.bluetooth.UUID[],
 	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener)
@@ -86,7 +86,7 @@ public interface DiscoveryListener {
 	 * not complete. Used with the {@link #serviceSearchCompleted(int, int)} method. 
 	 * <p>
 	 * The value of SERVICE_SEARCH_TERMINATED is 0x02 (2).
-	 * 
+	 *
 	 * @see  #serviceSearchCompleted(int, int)
 	 * @see DiscoveryAgent#searchServices(int[], javax.bluetooth.UUID[],
 	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener)
@@ -99,7 +99,7 @@ public interface DiscoveryListener {
 	 * {@link #serviceSearchCompleted(int, int)} method. 
 	 * <p>
 	 * The value of SERVICE_SEARCH_ERROR is 0x03 (3).
-	 * 
+	 *
 	 * @see #serviceSearchCompleted(int, int)
 	 * @see DiscoveryAgent#searchServices(int[], javax.bluetooth.UUID[],
 	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener)
@@ -111,7 +111,7 @@ public interface DiscoveryListener {
 	 * on the device. Used with the {@link #serviceSearchCompleted(int, int)} method. 
 	 * <p>
 	 * The value of SERVICE_SEARCH_NO_RECORDS is 0x04 (4).
-	 * 
+	 *
 	 * @see #serviceSearchCompleted(int, int)
 	 * @see DiscoveryAgent#searchServices(int[], javax.bluetooth.UUID[],
 	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener)
@@ -121,12 +121,12 @@ public interface DiscoveryListener {
 	/**
 	 * Indicates the service search could not be completed because the remote
 	 * device provided to {@link DiscoveryAgent#searchServices(int[], javax.bluetooth.UUID[],
-	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener) 
+	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener)
 	 * DiscoveryAgent.searchServices()} could not be reached.
 	 * Used with the {@link #serviceSearchCompleted(int, int)} method. 
 	 * <P>
 	 * The value of SERVICE_SEARCH_DEVICE_NOT_REACHABLE is 0x06 (6).
-	 * 
+	 *
 	 * @see #serviceSearchCompleted(int, int)
 	 * @see DiscoveryAgent#searchServices(int[], javax.bluetooth.UUID[],
 	 * javax.bluetooth.RemoteDevice, javax.bluetooth.DiscoveryListener)
@@ -137,7 +137,7 @@ public interface DiscoveryListener {
 	 * Called when a device is found during an inquiry. An inquiry searches for
 	 * devices that are discoverable. The same device may be returned multiple
 	 * times. 
-	 * 
+	 *
 	 * @param btDevice the device that was found during the inquiry 
 	 * @param cod - the service classes, major device class, and minor device
 	 * class of the remote device 
@@ -147,7 +147,7 @@ public interface DiscoveryListener {
 
 	/**
 	 * Called when service(s) are found during a service search. 
-	 * 
+	 *
 	 * @param transID the transaction ID of the service search that is posting the
 	 * result 
 	 * @param servRecord  a list of services found during the search request 
@@ -168,7 +168,7 @@ public interface DiscoveryListener {
 	 * 			<td>if the service search completed normally</td></tr>
 	 * <tr><td>{@link #SERVICE_SEARCH_TERMINATED}</td>
 	 * 			<td>if the service search request was cancelled by a call to
-	 * 			{@link DiscoveryAgent#cancelServiceSearch(int)}</td></tr>
+	 *            {@link DiscoveryAgent#cancelServiceSearch(int)}</td></tr>
 	 * <tr><td>{@link #SERVICE_SEARCH_ERROR}</td>
 	 * 			<td>if an error occurred while processing the request</td></tr>
 	 * <tr><td>{@link #SERVICE_SEARCH_NO_RECORDS}</td>
@@ -177,7 +177,7 @@ public interface DiscoveryListener {
 	 * 			<td>if the device specified in the search request could not be reached or 
 	 * 			the local device could not establish a connection to the remote device
 	 * </td></tr></table>
-	 * 
+	 *
 	 * @param transID the transaction ID identifying the request which
 	 * initiated the service search 
 	 * @param respCode  the response code that indicates the status of the transaction
@@ -191,7 +191,7 @@ public interface DiscoveryListener {
 	 * {@link DiscoveryAgent#cancelInquiry(DiscoveryListener)}. The {@code discType} will be 
 	 * {@link #INQUIRY_ERROR} if an error occurred while processing the inquiry causing the 
 	 * inquiry to end abnormally. 
-	 * 
+	 *
 	 * @param discType the type of request that was completed; either 
 	 * 				{@link #INQUIRY_COMPLETED}, {@link #INQUIRY_TERMINATED}, 
 	 * 				or {@link #INQUIRY_ERROR}

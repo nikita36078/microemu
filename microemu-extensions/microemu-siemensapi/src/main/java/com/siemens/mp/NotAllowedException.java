@@ -8,9 +8,8 @@ package com.siemens.mp;
 
 /**
  *
- * @author  Markus
+ * @author Markus
  */
-public class NotAllowedException extends Exception{
-    
-   
+public class NotAllowedException extends Exception {
+
 }

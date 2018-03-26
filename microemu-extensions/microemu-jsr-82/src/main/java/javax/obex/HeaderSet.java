@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 package javax.obex;
 
 import java.io.IOException;
@@ -132,7 +132,7 @@ import java.io.IOException;
  * <TD><code>java.lang.Long</code> in the range 0 to 2<sup>32</sup>-1</TD>
  * </TR>
  * </TABLE>
- * 
+ *
  * @version 1.0 February 11, 2002
  */
 public interface HeaderSet {
@@ -239,13 +239,13 @@ public interface HeaderSet {
 	 * this interface. If <code>null</code> is passed as the
 	 * <code>headerValue</code> then the header will be removed from the set
 	 * of headers to include in the next request.
-	 * 
+	 *
 	 * @param headerID
 	 *            the identifier to include in the message
-	 * 
+	 *
 	 * @param headerValue
 	 *            the value of the header identifier
-	 * 
+	 *
 	 * @exception IllegalArgumentException
 	 *                if the header identifier provided is not one defined in
 	 *                this interface or a user-defined header; if the type of
@@ -257,18 +257,18 @@ public interface HeaderSet {
 	/**
 	 * Retrieves the value of the header identifier provided. The type of the
 	 * Object returned is defined in the description of this interface.
-	 * 
+	 *
 	 * @param headerID
 	 *            the header identifier whose value is to be returned
-	 * 
+	 *
 	 * @return the value of the header provided or <code>null</code> if the
 	 *         header identifier specified is not part of this
 	 *         <code>HeaderSet</code> object
-	 * 
+	 *
 	 * @exception IllegalArgumentException
 	 *                if the <code>headerID</code> is not one defined in this
 	 *                interface or any of the user-defined headers
-	 * 
+	 *
 	 * @exception IOException
 	 *                if an error occurred in the transport layer during the
 	 *                operation or if the connection has been closed
@@ -280,12 +280,12 @@ public interface HeaderSet {
 	 * <code>getHeader</code> method that will not return <code>null</code>.
 	 * In other words, this method returns all the headers that are available in
 	 * this object.
-	 * 
+	 *
 	 * @see #getHeader
-	 * 
+	 *
 	 * @return the array of headers that are set in this object or
 	 *         <code>null</code> if no headers are available
-	 * 
+	 *
 	 * @exception IOException
 	 *                if an error occurred in the transport layer during the
 	 *                operation or the connection has been closed
@@ -297,16 +297,16 @@ public interface HeaderSet {
 	 * be encoded based upon the default encoding scheme used by the
 	 * implementation to encode strings. Therefore, the encoding scheme used to
 	 * encode the <code>realm</code> is application dependent.
-	 * 
+	 *
 	 * @param realm
 	 *            a short description that describes what password to use; if
 	 *            <code>null</code> no realm will be sent in the
 	 *            authentication challenge header
-	 * 
+	 *
 	 * @param userID
 	 *            if <code>true</code>, a user ID is required in the reply;
 	 *            if <code>false</code>, no user ID is required
-	 * 
+	 *
 	 * @param access
 	 *            if <code>true</code> then full access will be granted if
 	 *            successful; if <code>false</code> then read-only access will
@@ -317,11 +317,11 @@ public interface HeaderSet {
 	/**
 	 * Returns the response code received from the server. Response codes are
 	 * defined in the <code>ResponseCodes</code> class.
-	 * 
+	 *
 	 * @see ResponseCodes
-	 * 
+	 *
 	 * @return the response code retrieved from the server
-	 * 
+	 *
 	 * @exception IOException
 	 *                if an error occurred in the transport layer during the
 	 *                transaction; if this method is called on a

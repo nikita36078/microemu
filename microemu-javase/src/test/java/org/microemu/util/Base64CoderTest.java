@@ -36,35 +36,33 @@ import junit.framework.TestCase;
  */
 public class Base64CoderTest extends TestCase {
 
+	public void testEncode() {
+		assertEquals("Result of encoding", "QWxhZGRpbjpvcGVuIHNlc2FtZQ==", Base64Coder.encode("Aladdin:open sesame"));
+		assertEquals("Result of encoding", "QWRtaW46Zm9vYmFy", Base64Coder.encode("Admin:foobar"));
+	}
 
-    public void testEncode() {
-        assertEquals( "Result of encoding", "QWxhZGRpbjpvcGVuIHNlc2FtZQ==", Base64Coder.encode( "Aladdin:open sesame" ) );
-        assertEquals( "Result of encoding", "QWRtaW46Zm9vYmFy",             Base64Coder.encode( "Admin:foobar" ) );
-    }
-
-
-    public void testDecode() {
-        assertEquals( "Result of decoding", "Aladdin:open sesame", Base64Coder.decode( "QWxhZGRpbjpvcGVuIHNlc2FtZQ==" ) );
-        assertEquals( "Result of decoding", "Admin:foobar",        Base64Coder.decode( "QWRtaW46Zm9vYmFy" ) );
-    }
+	public void testDecode() {
+		assertEquals("Result of decoding", "Aladdin:open sesame", Base64Coder.decode("QWxhZGRpbjpvcGVuIHNlc2FtZQ=="));
+		assertEquals("Result of decoding", "Admin:foobar", Base64Coder.decode("QWRtaW46Zm9vYmFy"));
+	}
 
 	private void verifyEncodeDecode(byte[] value) {
 		char[] chars = Base64Coder.encode(value);
 		byte[] decodedValue = Base64Coder.decode(chars);
 		assertEquals("Data as expected length", value.length, decodedValue.length);
-		for(int i = 0; i < value.length; i++ ) {
-			assertEquals("Data as expected", value[i], decodedValue[i]);	
+		for (int i = 0; i < value.length; i++) {
+			assertEquals("Data as expected", value[i], decodedValue[i]);
 		}
 	}
-	
+
 	public void testAllBytes() {
 		final String message = "Wrong number...";
 		int len = message.getBytes().length;
 		byte[] data = new byte[len + 256];
 		byte b = -127;
-		for(int i = len; i < data.length; i++ ) {
+		for (int i = len; i < data.length; i++) {
 			data[i] = b;
-			b ++;
+			b++;
 		}
 		verifyEncodeDecode(data);
 	}

@@ -26,12 +26,10 @@ package org.microemu.media.audio;
 
 import javax.microedition.media.TimeBase;
 
-class PCTimeBase implements TimeBase
-{
-   private static long timeBase = System.currentTimeMillis();
+class PCTimeBase implements TimeBase {
+	private static long timeBase = System.currentTimeMillis();
 
-   public long getTime()
-   {
-      return (System.currentTimeMillis() - timeBase);
-   }
+	public long getTime() {
+		return (System.currentTimeMillis() - timeBase);
+	}
 }

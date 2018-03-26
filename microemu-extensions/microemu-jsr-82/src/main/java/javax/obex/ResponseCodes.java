@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 package javax.obex;
 
 /**
@@ -27,7 +27,7 @@ package javax.obex;
  * (cannot take more data). <code>OBEX_DATABASE_LOCKED</code> will be returned
  * when the client wishes to access a database, database table, or database
  * record that has been locked.
- * 
+ *
  * @version 1.0 February 11, 2002
  */
 public class ResponseCodes {

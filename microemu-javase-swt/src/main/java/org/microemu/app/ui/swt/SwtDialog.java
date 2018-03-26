@@ -42,39 +42,42 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
-
-public abstract class SwtDialog
-{
+public abstract class SwtDialog {
 	public static final int OK = 0;
+
 	public static final int CANCEL = 1;
 
 	private Shell parentShell;
+
 	private Shell shell;
-	
+
 	protected Control dialogArea;
+
 	protected Control buttonBar;
-	
+
 	protected Button btOk;
+
 	protected Button btCancel;
 
 	private boolean resizeHasOccurred = false;
+
 	private Listener resizeListener;
+
 	private Control contents;
+
 	private int shellStyle = SWT.SHELL_TRIM;
+
 	private boolean block = false;
+
 	private int returnCode = OK;
 
-
-	public SwtDialog(Shell parentShell)
-	{
+	public SwtDialog(Shell parentShell) {
 		this.parentShell = parentShell;
 		this.block = true;
 		this.shellStyle = SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL;
 	}
-	
-	
-	public void create() 
-	{
+
+	public void create() {
 		shell = createShell();
 		contents = createContents(shell);
 
@@ -82,9 +85,7 @@ public abstract class SwtDialog
 		initializeBounds();
 	}
 
-
-	protected final Shell createShell() 
-	{
+	protected final Shell createShell() {
 		Shell newShell = new Shell(parentShell, shellStyle);
 
 		resizeListener = new Listener() {
@@ -92,29 +93,25 @@ public abstract class SwtDialog
 				resizeHasOccurred = true;
 			}
 		};
-	
-		newShell.addListener(SWT.Resize,resizeListener);
+
+		newShell.addListener(SWT.Resize, resizeListener);
 		newShell.setData(this);
 
 		newShell.addShellListener(getShellListener());
 
 		configureShell(newShell);
-		
+
 		return newShell;
 	}
-	
-	
-	protected void configureShell(Shell newShell) 
-	{
+
+	protected void configureShell(Shell newShell) {
 		GridLayout layout = new GridLayout();
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		newShell.setLayout(layout);
 	}
 
-
-	protected Control createContents(Composite parent) 
-	{
+	protected Control createContents(Composite parent) {
 		Composite composite = new Composite(parent, 0);
 		GridLayout layout = new GridLayout();
 		layout.marginHeight = 0;
@@ -130,57 +127,47 @@ public abstract class SwtDialog
 		return composite;
 	}
 
-
-	protected Control createDialogArea(Composite parent) 
-	{
+	protected Control createDialogArea(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
-		
+
 		composite.setLayout(new GridLayout());
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 		composite.setFont(parent.getFont());
 
 		return composite;
 	}
-	
 
-	protected Control createButtonBar(Composite parent) 
-	{
+	protected Control createButtonBar(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
-		
+
 		composite.setLayout(new GridLayout(2, false));
 		composite.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER));
 		composite.setFont(parent.getFont());
 
 		btOk = new Button(composite, SWT.PUSH);
-		btOk.setText("OK");		
-		btOk.addSelectionListener(new SelectionAdapter() 
-		{
-			public void widgetSelected(SelectionEvent event) 
-			{
+		btOk.setText("OK");
+		btOk.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent event) {
 				buttonPressed(OK);
 			}
 		});
-		
+
 		btCancel = new Button(composite, SWT.PUSH);
-		btCancel.setText("Cancel");		
-		btCancel.addSelectionListener(new SelectionAdapter() 
-		{
-			public void widgetSelected(SelectionEvent event) 
-			{
+		btCancel.setText("Cancel");
+		btCancel.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent event) {
 				buttonPressed(CANCEL);
 			}
 		});
 
 		return composite;
 	}
-	
 
-	protected void initializeBounds() 
-	{
+	protected void initializeBounds() {
 		if (resizeListener != null) {
-			shell.removeListener(SWT.Resize,resizeListener);
+			shell.removeListener(SWT.Resize, resizeListener);
 		}
-	
+
 		if (resizeHasOccurred) { // Check if shell size has been set already.
 			return;
 		}
@@ -190,26 +177,22 @@ public abstract class SwtDialog
 
 		shell.setBounds(location.x, location.y, size.x, size.y);
 	}
-	
-	
-	protected Point getInitialSize() 
-	{
+
+	protected Point getInitialSize() {
 		return shell.computeSize(SWT.DEFAULT, SWT.DEFAULT, true);
 	}
 
-
-	protected Point getInitialLocation(Point initialSize) 
-	{
+	protected Point getInitialLocation(Point initialSize) {
 		Composite parentShell = shell.getParent();
-		Rectangle containerBounds = (parentShell != null) ? parentShell.getBounds() : shell.getDisplay().getClientArea();
+		Rectangle containerBounds = (parentShell != null) ?
+				parentShell.getBounds() :
+				shell.getDisplay().getClientArea();
 		int x = Math.max(0, containerBounds.x + (containerBounds.width - initialSize.x) / 2);
 		int y = Math.max(0, containerBounds.y + (containerBounds.height - initialSize.y) / 3);
 		return new Point(x, y);
 	}
-	
-	
-	protected void buttonPressed(int buttonId) 
-	{
+
+	protected void buttonPressed(int buttonId) {
 		if (buttonId == OK) {
 			okPressed();
 		} else if (buttonId == CANCEL) {
@@ -217,48 +200,35 @@ public abstract class SwtDialog
 		}
 	}
 
-
-	protected void okPressed() 
-	{
+	protected void okPressed() {
 		setReturnCode(OK);
 		close();
 	}
-	
-	
+
 	protected void cancelPressed() {
 		setReturnCode(CANCEL);
 		close();
 	}
-	
-	
-	protected int getReturnCode() 
-	{
+
+	protected int getReturnCode() {
 		return returnCode;
 	}
-	
-	
-	protected void setReturnCode(int code) 
-	{
+
+	protected void setReturnCode(int code) {
 		returnCode = code;
 	}
-	
-	
-	protected ShellListener getShellListener() 
-	{
-		return new ShellAdapter() 
-		{
-			public void shellClosed(ShellEvent event) 
-			{
-				event.doit= false;	// don't close now
+
+	protected ShellListener getShellListener() {
+		return new ShellAdapter() {
+			public void shellClosed(ShellEvent event) {
+				event.doit = false;    // don't close now
 				setReturnCode(CANCEL);
 				close();
 			}
 		};
 	}
 
-
-	public boolean close() 
-	{
+	public boolean close() {
 		if (shell != null || !shell.isDisposed()) {
 			shell.dispose();
 			shell = null;
@@ -271,15 +241,11 @@ public abstract class SwtDialog
 		return true;
 	}
 
-
-	public Shell getShell() 
-	{
+	public Shell getShell() {
 		return shell;
 	}
 
-
-	public int open() 
-	{
+	public int open() {
 
 		if (shell == null) {
 			create();
@@ -287,24 +253,22 @@ public abstract class SwtDialog
 
 		shell.open();
 
-		if (block) { 
+		if (block) {
 			runEventLoop(shell);
-		}	
+		}
 
 		return returnCode;
 	}
 
-
-	private void runEventLoop(Shell shell) 
-	{
+	private void runEventLoop(Shell shell) {
 		Display display;
-		if(shell == null) {
-			 display = Display.getCurrent();
-		}	else {
+		if (shell == null) {
+			display = Display.getCurrent();
+		} else {
 			display = shell.getDisplay();
 		}
-		
-		while (shell != null && ! shell.isDisposed()) {
+
+		while (shell != null && !shell.isDisposed()) {
 			try {
 				if (!display.readAndDispatch()) {
 					display.sleep();

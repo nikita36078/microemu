@@ -36,15 +36,14 @@ import javax.microedition.pki.Certificate;
 public class SSLConnectionTest extends BaseGCFTestCase {
 
 	private static final String TEST_PORT = "443";
-	
+
 	public static final String CRLF = "\r\n";
-	
-	
+
 	private void write(OutputStream os, String txt) throws IOException {
 		os.write(txt.getBytes());
 		os.write(CRLF.getBytes());
 	}
-	
+
 	private void validateHTTPReply(InputStream is) throws IOException {
 		StringBuffer buf = new StringBuffer();
 		int ch, ch1 = 0;
@@ -56,7 +55,7 @@ public class SSLConnectionTest extends BaseGCFTestCase {
 			ch1 = ch;
 		}
 		if ((!buf.toString().startsWith("HTTP/1.0 200")) &&
-		     (!buf.toString().startsWith("HTTP/1.1 200"))){
+				(!buf.toString().startsWith("HTTP/1.1 200"))) {
 			buf.append("[EOF]");
 			throw new IOException(buf.toString());
 		}
@@ -79,11 +78,11 @@ public class SSLConnectionTest extends BaseGCFTestCase {
 			throw new EOFException("No data after http header from proxy");
 		}
 	}
-	
+
 	public void testSecureConnection() throws IOException {
 		// Basicaly Performs HTTPS GET
 		SecureConnection sc = (SecureConnection) Connector.open("ssl://" + TEST_HOST + ":" + TEST_PORT);
-		
+
 		sc.setSocketOption(SocketConnection.LINGER, 5);
 
 		OutputStream os = sc.openOutputStream();
@@ -92,21 +91,21 @@ public class SSLConnectionTest extends BaseGCFTestCase {
 		write(os, "Host: " + TEST_HOST);
 		os.write(CRLF.getBytes());
 		os.flush();
-		
+
 		InputStream is = sc.openInputStream();
 		validateHTTPReply(is);
 		sc.close();
 	}
 
-    public void testSecurityInfo() throws IOException {
-    	SecureConnection sc = (SecureConnection) Connector.open("ssl://" + TEST_HOST + ":" + TEST_PORT);
-        try {
+	public void testSecurityInfo() throws IOException {
+		SecureConnection sc = (SecureConnection) Connector.open("ssl://" + TEST_HOST + ":" + TEST_PORT);
+		try {
 			SecurityInfo si = sc.getSecurityInfo();
 			assertNotNull("SecureConnection.getSecurityInfo()", si);
 			assertNotNull("SecurityInfo.getProtocolVersion()", si.getProtocolVersion());
 			assertNotNull("SecurityInfo.getProtocolName()", si.getProtocolName());
 			assertNotNull("SecurityInfo.getCipherSuite()", si.getCipherSuite());
-			Certificate cert = si.getServerCertificate(); 
+			Certificate cert = si.getServerCertificate();
 			assertNotNull("SecurityInfo.getServerCertificate()", cert);
 			//TODO assertNotNull("Certificate.getSubject()", cert.getSubject());
 			assertNotNull("Certificate.getIssuer()", cert.getIssuer());
@@ -120,5 +119,5 @@ public class SSLConnectionTest extends BaseGCFTestCase {
 		} finally {
 			sc.close();
 		}
-    }
+	}
 }

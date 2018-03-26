@@ -206,12 +206,12 @@ public class Swt extends Common {
 	/*
 	 * WindowAdapter windowListener = new WindowAdapter() { public void
 	 * windowClosing(WindowEvent ev) { menuExitListener.actionPerformed(null); }
-	 * 
-	 * 
+	 *
+	 *
 	 * public void windowIconified(WindowEvent ev) {
 	 * MIDletBridge.getMIDletAccess
 	 * (common.getLauncher().getCurrentMIDlet()).pauseApp(); }
-	 * 
+	 *
 	 * public void windowDeiconified(WindowEvent ev) { try {
 	 * MIDletBridge.getMIDletAccess
 	 * (common.getLauncher().getCurrentMIDlet()).startApp(); } catch

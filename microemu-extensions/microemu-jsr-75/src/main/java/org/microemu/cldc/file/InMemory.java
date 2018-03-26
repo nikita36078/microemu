@@ -37,7 +37,7 @@ public class InMemory implements ImplementationInitialization {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationInitialization#registerImplementation()
 	 */
 	public void registerImplementation(Map parameters) {
@@ -45,7 +45,7 @@ public class InMemory implements ImplementationInitialization {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationInitialization#notifyMIDletStart()
 	 */
 	public void notifyMIDletStart() {
@@ -53,7 +53,7 @@ public class InMemory implements ImplementationInitialization {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationInitialization#notifyMIDletDestroyed()
 	 */
 	public void notifyMIDletDestroyed() {

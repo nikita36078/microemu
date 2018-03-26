@@ -24,10 +24,8 @@
 
 package org.microemu.app.ui;
 
+public interface ResponseInterfaceListener {
 
-public interface ResponseInterfaceListener 
-{
-	
 	void stateChanged(boolean state);
 
 }

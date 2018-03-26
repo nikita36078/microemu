@@ -32,9 +32,9 @@ import org.microemu.microedition.io.ConnectionImplementation;
 
 /**
  * This is default Connection when no initialization has been made.
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public class Connection implements ConnectionImplementation {
 

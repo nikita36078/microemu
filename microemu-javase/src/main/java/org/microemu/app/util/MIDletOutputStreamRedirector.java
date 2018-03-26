@@ -33,10 +33,10 @@ import org.microemu.log.Logger;
 
 /**
  * @author vlads
- * 
+ *
  * This class allow redirection of stdout and stderr from MIDlet to
  * MicroEmulator logger console
- * 
+ *
  */
 public class MIDletOutputStreamRedirector extends PrintStream {
 

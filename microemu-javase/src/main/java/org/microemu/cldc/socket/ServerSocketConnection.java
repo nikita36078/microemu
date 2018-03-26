@@ -22,7 +22,6 @@
  *  limitations.
  */
 
-
 package org.microemu.cldc.socket;
 
 import java.io.IOException;
@@ -33,9 +32,9 @@ import javax.microedition.io.StreamConnection;
 
 public class ServerSocketConnection implements
 		javax.microedition.io.ServerSocketConnection {
-	
+
 	private ServerSocket serverSocket;
-	
+
 	public ServerSocketConnection() throws IOException {
 		serverSocket = new ServerSocket();
 	}

@@ -41,7 +41,7 @@ public class CatchThrowable extends RunnableBase {
 				System.out.println("caught " + e.getClass().getName());
 			}
 		}
-		
+
 	}
 
 }

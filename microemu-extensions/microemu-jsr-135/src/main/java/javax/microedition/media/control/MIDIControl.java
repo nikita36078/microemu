@@ -27,7 +27,7 @@ public interface MIDIControl extends Control {
 	public static final int NOTE_ON = 144;
 
 	public static final int CONTROL_CHANGE = 176;
-	
+
 	public abstract boolean isBankQuerySupported();
 
 	public abstract int[] getProgram(int i) throws MediaException;

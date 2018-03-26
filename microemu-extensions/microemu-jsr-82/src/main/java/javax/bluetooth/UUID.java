@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 
@@ -131,7 +131,7 @@ public class UUID {
 	 */
 	public UUID(String uuidValue, boolean shortUUID) {
 		if (uuidValue == null) {
-            throw new NullPointerException("uuidValue is null");
+			throw new NullPointerException("uuidValue is null");
 		}
 	}
 

@@ -27,36 +27,34 @@ import javax.microedition.midlet.*;
 
 /**
  *
- * @author  markus
+ * @author markus
  * @version
  */
 public class GraphicObject extends com.siemens.mp.misc.NativeMem {
-    /** Holds value of property visible. */
-    private boolean visible;
-    
-    protected GraphicObject()
-    {
-        super();
-    }
-    
-    /** Getter for property visible.
-     * @return Value of property visible.
-     *
-     */
-    public boolean getVisible() {
-        return this.visible;
-    }
-    
-    /** Setter for property visible.
-     * @param visible New value of property visible.
-     *
-     */
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-    
-    protected void paint(javax.microedition.lcdui.Graphics g)
-    {
-        
-    }
+	/** Holds value of property visible. */
+	private boolean visible;
+
+	protected GraphicObject() {
+		super();
+	}
+
+	/** Getter for property visible.
+	 * @return Value of property visible.
+	 *
+	 */
+	public boolean getVisible() {
+		return this.visible;
+	}
+
+	/** Setter for property visible.
+	 * @param visible New value of property visible.
+	 *
+	 */
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+
+	protected void paint(javax.microedition.lcdui.Graphics g) {
+
+	}
 }

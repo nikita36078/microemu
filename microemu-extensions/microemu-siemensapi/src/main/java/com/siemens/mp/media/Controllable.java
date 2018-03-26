@@ -23,10 +23,8 @@
  */
 package com.siemens.mp.media;
 
+public interface Controllable {
+	public abstract Control[] getControls();
 
-public interface Controllable
-{
-    public abstract Control[] getControls();
-
-    public abstract Control getControl(String s);
+	public abstract Control getControl(String s);
 }

@@ -1,7 +1,7 @@
 /*
- * MicroEmulator 
+ * MicroEmulator
  * Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- * 
+ *
  *  It is licensed under the following two licenses as alternatives:
  *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
  *    2. Apache License (the "AL") Version 2.0
@@ -60,17 +60,17 @@ class StringComponent {
 			if (numOfBreaks == -1) {
 				updateBreaks();
 			}
-	
+
 			int i, prevIndex = 0;
 			Font f = Font.getDefaultFont();
-	
+
 			for (i = 0; i < numOfBreaks; i++) {
 				if (num < breaks[i]) {
 					break;
 				}
 				prevIndex = breaks[i];
 			}
-			
+
 			return f.substringWidth(text, prevIndex, num - prevIndex);
 		}
 	}
@@ -81,9 +81,9 @@ class StringComponent {
 			if (numOfBreaks == -1) {
 				updateBreaks();
 			}
-	
+
 			Font f = Font.getDefaultFont();
-	
+
 			for (int i = 0; i < numOfBreaks; i++) {
 				if (num < breaks[i]) {
 					break;
@@ -144,10 +144,10 @@ class StringComponent {
 			if (numOfBreaks == -1) {
 				updateBreaks();
 			}
-	
+
 			int i, prevIndex;
 			Font f = Font.getDefaultFont();
-	
+
 			for (i = prevIndex = y = 0; i < numOfBreaks; i++) {
 				if (invertPaint) {
 					g.setGrayScale(0);

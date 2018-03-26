@@ -42,10 +42,10 @@ import org.microemu.log.Logger;
 
 /**
  * @author vlads
- * 
+ *
  * This class is called by MIDlet to access System Property. Call injection is
  * made by MIDlet ClassLoaded
- * 
+ *
  */
 public class MIDletSystemProperties {
 
@@ -58,7 +58,7 @@ public class MIDletSystemProperties {
 	 * Permits null values.
 	 */
 	private static final Map props = new HashMap();
-	
+
 	private static final Map permissions = new HashMap();
 
 	private static Map systemPropertiesPreserve;
@@ -95,7 +95,7 @@ public class MIDletSystemProperties {
 	/**
 	 * Gets the system property indicated by the specified key. The only
 	 * function called by MIDlet
-	 * 
+	 *
 	 * @param key
 	 *            the name of the system property
 	 * @return
@@ -188,12 +188,12 @@ public class MIDletSystemProperties {
 
 	public static void setProperties(Map properties) {
 		initOnce();
-		for (Iterator i = properties.entrySet().iterator(); i.hasNext();) {
+		for (Iterator i = properties.entrySet().iterator(); i.hasNext(); ) {
 			Map.Entry e = (Map.Entry) i.next();
 			setProperty((String) e.getKey(), (String) e.getValue());
 		}
 	}
-	
+
 	public static int getPermission(String permission) {
 		Integer value = (Integer) permissions.get(permission);
 		if (value == null) {
@@ -202,7 +202,7 @@ public class MIDletSystemProperties {
 			return value.intValue();
 		}
 	}
-	
+
 	public static void setPermission(String permission, int value) {
 		permissions.put(permission, new Integer(value));
 	}
@@ -211,19 +211,19 @@ public class MIDletSystemProperties {
 		initOnce();
 		// Restore System Properties from previous device activation.
 		if (systemPropertiesDevice != null) {
-			for (Iterator iter = systemPropertiesDevice.iterator(); iter.hasNext();) {
+			for (Iterator iter = systemPropertiesDevice.iterator(); iter.hasNext(); ) {
 				clearProperty((String) iter.next());
 			}
 		}
 		if (systemPropertiesPreserve != null) {
-			for (Iterator i = systemPropertiesPreserve.entrySet().iterator(); i.hasNext();) {
+			for (Iterator i = systemPropertiesPreserve.entrySet().iterator(); i.hasNext(); ) {
 				Map.Entry e = (Map.Entry) i.next();
 				setProperty((String) e.getKey(), (String) e.getValue());
 			}
 		}
 		systemPropertiesDevice = new Vector();
 		systemPropertiesPreserve = new HashMap();
-		for (Iterator i = newDevice.getSystemProperties().entrySet().iterator(); i.hasNext();) {
+		for (Iterator i = newDevice.getSystemProperties().entrySet().iterator(); i.hasNext(); ) {
 			Map.Entry e = (Map.Entry) i.next();
 			String key = (String) e.getKey();
 			if (props.containsKey(key)) {

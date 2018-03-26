@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 

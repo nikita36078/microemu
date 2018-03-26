@@ -52,7 +52,7 @@ public class J2SETextFieldUI implements TextFieldUI {
 	public void setString(String text) {
 		// TODO Auto-generated method stub	
 	}
-	
+
 	public String getString() {
 		// TODO Auto-generated method stub
 		return null;

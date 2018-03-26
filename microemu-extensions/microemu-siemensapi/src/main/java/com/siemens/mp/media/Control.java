@@ -23,6 +23,5 @@
  */
 package com.siemens.mp.media;
 
-public interface Control
-{
+public interface Control {
 }

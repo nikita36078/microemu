@@ -21,7 +21,7 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu.app.ui.swt;
 
 import javax.microedition.lcdui.Displayable;
@@ -39,53 +39,41 @@ import org.microemu.device.swt.SwtDeviceDisplay;
 import org.microemu.device.swt.SwtDisplayGraphics;
 import org.microemu.device.swt.SwtMutableImage;
 
-
 //TODO extends Canvas like in swing version
-public class SwtDisplayComponent implements DisplayComponent
-{
+public class SwtDisplayComponent implements DisplayComponent {
 	private Canvas deviceCanvas;
+
 	private SwtMutableImage displayImage = null;
+
 	private DisplayRepaintListener displayRepaintListener;
-	
-	private Runnable redrawRunnable = new Runnable()
-	{
-		public void run() 
-		{
+
+	private Runnable redrawRunnable = new Runnable() {
+		public void run() {
 			if (!deviceCanvas.isDisposed()) {
 				deviceCanvas.redraw();
 			}
 		}
 	};
 
-
-	SwtDisplayComponent(Canvas deviceCanvas)
-	{
+	SwtDisplayComponent(Canvas deviceCanvas) {
 		this.deviceCanvas = deviceCanvas;
 	}
-	
-	
-	public void addDisplayRepaintListener(DisplayRepaintListener l)
-	{
+
+	public void addDisplayRepaintListener(DisplayRepaintListener l) {
 		displayRepaintListener = l;
 	}
 
-
-	public void removeDisplayRepaintListener(DisplayRepaintListener l)
-	{
+	public void removeDisplayRepaintListener(DisplayRepaintListener l) {
 		if (displayRepaintListener == l) {
 			displayRepaintListener = null;
 		}
 	}
-	
-	
-	public MutableImage getDisplayImage()
-	{
+
+	public MutableImage getDisplayImage() {
 		return displayImage;
 	}
 
-
-	public void paint(SwtGraphics gc) 
-	{
+	public void paint(SwtGraphics gc) {
 		synchronized (this) {
 			if (displayImage != null) {
 				gc.drawImage(displayImage.img, 0, 0);
@@ -93,10 +81,8 @@ public class SwtDisplayComponent implements DisplayComponent
 		}
 	}
 
-  
-	public void repaintRequest(int x, int y, int width, int height) 
-	{
-		if (!deviceCanvas.isDisposed()) {			
+	public void repaintRequest(int x, int y, int width, int height) {
+		if (!deviceCanvas.isDisposed()) {
 			MIDletAccess ma = MIDletBridge.getMIDletAccess();
 			if (ma == null) {
 				return;
@@ -114,7 +100,7 @@ public class SwtDisplayComponent implements DisplayComponent
 
 			SwtMutableImage image = new SwtMutableImage(
 					device.getDeviceDisplay().getFullWidth(), device.getDeviceDisplay().getFullHeight());
-						
+
 			SwtGraphics gc = ((SwtDisplayGraphics) image.getGraphics()).g;
 			try {
 				SwtDeviceDisplay deviceDisplay = (SwtDeviceDisplay) device.getDeviceDisplay();
@@ -132,19 +118,17 @@ public class SwtDisplayComponent implements DisplayComponent
 				}
 				displayImage = image;
 			}
-			
-			fireDisplayRepaint(displayImage);	
-	
+
+			fireDisplayRepaint(displayImage);
+
 			deviceCanvas.getDisplay().asyncExec(redrawRunnable);
 		}
 	}
-	
-	
-	private void fireDisplayRepaint(MutableImage image)
-	{
+
+	private void fireDisplayRepaint(MutableImage image) {
 		if (displayRepaintListener != null) {
 			displayRepaintListener.repaintInvoked(image);
 		}
 	}
-  
+
 }

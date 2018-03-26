@@ -86,8 +86,7 @@ public class Main extends Applet implements MicroEmulator {
 	 */
 	private String accessibleHost;
 
-	private EmulatorContext emulatorContext = new EmulatorContext() 
-	{
+	private EmulatorContext emulatorContext = new EmulatorContext() {
 		private InputMethod inputMethod = new J2SEInputMethod();
 
 		private DeviceDisplay deviceDisplay = new J2SEDeviceDisplay(this);
@@ -111,9 +110,9 @@ public class Main extends Applet implements MicroEmulator {
 		}
 
 		public InputStream getResourceAsStream(Class origClass, String name) {
-            return getClass().getResourceAsStream(name);
+			return getClass().getResourceAsStream(name);
 		}
-		
+
 		public boolean platformRequest(String url) {
 			try {
 				getAppletContext().showDocument(new URL(url), "mini");
@@ -224,7 +223,7 @@ public class Main extends Applet implements MicroEmulator {
 				return;
 			}
 		}
-		
+
 		String maxFps = getParameter("maxfps");
 		if (maxFps != null) {
 			try {
@@ -293,12 +292,12 @@ public class Main extends Applet implements MicroEmulator {
 		}
 		// TODO handle this through ImplementationInitialization.notifyMIDletDestroyed()
 		try {
-            Class managerClass = Class.forName("javax.microedition.media.Manager");
-            Method cleanupMethod = managerClass.getMethod("cleanupMedia", null);
-            cleanupMethod.invoke(null, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+			Class managerClass = Class.forName("javax.microedition.media.Manager");
+			Method cleanupMethod = managerClass.getMethod("cleanupMedia", null);
+			cleanupMethod.invoke(null, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public RecordStoreManager getRecordStoreManager() {
@@ -333,7 +332,7 @@ public class Main extends Applet implements MicroEmulator {
 
 		return value;
 	}
-	
+
 	public String getSuiteName() {
 		return null;
 	}
@@ -341,10 +340,10 @@ public class Main extends Applet implements MicroEmulator {
 	public InputStream getResourceAsStream(Class origClass, String name) {
 		return emulatorContext.getResourceAsStream(origClass, name);
 	}
-	
+
 	public int checkPermission(String permission) {
 		// TODO
-		
+
 		return 0;
 	}
 

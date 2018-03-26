@@ -33,16 +33,16 @@ import net.sf.jour.signature.SignatureTestCase;
 
 public class MIDP2APIDeclarationsTest extends SignatureTestCase {
 
-    public String getAPIPath() {
-        return getClassPath(MIDlet.class);
-    }
-    
-    public String getSupportingJarsPath() {
-        return getClassPath(Connection.class);
-    }
+	public String getAPIPath() {
+		return getClassPath(MIDlet.class);
+	}
 
-    public String getSignatureXMLPath() {
-        return "midpapi20-signature.xml";
-    }
-	
+	public String getSupportingJarsPath() {
+		return getClassPath(Connection.class);
+	}
+
+	public String getSignatureXMLPath() {
+		return "midpapi20-signature.xml";
+	}
+
 }

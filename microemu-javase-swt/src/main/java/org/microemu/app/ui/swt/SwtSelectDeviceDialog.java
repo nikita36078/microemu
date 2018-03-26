@@ -105,7 +105,7 @@ public class SwtSelectDeviceDialog extends SwtDialog {
 						manifestDeviceName = attrs.getValue("Device-Name");
 					}
 
-					for (Enumeration en = jar.entries(); en.hasMoreElements();) {
+					for (Enumeration en = jar.entries(); en.hasMoreElements(); ) {
 						String entry = ((JarEntry) en.nextElement()).getName();
 						if ((entry.toLowerCase().endsWith(".xml") || entry.toLowerCase().endsWith("device.txt"))
 								&& !entry.toLowerCase().startsWith("meta-inf")) {
@@ -131,7 +131,7 @@ public class SwtSelectDeviceDialog extends SwtDialog {
 
 				ClassLoader classLoader = Common.createExtensionsClassLoader(urls);
 				HashMap devices = new HashMap();
-				for (Iterator it = descriptorEntries.iterator(); it.hasNext();) {
+				for (Iterator it = descriptorEntries.iterator(); it.hasNext(); ) {
 					JarEntry entry = (JarEntry) it.next();
 					try {
 						devices.put(entry.getName(), DeviceImpl.create(emulatorContext, classLoader, entry.getName(),
@@ -161,11 +161,12 @@ public class SwtSelectDeviceDialog extends SwtDialog {
 					IOUtils.copyFile(file, deviceFile);
 
 					DeviceEntry entry = null;
-					for (Iterator it = devices.keySet().iterator(); it.hasNext();) {
+					for (Iterator it = devices.keySet().iterator(); it.hasNext(); ) {
 						String descriptorLocation = (String) it.next();
 						Device device = (Device) devices.get(descriptorLocation);
 						if (manifestDeviceName != null) {
-							entry = new DeviceEntry(manifestDeviceName, deviceFile.getName(), descriptorLocation, false);
+							entry = new DeviceEntry(manifestDeviceName, deviceFile.getName(), descriptorLocation,
+									false);
 						} else {
 							entry = new DeviceEntry(device.getName(), deviceFile.getName(), descriptorLocation, false);
 						}

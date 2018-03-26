@@ -31,118 +31,97 @@ import javax.microedition.media.Player;
 import javax.microedition.media.PlayerListener;
 import javax.microedition.media.TimeBase;
 
-public abstract class BasicPlayer implements Player
-{
-   public static String CONTROL_TYPE = "ToneControl";
-   
-   private int state;
+public abstract class BasicPlayer implements Player {
+	public static String CONTROL_TYPE = "ToneControl";
 
-   private int loopCount;
-   private TimeBase timeBase;
+	private int state;
 
-   private Vector listenersVector;
+	private int loopCount;
 
-   public BasicPlayer()
-   {
-      this.setListenersVector(new Vector());
-      this.setLoopCount(0);
-      this.setState(Player.UNREALIZED);
-   }
+	private TimeBase timeBase;
 
-   public synchronized void addPlayerListener(PlayerListener playerListener)
-   {
-      this.getListenersVector().add(playerListener);
-   }
+	private Vector listenersVector;
 
-   public void removePlayerListener(PlayerListener playerListener)
-   {
-      Enumeration enumeration = this.getListenersVector().elements();
-      while(enumeration.hasMoreElements())
-      {
-         PlayerListener listener = (PlayerListener) enumeration.nextElement();
-         if( listener == playerListener )
-         {
-            this.getListenersVector().remove(listener);
-            break;
-         }
-      }
-   }
+	public BasicPlayer() {
+		this.setListenersVector(new Vector());
+		this.setLoopCount(0);
+		this.setState(Player.UNREALIZED);
+	}
 
-   public int getState()
-   {
-      return this.state;
-   }
+	public synchronized void addPlayerListener(PlayerListener playerListener) {
+		this.getListenersVector().add(playerListener);
+	}
 
-   public synchronized void setState(int state)
-   {
-      this.state = state;
-   }
+	public void removePlayerListener(PlayerListener playerListener) {
+		Enumeration enumeration = this.getListenersVector().elements();
+		while (enumeration.hasMoreElements()) {
+			PlayerListener listener = (PlayerListener) enumeration.nextElement();
+			if (listener == playerListener) {
+				this.getListenersVector().remove(listener);
+				break;
+			}
+		}
+	}
 
-   public long getDuration()
-   {
-      return 0;
-   }
-   
-   public long getMediaTime()
-   {
-      return 0;
-   }
-   
-   public TimeBase getTimeBase()
-   {
-      return this.timeBase;
-   }
-   
-   public synchronized void setTimeBase(TimeBase timeBase)
-   {
-      this.timeBase = timeBase;
-   }
-   
-   public void deallocate()
-   {
-   }
-   
-   public void prefetch() throws MediaException
-   {
-   }
-   
-   public void realize() throws MediaException
-   {
-   }
-      
-   public synchronized void setLoopCount(int count)
-   {
-      this.loopCount = count;
-   }
-   
-   protected int getLoopCount()
-   {
-      return this.loopCount;
-   }
+	public int getState() {
+		return this.state;
+	}
 
-   public synchronized long setMediaTime(long now) throws MediaException
-   {
-      return 0;
-   }
+	public synchronized void setState(int state) {
+		this.state = state;
+	}
 
-   protected Vector getListenersVector()
-   {
-      return listenersVector;
-   }
+	public long getDuration() {
+		return 0;
+	}
 
-   protected synchronized void setListenersVector(Vector listenersVector)
-   {
-      this.listenersVector = listenersVector;
-   }
-   
-   public synchronized void start() throws MediaException
-   {
-      this.setState(Player.STARTED);
-   }
-   
-   public synchronized void stop() throws MediaException
-   {
-      this.setState(Player.PREFETCHED);
-   }
+	public long getMediaTime() {
+		return 0;
+	}
+
+	public TimeBase getTimeBase() {
+		return this.timeBase;
+	}
+
+	public synchronized void setTimeBase(TimeBase timeBase) {
+		this.timeBase = timeBase;
+	}
+
+	public void deallocate() {
+	}
+
+	public void prefetch() throws MediaException {
+	}
+
+	public void realize() throws MediaException {
+	}
+
+	public synchronized void setLoopCount(int count) {
+		this.loopCount = count;
+	}
+
+	protected int getLoopCount() {
+		return this.loopCount;
+	}
+
+	public synchronized long setMediaTime(long now) throws MediaException {
+		return 0;
+	}
+
+	protected Vector getListenersVector() {
+		return listenersVector;
+	}
+
+	protected synchronized void setListenersVector(Vector listenersVector) {
+		this.listenersVector = listenersVector;
+	}
+
+	public synchronized void start() throws MediaException {
+		this.setState(Player.STARTED);
+	}
+
+	public synchronized void stop() throws MediaException {
+		this.setState(Player.PREFETCHED);
+	}
 }
 

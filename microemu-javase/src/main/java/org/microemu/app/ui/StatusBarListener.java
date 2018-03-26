@@ -24,10 +24,8 @@
 
 package org.microemu.app.ui;
 
+public interface StatusBarListener {
 
-public interface StatusBarListener 
-{
-	
 	void statusBarChanged(String text);
 
 }

@@ -36,7 +36,8 @@ public class FileSystemRegistry {
 	private static FileSystemRegistryDelegate impl;
 
 	static {
-		impl = (FileSystemRegistryDelegate) ImplFactory.getImplementation(FileSystemRegistry.class, FileSystemRegistryDelegate.class);
+		impl = (FileSystemRegistryDelegate) ImplFactory
+				.getImplementation(FileSystemRegistry.class, FileSystemRegistryDelegate.class);
 	}
 
 	private FileSystemRegistry() {

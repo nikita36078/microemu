@@ -98,7 +98,7 @@ public class Config {
 					// migrate from config.xml
 					loadConfigFile("config.xml");
 
-					for (Enumeration e = getDeviceEntries().elements(); e.hasMoreElements();) {
+					for (Enumeration e = getDeviceEntries().elements(); e.hasMoreElements(); ) {
 						DeviceEntry entry = (DeviceEntry) e.nextElement();
 						if (!entry.canRemove()) {
 							continue;
@@ -180,7 +180,7 @@ public class Config {
 		if (extensionsXml == null) {
 			return extensions;
 		}
-		for (Enumeration en = extensionsXml.enumerateChildren(); en.hasMoreElements();) {
+		for (Enumeration en = extensionsXml.enumerateChildren(); en.hasMoreElements(); ) {
 			XMLElement extension = (XMLElement) en.nextElement();
 			if (!extension.getName().equals("extension")) {
 				continue;
@@ -193,10 +193,10 @@ public class Config {
 			Map parameters = new HashMap();
 			parameters.put(ImplementationInitialization.PARAM_EMULATOR_ID, Config.getEmulatorID());
 
-			for (Enumeration een = extension.enumerateChildren(); een.hasMoreElements();) {
+			for (Enumeration een = extension.enumerateChildren(); een.hasMoreElements(); ) {
 				XMLElement propXml = (XMLElement) een.nextElement();
 				if (propXml.getName().equals("properties")) {
-					for (Enumeration e_prop = propXml.enumerateChildren(); e_prop.hasMoreElements();) {
+					for (Enumeration e_prop = propXml.enumerateChildren(); e_prop.hasMoreElements(); ) {
 						XMLElement tmp_prop = (XMLElement) e_prop.nextElement();
 						if (tmp_prop.getName().equals("property")) {
 							parameters.put(tmp_prop.getStringAttribute("name"), tmp_prop.getStringAttribute("value"));
@@ -213,12 +213,12 @@ public class Config {
 	private static void initSystemProperties() {
 		Map systemProperties = null;
 
-		for (Enumeration e = configXml.enumerateChildren(); e.hasMoreElements();) {
+		for (Enumeration e = configXml.enumerateChildren(); e.hasMoreElements(); ) {
 			XMLElement tmp = (XMLElement) e.nextElement();
 			if (tmp.getName().equals("system-properties")) {
 				// Permits null values.
 				systemProperties = new HashMap();
-				for (Enumeration e_prop = tmp.enumerateChildren(); e_prop.hasMoreElements();) {
+				for (Enumeration e_prop = tmp.enumerateChildren(); e_prop.hasMoreElements(); ) {
 					XMLElement tmp_prop = (XMLElement) e_prop.nextElement();
 					if (tmp_prop.getName().equals("system-property")) {
 						systemProperties.put(tmp_prop.getStringAttribute("name"), tmp_prop.getStringAttribute("value"));
@@ -236,7 +236,7 @@ public class Config {
 
 			XMLElement propertiesXml = configXml.getChildOrNew("system-properties");
 
-			for (Iterator i = systemProperties.entrySet().iterator(); i.hasNext();) {
+			for (Iterator i = systemProperties.entrySet().iterator(); i.hasNext(); ) {
 				Map.Entry e = (Map.Entry) i.next();
 				XMLElement xmlProperty = propertiesXml.addChild("system-property");
 				xmlProperty.setAttribute("value", (String) e.getValue());
@@ -264,7 +264,7 @@ public class Config {
 		}
 		defaultDevice.setDefaultDevice(true);
 		result.add(defaultDevice);
-		
+
 		if (resizableDevice == null) {
 			resizableDevice = new DeviceEntry("Resizable device", null, DeviceImpl.RESIZABLE_LOCATION, false, false);
 			addDeviceEntry(resizableDevice);
@@ -275,7 +275,7 @@ public class Config {
 			return result;
 		}
 
-		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements();) {
+		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements(); ) {
 			XMLElement tmp_device = (XMLElement) e_device.nextElement();
 			if (tmp_device.getName().equals("device")) {
 				boolean devDefault = false;
@@ -301,7 +301,7 @@ public class Config {
 	}
 
 	public static void addDeviceEntry(DeviceEntry entry) {
-		for (Enumeration en = getDeviceEntries().elements(); en.hasMoreElements();) {
+		for (Enumeration en = getDeviceEntries().elements(); en.hasMoreElements(); ) {
 			DeviceEntry test = (DeviceEntry) en.nextElement();
 			if (test.getDescriptorLocation().equals(entry.getDescriptorLocation())) {
 				return;
@@ -327,7 +327,7 @@ public class Config {
 			return;
 		}
 
-		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements();) {
+		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements(); ) {
 			XMLElement tmp_device = (XMLElement) e_device.nextElement();
 			if (tmp_device.getName().equals("device")) {
 				String testDescriptor = tmp_device.getChildString("descriptor", null);
@@ -354,7 +354,7 @@ public class Config {
 			return;
 		}
 
-		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements();) {
+		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements(); ) {
 			XMLElement tmp_device = (XMLElement) e_device.nextElement();
 			if (tmp_device.getName().equals("device")) {
 				String testDescriptor = tmp_device.getChildString("descriptor", null);
@@ -376,7 +376,7 @@ public class Config {
 		XMLElement devicesXml = configXml.getChild("devices");
 
 		if (devicesXml != null) {
-			for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements();) {
+			for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements(); ) {
 				XMLElement tmp_device = (XMLElement) e_device.nextElement();
 				if (tmp_device.getName().equals("device")) {
 					String testDescriptor = tmp_device.getChildString("descriptor", null);
@@ -388,7 +388,7 @@ public class Config {
 							result.y = rectangleXml.getChildInteger("y", -1);
 							result.width = rectangleXml.getChildInteger("width", -1);
 							result.height = rectangleXml.getChildInteger("height", -1);
-	
+
 							return result;
 						}
 					}
@@ -408,7 +408,7 @@ public class Config {
 			return;
 		}
 
-		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements();) {
+		for (Enumeration e_device = devicesXml.enumerateChildren(); e_device.hasMoreElements(); ) {
 			XMLElement tmp_device = (XMLElement) e_device.nextElement();
 			if (tmp_device.getName().equals("device")) {
 				String testDescriptor = tmp_device.getChildString("descriptor", null);

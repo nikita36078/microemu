@@ -34,14 +34,14 @@ import org.microemu.device.impl.ButtonName;
 
 /**
  * This class defines default computer keyboard key and char codes for buttons.
- * 
+ *
  * Use 'device.xml' to redefine codes for your device if required.
- * 
+ *
  * CharCodes do not depends on InputMode. This is computer keyboard codes when
  * it is impossible to map to VK keys.
- * 
+ *
  * @author vlads
- * 
+ *
  */
 public class J2SEButtonDefaultKeyCodes {
 

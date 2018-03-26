@@ -12,9 +12,13 @@ class LZWEncoder {
 	private static final int EOF = -1;
 
 	private int imgW, imgH;
+
 	private byte[] pixAry;
+
 	private int initCodeSize;
+
 	private int remaining;
+
 	private int curPixel;
 
 	// GIFCOMPR.C       - GIF Image compression routines
@@ -40,11 +44,15 @@ class LZWEncoder {
 	//              Joe Orost              (decvax!vax135!petsd!joe)
 
 	int n_bits; // number of bits/code
+
 	int maxbits = BITS; // user settable max # bits/code
+
 	int maxcode; // maximum code, given n_bits
+
 	int maxmaxcode = 1 << BITS; // should NEVER generate this code
 
 	int[] htab = new int[HSIZE];
+
 	int[] codetab = new int[HSIZE];
 
 	int hsize = HSIZE; // for dynamic table sizing
@@ -70,6 +78,7 @@ class LZWEncoder {
 	int g_init_bits;
 
 	int ClearCode;
+
 	int EOFCode;
 
 	// output
@@ -88,27 +97,28 @@ class LZWEncoder {
 	// code in turn.  When the buffer fills up empty it and start over.
 
 	int cur_accum = 0;
+
 	int cur_bits = 0;
 
 	int masks[] =
-		{
-			0x0000,
-			0x0001,
-			0x0003,
-			0x0007,
-			0x000F,
-			0x001F,
-			0x003F,
-			0x007F,
-			0x00FF,
-			0x01FF,
-			0x03FF,
-			0x07FF,
-			0x0FFF,
-			0x1FFF,
-			0x3FFF,
-			0x7FFF,
-			0xFFFF };
+			{
+					0x0000,
+					0x0001,
+					0x0003,
+					0x0007,
+					0x000F,
+					0x001F,
+					0x003F,
+					0x007F,
+					0x00FF,
+					0x01FF,
+					0x03FF,
+					0x07FF,
+					0x0FFF,
+					0x1FFF,
+					0x3FFF,
+					0x7FFF,
+					0xFFFF };
 
 	// Number of characters so far in this 'packet'
 	int a_count;
@@ -123,7 +133,7 @@ class LZWEncoder {
 		pixAry = pixels;
 		initCodeSize = Math.max(2, color_depth);
 	}
-	
+
 	// Add a character to the end of the current packet, and if it is 254
 	// characters, flush the packet to disk.
 	void char_out(byte c, OutputStream outs) throws IOException {
@@ -131,7 +141,7 @@ class LZWEncoder {
 		if (a_count >= 254)
 			flush_char(outs);
 	}
-	
+
 	// Clear out the hash table
 
 	// table clear for block compress
@@ -142,13 +152,13 @@ class LZWEncoder {
 
 		output(ClearCode, outs);
 	}
-	
+
 	// reset code table
 	void cl_hash(int hsize) {
 		for (int i = 0; i < hsize; ++i)
 			htab[i] = -1;
 	}
-	
+
 	void compress(int init_bits, OutputStream outs) throws IOException {
 		int fcode;
 		int i /* = 0 */;
@@ -184,7 +194,8 @@ class LZWEncoder {
 
 		output(ClearCode, outs);
 
-		outer_loop : while ((c = nextPixel()) != EOF) {
+		outer_loop:
+		while ((c = nextPixel()) != EOF) {
 			fcode = (c << maxbits) + ent;
 			i = (c << hshift) ^ ent; // xor hashing
 
@@ -192,7 +203,7 @@ class LZWEncoder {
 				ent = codetab[i];
 				continue;
 			} else if (htab[i] >= 0) // non-empty slot
-				{
+			{
 				disp = hsize_reg - i; // secondary hash (after G. Knott)
 				if (i == 0)
 					disp = 1;
@@ -218,7 +229,7 @@ class LZWEncoder {
 		output(ent, outs);
 		output(EOFCode, outs);
 	}
-	
+
 	//----------------------------------------------------------------------------
 	void encode(OutputStream os) throws IOException {
 		os.write(initCodeSize); // write "initial code size" byte
@@ -230,7 +241,7 @@ class LZWEncoder {
 
 		os.write(0); // write block terminator
 	}
-	
+
 	// Flush the packet to disk, and reset the accumulator
 	void flush_char(OutputStream outs) throws IOException {
 		if (a_count > 0) {
@@ -239,11 +250,11 @@ class LZWEncoder {
 			a_count = 0;
 		}
 	}
-	
+
 	final int MAXCODE(int n_bits) {
 		return (1 << n_bits) - 1;
 	}
-	
+
 	//----------------------------------------------------------------------------
 	// Return the next pixel from the image
 	//----------------------------------------------------------------------------
@@ -257,7 +268,7 @@ class LZWEncoder {
 
 		return pix & 0xff;
 	}
-	
+
 	void output(int code, OutputStream outs) throws IOException {
 		cur_accum &= masks[cur_bits];
 

@@ -45,11 +45,11 @@ public class UnitTestsMIDLet extends TestRunner implements MIDletUnderTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showMainPage() {
-		
+
 	}
-	
+
 	public void setCurrentDisplayable(Displayable nextDisplayable) {
 		Display display = Display.getDisplay(this);
 		display.setCurrent(nextDisplayable);

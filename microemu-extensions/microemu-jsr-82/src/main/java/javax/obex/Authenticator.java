@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 package javax.obex;
 
 /**
@@ -54,7 +54,7 @@ package javax.obex;
  * <code>onAuthenticationFailure()</code> method will be called on the
  * <code>ServerRequestHandler</code> that failed authentication. The
  * connection is <B>not</B> closed if authentication failed.
- * 
+ *
  * @version 1.0 February 11, 2002
  */
 public interface Authenticator {
@@ -64,22 +64,22 @@ public interface Authenticator {
 	 * header. It should respond to the challenge with a
 	 * <code>PasswordAuthentication</code> that contains the correct user name
 	 * and password for the challenge.
-	 * 
+	 *
 	 * @param description
 	 *            the description of which user name and password should be
 	 *            used; if no description is provided in the authentication
 	 *            challenge or the description is encoded in an encoding scheme
 	 *            that is not supported, an empty string will be provided
-	 * 
+	 *
 	 * @param isUserIdRequired
 	 *            <code>true</code> if the user ID is required;
 	 *            <code>false</code> if the user ID is not required
-	 * 
+	 *
 	 * @param isFullAccess
 	 *            <code>true</code> if full access to the server will be
 	 *            granted; <code>false</code> if read only access will be
 	 *            granted
-	 * 
+	 *
 	 * @return a <code>PasswordAuthentication</code> object containing the
 	 *         user name and password used for authentication
 	 */
@@ -90,11 +90,11 @@ public interface Authenticator {
 	 * Called when a client or server receives an authentication response
 	 * header. This method will provide the user name and expect the correct
 	 * password to be returned.
-	 * 
+	 *
 	 * @param userName
 	 *            the user name provided in the authentication response; may be
 	 *            <code>null</code>
-	 * 
+	 *
 	 * @return the correct password for the user name provided; if
 	 *         <code>null</code> is returned then the authentication request
 	 *         failed

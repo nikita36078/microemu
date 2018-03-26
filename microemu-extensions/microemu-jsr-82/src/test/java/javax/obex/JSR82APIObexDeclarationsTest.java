@@ -36,16 +36,16 @@ import net.sf.jour.signature.SignatureTestCase;
  */
 public class JSR82APIObexDeclarationsTest extends SignatureTestCase {
 
-    public String getAPIPath() {
-        return getClassPath(SessionNotifier.class);
-    }
+	public String getAPIPath() {
+		return getClassPath(SessionNotifier.class);
+	}
 
-    public String getSupportingJarsPath() {
-        return getClassPath(Connection.class);
-    }
-    
-    public String getSignatureXMLPath() {
-        return "jsr82-obex-signature.xml";
-    }
+	public String getSupportingJarsPath() {
+		return getClassPath(Connection.class);
+	}
+
+	public String getSignatureXMLPath() {
+		return "jsr82-obex-signature.xml";
+	}
 
 }

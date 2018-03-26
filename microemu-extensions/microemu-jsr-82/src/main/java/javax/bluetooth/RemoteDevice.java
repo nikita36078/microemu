@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 
@@ -42,8 +42,8 @@ public class RemoteDevice {
 	 * address of the local device or is not a valid Bluetooth address
 	 */
 	protected RemoteDevice(String address) {
-		if(address == null) {
-            throw new NullPointerException("address is null");
+		if (address == null) {
+			throw new NullPointerException("address is null");
 		}
 		throw new RuntimeException("Can't initialize bluetooth support");
 	}
@@ -91,7 +91,7 @@ public class RemoteDevice {
 	 * @return the Bluetooth address of the remote device
 	 */
 	public final String getBluetoothAddress() {
-	    return null;
+		return null;
 	}
 
 	/**

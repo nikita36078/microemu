@@ -1,7 +1,7 @@
 /*
- * MicroEmulator 
+ * MicroEmulator
  * Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- * 
+ *
  *  It is licensed under the following two licenses as alternatives:
  *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
  *    2. Apache License (the "AL") Version 2.0
@@ -20,8 +20,8 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- * 
- * Contributor(s): 
+ *
+ * Contributor(s):
  *   3GLab
  */
 
@@ -41,31 +41,31 @@ import org.microemu.device.DeviceFactory;
 //import org.microemu.device.DisplayGraphics;
 import org.microemu.device.MutableImage;
 
-
-public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //implements DisplayGraphics 
+public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //implements DisplayGraphics
 {
 	public SwtGraphics g;
 
 	private MutableImage image;
+
 	private int color = 0;
+
 	private javax.microedition.lcdui.Font currentFont = javax.microedition.lcdui.Font.getDefaultFont();
+
 	private ImageFilter filter;
 
-	
-	public SwtDisplayGraphics(SwtGraphics a_g, MutableImage a_image) 
-	{
+	public SwtDisplayGraphics(SwtGraphics a_g, MutableImage a_image) {
 		this.g = a_g;
 		this.image = a_image;
-		
+
 		Device device = DeviceFactory.getDevice();
-		
+
 		this.g.setBackground(g.getColor(new RGB(
-				((SwtDeviceDisplay) device.getDeviceDisplay()).getBackgroundColor().getRed(), 
-				((SwtDeviceDisplay) device.getDeviceDisplay()).getBackgroundColor().getGreen(), 
+				((SwtDeviceDisplay) device.getDeviceDisplay()).getBackgroundColor().getRed(),
+				((SwtDeviceDisplay) device.getDeviceDisplay()).getBackgroundColor().getGreen(),
 				((SwtDeviceDisplay) device.getDeviceDisplay()).getBackgroundColor().getBlue())));
 		SwtFont tmpFont = (SwtFont) ((SwtFontManager) device.getFontManager()).getFont(currentFont);
 		this.g.setFont(tmpFont.getFont());
-		
+
 		if (device.getDeviceDisplay().isColor()) {
 			this.filter = new RGBImageFilter();
 		} else {
@@ -77,43 +77,32 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public MutableImage getImage() 
-	{
+	public MutableImage getImage() {
 		return image;
 	}
 
-	
-	public int getColor() 
-	{
+	public int getColor() {
 		return color;
 	}
 
-	
-	public void setColor(int RGB) 
-	{
+	public void setColor(int RGB) {
 		color = RGB;
 
-		g.setForeground(g.getColor(filter.filterRGB(0, 0, new RGB((color >> 16) & 0xff, (color >> 8) & 0xff, color & 0xff))));
+		g.setForeground(
+				g.getColor(filter.filterRGB(0, 0, new RGB((color >> 16) & 0xff, (color >> 8) & 0xff, color & 0xff))));
 	}
 
-	
-	public javax.microedition.lcdui.Font getFont() 
-	{
+	public javax.microedition.lcdui.Font getFont() {
 		return currentFont;
 	}
 
-	
-	public void setFont(javax.microedition.lcdui.Font font) 
-	{
+	public void setFont(javax.microedition.lcdui.Font font) {
 		currentFont = font;
-		SwtFont tmpFont = (SwtFont)((SwtFontManager) DeviceFactory.getDevice().getFontManager()).getFont(currentFont);
+		SwtFont tmpFont = (SwtFont) ((SwtFontManager) DeviceFactory.getDevice().getFontManager()).getFont(currentFont);
 		g.setFont(tmpFont.getFont());
 	}
 
-	
-	public void clipRect(int x, int y, int width, int height) 
-	{
+	public void clipRect(int x, int y, int width, int height) {
 		Rectangle rect = new Rectangle(x, y, width, height);
 
 		if (rect.x < getClipX()) {
@@ -139,15 +128,11 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		setClip(rect.x, rect.y, rect.width, rect.height);
 	}
 
-	
-	public void setClip(int x, int y, int width, int height) 
-	{
+	public void setClip(int x, int y, int width, int height) {
 		g.setClipping(x, y, width, height);
 	}
 
-	
-	public int getClipX() 
-	{
+	public int getClipX() {
 		Rectangle rect = g.getClipping();
 		if (rect == null) {
 			return 0;
@@ -156,9 +141,7 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public int getClipY() 
-	{
+	public int getClipY() {
 		Rectangle rect = g.getClipping();
 		if (rect == null) {
 			return 0;
@@ -167,9 +150,7 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public int getClipHeight() 
-	{
+	public int getClipHeight() {
 		Rectangle rect = g.getClipping();
 		if (rect == null) {
 			DisplayAccess da = MIDletBridge.getMIDletAccess().getDisplayAccess();
@@ -179,9 +160,7 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public int getClipWidth() 
-	{
+	public int getClipWidth() {
 		Rectangle rect = g.getClipping();
 		if (rect == null) {
 			DisplayAccess da = MIDletBridge.getMIDletAccess().getDisplayAccess();
@@ -191,15 +170,11 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) 
-	{
+	public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
 		g.drawArc(x, y, width, height, startAngle, arcAngle);
 	}
 
-	
-	public void drawImage(Image img, int x, int y, int anchor) 
-	{
+	public void drawImage(Image img, int x, int y, int anchor) {
 		int newx = x;
 		int newy = y;
 
@@ -225,36 +200,31 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public void drawLine(int x1, int y1, int x2, int y2) 
-	{
+	public void drawLine(int x1, int y1, int x2, int y2) {
 		g.drawLine(x1, y1, x2, y2);
 	}
 
-	
-	public void drawRect(int x, int y, int width, int height) 
-	{
+	public void drawRect(int x, int y, int width, int height) {
 		drawLine(x, y, x + width, y);
 		drawLine(x + width, y, x + width, y + height);
 		drawLine(x + width, y + height, x, y + height);
 		drawLine(x, y + height, x, y);
 	}
 
-
-	public void drawRegion(Image src, int x_src, int y_src, int width, int height, int transform, int x_dst, int y_dst, int anchor) {
+	public void drawRegion(Image src, int x_src, int y_src, int width, int height, int transform, int x_dst, int y_dst,
+			int anchor) {
 		// TODO implement drawRegion
 		super.drawRegion(src, x_src, y_src, width, height, transform, x_dst, y_dst,
 				anchor);
 	}
 
-
-	public void drawRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height, boolean processAlpha) {
+	public void drawRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height,
+			boolean processAlpha) {
 		// TODO implement drawRGB
 		super.drawRGB(rgbData, offset, scanlength, x, y, width, height, processAlpha);
 	}
-	
-	
-    public void fillTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+
+	public void fillTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 		int[] points = new int[6];
 		points[0] = x1;
 		points[1] = y1;
@@ -266,15 +236,11 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		g.fillPolygon(points);
 	}
 
-
-	public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) 
-	{
+	public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
 		g.drawRoundRectangle(x, y, width, height, arcWidth, arcHeight);
 	}
 
-	
-	public void drawString(String str, int x, int y, int anchor) 
-	{
+	public void drawString(String str, int x, int y, int anchor) {
 		int newx = x;
 		int newy = y;
 
@@ -298,9 +264,9 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		if (textAntialiasing != graphicsAntialiasing) {
 			g.setAntialias(textAntialiasing);
 		}
-		
+
 		g.drawString(str, newx, newy, true);
-		
+
 		if (textAntialiasing != graphicsAntialiasing) {
 			g.setAntialias(graphicsAntialiasing);
 		}
@@ -310,33 +276,25 @@ public class SwtDisplayGraphics extends javax.microedition.lcdui.Graphics //impl
 		}
 	}
 
-	
-	public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) 
-	{
-        Color tmp = g.getBackground();
-        g.setBackground(g.getForeground());
+	public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
+		Color tmp = g.getBackground();
+		g.setBackground(g.getForeground());
 		g.fillArc(x, y, width, height, startAngle, arcAngle);
-        g.setBackground(tmp);
+		g.setBackground(tmp);
 	}
 
-	
-	public void fillRect(int x, int y, int width, int height) 
-	{
+	public void fillRect(int x, int y, int width, int height) {
 		Color tmp = g.getBackground();
 		g.setBackground(g.getForeground());
 		g.fillRectangle(x, y, width, height);
 		g.setBackground(tmp);
 	}
 
-	
-	public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) 
-	{
+	public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
 		g.fillRoundRectangle(x, y, width, height, arcWidth, arcHeight);
 	}
 
-	
-	public void translate(int x, int y) 
-	{
+	public void translate(int x, int y) {
 		super.translate(x, y);
 		g.translate(x, y);
 	}

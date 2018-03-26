@@ -34,9 +34,9 @@ import org.microemu.microedition.ImplementationInitialization;
 
 /**
  * @author vlads
- * 
+ *
  * config2.xml example
- * 
+ *
  * <pre>
  *  &lt;extensions&gt;
  *  &lt;extension&gt;
@@ -47,7 +47,7 @@ import org.microemu.microedition.ImplementationInitialization;
  *  &lt;/extension&gt;
  *  &lt;/extensions&gt;
  * </pre>
- * 
+ *
  */
 
 public class FileSystem implements ImplementationInitialization {
@@ -66,7 +66,7 @@ public class FileSystem implements ImplementationInitialization {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationInitialization#registerImplementation()
 	 */
 	public void registerImplementation(Map parameters) {
@@ -86,7 +86,7 @@ public class FileSystem implements ImplementationInitialization {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationInitialization#notifyMIDletStart()
 	 */
 	public void notifyMIDletStart() {
@@ -94,7 +94,7 @@ public class FileSystem implements ImplementationInitialization {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.microedition.ImplementationInitialization#notifyMIDletDestroyed()
 	 */
 	public void notifyMIDletDestroyed() {

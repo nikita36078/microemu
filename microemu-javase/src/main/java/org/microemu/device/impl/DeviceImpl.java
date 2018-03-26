@@ -77,7 +77,7 @@ public abstract class DeviceImpl implements Device {
 	private int skinVersion;
 
 	public static final String DEFAULT_LOCATION = "org/microemu/device/default/device.xml";
-	
+
 	public static final String RESIZABLE_LOCATION = "org/microemu/device/resizable/device.xml";
 
 	/**
@@ -99,7 +99,7 @@ public abstract class DeviceImpl implements Device {
 		XMLElement doc = loadDeviceDescriptor(classLoader, descriptorLocation);
 		// saveDevice(doc);
 		DeviceImpl device = null;
-		for (Enumeration e = doc.enumerateChildren(); e.hasMoreElements();) {
+		for (Enumeration e = doc.enumerateChildren(); e.hasMoreElements(); ) {
 			XMLElement tmp = (XMLElement) e.nextElement();
 			if (tmp.getName().equals("class-name")) {
 				try {
@@ -134,7 +134,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#init()
 	 */
 	public void init() {
@@ -179,7 +179,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#destroy()
 	 */
 	public void destroy() {
@@ -187,7 +187,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getName()
 	 */
 	public String getName() {
@@ -200,7 +200,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getInputMethod()
 	 */
 	public InputMethod getInputMethod() {
@@ -209,7 +209,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getFontManager()
 	 */
 	public FontManager getFontManager() {
@@ -218,7 +218,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getDeviceDisplay()
 	 */
 	public DeviceDisplay getDeviceDisplay() {
@@ -227,7 +227,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getNormalImage()
 	 */
 	public Image getNormalImage() {
@@ -236,7 +236,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getOverImage()
 	 */
 	public Image getOverImage() {
@@ -245,7 +245,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getPressedImage()
 	 */
 	public Image getPressedImage() {
@@ -254,7 +254,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getSoftButtons()
 	 */
 	public Vector getSoftButtons() {
@@ -263,7 +263,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getButtons()
 	 */
 	public Vector getButtons() {
@@ -293,7 +293,7 @@ public abstract class DeviceImpl implements Device {
 		 */
 		parseDisplay(classLoader, base, doc.getChild("display"));
 
-		for (Enumeration e = doc.enumerateChildren(); e.hasMoreElements();) {
+		for (Enumeration e = doc.enumerateChildren(); e.hasMoreElements(); ) {
 			XMLElement tmp = (XMLElement) e.nextElement();
 			if (tmp.getName().equals("system-properties")) {
 				parseSystemProperties(tmp);
@@ -342,7 +342,7 @@ public abstract class DeviceImpl implements Device {
 			deviceDisplay.setResizable(false);
 		}
 
-		for (Enumeration e_display = tmp.enumerateChildren(); e_display.hasMoreElements();) {
+		for (Enumeration e_display = tmp.enumerateChildren(); e_display.hasMoreElements(); ) {
 			XMLElement tmp_display = (XMLElement) e_display.nextElement();
 			if (tmp_display.getName().equals("numcolors")) {
 				deviceDisplay.setNumColors(Integer.parseInt(tmp_display.getContent()));
@@ -365,7 +365,7 @@ public abstract class DeviceImpl implements Device {
 				deviceDisplay.setDisplayPaintable(getRectangle(tmp_display));
 			}
 		}
-		for (Enumeration e_display = tmp.enumerateChildren(); e_display.hasMoreElements();) {
+		for (Enumeration e_display = tmp.enumerateChildren(); e_display.hasMoreElements(); ) {
 			XMLElement tmp_display = (XMLElement) e_display.nextElement();
 			if (tmp_display.getName().equals("img")) {
 				if (tmp_display.getStringAttribute("name").equals("up")
@@ -392,7 +392,7 @@ public abstract class DeviceImpl implements Device {
 			} else if (tmp_display.getName().equals("icon")) {
 				Image iconNormalImage = null;
 				Image iconPressedImage = null;
-				for (Enumeration e_icon = tmp_display.enumerateChildren(); e_icon.hasMoreElements();) {
+				for (Enumeration e_icon = tmp_display.enumerateChildren(); e_icon.hasMoreElements(); ) {
 					XMLElement tmp_icon = (XMLElement) e_icon.nextElement();
 					if (tmp_icon.getName().equals("img")) {
 						if (tmp_icon.getStringAttribute("name").equals("normal")) {
@@ -408,7 +408,7 @@ public abstract class DeviceImpl implements Device {
 			} else if (tmp_display.getName().equals("status")) {
 				if (tmp_display.getStringAttribute("name").equals("input")) {
 					Rectangle paintable = getRectangle(tmp_display.getChild("paintable"));
-					for (Enumeration e_status = tmp_display.enumerateChildren(); e_status.hasMoreElements();) {
+					for (Enumeration e_status = tmp_display.enumerateChildren(); e_status.hasMoreElements(); ) {
 						XMLElement tmp_status = (XMLElement) e_status.nextElement();
 						if (tmp_status.getName().equals("img")) {
 							if (tmp_status.getStringAttribute("name").equals("123")) {
@@ -438,7 +438,7 @@ public abstract class DeviceImpl implements Device {
 		}
 		fontManager.setAntialiasing(antialiasing);
 
-		for (Enumeration e_fonts = tmp.enumerateChildren(); e_fonts.hasMoreElements();) {
+		for (Enumeration e_fonts = tmp.enumerateChildren(); e_fonts.hasMoreElements(); ) {
 			XMLElement tmp_font = (XMLElement) e_fonts.nextElement();
 			if (tmp_font.getName().equals("font")) {
 				String face = tmp_font.getStringAttribute("face").toLowerCase();
@@ -455,7 +455,7 @@ public abstract class DeviceImpl implements Device {
 					size = size.substring("size_".length());
 				}
 
-				for (Enumeration e_defs = tmp_font.enumerateChildren(); e_defs.hasMoreElements();) {
+				for (Enumeration e_defs = tmp_font.enumerateChildren(); e_defs.hasMoreElements(); ) {
 					XMLElement tmp_def = (XMLElement) e_defs.nextElement();
 					if (tmp_def.getName().equals("system")) {
 						String defName = tmp_def.getStringAttribute("name");
@@ -481,7 +481,7 @@ public abstract class DeviceImpl implements Device {
 		DeviceDisplayImpl deviceDisplay = (DeviceDisplayImpl) getDeviceDisplay();
 		boolean resizable = deviceDisplay.isResizable();
 
-		for (Enumeration e_keyboard = tmp.enumerateChildren(); e_keyboard.hasMoreElements();) {
+		for (Enumeration e_keyboard = tmp.enumerateChildren(); e_keyboard.hasMoreElements(); ) {
 			XMLElement tmp_keyboard = (XMLElement) e_keyboard.nextElement();
 			if (tmp_keyboard.getName().equals("haspointerevents")) {
 				hasPointerEvents = parseBoolean(tmp_keyboard.getContent());
@@ -492,12 +492,12 @@ public abstract class DeviceImpl implements Device {
 			} else if (tmp_keyboard.getName().equals("button")) {
 				Shape shape = null;
 				Hashtable inputToChars = new Hashtable();
-				for (Enumeration e_button = tmp_keyboard.enumerateChildren(); e_button.hasMoreElements();) {
+				for (Enumeration e_button = tmp_keyboard.enumerateChildren(); e_button.hasMoreElements(); ) {
 					XMLElement tmp_button = (XMLElement) e_button.nextElement();
 					if (tmp_button.getName().equals("chars")) {
 						String input = tmp_button.getStringAttribute("input", "common");
 						Vector stringArray = new Vector();
-						for (Enumeration e_chars = tmp_button.enumerateChildren(); e_chars.hasMoreElements();) {
+						for (Enumeration e_chars = tmp_button.enumerateChildren(); e_chars.hasMoreElements(); ) {
 							XMLElement tmp_chars = (XMLElement) e_chars.nextElement();
 							if (tmp_chars.getName().equals("char")) {
 								stringArray.addElement(tmp_chars.getContent());
@@ -530,7 +530,7 @@ public abstract class DeviceImpl implements Device {
 				Shape shape = null;
 				Rectangle paintable = null;
 				Font font = null;
-				for (Enumeration e_button = tmp_keyboard.enumerateChildren(); e_button.hasMoreElements();) {
+				for (Enumeration e_button = tmp_keyboard.enumerateChildren(); e_button.hasMoreElements(); ) {
 					XMLElement tmp_button = (XMLElement) e_button.nextElement();
 					if (tmp_button.getName().equals("rectangle") && !resizable) {
 						shape = getRectangle(tmp_button);
@@ -557,7 +557,7 @@ public abstract class DeviceImpl implements Device {
 	}
 
 	private void parseSystemProperties(XMLElement tmp) {
-		for (Enumeration e_prop = tmp.enumerateChildren(); e_prop.hasMoreElements();) {
+		for (Enumeration e_prop = tmp.enumerateChildren(); e_prop.hasMoreElements(); ) {
 			XMLElement tmp_prop = (XMLElement) e_prop.nextElement();
 			if (tmp_prop.getName().equals("system-property")) {
 				systemProperties.put(tmp_prop.getStringAttribute("name"), tmp_prop.getStringAttribute("value"));
@@ -605,7 +605,7 @@ public abstract class DeviceImpl implements Device {
 	private Rectangle getRectangle(XMLElement source) {
 		Rectangle rect = new Rectangle();
 
-		for (Enumeration e_rectangle = source.enumerateChildren(); e_rectangle.hasMoreElements();) {
+		for (Enumeration e_rectangle = source.enumerateChildren(); e_rectangle.hasMoreElements(); ) {
 			XMLElement tmp_rectangle = (XMLElement) e_rectangle.nextElement();
 			if (tmp_rectangle.getName().equals("x")) {
 				rect.x = Integer.parseInt(tmp_rectangle.getContent());
@@ -624,7 +624,7 @@ public abstract class DeviceImpl implements Device {
 	private Polygon getPolygon(XMLElement source) {
 		Polygon poly = new Polygon();
 
-		for (Enumeration e_poly = source.enumerateChildren(); e_poly.hasMoreElements();) {
+		for (Enumeration e_poly = source.enumerateChildren(); e_poly.hasMoreElements(); ) {
 			XMLElement tmp_point = (XMLElement) e_poly.nextElement();
 			if (tmp_point.getName().equals("point")) {
 				poly.addPoint(Integer.parseInt(tmp_point.getStringAttribute("x")), Integer.parseInt(tmp_point
@@ -645,7 +645,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#hasPointerEvents()
 	 */
 	public boolean hasPointerEvents() {
@@ -654,7 +654,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#hasPointerMotionEvents()
 	 */
 	public boolean hasPointerMotionEvents() {
@@ -663,7 +663,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#hasRepeatEvents()
 	 */
 	public boolean hasRepeatEvents() {
@@ -672,7 +672,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#hasRepeatEvents()
 	 */
 	public boolean vibrate(int duration) {
@@ -681,7 +681,7 @@ public abstract class DeviceImpl implements Device {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.microemu.device.DeviceA#getSystemProperties()
 	 */
 	public Map getSystemProperties() {
@@ -739,11 +739,11 @@ public abstract class DeviceImpl implements Device {
 			return child;
 		}
 		parent.setContent(child.getContent());
-		for (Enumeration ena = child.enumerateAttributeNames(); ena.hasMoreElements();) {
+		for (Enumeration ena = child.enumerateAttributeNames(); ena.hasMoreElements(); ) {
 			String key = (String) ena.nextElement();
 			parent.setAttribute(key, child.getAttribute(key));
 		}
-		for (Enumeration enc = child.enumerateChildren(); enc.hasMoreElements();) {
+		for (Enumeration enc = child.enumerateChildren(); enc.hasMoreElements(); ) {
 			XMLElement c = (XMLElement) enc.nextElement();
 			String fullName = (parentName + "/" + c.getName()).toUpperCase(Locale.ENGLISH);
 			// System.out.println("processing [" + fullName + "]");

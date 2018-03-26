@@ -31,47 +31,40 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.SourceDataLine;
 
-public class PCToneRunnablePoolFactory
-{
-   private static Stack pcToneRunnableStack = new Stack();
+public class PCToneRunnablePoolFactory {
+	private static Stack pcToneRunnableStack = new Stack();
 
-   private PCToneRunnablePoolFactory()
-   {
-      
-   }
-   
-   public static synchronized PCToneRunnable getInstance(
-      SourceDataLine sourceDataLine,
-      AudioInputStream audioInputStream,
-      AudioFormat audioFormat,
-      int size) throws Exception
-   {
+	private PCToneRunnablePoolFactory() {
 
-      try
-      {
-         PCToneRunnable pcToneRunnable = 
-            (PCToneRunnable) pcToneRunnableStack.pop();
+	}
 
-         pcToneRunnable.setSourceDataLine(sourceDataLine);
-         pcToneRunnable.setAudioInputStream(audioInputStream);
-         pcToneRunnable.setAudioFormat(audioFormat);
-         
-         return pcToneRunnable;
-      }
-      catch(EmptyStackException e)
-      {
-         //TWB - Using Exceptions for code control is usually bad.  Oh well...
-         return new PCToneRunnable(
-            sourceDataLine,
-            audioInputStream,
-            audioFormat,
-            size);
-      }
-   }
-   
-   public static synchronized void push(PCToneRunnable pcToneRunnable)
-   {
-     pcToneRunnableStack.push(pcToneRunnable); 
-   }
+	public static synchronized PCToneRunnable getInstance(
+			SourceDataLine sourceDataLine,
+			AudioInputStream audioInputStream,
+			AudioFormat audioFormat,
+			int size) throws Exception {
+
+		try {
+			PCToneRunnable pcToneRunnable =
+					(PCToneRunnable) pcToneRunnableStack.pop();
+
+			pcToneRunnable.setSourceDataLine(sourceDataLine);
+			pcToneRunnable.setAudioInputStream(audioInputStream);
+			pcToneRunnable.setAudioFormat(audioFormat);
+
+			return pcToneRunnable;
+		} catch (EmptyStackException e) {
+			//TWB - Using Exceptions for code control is usually bad.  Oh well...
+			return new PCToneRunnable(
+					sourceDataLine,
+					audioInputStream,
+					audioFormat,
+					size);
+		}
+	}
+
+	public static synchronized void push(PCToneRunnable pcToneRunnable) {
+		pcToneRunnableStack.push(pcToneRunnable);
+	}
 
 }

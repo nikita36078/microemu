@@ -36,14 +36,14 @@ import javax.microedition.lcdui.StringItem;
 public class ItemsOnForm extends Form implements CommandListener, DisplayableUnderTests {
 
 	public static final Command addCommand = new Command("add", Command.ITEM, 1);
-	
+
 	public ItemsOnForm(Item[] items) {
 		super("Form with Items", items);
 		addCommand(addCommand);
 		addCommand(DisplayableUnderTests.backCommand);
 		setCommandListener(this);
-    }
-	
+	}
+
 	public ItemsOnForm() {
 		this(null);
 	}
@@ -52,7 +52,8 @@ public class ItemsOnForm extends Form implements CommandListener, DisplayableUnd
 		if (d == this) {
 			if (c == DisplayableUnderTests.backCommand) {
 				Manager.midletInstance.showMainPage();
-			} if (c == addCommand) {
+			}
+			if (c == addCommand) {
 				append(new StringItem("si:", "StringItem" + Manager.sequenceNext()));
 			}
 		}

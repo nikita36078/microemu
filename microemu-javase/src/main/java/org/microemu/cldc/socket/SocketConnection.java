@@ -34,14 +34,14 @@ import java.net.Socket;
 public class SocketConnection implements javax.microedition.io.SocketConnection {
 
 	protected Socket socket;
-	
-	public SocketConnection() {		
+
+	public SocketConnection() {
 	}
 
 	public SocketConnection(String host, int port) throws IOException {
 		this.socket = new Socket(host, port);
 	}
-	
+
 	public SocketConnection(Socket socket) {
 		this.socket = socket;
 	}
@@ -161,7 +161,7 @@ public class SocketConnection implements javax.microedition.io.SocketConnection 
 
 	public void close() throws IOException {
 		// TODO fix differences between Java ME and Java SE
-		
+
 		socket.close();
 	}
 

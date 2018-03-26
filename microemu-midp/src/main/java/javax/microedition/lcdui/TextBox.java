@@ -66,9 +66,9 @@ public class TextBox extends Screen {
 		super(title);
 
 		tf = new TextField(null, text, maxSize, constraints);
-		
+
 		super.setUI(DeviceFactory.getDevice().getUIFactory().createTextBoxUI(this));
-		
+
 		setString(text);
 	}
 
@@ -175,7 +175,7 @@ public class TextBox extends Screen {
 			g.translate(3, 3);
 			g.translate(0, -viewPortY);
 			tf.paintContent(g);
-	
+
 			return tf.stringComponent.getHeight() + 6;
 		}
 	}

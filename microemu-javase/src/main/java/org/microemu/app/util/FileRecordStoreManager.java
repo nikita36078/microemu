@@ -111,7 +111,7 @@ public class FileRecordStoreManager implements RecordStoreManager {
 	}
 
 	static String recordStoreName2FileName(String recordStoreName) {
-		for (Iterator iterator = replaceChars.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = replaceChars.iterator(); iterator.hasNext(); ) {
 			String c = (String) iterator.next();
 			String newValue = escapeCharacter(c);
 			if (c.equals("\\")) {
@@ -124,7 +124,7 @@ public class FileRecordStoreManager implements RecordStoreManager {
 	}
 
 	static String fileName2RecordStoreName(String fileName) {
-		for (Iterator iterator = replaceChars.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = replaceChars.iterator(); iterator.hasNext(); ) {
 			String c = (String) iterator.next();
 			String newValue = escapeCharacter(c);
 			if (c.equals("\\")) {
@@ -214,19 +214,18 @@ public class FileRecordStoreManager implements RecordStoreManager {
 		return result;
 	}
 
-	public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId) throws RecordStoreNotOpenException, RecordStoreException 
-	{
+	public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId)
+			throws RecordStoreNotOpenException, RecordStoreException {
 		saveRecord(recordStoreImpl, recordId);
 	}
-	
+
 	public void loadRecord(RecordStoreImpl recordStoreImpl, int recordId)
-			throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException 
-	{
+			throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException {
 		// records are loaded when record store opens
 	}
 
-	public void saveRecord(RecordStoreImpl recordStoreImpl, int recordId) throws RecordStoreNotOpenException, RecordStoreException 
-	{
+	public void saveRecord(RecordStoreImpl recordStoreImpl, int recordId)
+			throws RecordStoreNotOpenException, RecordStoreException {
 		File storeFile = new File(getSuiteFolder(), recordStoreName2FileName(recordStoreImpl.getName()));
 
 		saveToDisk(storeFile, recordStoreImpl);
@@ -306,7 +305,8 @@ public class FileRecordStoreManager implements RecordStoreManager {
 			}
 		}
 		try {
-			DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(recordStoreFile)));
+			DataOutputStream dos = new DataOutputStream(
+					new BufferedOutputStream(new FileOutputStream(recordStoreFile)));
 			recordStore.writeHeader(dos);
 			RecordEnumeration re = recordStore.enumerateRecords(null, null, false);
 			while (re.hasNextElement()) {

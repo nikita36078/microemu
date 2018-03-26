@@ -31,7 +31,7 @@ package org.microemu.microedition;
  *
  */
 public interface ImplementationUnloadable {
-	
+
 	public void unregisterImplementation();
-	
+
 }

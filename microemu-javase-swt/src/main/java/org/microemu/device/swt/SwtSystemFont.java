@@ -31,15 +31,15 @@ import org.microemu.app.ui.swt.SwtDeviceComponent;
 public class SwtSystemFont implements SwtFont {
 
 	private String name;
-	
+
 	private String style;
-	
+
 	private int size;
-	
+
 	private boolean antialiasing;
-	
+
 	private boolean initialized;
-	
+
 	private Font font;
 
 	public SwtSystemFont(String name, String style, int size, boolean antialiasing) {
@@ -47,7 +47,7 @@ public class SwtSystemFont implements SwtFont {
 		this.style = style.toLowerCase();
 		this.size = size;
 		this.antialiasing = antialiasing;
-		
+
 		this.initialized = false;
 	}
 
@@ -85,7 +85,7 @@ public class SwtSystemFont implements SwtFont {
 	}
 
 	public int charWidth(char ch) {
-		return charsWidth(new char[] {ch}, 0, 1);
+		return charsWidth(new char[] { ch }, 0, 1);
 	}
 
 	public int charsWidth(char[] ch, int offset, int length) {
@@ -96,19 +96,19 @@ public class SwtSystemFont implements SwtFont {
 
 	public int getBaselinePosition() {
 		checkInitialized();
-		
+
 		return SwtDeviceComponent.getFontMetrics(font).getAscent();
 	}
 
 	public int getHeight() {
 		checkInitialized();
-		
+
 		return SwtDeviceComponent.getFontMetrics(font).getHeight();
 	}
 
 	public int stringWidth(String str) {
 		checkInitialized();
-		
+
 		return SwtDeviceComponent.stringWidth(font, str);
 	}
 

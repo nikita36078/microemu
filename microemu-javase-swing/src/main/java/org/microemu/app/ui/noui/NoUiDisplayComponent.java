@@ -41,7 +41,7 @@ public class NoUiDisplayComponent implements DisplayComponent {
 	private J2SEGraphicsSurface graphicsSurface;
 
 	private DisplayRepaintListener displayRepaintListener;
-	
+
 	public void addDisplayRepaintListener(DisplayRepaintListener l) {
 		displayRepaintListener = l;
 	}
@@ -52,8 +52,7 @@ public class NoUiDisplayComponent implements DisplayComponent {
 		}
 	}
 
-	public void repaintRequest(int x, int y, int width, int height) 
-	{
+	public void repaintRequest(int x, int y, int width, int height) {
 		MIDletAccess ma = MIDletBridge.getMIDletAccess();
 		if (ma == null) {
 			return;
@@ -72,9 +71,10 @@ public class NoUiDisplayComponent implements DisplayComponent {
 		if (device != null) {
 			if (graphicsSurface == null) {
 				graphicsSurface = new J2SEGraphicsSurface(
-						device.getDeviceDisplay().getFullWidth(), device.getDeviceDisplay().getFullHeight(), false, 0x000000);
+						device.getDeviceDisplay().getFullWidth(), device.getDeviceDisplay().getFullHeight(), false,
+						0x000000);
 			}
-					
+
 			J2SEDeviceDisplay deviceDisplay = (J2SEDeviceDisplay) device.getDeviceDisplay();
 			synchronized (graphicsSurface) {
 				deviceDisplay.paintDisplayable(graphicsSurface, x, y, width, height);
@@ -84,12 +84,10 @@ public class NoUiDisplayComponent implements DisplayComponent {
 			}
 
 			fireDisplayRepaint(graphicsSurface);
-		}	
+		}
 	}
 
-
-	private void fireDisplayRepaint(J2SEGraphicsSurface graphicsSurface)
-	{
+	private void fireDisplayRepaint(J2SEGraphicsSurface graphicsSurface) {
 		if (displayRepaintListener != null) {
 			displayRepaintListener.repaintInvoked(graphicsSurface);
 		}

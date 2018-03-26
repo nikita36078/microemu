@@ -29,7 +29,7 @@
 package javax.microedition.lcdui;
 
 public class Graphics {
-	
+
 	public static final int SOLID = 0;
 
 	public static final int DOTTED = 1;
@@ -57,8 +57,8 @@ public class Graphics {
 	}
 
 	public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
-        implementationError();
-    }
+		implementationError();
+	}
 
 	public void drawChar(char character, int x, int y, int anchor) {
 		char[] carr = new char[1];
@@ -67,8 +67,8 @@ public class Graphics {
 	}
 
 	public void drawChars(char[] data, int offset, int length, int x, int y, int anchor) {
-        drawString(new String(data, offset, length), x, y, anchor);
-    }
+		drawString(new String(data, offset, length), x, y, anchor);
+	}
 
 	public void drawImage(Image img, int x, int y, int anchor) {
 		implementationError();
@@ -83,8 +83,8 @@ public class Graphics {
 	}
 
 	public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
-        implementationError();
-    }
+		implementationError();
+	}
 
 	public void drawString(String str, int x, int y, int anchor) {
 		implementationError();
@@ -92,19 +92,19 @@ public class Graphics {
 
 	public void drawSubstring(String str, int offset, int len, int x, int y, int anchor) {
 		implementationError();
-    }
+	}
 
-    public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
-        implementationError();
-    }
+	public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
+		implementationError();
+	}
 
 	public void fillRect(int x, int y, int width, int height) {
 		implementationError();
 	}
 
 	public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
-        implementationError();
-    }
+		implementationError();
+	}
 
 	public int getBlueComponent() {
 		return getColor() & 255;
@@ -200,13 +200,13 @@ public class Graphics {
 
 	public void setStrokeStyle(int style) {
 		implementationError();
-	}		
+	}
 
 	public void translate(int x, int y) {
 		translateX += x;
 		translateY += y;
 	}
-	
+
 	// MIDP2
 
 	public void drawRegion(Image src, int x_src, int y_src, int width,

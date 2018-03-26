@@ -34,15 +34,15 @@ import org.microemu.util.ThreadUtils;
 
 /**
  * @author vlads
- * 
+ *
  * Use MIDletResourceLoader to load resources. To solve resource resource
  * loading paterns commonly used in MIDlet and not aceptable in Java SE
  * application when System class is called to load resource
- * 
+ *
  * j2me example:
- * 
+ *
  * String.class.getResourceAsStream(resourceName)
- * 
+ *
  */
 public class MIDletResourceLoader {
 

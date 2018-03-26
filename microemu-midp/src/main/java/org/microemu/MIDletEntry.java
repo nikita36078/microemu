@@ -21,35 +21,28 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu;
 
 import javax.microedition.midlet.MIDlet;
 
+public class MIDletEntry {
 
-public class MIDletEntry 
-{
+	private String name;
 
-  private String name;
-  private Class midletClass;
-  
-  
-  public MIDletEntry(String name, Class midletClass)
-  {
-    this.name = name;
-    this.midletClass = midletClass;
-  }
-  
-  
-  public String getName()
-  {
-    return name;
-  }
-  
-  
-  public Class getMIDletClass()
-  {
-    return midletClass;
-  }
+	private Class midletClass;
+
+	public MIDletEntry(String name, Class midletClass) {
+		this.name = name;
+		this.midletClass = midletClass;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Class getMIDletClass() {
+		return midletClass;
+	}
 
 }

@@ -21,54 +21,41 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package javax.microedition.lcdui;
 
-
-class ImageStringItem extends Item
-{
+class ImageStringItem extends Item {
 
 	Image img;
-  StringComponent stringComponent;
 
+	StringComponent stringComponent;
 
-  public ImageStringItem(String label, Image img, String text)
-  {
-    super(label);
+	public ImageStringItem(String label, Image img, String text) {
+		super(label);
 		stringComponent = new StringComponent(text);
-    setImage(img);
-  }
+		setImage(img);
+	}
 
+	public Image getImage() {
+		return img;
+	}
 
-	public Image getImage()
-	{
-    return img;
-  }
-    
-    
-	public void setImage(Image img)
-	{
-    this.img = img;
+	public void setImage(Image img) {
+		this.img = img;
 		if (this.img != null) {
 			stringComponent.setWidthDecreaser(img.getWidth() + 2);
 		}
 	}
 
-
-	public String getText()
-	{
+	public String getText() {
 		return stringComponent.getText();
 	}
 
-
-	public void setText(String text)
-	{
+	public void setText(String text) {
 		stringComponent.setText(text);
 	}
-	
 
-	int getHeight()
-	{
+	int getHeight() {
 		if (img != null && img.getHeight() > stringComponent.getHeight()) {
 			return img.getHeight();
 		} else {
@@ -76,15 +63,11 @@ class ImageStringItem extends Item
 		}
 	}
 
+	void invertPaint(boolean state) {
+		stringComponent.invertPaint(state);
+	}
 
-  void invertPaint(boolean state)
-  {
-    stringComponent.invertPaint(state);
-  }
-
-
-  int paint(Graphics g)
-  {
+	int paint(Graphics g) {
 		if (stringComponent == null) {
 			return 0;
 		}
@@ -101,6 +84,6 @@ class ImageStringItem extends Item
 		}
 
 		return y;
-  }
+	}
 
 }

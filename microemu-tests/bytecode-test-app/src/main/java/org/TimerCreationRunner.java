@@ -28,13 +28,13 @@ package org;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class TimerCreationRunner implements Runnable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {

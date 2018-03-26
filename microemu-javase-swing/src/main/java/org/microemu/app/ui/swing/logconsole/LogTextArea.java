@@ -30,6 +30,7 @@ package org.microemu.app.ui.swing.logconsole;
  * @author Michael Lifshits
  *
  */
+
 import java.awt.Rectangle;
 
 import javax.swing.JTextArea;
@@ -59,12 +60,13 @@ public class LogTextArea extends JTextArea {
 	public void append(String str) {
 
 		super.append(str);
-		
+
 		JViewport viewport = (JViewport) getParent();
-		boolean scrollToBottom = Math.abs(viewport.getViewPosition().getY() - (getHeight() - viewport.getHeight())) < 100;
+		boolean scrollToBottom =
+				Math.abs(viewport.getViewPosition().getY() - (getHeight() - viewport.getHeight())) < 100;
 
 		caret.setVisibilityAdjustment(scrollToBottom);
-		
+
 		if (scrollToBottom) {
 			setCaretPosition(getText().length());
 		}

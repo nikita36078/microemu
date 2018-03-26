@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 
@@ -350,7 +350,7 @@ public class DiscoveryAgent {
 	 * <code>ServiceRecord.AUTHENTICATE_ENCRYPT</code>
 	 */
 	public String selectService(UUID uuid, int security, boolean master) throws BluetoothStateException {
-		return  null;
+		return null;
 	}
 
 }

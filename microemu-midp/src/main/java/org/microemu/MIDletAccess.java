@@ -20,11 +20,11 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  Contributor(s):
  *    Andres Navarro
- *    
- *  @version $Id$    
+ *
+ *  @version $Id$
  */
 
 package org.microemu;
@@ -35,12 +35,12 @@ import javax.microedition.midlet.MIDletStateChangeException;
 import org.microemu.DisplayAccess;
 
 /**
- * 
+ *
  * Enables access to MIDlet protected methods.
  *
  */
 public abstract class MIDletAccess {
-	
+
 	public MIDlet midlet;
 
 	private DisplayAccess displayAccess;

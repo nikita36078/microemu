@@ -39,7 +39,7 @@ import org.microemu.app.util.BuildVersion;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class SwingAboutDialog extends SwingDialogPanel {
 

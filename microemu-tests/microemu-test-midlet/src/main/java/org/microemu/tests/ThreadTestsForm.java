@@ -34,7 +34,7 @@ import javax.microedition.lcdui.Displayable;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class ThreadTestsForm extends BaseTestsForm {
 

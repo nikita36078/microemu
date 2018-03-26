@@ -32,13 +32,16 @@ import javax.microedition.media.control.VideoControl;
 
 /**
  * Simulation player to be able to simulate recording video on microemu.
- * 
+ *
  * @author Rainer Burgstaller
  */
 public class VideoCapturePlayer implements Player {
 	ArrayList m_listeners = new ArrayList();
+
 	private int m_state = UNREALIZED;
+
 	private VideoCaptureControl m_videoControl;
+
 	private String m_locator;
 
 	public VideoCapturePlayer(String locator) {

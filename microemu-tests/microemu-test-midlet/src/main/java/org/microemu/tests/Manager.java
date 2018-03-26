@@ -26,17 +26,16 @@
  */
 package org.microemu.tests;
 
-
 public abstract class Manager {
 
 	public static MIDletUnderTests midletInstance = null;
 
 	public static int sequence = 0;
-	
+
 	public static int sequenceNext() {
 		return (sequence++);
 	}
-	
+
 	public static int sequenceValue() {
 		return sequence;
 	}

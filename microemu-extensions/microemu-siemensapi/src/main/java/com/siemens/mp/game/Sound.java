@@ -27,11 +27,10 @@ import javax.microedition.midlet.*;
 
 /**
  *
- * @author  markus
+ * @author markus
  * @version
  */
 public class Sound {
-    public static void playTone(int freq, int time)
-    {
-    }
+	public static void playTone(int freq, int time) {
+	}
 }

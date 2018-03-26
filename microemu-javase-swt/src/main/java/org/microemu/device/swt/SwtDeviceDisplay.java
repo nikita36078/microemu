@@ -149,7 +149,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 		g.setForeground(g.getColor(new RGB(foregroundColor.getRed(), foregroundColor.getGreen(), foregroundColor
 				.getBlue())));
-		for (Enumeration s = device.getSoftButtons().elements(); s.hasMoreElements();) {
+		for (Enumeration s = device.getSoftButtons().elements(); s.hasMoreElements(); ) {
 			((SwtSoftButton) s.nextElement()).paint(g);
 		}
 
@@ -282,7 +282,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setNumColors(int)
 	 */
 	public void setNumColors(int i) {
@@ -291,7 +291,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setIsColor(boolean)
 	 */
 	public void setIsColor(boolean b) {
@@ -300,7 +300,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setBackgroundColor(java.awt.Color)
 	 */
 	public void setBackgroundColor(Color color) {
@@ -309,7 +309,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setForegroundColor(java.awt.Color)
 	 */
 	public void setForegroundColor(Color color) {
@@ -318,7 +318,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setDisplayRectangle(java.awt.Rectangle)
 	 */
 	public void setDisplayRectangle(Rectangle rectangle) {
@@ -327,7 +327,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setDisplayPaintable(java.awt.Rectangle)
 	 */
 	public void setDisplayPaintable(Rectangle rectangle) {
@@ -336,7 +336,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setMode123Image(com.barteo.emulator.device.impl.PositionedImage)
 	 */
 	public void setMode123Image(PositionedImage object) {
@@ -345,7 +345,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setModeAbcLowerImage(com.barteo.emulator.device.impl.PositionedImage)
 	 */
 	public void setModeAbcLowerImage(PositionedImage object) {
@@ -354,7 +354,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.barteo.emulator.device.impl.DeviceDisplayImpl#setModeAbcUpperImage(com.barteo.emulator.device.impl.PositionedImage)
 	 */
 	public void setModeAbcUpperImage(PositionedImage object) {
@@ -572,7 +572,7 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 	public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width,
 			int height) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

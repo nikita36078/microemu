@@ -31,7 +31,7 @@ import java.util.TimerTask;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class TimerTaskCancelRunner implements Runnable {
 
@@ -43,7 +43,7 @@ public class TimerTaskCancelRunner implements Runnable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {

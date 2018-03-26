@@ -21,7 +21,7 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu;
 
 import javax.microedition.lcdui.Command;
@@ -33,11 +33,9 @@ import javax.microedition.lcdui.Item;
 import org.microemu.device.ui.DisplayableUI;
 import org.microemu.device.ui.ItemUI;
 
-
-public interface DisplayAccess
-{
+public interface DisplayAccess {
 	void commandAction(Command c, Displayable d);
-	
+
 	void commandAction(Command c, Item i);
 
 	Display getDisplay();
@@ -55,21 +53,21 @@ public interface DisplayAccess
 	void pointerDragged(int x, int y);
 
 	void paint(Graphics g);
-	
+
 	boolean isFullScreenMode();
-	
+
 	void hideNotify();
-	   
-    ItemUI getItemUI(Item item);
-	
+
+	ItemUI getItemUI(Item item);
+
 	Displayable getCurrent();
 
 	DisplayableUI getDisplayableUI(Displayable displayable);
 
 	void setCurrent(Displayable d);
-	
+
 	void sizeChanged();
-  
+
 	void repaint();
 
 	void clean();

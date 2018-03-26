@@ -35,5 +35,5 @@ public class NotAccessible {
 	public static void doStuff() {
 		throw new RuntimeException("Should not be able to acess this class");
 	}
-	
+
 }

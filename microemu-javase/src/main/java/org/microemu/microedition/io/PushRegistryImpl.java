@@ -33,9 +33,9 @@ import javax.microedition.io.ConnectionNotFoundException;
 import org.microemu.microedition.Implementation;
 
 /**
- * 
+ *
  * Default empty implemenation
- * 
+ *
  * @author vlads
  */
 

@@ -31,20 +31,20 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 public class J2SESystemFont implements J2SEFont {
-	
+
 	private final static Graphics2D graphics = (Graphics2D) new BufferedImage(1, 1,
 			BufferedImage.TYPE_INT_ARGB).getGraphics();
 
 	private String name;
-	
+
 	private String style;
-	
+
 	private int size;
-	
+
 	private boolean antialiasing;
-	
+
 	private boolean initialized;
-	
+
 	private FontMetrics fontMetrics;
 
 	public J2SESystemFont(String name, String style, int size, boolean antialiasing) {
@@ -52,7 +52,7 @@ public class J2SESystemFont implements J2SEFont {
 		this.style = style.toLowerCase();
 		this.size = size;
 		this.antialiasing = antialiasing;
-		
+
 		this.initialized = false;
 	}
 
@@ -62,7 +62,7 @@ public class J2SESystemFont implements J2SEFont {
 			initialized = false;
 		}
 	}
-	
+
 	public int charWidth(char ch) {
 		checkInitialized();
 
@@ -98,7 +98,7 @@ public class J2SESystemFont implements J2SEFont {
 
 		return fontMetrics.getFont();
 	}
-	
+
 	private synchronized void checkInitialized() {
 		if (!initialized) {
 			int awtStyle = 0;
@@ -117,7 +117,8 @@ public class J2SESystemFont implements J2SEFont {
 			if (antialiasing) {
 				graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 			} else {
-				graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+				graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+						RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
 			}
 			fontMetrics = graphics.getFontMetrics(new Font(name, awtStyle, size));
 			initialized = true;

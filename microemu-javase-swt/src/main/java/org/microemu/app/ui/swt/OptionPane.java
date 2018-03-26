@@ -37,25 +37,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+public class OptionPane {
 
-public class OptionPane 
-{
-	
 	public static final int ERROR_MESSAGE = 1;
+
 	public static final int INFORMATION_MESSAGE = 2;
-	
-	
-	private static WindowAdapter windowListener = new WindowAdapter()
-	{
-		public void windowClosing(WindowEvent ev) 
-		{
+
+	private static WindowAdapter windowListener = new WindowAdapter() {
+		public void windowClosing(WindowEvent ev) {
 			((Dialog) ev.getSource()).hide();
 		}
 	};
-	
 
-	public static String showInputDialog(Component parentComponent, String message)
-	{
+	public static String showInputDialog(Component parentComponent, String message) {
 		final StringBuffer result = new StringBuffer();
 		final Dialog dialog = new Dialog(getFrame(parentComponent), "Input");
 		final TextField tfInput = new TextField(40);
@@ -69,38 +63,33 @@ public class OptionPane
 		panel.add(btOk);
 		Button btCancel = new Button("Cancel");
 		panel.add(btCancel);
-		dialog.add(panel, BorderLayout.SOUTH); 
+		dialog.add(panel, BorderLayout.SOUTH);
 		dialog.pack();
 		dialog.addWindowListener(windowListener);
-		
-		btOk.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent ev) 
-			{
+
+		btOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
 				result.append(tfInput.getText());
 				dialog.hide();
 			}
 		});
-		
+
 		btCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ev) 
-			{
+			public void actionPerformed(ActionEvent ev) {
 				dialog.hide();
 			}
-		}); 
+		});
 
 		dialog.show();
-				
-		if (result.length() > 0) {		
+
+		if (result.length() > 0) {
 			return result.toString();
 		}
-		
+
 		return null;
 	}
-	
-	
-	public static void showMessageDialog(Component parentComponent, String message, String title, int messageType)
-	{	
+
+	public static void showMessageDialog(Component parentComponent, String message, String title, int messageType) {
 		final Dialog dialog = new Dialog(getFrame(parentComponent), title);
 
 		dialog.setModal(true);
@@ -109,24 +98,20 @@ public class OptionPane
 		Panel panel = new Panel();
 		Button btOk = new Button("OK");
 		panel.add(btOk);
-		dialog.add(panel, BorderLayout.SOUTH); 
+		dialog.add(panel, BorderLayout.SOUTH);
 		dialog.pack();
 		dialog.addWindowListener(windowListener);
-		
-		btOk.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent ev) 
-			{
+
+		btOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ev) {
 				dialog.hide();
 			}
-		});		
+		});
 
 		dialog.show();
 	}
-	
-	
-	private static Frame getFrame(Component parentComponent) 
-	{
+
+	private static Frame getFrame(Component parentComponent) {
 		Component tmp = parentComponent;
 		while (true) {
 			if (tmp instanceof Frame) {
@@ -135,6 +120,5 @@ public class OptionPane
 			tmp = tmp.getParent();
 		}
 	}
-	
-	
+
 }

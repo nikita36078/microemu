@@ -31,7 +31,7 @@ import net.sf.jour.signature.SignatureTestCase;
 
 /**
  * @author vlads
- * 
+ *
  */
 public class MIDP20APIDeclarationsTest extends SignatureTestCase {
 

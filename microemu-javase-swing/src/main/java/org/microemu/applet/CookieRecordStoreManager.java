@@ -101,7 +101,7 @@ public class CookieRecordStoreManager implements RecordStoreManager {
 	}
 
 	public void deleteStores() {
-		for (Iterator it = cookies.keySet().iterator(); it.hasNext();) {
+		for (Iterator it = cookies.keySet().iterator(); it.hasNext(); ) {
 			try {
 				deleteRecordStore((String) it.next());
 			} catch (RecordStoreException ex) {
@@ -195,14 +195,14 @@ public class CookieRecordStoreManager implements RecordStoreManager {
 
 		return result;
 	}
-	
-	public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId) throws RecordStoreNotOpenException, RecordStoreException {
+
+	public void deleteRecord(RecordStoreImpl recordStoreImpl, int recordId)
+			throws RecordStoreNotOpenException, RecordStoreException {
 		saveRecord(recordStoreImpl, recordId);
 	}
-	
+
 	public void loadRecord(RecordStoreImpl recordStoreImpl, int recordId)
-			throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException 
-	{
+			throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException {
 		// records are loaded when record store opens
 	}
 

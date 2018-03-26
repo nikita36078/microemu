@@ -21,13 +21,11 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package javax.microedition.lcdui;
 
+public interface ItemStateListener {
 
-public interface ItemStateListener
-{
-
-  void itemStateChanged(Item item);
+	void itemStateChanged(Item item);
 
 }

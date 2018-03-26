@@ -22,7 +22,6 @@
  *  limitations.
  */
 
-
 package org.microemu.media.audio;
 
 import javax.sound.sampled.AudioFormat;
@@ -31,73 +30,61 @@ import javax.sound.sampled.SourceDataLine;
 
 import org.microemu.media.RunnableInterface;
 
-class PCToneRunnable extends PCToneHelper implements RunnableInterface
-{
+class PCToneRunnable extends PCToneHelper implements RunnableInterface {
 
-   public PCToneRunnable(
-      SourceDataLine sourceDataLine,
-      AudioInputStream audioInputStream,
-      AudioFormat audioFormat,
-      int size)
-   {
-      super(
-         sourceDataLine,
-         audioInputStream,
-         audioFormat,
-         size
-         );
-   }
-   
-   public void init() throws Exception
-   {
-      this.getSourceDataLine().open(this.getAudioFormat());
-      this.getSourceDataLine().start();
-   }
-   
-   public void close()
-   {
-      this.getSourceDataLine().drain();
-      this.getSourceDataLine().stop();
-      this.getSourceDataLine().close();
-   }
-   
-   private boolean running;
-   
-   public synchronized boolean isRunning()
-   {
-      return running;
-   }
-   
-   public synchronized void setRunning(boolean running)
-   {
-      this.running = running;
-   }
-   
-   public void run()
-   {
-      try
-      {
-         this.setRunning(true);
+	public PCToneRunnable(
+			SourceDataLine sourceDataLine,
+			AudioInputStream audioInputStream,
+			AudioFormat audioFormat,
+			int size) {
+		super(
+				sourceDataLine,
+				audioInputStream,
+				audioFormat,
+				size
+		);
+	}
 
-         this.init();
-         
-         int cnt;
-         
-         while((cnt = this.getAudioInputStream().read(playBuffer, 0, playBuffer.length)) != -1)
-         {
-            if(cnt > 0)
-            {
-               this.getSourceDataLine().write(playBuffer, 0, cnt);
-            }
-         }
-         
-         this.close();
-         
-         this.setRunning(false);
-      }
-      catch (Exception e)
-      {
-         e.printStackTrace();
-      }
-   }
+	public void init() throws Exception {
+		this.getSourceDataLine().open(this.getAudioFormat());
+		this.getSourceDataLine().start();
+	}
+
+	public void close() {
+		this.getSourceDataLine().drain();
+		this.getSourceDataLine().stop();
+		this.getSourceDataLine().close();
+	}
+
+	private boolean running;
+
+	public synchronized boolean isRunning() {
+		return running;
+	}
+
+	public synchronized void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	public void run() {
+		try {
+			this.setRunning(true);
+
+			this.init();
+
+			int cnt;
+
+			while ((cnt = this.getAudioInputStream().read(playBuffer, 0, playBuffer.length)) != -1) {
+				if (cnt > 0) {
+					this.getSourceDataLine().write(playBuffer, 0, cnt);
+				}
+			}
+
+			this.close();
+
+			this.setRunning(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

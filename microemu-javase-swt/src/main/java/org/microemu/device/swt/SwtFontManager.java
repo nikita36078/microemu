@@ -51,51 +51,51 @@ public class SwtFontManager implements FontManagerImpl {
 	private boolean antialiasing;
 
 	org.microemu.device.impl.Font getFont(Font meFont) {
-    	int key = 0;
-    	key |= meFont.getFace();
-    	key |= meFont.getStyle();
-    	key |= meFont.getSize();
-    	
-    	org.microemu.device.impl.Font result = (org.microemu.device.impl.Font) fonts.get(new Integer(key));
-	    
-	    if (result == null) {
-	    	String name = null;
-	    	if (meFont.getFace() == Font.FACE_SYSTEM) {
-	    		name = FACE_SYSTEM_NAME;
-	    	} else if (meFont.getFace() == Font.FACE_MONOSPACE) {
-	    		name = FACE_MONOSPACE_NAME;
-	    	} else if (meFont.getFace() == Font.FACE_PROPORTIONAL) {
-	    		name = FACE_PROPORTIONAL_NAME;
-	    	}
-	    	String style = ",";
-	    	if ((meFont.getStyle() & Font.STYLE_PLAIN) != 0) {
-	    		style += "plain,";
-	    	}
-	    	if ((meFont.getStyle() & Font.STYLE_BOLD) != 0) {
-	    		style += "bold,";
-	    	}
-	    	if ((meFont.getStyle() & Font.STYLE_ITALIC) != 0) {
-	    		style += "italic,";
-	    	}
-	    	if ((meFont.getStyle() & Font.STYLE_ITALIC) != 0) {
-	    		style += "underlined,";
-	    	}
-	    	style = style.substring(0, style.length() - 1);
-	    	int size = 0;
-	    	if (meFont.getSize() == Font.SIZE_SMALL) {
-	    		size = SIZE_SMALL;
-	    	} else if (meFont.getSize() == Font.SIZE_MEDIUM) {
-	    		size = SIZE_MEDIUM;
-	    	} else if (meFont.getSize() == Font.SIZE_LARGE) {
-	    		size = SIZE_LARGE;
-	    	}
-	    	result = new SwtSystemFont(name, style, size, antialiasing);
-	    	fonts.put(new Integer(key), result);
-	    }
-	    
-	    return result;
+		int key = 0;
+		key |= meFont.getFace();
+		key |= meFont.getStyle();
+		key |= meFont.getSize();
+
+		org.microemu.device.impl.Font result = (org.microemu.device.impl.Font) fonts.get(new Integer(key));
+
+		if (result == null) {
+			String name = null;
+			if (meFont.getFace() == Font.FACE_SYSTEM) {
+				name = FACE_SYSTEM_NAME;
+			} else if (meFont.getFace() == Font.FACE_MONOSPACE) {
+				name = FACE_MONOSPACE_NAME;
+			} else if (meFont.getFace() == Font.FACE_PROPORTIONAL) {
+				name = FACE_PROPORTIONAL_NAME;
+			}
+			String style = ",";
+			if ((meFont.getStyle() & Font.STYLE_PLAIN) != 0) {
+				style += "plain,";
+			}
+			if ((meFont.getStyle() & Font.STYLE_BOLD) != 0) {
+				style += "bold,";
+			}
+			if ((meFont.getStyle() & Font.STYLE_ITALIC) != 0) {
+				style += "italic,";
+			}
+			if ((meFont.getStyle() & Font.STYLE_ITALIC) != 0) {
+				style += "underlined,";
+			}
+			style = style.substring(0, style.length() - 1);
+			int size = 0;
+			if (meFont.getSize() == Font.SIZE_SMALL) {
+				size = SIZE_SMALL;
+			} else if (meFont.getSize() == Font.SIZE_MEDIUM) {
+				size = SIZE_MEDIUM;
+			} else if (meFont.getSize() == Font.SIZE_LARGE) {
+				size = SIZE_LARGE;
+			}
+			result = new SwtSystemFont(name, style, size, antialiasing);
+			fonts.put(new Integer(key), result);
+		}
+
+		return result;
 	}
-	
+
 	public void init() {
 		fonts.clear();
 	}
@@ -124,10 +124,9 @@ public class SwtFontManager implements FontManagerImpl {
 		return antialiasing;
 	}
 
-	public void setAntialiasing(boolean antialiasing) 
-	{
+	public void setAntialiasing(boolean antialiasing) {
 		this.antialiasing = antialiasing;
-		
+
 		Enumeration en = fonts.elements();
 		while (en.hasMoreElements()) {
 			SwtFont font = (SwtFont) en.nextElement();
@@ -137,7 +136,7 @@ public class SwtFontManager implements FontManagerImpl {
 
 	public void setFont(String face, String style, String size, org.microemu.device.impl.Font font) {
 		int key = 0;
-		
+
 		if (face.equalsIgnoreCase("system")) {
 			key |= Font.FACE_SYSTEM;
 		} else if (face.equalsIgnoreCase("monospace")) {
@@ -145,21 +144,21 @@ public class SwtFontManager implements FontManagerImpl {
 		} else if (face.equalsIgnoreCase("proportional")) {
 			key |= Font.FACE_PROPORTIONAL;
 		}
-		
+
 		String testStyle = style.toLowerCase();
 		if (testStyle.indexOf("plain") != -1) {
 			key |= Font.STYLE_PLAIN;
-		} 
+		}
 		if (testStyle.indexOf("bold") != -1) {
 			key |= Font.STYLE_BOLD;
-		} 
+		}
 		if (testStyle.indexOf("italic") != -1) {
 			key |= Font.STYLE_ITALIC;
-		} 
+		}
 		if (testStyle.indexOf("underlined") != -1) {
 			key |= Font.STYLE_UNDERLINED;
 		}
-		
+
 		if (size.equalsIgnoreCase("small")) {
 			key |= Font.SIZE_SMALL;
 		} else if (size.equalsIgnoreCase("medium")) {
@@ -167,15 +166,17 @@ public class SwtFontManager implements FontManagerImpl {
 		} else if (size.equalsIgnoreCase("large")) {
 			key |= Font.SIZE_LARGE;
 		}
-		
+
 		fonts.put(new Integer(key), font);
 	}
 
-	public org.microemu.device.impl.Font createSystemFont(String defName, String defStyle, int defSize, boolean antialiasing) {
+	public org.microemu.device.impl.Font createSystemFont(String defName, String defStyle, int defSize,
+			boolean antialiasing) {
 		return new SwtSystemFont(defName, defStyle, defSize, antialiasing);
 	}
 
-	public org.microemu.device.impl.Font createTrueTypeFont(URL defUrl, String defStyle, int defSize, boolean antialiasing) {
+	public org.microemu.device.impl.Font createTrueTypeFont(URL defUrl, String defStyle, int defSize,
+			boolean antialiasing) {
 		return new SwtTrueTypeFont(defUrl, defStyle, defSize, antialiasing);
 	}
 
@@ -184,5 +185,5 @@ public class SwtFontManager implements FontManagerImpl {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 }

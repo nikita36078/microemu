@@ -20,7 +20,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  Contributor(s):
  *    Andres Navarro
  */
@@ -34,11 +34,10 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.game.GameCanvas;
 
-public interface DeviceDisplay 
-{
-	
+public interface DeviceDisplay {
+
 	boolean flashBacklight(int duration);
-	
+
 	int getWidth();
 
 	int getHeight();
@@ -48,19 +47,19 @@ public interface DeviceDisplay
 	int getFullHeight();
 
 	boolean isColor();
-	
+
 	boolean isFullScreenMode();
 
-    int numAlphaLevels();
+	int numAlphaLevels();
 
-    int numColors();
+	int numColors();
 
 	void repaint(int x, int y, int width, int height);
 
 	void setScrollDown(boolean state);
 
 	void setScrollUp(boolean state);
-	
+
 	Image createImage(int width, int height, boolean withAlpha, int fillColor);
 
 	Image createImage(String name) throws IOException;
@@ -74,9 +73,9 @@ public interface DeviceDisplay
 	Image createRGBImage(int[] rgb, int width, int height, boolean processAlpha);
 
 	Image createImage(Image image, int x, int y, int width, int height, int transform);
-	
+
 	Graphics getGraphics(GameCanvas gameCanvas);
-	
+
 	void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height);
-	
+
 }

@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 package javax.obex;
 
 import java.io.IOException;
@@ -22,7 +22,7 @@ import javax.microedition.io.Connection;
  * connection to the client. The <code>acceptAndOpen()</code> method also
  * takes a <code>ServerRequestHandler</code> argument that will process the
  * requests from the client that connects to the server.
- * 
+ *
  * @version 1.0 February 11, 2002
  */
 public interface SessionNotifier extends Connection {
@@ -66,18 +66,18 @@ public interface SessionNotifier extends Connection {
 	 * instance MUST throw {@code InterruptedIOException}. This mechanism
 	 * provides an application with the means to cancel any outstanding
 	 * {@code acceptAndOpen()} method calls
-	 * 
+	 *
 	 * @param handler
 	 *            the request handler that will respond to OBEX requests
-	 * 
+	 *
 	 * @return the connection to the client
-	 * 
+	 *
 	 * @exception IOException
 	 *                if an error occurs in the transport layer
-	 * 
+	 *
 	 * @exception NullPointerException
 	 *                if <code>handler</code> is <code>null</code>
-	 * 
+	 *
 	 * @exception ServiceRegistrationException
 	 *                if the structure of the associated service record is
 	 *                invalid or if the service record could not be added
@@ -87,7 +87,7 @@ public interface SessionNotifier extends Connection {
 	 *                values described above which are fixed and cannot be
 	 *                changed. Failures to add the record to the SDDB could be
 	 *                due to insufficient disk space, database locks, etc.
-	 * 
+	 *
 	 * @exception BluetoothStateException
 	 *                if the server device could not be placed in connectable
 	 *                mode because the device user has configured the device to
@@ -133,23 +133,23 @@ public interface SessionNotifier extends Connection {
 	 * instance MUST throw {@code InterruptedIOException}. This mechanism
 	 * provides an application with the means to cancel any outstanding
 	 * {@code acceptAndOpen()} method calls
-	 * 
+	 *
 	 * @param handler
 	 *            the request handler that will respond to OBEX requests
-	 * 
+	 *
 	 * @param auth
 	 *            the <code>Authenticator</code> to use with this connection;
 	 *            if <code>null</code> then no <code>Authenticator</code>
 	 *            will be used
-	 * 
+	 *
 	 * @return the connection to the client
-	 * 
+	 *
 	 * @exception IOException
 	 *                if an error occurs in the transport layer
-	 * 
+	 *
 	 * @exception NullPointerException
 	 *                if <code>handler</code> is <code>null</code>
-	 * 
+	 *
 	 * @exception ServiceRegistrationException
 	 *                if the structure of the associated service record is
 	 *                invalid or if the service record could not be added
@@ -159,7 +159,7 @@ public interface SessionNotifier extends Connection {
 	 *                values described above which are fixed and cannot be
 	 *                changed. Failures to add the record to the SDDB could be
 	 *                due to insufficient disk space, database locks, etc.
-	 * 
+	 *
 	 * @exception BluetoothStateException
 	 *                if the server device could not be placed in connectable
 	 *                mode because the device user has configured the device to

@@ -2,7 +2,7 @@
  * MicroEmulator 
  * Copyright (C) 2001-2007 Bartek Teodorczyk <barteo@barteo.net>
  * Copyright (C) 2007 Rushabh Doshi <radoshi@cs.stanford.edu> Pelago, Inc
- * 
+ *
  *  It is licensed under the following two licenses as alternatives:
  *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
  *    2. Apache License (the "AL") Version 2.0
@@ -21,11 +21,11 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- * 
+ *
  * Contributor(s): 
  *   3GLab
  *   Andres Navarro
- *   
+ *
  *  @version $Id$
  */
 package javax.microedition.lcdui;
@@ -98,7 +98,7 @@ public class Display {
 
 	/**
 	 * @author radoshi
-	 * 
+	 *
 	 */
 	private final class TickerPaintTask implements Runnable {
 
@@ -124,9 +124,9 @@ public class Display {
 	 * processing queue. Note that this may be a bit buggy, since events are
 	 * supposed to propogate to the head of the queue and not get tied behind
 	 * other repaints or serial calls in the queue.
-	 * 
+	 *
 	 * @author radoshi
-	 * 
+	 *
 	 */
 	private final class KeyEvent extends EventDispatcher.Event {
 
@@ -168,7 +168,7 @@ public class Display {
 			}
 		}
 	}
-	
+
 	private final class HideNotifyEvent extends EventDispatcher.RunnableEvent {
 
 		public HideNotifyEvent(EventDispatcher eventDispatcher, Runnable runnable) {
@@ -206,9 +206,9 @@ public class Display {
 				eventDispatcher.put(new Runnable() {
 
 					public void run() {
-						listener.commandAction(c, d);			
+						listener.commandAction(c, d);
 					}
-					
+
 				});
 			} else {
 				// item contained command
@@ -229,7 +229,7 @@ public class Display {
 
 			});
 		}
-		
+
 		public Display getDisplay() {
 			return display;
 		}
@@ -290,12 +290,12 @@ public class Display {
 		public void pointerPressed(final int x, final int y) {
 			if (current != null) {
 				eventDispatcher.put(eventDispatcher.new PointerEvent(new Runnable() {
-					
+
 					public void run() {
 						current.pointerPressed(x, y);
-						
+
 					}
-					
+
 				}, EventDispatcher.PointerEvent.POINTER_PRESSED, x, y));
 			}
 		}
@@ -303,12 +303,12 @@ public class Display {
 		public void pointerReleased(final int x, final int y) {
 			if (current != null) {
 				eventDispatcher.put(eventDispatcher.new PointerEvent(new Runnable() {
-					
+
 					public void run() {
 						current.pointerReleased(x, y);
-						
+
 					}
-					
+
 				}, EventDispatcher.PointerEvent.POINTER_RELEASED, x, y));
 			}
 		}
@@ -316,12 +316,12 @@ public class Display {
 		public void pointerDragged(final int x, final int y) {
 			if (current != null) {
 				eventDispatcher.put(eventDispatcher.new PointerEvent(new Runnable() {
-					
+
 					public void run() {
 						current.pointerDragged(x, y);
-						
+
 					}
-					
+
 				}, EventDispatcher.PointerEvent.POINTER_DRAGGED, x, y));
 			}
 		}
@@ -346,9 +346,9 @@ public class Display {
 			return displayable.ui;
 		}
 
-        public ItemUI getItemUI(Item item) {
-        	return item.ui;
-        }
+		public ItemUI getItemUI(Item item) {
+			return item.ui;
+		}
 
 		public boolean isFullScreenMode() {
 			Displayable current = getCurrent();
@@ -361,22 +361,22 @@ public class Display {
 		}
 
 		public void hideNotify() {
-            Displayable current = getCurrent();
-            if (current != null) {
-                current.hideNotify();
-            }
+			Displayable current = getCurrent();
+			if (current != null) {
+				current.hideNotify();
+			}
 		}
 
-        public void setCurrent(Displayable d) {
+		public void setCurrent(Displayable d) {
 			getDisplay().setCurrent(d);
 		}
 
 		public void sizeChanged() {
 			if (current != null) {
-	    		if (current instanceof GameCanvas) {
-	    			current.width = -1;
-	    			current.height = -1;
-	    		}
+				if (current instanceof GameCanvas) {
+					current.width = -1;
+					current.height = -1;
+				}
 				current.sizeChanged(Display.this);
 			}
 		}
@@ -391,13 +391,13 @@ public class Display {
 		public void clean() {
 			if (current != null) {
 				eventDispatcher.put(new HideNotifyEvent(eventDispatcher, new Runnable() {
-					
+
 					private Displayable displayable = current;
 
 					public void run() {
 						displayable.hideNotify(Display.this);
 					}
-					
+
 				}));
 			}
 			eventDispatcher.cancel();
@@ -414,11 +414,11 @@ public class Display {
 		}
 
 		public void run() {
-            if (alert.isShown()) {
-            	MIDletBridge.getMIDletAccess().getDisplayAccess().commandAction(
-            			(Command) alert.getCommands().get(0), alert);
-            }
-        }
+			if (alert.isShown()) {
+				MIDletBridge.getMIDletAccess().getDisplayAccess().commandAction(
+						(Command) alert.getCommands().get(0), alert);
+			}
+		}
 	}
 
 	private final Timer timer = new Timer();
@@ -426,9 +426,9 @@ public class Display {
 	/**
 	 * Wrap any runnable as a timertask so that when the timer gets fired, the
 	 * runnable gets run
-	 * 
+	 *
 	 * @author radoshi
-	 * 
+	 *
 	 */
 	private final class RunnableWrapper extends TimerTask {
 
@@ -528,13 +528,13 @@ public class Display {
 				public void run() {
 					if (current != null) {
 						eventDispatcher.put(new HideNotifyEvent(eventDispatcher, new Runnable() {
-							
+
 							private Displayable displayable = current;
 
 							public void run() {
 								displayable.hideNotify(Display.this);
 							}
-							
+
 						}));
 					}
 
@@ -568,7 +568,7 @@ public class Display {
 					setScrollDown(false);
 					nextDisplayable.repaint();
 				}
-												
+
 			}));
 		}
 	}

@@ -34,8 +34,8 @@ public interface FileSystemRegistryDelegate {
 
 	public boolean addFileSystemListener(FileSystemListener listener);
 
-    public boolean removeFileSystemListener(FileSystemListener listener);
+	public boolean removeFileSystemListener(FileSystemListener listener);
 
-    public Enumeration listRoots();
-   
+	public Enumeration listRoots();
+
 }

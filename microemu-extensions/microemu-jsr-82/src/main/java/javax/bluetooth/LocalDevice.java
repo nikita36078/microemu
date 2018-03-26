@@ -5,7 +5,7 @@
  *
  *
  *  @version $Id$
- */ 
+ */
 
 package javax.bluetooth;
 
@@ -41,7 +41,7 @@ public class LocalDevice {
 	 * device. Multiple calls to this method will return the same
 	 * object. This method will never return <code>null</code>.
 	 *
-	 * @return  an object that represents the local Bluetooth device
+	 * @return an object that represents the local Bluetooth device
 	 *
 	 * @exception BluetoothStateException if the Bluetooth system could not be
 	 * initialized
@@ -71,7 +71,7 @@ public class LocalDevice {
 	 * name could not be retrieved
 	 */
 	public String getFriendlyName() {
-	    return null;
+		return null;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class LocalDevice {
 	 *
 	 */
 	public DeviceClass getDeviceClass() {
-	    return null;
+		return null;
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class LocalDevice {
 	 *
 	 */
 	public boolean setDiscoverable(int mode) throws BluetoothStateException {
-		if ((mode != DiscoveryAgent.GIAC) && (mode != DiscoveryAgent.LIAC) && (mode != DiscoveryAgent.NOT_DISCOVERABLE) 
+		if ((mode != DiscoveryAgent.GIAC) && (mode != DiscoveryAgent.LIAC) && (mode != DiscoveryAgent.NOT_DISCOVERABLE)
 				&& (mode < 0x9E8B00 || mode > 0x9E8B3F)) {
 			throw new IllegalArgumentException("Invalid discoverable mode");
 		}
@@ -147,7 +147,7 @@ public class LocalDevice {
 
 	/**
 	 * Retrieves the power state of the local Bluetooth device.
-	 * 
+	 *
 	 * @since 1.1
 	 * @return <code>true</code> if the local Bluetooth device is powered on,
 	 *         <code>false</code> if the local Bluetooth device is off.
@@ -209,14 +209,14 @@ public class LocalDevice {
 	 * device if it is already connected to another device.  Valid values are
 	 * either "true" or "false".</TD></TR>
 	 * </TABLE>
-     * <p>
+	 * <p>
 	 * BlueCove specific properties.
 	 * <TABLE>
 	 * <TR><TH>Property Name</TH><TH>Description</TH></TR>
 	 * <TR><TD>bluecove</TD><TD>The version of BlueCove implementation</TD></TR>
 	 * <TR><TD>bluecove.stack</TD><TD>The Bluetooth Stack: "winsock", "widcomm" or "bluesoleil"</TD></TR>
 	 * </TABLE>
-     *
+	 *
 	 * @param property the property to retrieve as defined in this class.
 	 *
 	 * @return the value of the property specified; <code>null</code> if
@@ -234,7 +234,7 @@ public class LocalDevice {
 	 * @return the Bluetooth address of the local device
 	 */
 	public String getBluetoothAddress() {
-	    return null;
+		return null;
 	}
 
 	/**
@@ -390,7 +390,7 @@ public class LocalDevice {
 	 * @exception ServiceRegistrationException if the local SDDB could
 	 * not be updated successfully due to
 	 * insufficient disk space, database locks, etc.
-	 * 
+	 *
 	 */
 	public void updateRecord(ServiceRecord srvRecord) throws ServiceRegistrationException {
 		if (srvRecord == null) {

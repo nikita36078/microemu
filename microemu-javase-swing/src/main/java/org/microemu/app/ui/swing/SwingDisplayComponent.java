@@ -20,7 +20,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
+ *
  *  @version $Id$
  */
 
@@ -313,7 +313,8 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 			synchronized (this) {
 				if (graphicsSurface == null) {
 					graphicsSurface = new J2SEGraphicsSurface(
-							device.getDeviceDisplay().getFullWidth(), device.getDeviceDisplay().getFullHeight(), false, 0x000000);
+							device.getDeviceDisplay().getFullWidth(), device.getDeviceDisplay().getFullHeight(), false,
+							0x000000);
 				}
 
 				synchronized (graphicsSurface) {
@@ -324,12 +325,13 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 				}
 			}
 
-            if (deviceDisplay.isFullScreenMode()) {
-                fireDisplayRepaint(
-                        graphicsSurface, x, y, width, height);
+			if (deviceDisplay.isFullScreenMode()) {
+				fireDisplayRepaint(
+						graphicsSurface, x, y, width, height);
 			} else {
-                fireDisplayRepaint(
-                        graphicsSurface, 0, 0, graphicsSurface.getImage().getWidth(), graphicsSurface.getImage().getHeight());
+				fireDisplayRepaint(
+						graphicsSurface, 0, 0, graphicsSurface.getImage().getWidth(),
+						graphicsSurface.getImage().getHeight());
 			}
 		}
 	}
@@ -338,7 +340,7 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 		if (displayRepaintListener != null) {
 			displayRepaintListener.repaintInvoked(graphicsSurface);
 		}
-		
+
 		repaint(x, y, width, height);
 	}
 
@@ -357,7 +359,7 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 
 	public J2SEGraphicsSurface getGraphicsSurface() {
 		return graphicsSurface;
-}
+	}
 
 	public MouseAdapter getMouseListener() {
 		return mouseListener;
@@ -370,10 +372,10 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 	public MouseWheelListener getMouseWheelListener() {
 		return mouseWheelListener;
 	}
-	
+
 	private J2SEButton getButtonByButtonName(ButtonName buttonName) {
 		J2SEButton result;
-		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements();) {
+		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements(); ) {
 			result = (J2SEButton) e.nextElement();
 			if (result.getFunctionalName() == buttonName) {
 				return result;

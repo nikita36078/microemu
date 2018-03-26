@@ -40,9 +40,9 @@ public class BaseGCFTestCase extends TestCase {
 	/**
 	 * This is the server where I keep HTTPS and Socket test response server.
 	 * If change add server to test-servers.keystore if it self-signed certificate.
-	 * 
+	 *
 	 * War sources here https://pyx4j.com/svn/pyx4me/pyx4me-host/pyx4me-test-server
-	 * 
+	 *
 	 */
 	public static final String TEST_HOST = findNoProxyTestHost();
 
@@ -69,6 +69,6 @@ public class BaseGCFTestCase extends TestCase {
 	 * Trust our self-signed test-servers
 	 */
 	protected void setupSSLContext() {
-	    SSLContextSetup.setUp();
+		SSLContextSetup.setUp();
 	}
 }

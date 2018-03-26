@@ -20,8 +20,8 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- *  
- *  @version $Id$ 
+ *
+ *  @version $Id$
  */
 
 package org.microemu.app.ui.swing;
@@ -283,11 +283,11 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 
 		addMouseListener(mouseListener);
 		addMouseMotionListener(mouseMotionListener);
-		
- 		//Input methods support begin
- 		enableInputMethods(true);
- 		addInputMethodListener(this);
- 		//End
+
+		//Input methods support begin
+		enableInputMethods(true);
+		addInputMethodListener(this);
+		//End
 	}
 
 	public DisplayComponent getDisplayComponent() {
@@ -314,67 +314,68 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 		// showMouseCoordinates = !showMouseCoordinates;
 		dc.switchShowMouseCoordinates();
 	}
-	
- 	//Input method support begin
-	
- 	private static final AttributedCharacterIterator EMPTY_TEXT = new AttributedString("").getIterator();
- 	
- 	public void caretPositionChanged(InputMethodEvent event) {
- 		repaint();
- 	}
- 	
- 	public void inputMethodTextChanged(InputMethodEvent event) {
- 		StringBuffer committedText = new StringBuffer();
- 		AttributedCharacterIterator text = event.getText();
- 		Device device = DeviceFactory.getDevice();
- 		J2SEInputMethod inputMethod = (J2SEInputMethod)device.getInputMethod();
- 		if (text != null) {
- 			int toCopy = event.getCommittedCharacterCount();
- 			char c = text.first();
- 			while (toCopy-- > 0) {
- 				committedText.append(c);
- 				c = text.next();
- 			}
- 			if (committedText.length() > 0) {
- 				inputMethod.clipboardPaste(committedText.toString());
- 			}
- 		}
- 		repaint();
- 	}
- 	
- 	public InputMethodRequests getInputMethodRequests() {
- 		return this;
- 	}
- 	
- 	public int getCommittedTextLength() {
- 		return 0;
- 	}
- 	
- 	public int getInsertPositionOffset() {
- 		return getCommittedTextLength();
- 	}
- 	
- 	public AttributedCharacterIterator getCommittedText(int beginIndex, int endIndex, AttributedCharacterIterator.Attribute[] attributes) {
- 		return null;
- 	}
- 	
- 	public java.awt.Rectangle getTextLocation(TextHitInfo offset) {
- 		return null;
- 	}
- 	
- 	public TextHitInfo getLocationOffset(int x, int y) {
- 		return null;
- 	}
- 	
- 	public AttributedCharacterIterator getSelectedText(AttributedCharacterIterator.Attribute[] attributes) {
- 		return EMPTY_TEXT;
- 	}
- 	
- 	public AttributedCharacterIterator cancelLatestCommittedText(AttributedCharacterIterator.Attribute[] attributes) {
- 		return null;
- 	}
- 	
- 	//Input method support end
+
+	//Input method support begin
+
+	private static final AttributedCharacterIterator EMPTY_TEXT = new AttributedString("").getIterator();
+
+	public void caretPositionChanged(InputMethodEvent event) {
+		repaint();
+	}
+
+	public void inputMethodTextChanged(InputMethodEvent event) {
+		StringBuffer committedText = new StringBuffer();
+		AttributedCharacterIterator text = event.getText();
+		Device device = DeviceFactory.getDevice();
+		J2SEInputMethod inputMethod = (J2SEInputMethod) device.getInputMethod();
+		if (text != null) {
+			int toCopy = event.getCommittedCharacterCount();
+			char c = text.first();
+			while (toCopy-- > 0) {
+				committedText.append(c);
+				c = text.next();
+			}
+			if (committedText.length() > 0) {
+				inputMethod.clipboardPaste(committedText.toString());
+			}
+		}
+		repaint();
+	}
+
+	public InputMethodRequests getInputMethodRequests() {
+		return this;
+	}
+
+	public int getCommittedTextLength() {
+		return 0;
+	}
+
+	public int getInsertPositionOffset() {
+		return getCommittedTextLength();
+	}
+
+	public AttributedCharacterIterator getCommittedText(int beginIndex, int endIndex,
+			AttributedCharacterIterator.Attribute[] attributes) {
+		return null;
+	}
+
+	public java.awt.Rectangle getTextLocation(TextHitInfo offset) {
+		return null;
+	}
+
+	public TextHitInfo getLocationOffset(int x, int y) {
+		return null;
+	}
+
+	public AttributedCharacterIterator getSelectedText(AttributedCharacterIterator.Attribute[] attributes) {
+		return EMPTY_TEXT;
+	}
+
+	public AttributedCharacterIterator cancelLatestCommittedText(AttributedCharacterIterator.Attribute[] attributes) {
+		return null;
+	}
+
+	//Input method support end
 
 	public void keyTyped(KeyEvent ev) {
 		if (MIDletBridge.getCurrentMIDlet() == null) {

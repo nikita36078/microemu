@@ -39,11 +39,11 @@ public class NewJSRFacade {
 			System.out.println("Working on " + data);
 			return data;
 		}
-		
+
 	}
-	
+
 	public static NewJSRInterface createWorker() {
 		return new WorkerImpl();
 	}
-	
+
 }

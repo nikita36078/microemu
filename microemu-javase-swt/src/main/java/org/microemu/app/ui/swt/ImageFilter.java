@@ -21,15 +21,13 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu.app.ui.swt;
 
 import org.eclipse.swt.graphics.RGB;
 
+public interface ImageFilter {
 
-public interface ImageFilter 
-{
+	RGB filterRGB(int x, int y, RGB rgb);
 
-	RGB filterRGB (int x, int y, RGB rgb);
-	
 }

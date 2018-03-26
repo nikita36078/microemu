@@ -96,7 +96,7 @@ public class J2SESoftButton extends J2SEButton implements SoftButton {
 			}
 		}
 
-		for (Enumeration e = commands.elements(); e.hasMoreElements();) {
+		for (Enumeration e = commands.elements(); e.hasMoreElements(); ) {
 			String tmp = (String) e.nextElement();
 			try {
 				addCommandType(Command.class.getField(tmp).getInt(null));
@@ -125,7 +125,7 @@ public class J2SESoftButton extends J2SEButton implements SoftButton {
 
 	/**
 	 * Sets the command attribute of the SoftButton object
-	 * 
+	 *
 	 * @param cmd
 	 *            The new command value
 	 */
@@ -137,7 +137,7 @@ public class J2SESoftButton extends J2SEButton implements SoftButton {
 
 	/**
 	 * Gets the command attribute of the SoftButton object
-	 * 
+	 *
 	 * @return The command value
 	 */
 	public Command getCommand() {
@@ -214,7 +214,7 @@ public class J2SESoftButton extends J2SEButton implements SoftButton {
 	}
 
 	public boolean preferredCommandType(Command cmd) {
-		for (Enumeration ct = commandTypes.elements(); ct.hasMoreElements();) {
+		for (Enumeration ct = commandTypes.elements(); ct.hasMoreElements(); ) {
 			if (cmd.getCommandType() == ((Integer) ct.nextElement()).intValue()) {
 				return true;
 			}

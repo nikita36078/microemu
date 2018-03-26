@@ -6,7 +6,7 @@ import javax.microedition.lcdui.Image;
 import org.microemu.device.ui.CommandUI;
 
 public class CommandImplUI implements CommandUI {
-	
+
 	private Command command;
 
 	public CommandImplUI(Command command) {

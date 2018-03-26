@@ -45,30 +45,41 @@ import org.microemu.device.j2se.J2SEGraphicsSurface;
 /**
  * Simulation video capture control that simulates capturing 
  * video within microemu
- * 
+ *
  * @author Rainer Burgstaller
  */
 public class VideoCaptureControl implements VideoControl {
 
 	private int m_displayWidth = 160;
+
 	private int m_displayHeight = 100;
+
 	private int m_displayX = 0;
+
 	private int m_displayY = 0;
+
 	private int m_sourceWidth = 160;
+
 	private int m_sourceHeight = 100;
+
 	private Canvas m_canvas;
+
 	private Player m_player;
+
 	private boolean m_visible = false;
+
 	private boolean m_started = false;
+
 	private int m_frameCounter = 0;
+
 	private RepaintThread m_repaintThread;
-	
+
 	private DisplayRepaintListener m_displayListener = new DisplayRepaintListener() {
 
 		public void repaintInvoked(Object repaintObject) {
 			Graphics g = new J2SEDisplayGraphics((J2SEGraphicsSurface) repaintObject);
-			
-			m_frameCounter+=4;
+
+			m_frameCounter += 4;
 			// stop early so that we can still see the white text
 			if (m_frameCounter > 0xD0) {
 				m_frameCounter = 0;
@@ -77,14 +88,14 @@ public class VideoCaptureControl implements VideoControl {
 			int y = m_displayY - g.getTranslateY();
 			doPaint(g, x, y, m_displayWidth, m_displayHeight);
 		}
-		
+
 	};
-	
+
 	/**
 	 * creates a capture control.
 	 * @param player the player object
 	 * @param locator the locator that was used when creating the player.
-	 * 
+	 *
 	 */
 	public VideoCaptureControl(Player player, String locator) {
 		m_player = player;
@@ -127,14 +138,14 @@ public class VideoCaptureControl implements VideoControl {
 		BufferedImage image = new BufferedImage(m_sourceWidth, m_sourceHeight, BufferedImage.TYPE_INT_ARGB);
 		Image captureImage = Image.createImage(m_sourceWidth, m_sourceHeight);
 		// paint the simulated video frame onto a bitmap
-		doPaint(captureImage.getGraphics(), 0, 0, m_sourceWidth, 
+		doPaint(captureImage.getGraphics(), 0, 0, m_sourceWidth,
 				m_sourceHeight);
 		int[] argb = new int[m_sourceWidth * m_sourceHeight];
 		// now read the RGB array
-		captureImage.getRGB(argb, 0, m_sourceWidth, 0, 0, m_sourceWidth, 
+		captureImage.getRGB(argb, 0, m_sourceWidth, 0, 0, m_sourceWidth,
 				m_sourceHeight);
 		// paint it onto the BufferedImage which we need to convert to JPEG
-		image.setRGB(0, 0, m_sourceWidth, m_sourceHeight, argb, 0, 
+		image.setRGB(0, 0, m_sourceWidth, m_sourceHeight, argb, 0,
 				m_sourceWidth);
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(argb.length * 4);
 		try {
@@ -146,9 +157,9 @@ public class VideoCaptureControl implements VideoControl {
 			e.printStackTrace();
 		} finally {
 			try {
-			    if (bos != null) {
-			    	bos.close();
-			    }
+				if (bos != null) {
+					bos.close();
+				}
 			} catch (Throwable e) {
 				// ignore
 			}
@@ -270,15 +281,17 @@ public class VideoCaptureControl implements VideoControl {
 		g.drawLine(x, y, x + width, y + height);
 		g.drawLine(x + width, y, x, y + height);
 		g.setColor(0xFFFFFF);
-		g.drawString("Video:" + m_displayX + "," + m_displayY + "," + m_displayWidth + "," + m_displayHeight, x, y, Graphics.LEFT | Graphics.TOP);
+		g.drawString("Video:" + m_displayX + "," + m_displayY + "," + m_displayWidth + "," + m_displayHeight, x, y,
+				Graphics.LEFT | Graphics.TOP);
 	}
 
 	private class RepaintThread extends Thread {
 		private volatile boolean m_stopped = false;
-		
+
 		public void stopRepaintThread() {
 			m_stopped = true;
 		}
+
 		public void run() {
 			while (!m_stopped) {
 				m_canvas.repaint(m_displayX, m_displayY, m_displayWidth, m_displayHeight);

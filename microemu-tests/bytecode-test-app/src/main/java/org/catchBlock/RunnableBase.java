@@ -33,7 +33,7 @@ package org.catchBlock;
 public abstract class RunnableBase implements Runnable {
 
 	public boolean verbose = false;
-	
+
 	public RunnableBase() {
 		if (System.getProperty("test.verbose") != null) {
 			verbose = true;

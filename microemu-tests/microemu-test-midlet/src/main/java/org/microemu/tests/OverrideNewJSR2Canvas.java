@@ -32,38 +32,38 @@ import javax.microedition.lcdui.Graphics;
  * @author vlads
  *
  */
-public class OverrideNewJSR2Canvas  extends BaseTestsCanvas {
+public class OverrideNewJSR2Canvas extends BaseTestsCanvas {
 
-		public static final boolean enabled = false;
-		
-		public OverrideNewJSR2Canvas() {
-			super("OverrideNewJSR2");
+	public static final boolean enabled = false;
+
+	public OverrideNewJSR2Canvas() {
+		super("OverrideNewJSR2");
+	}
+
+	/* (non-Javadoc)
+	 * @see javax.microedition.lcdui.Canvas#paint(javax.microedition.lcdui.Graphics)
+	 */
+	protected void paint(Graphics g) {
+		int width = getWidth();
+		int height = getHeight();
+
+		g.setGrayScale(255);
+		g.fillRect(0, 0, width, height);
+
+		g.setColor(0);
+		int line = 0;
+		writeln(g, line++, "Override New JSR2");
+
+		String result;
+
+		try {
+			result = new OverrideNewJSR2Client().doJSR2Stuff("Can use new classes");
+			writeln(g, line++, "success");
+		} catch (Throwable e) {
+			writeln(g, line++, "failure");
+			result = e.toString();
 		}
 
-		/* (non-Javadoc)
-		 * @see javax.microedition.lcdui.Canvas#paint(javax.microedition.lcdui.Graphics)
-		 */
-		protected void paint(Graphics g) {
-			int width = getWidth();
-	        int height = getHeight();
-
-			g.setGrayScale(255);
-			g.fillRect(0, 0, width, height);
-			
-			g.setColor(0);
-			int line = 0;
-			writeln(g, line++, "Override New JSR2");
-			
-			String result;
-			
-			try {
-				result = new OverrideNewJSR2Client().doJSR2Stuff("Can use new classes");
-				writeln(g, line++, "success");
-			} catch (Throwable e) {
-				writeln(g, line++, "failure");
-				result = e.toString();
-			}
-			
-			writeln(g, line++, result);
-		}
+		writeln(g, line++, result);
+	}
 }

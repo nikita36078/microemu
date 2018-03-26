@@ -35,44 +35,44 @@ import javax.microedition.lcdui.Graphics;
 public class KeyCanvasPanel extends BaseExamplesCanvas {
 
 	static Hashtable actionNames = new Hashtable();
-	
+
 	static Hashtable shortNames = new Hashtable();
-	
+
 	int lastKeyCode = 0;
 
 	int sameKeyCount = 0;
-	
+
 	int lastKeyRepeatedKeyCode = 0;
-	
+
 	int keyRepeatedCount = 0;
-	
+
 	long keyRepeatedTime = 0;
-	
+
 	long keyRepeatedInitialDellay = 0;
-	
+
 	String lastKeyEvent = null;
-	
+
 	Vector keysHistory = new Vector();
-	
+
 	Vector keysPressed = new Vector();
-	
+
 	boolean debug = true;
-	
-	static { 		
+
+	static {
 		initActionNames();
 	}
-	
+
 	public KeyCanvasPanel() {
 		super("KeyCanvas");
 	}
 
 	protected void paint(Graphics g) {
 		int width = getWidth();
-        int height = getHeight();
+		int height = getHeight();
 
 		g.setGrayScale(255);
 		g.fillRect(0, 0, width, height);
-		
+
 		g.setColor(0);
 		int line = 0;
 		writeln(g, line++, "Key Canvas - Press any key!");
@@ -80,13 +80,13 @@ public class KeyCanvasPanel extends BaseExamplesCanvas {
 			writeln(g, line++, "Back - same key 3 times");
 		}
 		if (sameKeyCount > 0) {
-			writeln(g, line++, "KeyCode: " + lastKeyCode); 
-			writeln(g, line++, "As char: " +  (char) lastKeyCode);
+			writeln(g, line++, "KeyCode: " + lastKeyCode);
+			writeln(g, line++, "As char: " + (char) lastKeyCode);
 			writeln(g, line++, "GameAction: " + gameActionName(getGameAction(lastKeyCode)));
 			writeln(g, line++, "KeyName: " + getKeyName(lastKeyCode));
 			StringBuffer pressed = new StringBuffer();
-			for(Enumeration en = keysPressed.elements(); en.hasMoreElements(); ) {
-			    pressed.append(en.nextElement());
+			for (Enumeration en = keysPressed.elements(); en.hasMoreElements(); ) {
+				pressed.append(en.nextElement());
 			}
 			writeln(g, line++, "Pressed: " + pressed.toString());
 			writeln(g, line++, "Event: " + lastKeyEvent);
@@ -100,7 +100,7 @@ public class KeyCanvasPanel extends BaseExamplesCanvas {
 			}
 		}
 	}
-	
+
 	public String getKeyName(int keyCode) {
 		try {
 			return super.getKeyName(keyCode);
@@ -108,10 +108,10 @@ public class KeyCanvasPanel extends BaseExamplesCanvas {
 			return "not valid key code";
 		}
 	}
-	
+
 	protected void keyPressed(int keyCode) {
 		if (lastKeyCode == keyCode) {
-			sameKeyCount ++;
+			sameKeyCount++;
 			if ((fullScreenMode) && (sameKeyCount >= 3)) {
 				setFullScreenMode(false);
 				SimpleDemoMIDlet.showMenu();
@@ -125,76 +125,75 @@ public class KeyCanvasPanel extends BaseExamplesCanvas {
 		lastKeyEvent = "keyPressed";
 		keysPressed.addElement(shortName(keyCode));
 		if (debug) {
-		    System.out.println(lastKeyEvent + " " + keyCode);
+			System.out.println(lastKeyEvent + " " + keyCode);
 		}
 		repaint();
 	}
-	
+
 	public void keyReleased(int keyCode) {
 		lastKeyEvent = "keyReleased";
 		lastKeyCode = keyCode;
 		if (debug) {
-            System.out.println(lastKeyEvent + " " + keyCode);
-        }
+			System.out.println(lastKeyEvent + " " + keyCode);
+		}
 		keysPressed.removeElement(shortName(keyCode));
 		keyRepeatedCount = 1;
-        keyRepeatedTime = 0;
-        keyRepeatedInitialDellay = 0;
+		keyRepeatedTime = 0;
+		keyRepeatedInitialDellay = 0;
 		repaint();
 	}
 
 	public void keyRepeated(int keyCode) {
-	    long keyRepeatedDellay = 0;
+		long keyRepeatedDellay = 0;
 		if (lastKeyRepeatedKeyCode == keyCode) {
-			keyRepeatedCount ++;
+			keyRepeatedCount++;
 		} else {
 			keyRepeatedCount = 1;
 		}
-		keyRepeatedDellay = System.currentTimeMillis() - keyRepeatedTime; 
-        if (keyRepeatedInitialDellay == 0) {
-            keyRepeatedInitialDellay = keyRepeatedDellay;
-        }
-        keyRepeatedTime = System.currentTimeMillis();
-        
+		keyRepeatedDellay = System.currentTimeMillis() - keyRepeatedTime;
+		if (keyRepeatedInitialDellay == 0) {
+			keyRepeatedInitialDellay = keyRepeatedDellay;
+		}
+		keyRepeatedTime = System.currentTimeMillis();
+
 		lastKeyEvent = "keyRepeated (" + Utils.d00(keyRepeatedCount) + ")";
 		if (keyRepeatedDellay != 0) {
-		    lastKeyEvent += " " + keyRepeatedInitialDellay + "/" + keyRepeatedDellay + " ms";
+			lastKeyEvent += " " + keyRepeatedInitialDellay + "/" + keyRepeatedDellay + " ms";
 		}
 		lastKeyCode = keyCode;
 		lastKeyRepeatedKeyCode = keyCode;
 		if (debug) {
-            System.out.println(lastKeyEvent + " " + keyCode);
-        }
+			System.out.println(lastKeyEvent + " " + keyCode);
+		}
 		repaint();
 	}
 
 	private void logEvent(String e) {
 		StringBuffer sb = new StringBuffer();
-        sb.append(Utils.when());
-        sb.append("   ").append(e);
+		sb.append(Utils.when());
+		sb.append("   ").append(e);
 		keysHistory.addElement(sb.toString());
 	}
 
-	
 	static String gameActionName(int gameAction) {
-		return (String)actionNames.get(new Integer(gameAction));
+		return (String) actionNames.get(new Integer(gameAction));
 	}
 
 	String shortName(int keyCode) {
-	    int gameAction = getGameAction(keyCode);
-        String n = (String)shortNames.get(new Integer(gameAction));
-        if (n != null) {
-            return n;
-        } else {
-            return ""+(char) keyCode;
-        }
-    }
-	
+		int gameAction = getGameAction(keyCode);
+		String n = (String) shortNames.get(new Integer(gameAction));
+		if (n != null) {
+			return n;
+		} else {
+			return "" + (char) keyCode;
+		}
+	}
+
 	private static void actionName(int gameAction, String name, String shortName) {
 		actionNames.put(new Integer(gameAction), name);
 		shortNames.put(new Integer(gameAction), shortName);
 	}
-	
+
 	private static void initActionNames() {
 		actionName(UP, "UP", "u");
 		actionName(DOWN, "DOWN", "d");

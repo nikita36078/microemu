@@ -29,22 +29,22 @@ package org.microemu.tests;
 import javax.microedition.lcdui.Graphics;
 
 public class ErrorHandlingCanvas extends BaseTestsCanvas {
-	
+
 	boolean makeErrorInPaint = false;
-	
+
 	int lastKeyCode = 0;
-	
+
 	public ErrorHandlingCanvas() {
 		super("Canvas with Errors");
 	}
 
 	protected void paint(Graphics g) {
 		int width = getWidth();
-        int height = getHeight();
+		int height = getHeight();
 
 		g.setGrayScale(255);
 		g.fillRect(0, 0, width, height);
-		
+
 		g.setColor(0);
 		int line = 0;
 		writeln(g, line++, "Make Error Canvas");
@@ -61,9 +61,9 @@ public class ErrorHandlingCanvas extends BaseTestsCanvas {
 		if (lastKeyCode != 0) {
 			writeln(g, line++, "KeyCode: " + lastKeyCode);
 		}
-		
+
 	}
-	
+
 	protected void keyPressed(int keyCode) {
 		switch (keyCode) {
 		case '0':

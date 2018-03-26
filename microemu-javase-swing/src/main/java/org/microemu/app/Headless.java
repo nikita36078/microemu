@@ -73,9 +73,9 @@ public class Headless {
 		}
 
 		public InputStream getResourceAsStream(Class origClass, String name) {
-            return MIDletBridge.getCurrentMIDlet().getClass().getResourceAsStream(name);
+			return MIDletBridge.getCurrentMIDlet().getClass().getResourceAsStream(name);
 		}
-		
+
 		public boolean platformRequest(final String URL) {
 			new Thread(new Runnable() {
 				public void run() {

@@ -26,5 +26,5 @@ package com.siemens.mp.media.protocol;
 import javax.microedition.midlet.*;
 
 public class DataSource {
-    
+
 }

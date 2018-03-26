@@ -42,40 +42,37 @@ public class FCViewMIDlet extends MIDlet {
 	static FCViewMIDlet instance;
 
 	FilesList list;
-	
+
 	public FCViewMIDlet() {
 		super();
 		instance = this;
 		this.list = new FilesList();
 	}
 
-	
 	protected void startApp() throws MIDletStateChangeException {
 		try {
 			System.out.println("FileConnection " + System.getProperty("microedition.io.file.FileConnection.version"));
 			this.list.setDir(null);
 			setCurrentDisplayable(this.list);
 		} catch (SecurityException e) {
-			Alert alert = new Alert("Error",  "Unable to access the restricted API", null, AlertType.ERROR);
-	        alert.setTimeout(Alert.FOREVER);
-	        setCurrentDisplayable(alert);
+			Alert alert = new Alert("Error", "Unable to access the restricted API", null, AlertType.ERROR);
+			alert.setTimeout(Alert.FOREVER);
+			setCurrentDisplayable(alert);
 		}
 	}
 
-
 	protected void destroyApp(boolean unconditional) {
-		
+
 	}
 
 	protected void pauseApp() {
-		
+
 	}
 
 	public static void setCurrentDisplayable(Displayable nextDisplayable) {
 		Display display = Display.getDisplay(instance);
 		display.setCurrent(nextDisplayable);
 	}
-
 
 	public static void exit() {
 		instance.destroyApp(true);

@@ -36,7 +36,7 @@ import org.microemu.device.ui.ItemUI;
 public class J2SEFormUI extends DisplayableImplUI implements FormUI {
 
 	private ItemStateListener itemStateListener;
-	
+
 	public J2SEFormUI(Form form) {
 		super(form);
 	}
@@ -65,7 +65,7 @@ public class J2SEFormUI extends DisplayableImplUI implements FormUI {
 	public void setItemStateListener(ItemStateListener itemStateListener) {
 		this.itemStateListener = itemStateListener;
 	}
-	
+
 	public ItemStateListener getItemStateListener() {
 		return itemStateListener;
 	}

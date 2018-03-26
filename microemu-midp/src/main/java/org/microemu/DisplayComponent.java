@@ -21,11 +21,10 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu;
 
-public interface DisplayComponent
-{
+public interface DisplayComponent {
 
 	public void repaintRequest(int x, int y, int width, int height);
 

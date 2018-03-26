@@ -36,16 +36,16 @@ import net.sf.jour.signature.SignatureTestCase;
  */
 public class JSR82APIDeclarationsTest extends SignatureTestCase {
 
-    public String getAPIPath() {
-        return getClassPath(LocalDevice.class);
-    }
+	public String getAPIPath() {
+		return getClassPath(LocalDevice.class);
+	}
 
-    public String getSupportingJarsPath() {
-        return getClassPath(Connection.class);
-    }
-    
-    public String getSignatureXMLPath() {
-        return "jsr82-signature.xml";
-    }
+	public String getSupportingJarsPath() {
+		return getClassPath(Connection.class);
+	}
+
+	public String getSignatureXMLPath() {
+		return "jsr82-signature.xml";
+	}
 
 }

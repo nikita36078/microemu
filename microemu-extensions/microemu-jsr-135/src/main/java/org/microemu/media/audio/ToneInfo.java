@@ -24,65 +24,56 @@
 
 package org.microemu.media.audio;
 
-public class ToneInfo
-{
-   
-   public ToneInfo()
-   {
-      this.setVolume(100);
-   }
-   
-   private int sleepDelay;
-   private int frequency;
-   private int lengthOfTime;
+public class ToneInfo {
 
-   private int volume;
+	public ToneInfo() {
+		this.setVolume(100);
+	}
 
-   public int getSleepDelay()
-   {
-      return sleepDelay;
-   }
+	private int sleepDelay;
 
-   public void setSleepDelay(int sleepDelay)
-   {
-      this.sleepDelay = sleepDelay;
-   }
+	private int frequency;
 
-   public int getFrequency()
-   {
-      return frequency;
-   }
+	private int lengthOfTime;
 
-   public void setFrequency(int frequency)
-   {
-      this.frequency = frequency;
-   }
+	private int volume;
 
-   public int getLengthOfTime()
-   {
-      return lengthOfTime;
-   }
+	public int getSleepDelay() {
+		return sleepDelay;
+	}
 
-   public void setLengthOfTime(int lengthOfTime)
-   {
-      this.lengthOfTime = lengthOfTime;
-   }
-   
-   public int getVolume()
-   {
-      return volume;
-   }
+	public void setSleepDelay(int sleepDelay) {
+		this.sleepDelay = sleepDelay;
+	}
 
-   public void setVolume(int volume)
-   {
-      this.volume = volume;
-   }
+	public int getFrequency() {
+		return frequency;
+	}
 
-   public String toString()
-   {
-      return "Frequency: " + this.getFrequency() +
-      " LengthOfTime: " + this.getLengthOfTime() +
-      " SleepDelay: " + this.getSleepDelay() +
-      " Volume: " + this.getVolume();
-   }
+	public void setFrequency(int frequency) {
+		this.frequency = frequency;
+	}
+
+	public int getLengthOfTime() {
+		return lengthOfTime;
+	}
+
+	public void setLengthOfTime(int lengthOfTime) {
+		this.lengthOfTime = lengthOfTime;
+	}
+
+	public int getVolume() {
+		return volume;
+	}
+
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+
+	public String toString() {
+		return "Frequency: " + this.getFrequency() +
+				" LengthOfTime: " + this.getLengthOfTime() +
+				" SleepDelay: " + this.getSleepDelay() +
+				" Volume: " + this.getVolume();
+	}
 }

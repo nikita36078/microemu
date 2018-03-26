@@ -37,40 +37,40 @@ import javax.microedition.rms.RecordStoreException;
 public class RecordStoreForm extends BaseTestsForm {
 
 	static final Command loadCommand = new Command("Load", Command.ITEM, 1);
-	
+
 	static final Command storeCommand = new Command("Store", Command.ITEM, 2);
-	
+
 	static final Command deleteCommand = new Command("Delete", Command.ITEM, 3);
-	
+
 	static final Command listCommand = new Command("List", Command.ITEM, 4);
-	
+
 	static final String recordStoreName = "meTestRecordStore";
-	
+
 	TextField textFiled;
-	
+
 	StringItem stringItem;
-	
+
 	StringItem messageItem;
-	
+
 	int savedRecordId = -1;
-	
+
 	public RecordStoreForm() {
 		super("RecordStore");
 		addCommand(loadCommand);
 		addCommand(storeCommand);
 		addCommand(deleteCommand);
 		addCommand(listCommand);
-		
+
 		textFiled = new TextField("Enter data", "", 128, TextField.ANY);
 		append(textFiled);
-		
+
 		stringItem = new StringItem("Loaded data", "n/a");
 		append(stringItem);
-		
+
 		messageItem = new StringItem("Info:", "Use menu to load and store data");
 		append(messageItem);
-    }
-	
+	}
+
 	private void load() {
 		RecordStore recordStore = null;
 		try {
@@ -82,11 +82,11 @@ public class RecordStoreForm extends BaseTestsForm {
 				byte[] data = recordStore.getRecord(recordId);
 				message = recordId + " loaded";
 				stringItem.setText(new String(data));
-				
+
 				if (savedRecordId != recordId) {
 					messageItem.setText("recordId " + recordId + " is different " + savedRecordId);
 				}
-				
+
 			} else {
 				message = "recordStore empty";
 				stringItem.setText("");
@@ -100,7 +100,7 @@ public class RecordStoreForm extends BaseTestsForm {
 			closeQuietly(recordStore);
 		}
 	}
-	
+
 	private void store() {
 		RecordStore recordStore = null;
 		try {
@@ -114,12 +114,12 @@ public class RecordStoreForm extends BaseTestsForm {
 				recordId = 1;
 				System.out.println("setRecord " + recordId);
 				recordStore.setRecord(recordId, data, 0, data.length);
-				message = recordId + " updated"; 
+				message = recordId + " updated";
 			} else {
 				recordId = recordStore.addRecord(data, 0, data.length);
 				message = recordId + " created";
 			}
-			savedRecordId = recordId; 
+			savedRecordId = recordId;
 			messageItem.setText(message);
 		} catch (Throwable e) {
 			System.out.println("error accessing RecordStore");
@@ -129,7 +129,7 @@ public class RecordStoreForm extends BaseTestsForm {
 			closeQuietly(recordStore);
 		}
 	}
-	
+
 	private void delete() {
 		try {
 			RecordStore.deleteRecordStore(recordStoreName);
@@ -138,9 +138,9 @@ public class RecordStoreForm extends BaseTestsForm {
 			System.out.println("error accessing RecordStore");
 			e.printStackTrace();
 			messageItem.setText(e.toString());
-		} 	
+		}
 	}
-	
+
 	public class RecordStoreList extends List implements CommandListener {
 
 		public RecordStoreList() {
@@ -158,23 +158,23 @@ public class RecordStoreForm extends BaseTestsForm {
 			}
 		}
 	}
-	
+
 	private void list() {
 		try {
 			String[] items = RecordStore.listRecordStores();
 			messageItem.setText("listed " + items.length);
 			List list = new RecordStoreList();
 			for (int i = 0; i < items.length; i++) {
-				list.append(items[i], null);				
+				list.append(items[i], null);
 			}
 			Manager.midletInstance.setCurrentDisplayable(list);
 		} catch (Throwable e) {
 			System.out.println("error accessing RecordStore");
 			e.printStackTrace();
 			messageItem.setText(e.toString());
-		} 
+		}
 	}
-	
+
 	public void commandAction(Command c, Displayable d) {
 		if (d == this) {
 			if (c == loadCommand) {
@@ -189,7 +189,7 @@ public class RecordStoreForm extends BaseTestsForm {
 		}
 		super.commandAction(c, d);
 	}
-	
+
 	public static void closeQuietly(RecordStore recordStore) {
 		try {
 			if (recordStore != null) {

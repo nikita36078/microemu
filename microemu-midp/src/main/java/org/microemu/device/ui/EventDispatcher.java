@@ -27,13 +27,13 @@ package org.microemu.device.ui;
 import org.microemu.device.DeviceFactory;
 
 public class EventDispatcher implements Runnable {
-	
+
 	public static final String EVENT_DISPATCHER_NAME = "event-thread";
 
 	public static int maxFps = -1;
 
 	private volatile boolean cancelled = false;
-	
+
 	private Event head = null;
 
 	private Event tail = null;
@@ -43,12 +43,12 @@ public class EventDispatcher implements Runnable {
 	private PointerEvent scheduledPointerDraggedEvent = null;
 
 	private Object serviceRepaintsLock = new Object();
-	
+
 	private long lastPaintEventTime = 0;
 
 	public EventDispatcher() {
 	}
-	
+
 	public void run() {
 
 		while (!cancelled) {
@@ -67,13 +67,14 @@ public class EventDispatcher implements Runnable {
 							}
 						}
 					}
-					
+
 					if (event != null) {
 						head = event.next;
 						if (head == null) {
 							tail = null;
 						}
-						if (event instanceof PointerEvent && ((PointerEvent) event).type == PointerEvent.POINTER_DRAGGED) {
+						if (event instanceof PointerEvent &&
+								((PointerEvent) event).type == PointerEvent.POINTER_DRAGGED) {
 							scheduledPointerDraggedEvent = null;
 						}
 					}
@@ -94,7 +95,7 @@ public class EventDispatcher implements Runnable {
 						lastPaintEventTime = System.currentTimeMillis();
 						post(event);
 						serviceRepaintsLock.notifyAll();
-					}					
+					}
 				} else {
 					post(event);
 				}
@@ -187,7 +188,7 @@ public class EventDispatcher implements Runnable {
 
 		/**
 		 * Do a 2-D merge of the paint areas
-		 * 
+		 *
 		 * @param event
 		 */
 		public final void merge(PaintEvent event) {
@@ -233,7 +234,7 @@ public class EventDispatcher implements Runnable {
 			runnable.run();
 		}
 	}
-	
+
 	public class RunnableEvent extends Event {
 
 		private Runnable runnable;
@@ -247,5 +248,5 @@ public class EventDispatcher implements Runnable {
 		}
 
 	}
-	
+
 }

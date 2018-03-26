@@ -56,14 +56,14 @@ public class Command {
 	int commandType;
 
 	int priority;
-	
+
 	CommandUI ui;
 
 	public Command(String label, int commandType, int priority) {
 		this.label = label;
 		this.commandType = commandType;
 		this.priority = priority;
-		
+
 		this.ui = DeviceFactory.getDevice().getUIFactory().createCommandUI(this);
 	}
 
@@ -87,8 +87,8 @@ public class Command {
 
 	public int getPriority() {
 		return priority;
-	}	
-	
+	}
+
 	/**
 	 * @since MIDP 3.0
 	 */

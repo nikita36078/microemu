@@ -42,25 +42,25 @@ import javax.microedition.lcdui.TextField;
 import org.microemu.CustomItemAccess;
 
 public interface UIFactory {
-	
+
 	EventDispatcher createEventDispatcher(Display display);
-	
+
 	CommandUI createCommandUI(Command command);
-	
+
 	/*
 	 *  DisplayableUI
 	 */
-	
+
 	AlertUI createAlertUI(Alert alert);
 
 	CanvasUI createCanvasUI(Canvas canvas);
-	
+
 	FormUI createFormUI(Form form);
 
 	ListUI createListUI(List list);
-	
+
 	TextBoxUI createTextBoxUI(TextBox textBox);
-	
+
 	/*
 	 *  ItemUI
 	 */
@@ -72,7 +72,7 @@ public interface UIFactory {
 	DateFieldUI createDateFieldUI(DateField dateField);
 
 	GaugeUI createGaugeUI(Gauge gauge);
-	
+
 	ImageStringItemUI createImageStringItemUI(Item item);
 
 	TextFieldUI createTextFieldUI(TextField textField);

@@ -21,28 +21,22 @@
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
  */
- 
+
 package org.microemu.device;
 
+public class DeviceFactory {
+	private static Device device;
 
-public class DeviceFactory 
-{
-  private static Device device;
-  
-  
-  public static Device getDevice()
-  {
-    return device;
-  }
-  
-  
-  public static void setDevice(Device device)
-  {
-	  if (DeviceFactory.device != null) {
-		  DeviceFactory.device.destroy();
-	  }
-	  device.init();
-	  DeviceFactory.device = device;
-  }
-  
+	public static Device getDevice() {
+		return device;
+	}
+
+	public static void setDevice(Device device) {
+		if (DeviceFactory.device != null) {
+			DeviceFactory.device.destroy();
+		}
+		device.init();
+		DeviceFactory.device = device;
+	}
+
 }

@@ -64,7 +64,7 @@ import org.microemu.device.j2se.J2SEInputMethod;
 import org.microemu.log.Logger;
 
 public class AppletProducer {
-	
+
 	public static void createHtml(File htmlOutputFile, DeviceImpl device, String className, File midletOutputFile,
 			File appletPackageOutputFile, File deviceOutputFile) throws IOException {
 		int width;
@@ -76,7 +76,7 @@ public class AppletProducer {
 			width = device.getNormalImage().getWidth();
 			height = device.getNormalImage().getHeight();
 		}
-		
+
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(htmlOutputFile);
@@ -120,7 +120,7 @@ public class AppletProducer {
 			} else {
 				jos = new JarOutputStream(new FileOutputStream(midletOutputFile), manifest);
 			}
-		
+
 			byte[] inputBuffer = new byte[1024];
 			JarEntry jarEntry;
 			while ((jarEntry = jis.getNextJarEntry()) != null) {
@@ -131,7 +131,7 @@ public class AppletProducer {
 					int length = inputBuffer.length;
 					while ((read = jis.read(inputBuffer, size, length)) > 0) {
 						size += read;
-						
+
 						length = 1024;
 						if (size + length > inputBuffer.length) {
 							byte[] newInputBuffer = new byte[size + length];
@@ -139,18 +139,19 @@ public class AppletProducer {
 							inputBuffer = newInputBuffer;
 						}
 					}
-					
+
 					byte[] outputBuffer = inputBuffer;
 					int outputSize = size;
-					if (name.endsWith(".class")) {					
-				        outputBuffer = ClassPreprocessor.instrument(new ByteArrayInputStream(inputBuffer, 0, size), config);
-				        outputSize = outputBuffer.length;
+					if (name.endsWith(".class")) {
+						outputBuffer = ClassPreprocessor
+								.instrument(new ByteArrayInputStream(inputBuffer, 0, size), config);
+						outputSize = outputBuffer.length;
 					}
 					jos.putNextEntry(new JarEntry(name));
 					jos.write(outputBuffer, 0, outputSize);
 				}
 			}
-			
+
 			URL url = AppletProducer.class.getResource("/microemu-injected.jar");
 			if (url != null) {
 				ijis = new JarInputStream(url.openStream());
@@ -172,10 +173,10 @@ public class AppletProducer {
 			IOUtils.closeQuietly(jos);
 		}
 	}
-		
-	
+
 	public static void main(String args[]) {
-		String midletClass = null;;
+		String midletClass = null;
+		;
 		File appletInputFile = null;
 		File deviceInputFile = null;
 		File midletInputFile = null;
@@ -183,12 +184,12 @@ public class AppletProducer {
 		File appletOutputFile = null;
 		File deviceOutputFile = null;
 		File midletOutputFile = null;
-		
+
 		List params = new ArrayList();
 		for (int i = 0; i < args.length; i++) {
 			params.add(args[i]);
 		}
-		
+
 		Iterator argsIterator = params.iterator();
 		while (argsIterator.hasNext()) {
 			String arg = (String) argsIterator.next();
@@ -222,10 +223,10 @@ public class AppletProducer {
 				midletOutputFile = new File((String) argsIterator.next());
 				argsIterator.remove();
 			}
-		}		
+		}
 
 		if (midletClass == null
-				|| appletInputFile == null 
+				|| appletInputFile == null
 				|| deviceInputFile == null
 				|| midletInputFile == null
 				|| htmlOutputFile == null
@@ -235,12 +236,12 @@ public class AppletProducer {
 			System.out.println(usage());
 			System.exit(0);
 		}
-		
+
 		try {
 			DeviceImpl device = null;
 			String descriptorLocation = null;
 			JarFile jar = new JarFile(deviceInputFile);
-			for (Enumeration en = jar.entries(); en.hasMoreElements();) {
+			for (Enumeration en = jar.entries(); en.hasMoreElements(); ) {
 				String entry = ((JarEntry) en.nextElement()).getName();
 				if ((entry.toLowerCase().endsWith(".xml") || entry.toLowerCase().endsWith("device.txt"))
 						&& !entry.toLowerCase().startsWith("meta-inf")) {
@@ -249,8 +250,7 @@ public class AppletProducer {
 				}
 			}
 			if (descriptorLocation != null) {
-				EmulatorContext context = new EmulatorContext() 
-				{
+				EmulatorContext context = new EmulatorContext() {
 					private DisplayComponent displayComponent = new NoUiDisplayComponent();
 
 					private InputMethod inputMethod = new J2SEInputMethod();
@@ -276,9 +276,9 @@ public class AppletProducer {
 					}
 
 					public InputStream getResourceAsStream(Class origClass, String name) {
-                        return MIDletBridge.getCurrentMIDlet().getClass().getResourceAsStream(name);
+						return MIDletBridge.getCurrentMIDlet().getClass().getResourceAsStream(name);
 					}
-					
+
 					public boolean platformRequest(final String URL) {
 						new Thread(new Runnable() {
 							public void run() {
@@ -295,12 +295,12 @@ public class AppletProducer {
 				ClassLoader classLoader = new ExtensionsClassLoader(urls, AppletProducer.class.getClassLoader());
 				device = DeviceImpl.create(context, classLoader, descriptorLocation, J2SEDevice.class);
 			}
-			
+
 			if (device == null) {
 				System.out.println("Error parsing device package: " + descriptorLocation);
 				System.exit(0);
 			}
-			
+
 			createHtml(htmlOutputFile, device, midletClass, midletOutputFile, appletOutputFile, deviceOutputFile);
 			createMidlet(midletInputFile.toURI().toURL(), midletOutputFile);
 			IOUtils.copyFile(appletInputFile, appletOutputFile);
@@ -308,20 +308,19 @@ public class AppletProducer {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
+
 		System.exit(0);
 	}
-	
-	
+
 	private static String usage() {
 		return "--midletClass {midlet class name} \n" +
-			   "--appletInput {microemu-javase-applet.jar location} \n" +
-			   "--deviceInput {device jar input file} \n" +
-			   "--midletInput {midlet jar input file} \n" +
-			   "--htmlOutput {html output file} \n" +
-			   "--appletOutput {emulator applet jar output file} \n" +
-			   "--deviceOutput {device jar output file} \n" +
-			   "--midletOutput {midlet jar output file}";
+				"--appletInput {microemu-javase-applet.jar location} \n" +
+				"--deviceInput {device jar input file} \n" +
+				"--midletInput {midlet jar input file} \n" +
+				"--htmlOutput {html output file} \n" +
+				"--appletOutput {emulator applet jar output file} \n" +
+				"--deviceOutput {device jar output file} \n" +
+				"--midletOutput {midlet jar output file}";
 	}
-	
+
 }

@@ -5,8 +5,8 @@ import org.microemu.log.LoggingEvent;
 
 public class EventCatureLoggerAppender implements LoggerAppender {
 
-	private LoggingEvent lastEvent; 
-	
+	private LoggingEvent lastEvent;
+
 	public void append(LoggingEvent event) {
 		lastEvent = event;
 	}
@@ -14,7 +14,7 @@ public class EventCatureLoggerAppender implements LoggerAppender {
 	public void clearLastEvent() {
 		lastEvent = null;
 	}
-	
+
 	public LoggingEvent getLastEvent() {
 		LoggingEvent ev = lastEvent;
 		lastEvent = null;

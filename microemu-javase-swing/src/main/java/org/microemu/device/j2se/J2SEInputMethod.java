@@ -1,7 +1,7 @@
 /*
- * MicroEmulator 
+ * MicroEmulator
  * Copyright (C) 2001 Bartek Teodorczyk <barteo@barteo.net>
- * 
+ *
  *  It is licensed under the following two licenses as alternatives:
  *    1. GNU Lesser General Public License (the "LGPL") version 2.1 or any newer version
  *    2. Apache License (the "AL") Version 2.0
@@ -20,7 +20,7 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the LGPL or the AL for the specific language governing permissions and
  *  limitations.
- * 
+ *
  * @version $Id$
  */
 
@@ -53,7 +53,7 @@ import org.microemu.util.ThreadUtils;
 public class J2SEInputMethod extends InputMethodImpl {
 
 	private boolean eventAlreadyConsumed;
-	
+
 	private J2SEButton ignoreButtonRelease;
 
 	private Timer keyReleasedDelayTimer;
@@ -86,7 +86,9 @@ public class J2SEInputMethod extends InputMethodImpl {
 				repeatModeKeyCode = Integer.MIN_VALUE;
 			}
 		}
-	};
+	}
+
+	;
 
 	public J2SEInputMethod() {
 		super();
@@ -98,12 +100,12 @@ public class J2SEInputMethod extends InputMethodImpl {
 
 	/**
 	 * Gets the game action associated with the given key code of the device.
-	 * 
+	 *
 	 * @return the game action corresponding to this key, or <code>0</code> if
 	 *         none
 	 */
 	public int getGameAction(int keyCode) {
-		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext();) {
+		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext(); ) {
 			J2SEButton button = (J2SEButton) it.next();
 			if (button.getKeyCode() == keyCode) {
 				return ButtonDetaultDeviceKeyCodes.getGameAction(button.getFunctionalName());
@@ -113,8 +115,8 @@ public class J2SEInputMethod extends InputMethodImpl {
 	}
 
 	/**
-	 * 
-	 * 
+	 *
+	 *
 	 * @return a key code corresponding to this game action
 	 * @throws IllegalArgumentException
 	 *             if <code>gameAction</code> is not a valid game action
@@ -130,7 +132,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 	 *             if <code>keyCode</code> is not a valid key code
 	 */
 	public String getKeyName(int keyCode) throws IllegalArgumentException {
-		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext();) {
+		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext(); ) {
 			J2SEButton button = (J2SEButton) it.next();
 			if (button.getKeyCode() == keyCode) {
 				return button.getName();
@@ -273,19 +275,19 @@ public class J2SEInputMethod extends InputMethodImpl {
 				if (keyChar != '\0') {
 					// Pass through letters and characters typed on keyboard but
 					// not numbers that are buttons keys (presumably).
-                    boolean found = false;
-                    for (int i = 0; i < buttonChars.length; i++) {
-                        if (buttonChars[i] == keyChar) {
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (found) {
-    					editText.append(keyChar);
-    					caret++;
-    					lastButton = null;
-    					lastButtonCharIndex = -1;
-                    }
+					boolean found = false;
+					for (int i = 0; i < buttonChars.length; i++) {
+						if (buttonChars[i] == keyChar) {
+							found = true;
+							break;
+						}
+					}
+					if (found) {
+						editText.append(keyChar);
+						caret++;
+						lastButton = null;
+						lastButtonCharIndex = -1;
+					}
 				} else if (buttonChars.length > 0) {
 					if (lastButtonCharIndex == buttonChars.length) {
 						if (buttonChars.length == 1) {
@@ -430,7 +432,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 		if (button != null) {
 			return button;
 		}
-		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements();) {
+		for (Enumeration e = DeviceFactory.getDevice().getButtons().elements(); e.hasMoreElements(); ) {
 			button = (J2SEButton) e.nextElement();
 			if (button.isChar(ev.getKeyChar(), getInputMode())) {
 				return button;

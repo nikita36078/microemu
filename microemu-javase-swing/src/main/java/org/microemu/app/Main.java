@@ -53,11 +53,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Iterator;                                                            
-import java.util.List;                                                                
-import java.util.NoSuchElementException;                                              
-import java.util.Timer;                                                               
-import java.util.TimerTask; 
+import java.util.Iterator;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.microedition.midlet.MIDletStateChangeException;
 import javax.swing.ImageIcon;
@@ -107,9 +107,9 @@ import org.microemu.device.DeviceFactory;
 import org.microemu.device.EmulatorContext;
 import org.microemu.device.FontManager;
 import org.microemu.device.InputMethod;
-import org.microemu.device.impl.DeviceDisplayImpl;                                    
-import org.microemu.device.impl.DeviceImpl;                                           
-import org.microemu.device.impl.Rectangle; 
+import org.microemu.device.impl.DeviceDisplayImpl;
+import org.microemu.device.impl.DeviceImpl;
+import org.microemu.device.impl.Rectangle;
 import org.microemu.device.impl.SoftButton;
 import org.microemu.device.j2se.J2SEDevice;
 import org.microemu.device.j2se.J2SEDeviceDisplay;
@@ -201,9 +201,9 @@ public class Main extends JFrame {
 		}
 
 		public InputStream getResourceAsStream(Class origClass, String name) {
-            return MIDletBridge.getCurrentMIDlet().getClass().getResourceAsStream(name);
+			return MIDletBridge.getCurrentMIDlet().getClass().getResourceAsStream(name);
 		}
-		
+
 		public boolean platformRequest(final String URL) {
 			new Thread(new Runnable() {
 				public void run() {
@@ -410,24 +410,24 @@ public class Main extends JFrame {
 
 				((SwingDisplayComponent) emulatorContext.getDisplayComponent())
 						.addDisplayRepaintListener(new DisplayRepaintListener() {
-					long start = 0;
+							long start = 0;
 
-					public void repaintInvoked(Object repaintObject) {
-						synchronized (Main.this) {
-							if (encoder != null) {
-								if (start == 0) {
-									start = System.currentTimeMillis();
-								} else {
-									long current = System.currentTimeMillis();
-									encoder.setDelay((int) (current - start));
-									start = current;
+							public void repaintInvoked(Object repaintObject) {
+								synchronized (Main.this) {
+									if (encoder != null) {
+										if (start == 0) {
+											start = System.currentTimeMillis();
+										} else {
+											long current = System.currentTimeMillis();
+											encoder.setDelay((int) (current - start));
+											start = current;
+										}
+
+										encoder.addFrame(((J2SEGraphicsSurface) repaintObject).getImage());
+									}
 								}
-
-								encoder.addFrame(((J2SEGraphicsSurface) repaintObject).getImage());
 							}
-						}
-					}
-				});
+						});
 			}
 		}
 
@@ -522,7 +522,7 @@ public class Main extends JFrame {
 			if (recordStoreManagerDialog != null) {
 				Config.setWindow("recordStoreManager", new Rectangle(recordStoreManagerDialog.getX(),
 						recordStoreManagerDialog.getY(), recordStoreManagerDialog.getWidth(), recordStoreManagerDialog
-								.getHeight()), recordStoreManagerDialog.isVisible());
+						.getHeight()), recordStoreManagerDialog.isVisible());
 			}
 			if (scaledDisplayFrame != null) {
 				Config.setWindow("scaledDisplay", new Rectangle(scaledDisplayFrame.getX(), scaledDisplayFrame.getY(),
@@ -681,15 +681,15 @@ public class Main extends JFrame {
 		}
 
 		private void updateScaledImage(int scale, JFrame scaledLCDFrame) {
-			J2SEGraphicsSurface graphicsSurface = 
+			J2SEGraphicsSurface graphicsSurface =
 					((SwingDisplayComponent) emulatorContext.getDisplayComponent()).getGraphicsSurface();
-			
+
 			BufferedImage img = graphicsSurface.getImage();
 			BufferedImage scaledImg = new BufferedImage(img.getWidth() * scale, img.getHeight() * scale, img.getType());
 			Graphics2D imgGraphics = scaledImg.createGraphics();
 			imgGraphics.scale(scale, scale);
 			imgGraphics.drawImage(img, 0, 0, null);
-			
+
 			((ImageIcon) (((JLabel) scaledLCDFrame.getContentPane()).getIcon())).setImage(scaledImg);
 			((JLabel) scaledLCDFrame.getContentPane()).repaint();
 		}
@@ -726,7 +726,7 @@ public class Main extends JFrame {
 			count++;
 			DeviceDisplayImpl deviceDisplay = (DeviceDisplayImpl) DeviceFactory.getDevice().getDeviceDisplay();
 			if (deviceDisplay.isResizable()) {
-			    setDeviceSize(deviceDisplay, devicePanel.getWidth(), devicePanel.getHeight());
+				setDeviceSize(deviceDisplay, devicePanel.getWidth(), devicePanel.getHeight());
 				devicePanel.revalidate();
 				statusBarListener.statusBarChanged("New size: " + deviceDisplay.getFullWidth() + "x"
 						+ deviceDisplay.getFullHeight());
@@ -915,7 +915,8 @@ public class Main extends JFrame {
 				resizeDeviceDisplayDialog.setDeviceDisplaySize(deviceDisplay.getFullWidth(), deviceDisplay
 						.getFullHeight());
 				if (SwingDialogWindow.show(Main.this, "Enter new size...", resizeDeviceDisplayDialog, true)) {
-				    setDeviceSize(deviceDisplay, resizeDeviceDisplayDialog.getDeviceDisplayWidth(), resizeDeviceDisplayDialog.getDeviceDisplayHeight());
+					setDeviceSize(deviceDisplay, resizeDeviceDisplayDialog.getDeviceDisplayWidth(),
+							resizeDeviceDisplayDialog.getDeviceDisplayHeight());
 					pack();
 					devicePanel.requestFocus();
 				}
@@ -967,7 +968,7 @@ public class Main extends JFrame {
 			if (deviceDisplay.isResizable()) {
 				Rectangle size = Config.getDeviceEntryDisplaySize(entry);
 				if (size != null) {
-				    setDeviceSize(deviceDisplay, size.width, size.height);
+					setDeviceSize(deviceDisplay, size.width, size.height);
 				}
 			}
 			common.setDevice(device);
@@ -982,31 +983,31 @@ public class Main extends JFrame {
 		}
 		return false;
 	}
-	
+
 	protected void setDeviceSize(DeviceDisplayImpl deviceDisplay, int width, int height) {
-	    // move the soft buttons
-	    int menuh = 0;
-	    Enumeration en = DeviceFactory.getDevice().getSoftButtons().elements();
-        while (en.hasMoreElements()) {
-            SoftButton button = (SoftButton) en.nextElement();
-            Rectangle paintable = button.getPaintable();
-            paintable.y = height - paintable.height;
-            menuh = paintable.height;
-        }
-        // resize the display area
-        deviceDisplay.setDisplayPaintable(new Rectangle(0, 0, width, height - menuh));
-        deviceDisplay.setDisplayRectangle(new Rectangle(0, 0, width, height));
-        ((SwingDisplayComponent) devicePanel.getDisplayComponent()).init();
-        // update display
-        MIDletAccess ma = MIDletBridge.getMIDletAccess();
-        if (ma == null) {
-            return;
-        }
-        DisplayAccess da = ma.getDisplayAccess();
-        if (da != null) {
-            da.sizeChanged();
-            deviceDisplay.repaint(0, 0, deviceDisplay.getFullWidth(), deviceDisplay.getFullHeight());
-        }
+		// move the soft buttons
+		int menuh = 0;
+		Enumeration en = DeviceFactory.getDevice().getSoftButtons().elements();
+		while (en.hasMoreElements()) {
+			SoftButton button = (SoftButton) en.nextElement();
+			Rectangle paintable = button.getPaintable();
+			paintable.y = height - paintable.height;
+			menuh = paintable.height;
+		}
+		// resize the display area
+		deviceDisplay.setDisplayPaintable(new Rectangle(0, 0, width, height - menuh));
+		deviceDisplay.setDisplayRectangle(new Rectangle(0, 0, width, height));
+		((SwingDisplayComponent) devicePanel.getDisplayComponent()).init();
+		// update display
+		MIDletAccess ma = MIDletBridge.getMIDletAccess();
+		if (ma == null) {
+			return;
+		}
+		DisplayAccess da = ma.getDisplayAccess();
+		if (da != null) {
+			da.sizeChanged();
+			deviceDisplay.repaint(0, 0, deviceDisplay.getFullWidth(), deviceDisplay.getFullHeight());
+		}
 	}
 
 	protected void updateDevice() {
@@ -1049,7 +1050,7 @@ public class Main extends JFrame {
 		if (args.length > 0) {
 			Logger.debug("arguments", debugArgs.toString());
 		}
-		
+
 		if (app.common.initParams(params, app.selectDevicePanel.getSelectedDeviceEntry(), J2SEDevice.class)) {
 			app.deviceEntry = app.selectDevicePanel.getSelectedDeviceEntry();
 			DeviceDisplayImpl deviceDisplay = (DeviceDisplayImpl) DeviceFactory.getDevice().getDeviceDisplay();
