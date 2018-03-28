@@ -30,9 +30,7 @@ package org.microemu.device;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.game.GameCanvas;
 
 public interface DeviceDisplay {
 
@@ -74,8 +72,6 @@ public interface DeviceDisplay {
 
 	Image createImage(Image image, int x, int y, int width, int height, int transform);
 
-	Graphics getGraphics(GameCanvas gameCanvas);
-
-	void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height);
+	void flushGraphics(Image gameCanvasImage, int x, int y, int width, int height);
 
 }

@@ -46,7 +46,6 @@ import java.util.Vector;
 import javax.microedition.lcdui.Canvas;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.game.GameCanvas;
 import javax.microedition.lcdui.game.Sprite;
 
 import org.microemu.DisplayAccess;
@@ -88,10 +87,6 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl {
 	PositionedImage modeAbcUpperImage;
 
 	PositionedImage modeAbcLowerImage;
-
-	Image gameCanvasImage = null;
-
-	javax.microedition.lcdui.Graphics gameCanvasGraphics;
 
 	boolean resizable;
 
@@ -434,15 +429,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl {
 		}
 	}
 
-	public javax.microedition.lcdui.Graphics getGraphics(GameCanvas gameCanvas) {
-		if (gameCanvasImage == null) {
-			gameCanvasImage = createImage(gameCanvas.getWidth(), gameCanvas.getHeight(), true, 0x00000000);
-		}
-
-		return gameCanvasImage.getGraphics();
-	}
-
-	public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height) {
+	public void flushGraphics(Image gameCanvasImage, int x, int y, int width, int height) {
 		if (gameCanvasImage != null) {
 			J2SEGraphicsSurface surface = ((SwingDisplayComponent) context.getDisplayComponent()).getGraphicsSurface();
 			if (surface != null) {

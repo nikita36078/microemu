@@ -65,7 +65,8 @@ public abstract class GameCanvas extends Canvas {
 	// on call to getKeyState
 	private int actualKeyState;
 
-	private Image offscreenBuffer;
+	private Image gameCanvasImage;
+	private Graphics gameCanvasGraphics;
 
 	private class KeyAccess implements GameCanvasKeyAccess {
 
@@ -93,22 +94,24 @@ public abstract class GameCanvas extends Canvas {
 	/** Creates a new instance of GameCanvas */
 	protected GameCanvas(boolean suppressKeyEvents) {
 		MIDletBridge.registerGameCanvasKeyAccess(this, new KeyAccess());
+		setFullScreenMode(true);
 
 		this.suppressKeyEvents = suppressKeyEvents;
-		this.offscreenBuffer = Image.createImage(getWidth(), getHeight());
+		this.gameCanvasImage = Image.createImage(getWidth(), getHeight());
+		this.gameCanvasGraphics = gameCanvasImage.getGraphics();
 	}
 
 	protected Graphics getGraphics() {
-		return DeviceFactory.getDevice().getDeviceDisplay().getGraphics(this);
+		return gameCanvasGraphics;
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(offscreenBuffer, 0, 0, Graphics.TOP | Graphics.LEFT);
+		g.drawImage(gameCanvasImage, 0, 0, Graphics.TOP | Graphics.LEFT);
 	}
 
 	public void flushGraphics(int x, int y, int width, int height) {
-		DeviceFactory.getDevice().getDeviceDisplay().flushGraphics(this, x, y, width, height);
+		DeviceFactory.getDevice().getDeviceDisplay().flushGraphics(gameCanvasImage, x, y, width, height);
 	}
 
 	public void flushGraphics() {

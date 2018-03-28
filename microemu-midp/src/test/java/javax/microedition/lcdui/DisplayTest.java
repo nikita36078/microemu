@@ -34,8 +34,6 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Vector;
 
-import javax.microedition.lcdui.game.GameCanvas;
-
 import junit.framework.TestCase;
 
 import org.microemu.device.Device;
@@ -227,12 +225,7 @@ public class DisplayTest extends TestCase {
 
 		}
 
-		public Graphics getGraphics(GameCanvas gameCanvas) {
-
-			return null;
-		}
-
-		public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width, int height) {
+		public void flushGraphics(Image gameCanvasImage, int x, int y, int width, int height) {
 		}
 
 	}

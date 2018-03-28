@@ -36,7 +36,6 @@ import javax.microedition.lcdui.Canvas;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
-import javax.microedition.lcdui.game.GameCanvas;
 import javax.microedition.lcdui.game.Sprite;
 
 import org.eclipse.swt.graphics.Font;
@@ -569,16 +568,10 @@ public class SwtDeviceDisplay implements DeviceDisplayImpl {
 	}
 
 	@Override
-	public void flushGraphics(GameCanvas gameCanvas, int x, int y, int width,
+	public void flushGraphics(Image gameCanvasImage, int x, int y, int width,
 			int height) {
 		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public Graphics getGraphics(GameCanvas gameCanvas) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
