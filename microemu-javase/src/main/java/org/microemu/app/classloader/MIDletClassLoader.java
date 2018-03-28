@@ -306,13 +306,13 @@ public class MIDletClassLoader extends URLClassLoader {
 			return true;
 		}
 		/* No real device allow overloading this package */
-		if (className.startsWith("javax.microedition.")) {
-			return true;
-		}
-		if (className.startsWith("com.nokia.mid.")) {
-			return true;
-		}
 		if (className.startsWith("javax.")) {
+			return true;
+		}
+		if (className.startsWith("com.nokia.mid.sound")) {
+			return true;
+		}
+		if (className.startsWith("com.nokia.mid.ui")) {
 			return true;
 		}
 		if (noPreporcessingNames.contains(className)) {
