@@ -117,6 +117,7 @@ public class Main extends Applet implements MicroEmulator {
 			try {
 				getAppletContext().showDocument(new URL(url), "mini");
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			return false;
 		}
@@ -207,11 +208,13 @@ public class Main extends Applet implements MicroEmulator {
 					midletClassName = entry.getClassName();
 				}
 			} catch (IOException e) {
+				e.printStackTrace();
 			} finally {
 				if (jadInputStream != null) {
 					try {
 						jadInputStream.close();
 					} catch (IOException e1) {
+						e1.printStackTrace();
 					}
 				}
 			}
@@ -230,6 +233,7 @@ public class Main extends Applet implements MicroEmulator {
 			try {
 				EventDispatcher.maxFps = Integer.parseInt(maxFps);
 			} catch (NumberFormatException ex) {
+				ex.printStackTrace();
 			}
 		}
 

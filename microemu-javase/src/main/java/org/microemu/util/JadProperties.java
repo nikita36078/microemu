@@ -125,6 +125,7 @@ public class JadProperties extends Manifest {
 		try {
 			result = attributes.getValue(key);
 		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
 		}
 		if (result != null) {
 			return result.trim();
@@ -194,7 +195,7 @@ public class JadProperties extends Manifest {
 				}
 			}
 		} catch (IOException e) {
-
+			e.printStackTrace();
 		} finally {
 			din.close();
 		}

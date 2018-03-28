@@ -179,6 +179,7 @@ public class RecordEnumerationImpl implements RecordEnumeration {
 						}
 						enumerationRecords.add(new EnumerationRecord(recordId, data));
 					} catch (InvalidRecordIDException e) {
+						e.printStackTrace();
 					}
 					recordId++;
 				}

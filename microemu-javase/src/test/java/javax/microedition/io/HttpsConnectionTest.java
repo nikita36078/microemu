@@ -91,6 +91,7 @@ public class HttpsConnectionTest extends BaseTestHttpConnection {
 			hc.getResponseCode();
 			fail("Should produce IOException");
 		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
 			hc.close();
 		}

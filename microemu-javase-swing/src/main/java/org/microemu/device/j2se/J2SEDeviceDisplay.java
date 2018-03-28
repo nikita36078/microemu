@@ -539,6 +539,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl {
 		try {
 			mediaTracker.waitForID(0);
 		} catch (InterruptedException ex) {
+			ex.printStackTrace();
 		}
 		if (mediaTracker.isErrorID(0)) {
 			throw new IOException();
@@ -605,6 +606,7 @@ public class J2SEDeviceDisplay implements DeviceDisplayImpl {
 		try {
 			mediaTracker.waitForID(0);
 		} catch (InterruptedException ex) {
+			ex.printStackTrace();
 		}
 		if (mediaTracker.isErrorID(0)) {
 			throw new IOException();

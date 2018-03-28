@@ -96,6 +96,7 @@ public class MainTestMIDlet extends MIDlet implements CommandListener, MIDletUnd
 				try {
 					destroyApp(true);
 				} catch (MIDletStateChangeException e) {
+					e.printStackTrace();
 				}
 				notifyDestroyed();
 			}

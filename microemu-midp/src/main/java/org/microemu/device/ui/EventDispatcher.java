@@ -64,6 +64,7 @@ public class EventDispatcher implements Runnable {
 							try {
 								wait((1000 / maxFps) - difference);
 							} catch (InterruptedException e) {
+								e.printStackTrace();
 							}
 						}
 					}
@@ -82,6 +83,7 @@ public class EventDispatcher implements Runnable {
 					try {
 						wait();
 					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
 			}
@@ -157,6 +159,7 @@ public class EventDispatcher implements Runnable {
 			try {
 				serviceRepaintsLock.wait();
 			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}

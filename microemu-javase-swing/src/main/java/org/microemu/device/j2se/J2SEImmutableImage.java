@@ -76,11 +76,13 @@ public class J2SEImmutableImage extends javax.microedition.lcdui.Image {
 				try {
 					height = img.getHeight(observer);
 				} catch (NullPointerException ex) {
+					ex.printStackTrace();
 				}
 				if (height == -1) {
 					try {
 						observer.wait();
 					} catch (InterruptedException ex) {
+						ex.printStackTrace();
 					}
 				}
 			}
@@ -117,11 +119,13 @@ public class J2SEImmutableImage extends javax.microedition.lcdui.Image {
 				try {
 					width = img.getWidth(observer);
 				} catch (NullPointerException ex) {
+					ex.printStackTrace();
 				}
 				if (width == -1) {
 					try {
 						observer.wait();
 					} catch (InterruptedException ex) {
+						ex.printStackTrace();
 					}
 				}
 			}

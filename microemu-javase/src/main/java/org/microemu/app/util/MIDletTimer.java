@@ -185,6 +185,7 @@ public class MIDletTimer extends Timer implements Runnable {
 						}
 					}
 				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}
 		}

@@ -716,6 +716,7 @@ public class Common implements MicroEmulator, CommonInterface {
 						implClass.newInstance();
 					}
 				} catch (NoSuchMethodException e) {
+					e.printStackTrace();
 				}
 
 				if (isStatic) {
@@ -830,6 +831,7 @@ public class Common implements MicroEmulator, CommonInterface {
 							try {
 								deviceClass = Class.forName(tmpDevice);
 							} catch (ClassNotFoundException ex) {
+								ex.printStackTrace();
 							}
 						}
 						if (deviceClass == null) {

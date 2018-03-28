@@ -72,6 +72,7 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 					wait(1500);
 				}
 			} catch (InterruptedException ex) {
+				ex.printStackTrace();
 			}
 			synchronized (this) {
 				if (resetKey && lastButton != null && inputMethodListener != null) {

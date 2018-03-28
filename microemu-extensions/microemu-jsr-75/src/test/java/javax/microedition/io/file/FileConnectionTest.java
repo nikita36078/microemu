@@ -160,6 +160,7 @@ public class FileConnectionTest extends TestCase {
 					fail("End of File expected");
 				}
 			} catch (IOException eof) {
+				eof.printStackTrace();
 			}
 			is.close();
 
