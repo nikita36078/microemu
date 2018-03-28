@@ -58,6 +58,7 @@ public class ExtensionsClassLoader extends URLClassLoader {
 		acc = AccessController.getContext();
 	}
 
+	@Override
 	public void addURL(URL url) {
 		super.addURL(url);
 	}
@@ -105,6 +106,7 @@ public class ExtensionsClassLoader extends URLClassLoader {
 	 *         doesn't have adequate privileges to get the resource.
 	 *
 	 */
+	@Override
 	public URL getResource(final String name) {
 		try {
 			URL url = (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {

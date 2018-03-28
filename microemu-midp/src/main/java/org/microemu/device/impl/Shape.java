@@ -26,6 +26,7 @@ package org.microemu.device.impl;
 
 public abstract class Shape implements Cloneable {
 
+	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();
 	}

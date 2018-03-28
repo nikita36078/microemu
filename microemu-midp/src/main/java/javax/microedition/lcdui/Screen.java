@@ -38,6 +38,7 @@ public abstract class Screen extends Displayable {
 
 	abstract int traverse(int gameKeyCode, int top, int bottom);
 
+	@Override
 	void keyPressed(int keyCode) {
 		int gameKeyCode = Display.getGameAction(keyCode);
 
@@ -47,14 +48,17 @@ public abstract class Screen extends Displayable {
 		}
 	}
 
+	@Override
 	void hideNotify() {
 		super.hideNotify();
 	}
 
+	@Override
 	void keyRepeated(int keyCode) {
 		keyPressed(keyCode);
 	}
 
+	@Override
 	final void paint(Graphics g) {
 		int contentHeight = 0;
 		int translatedY;
@@ -103,10 +107,12 @@ public abstract class Screen extends Displayable {
 
 	abstract int paintContent(Graphics g);
 
+	@Override
 	void repaint() {
 		super.repaint();
 	}
 
+	@Override
 	void showNotify() {
 		viewPortY = 0;
 

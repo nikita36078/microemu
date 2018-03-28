@@ -38,6 +38,7 @@ public abstract class MIDletTimerTask extends TimerTask {
 
 	boolean oneTimeTaskExcecuted = false;
 
+	@Override
 	public boolean cancel() {
 		if (timer == null) {
 			return false;
@@ -58,6 +59,7 @@ public abstract class MIDletTimerTask extends TimerTask {
 		return true;
 	}
 
+	@Override
 	public long scheduledExecutionTime() {
 		return time;
 	}

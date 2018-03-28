@@ -189,6 +189,7 @@ public class RecordStoreManagerDialog extends JFrame {
 
 			private Color SUPER_LIGHT_GRAY = new Color(240, 240, 240);
 
+			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
 					boolean hasFocus, int row, int column) {
 				if ((row % 2) == 0) {

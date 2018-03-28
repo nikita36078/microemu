@@ -94,6 +94,7 @@ public class Connection extends org.microemu.cldc.socket.SocketConnection
 		return this;
 	}
 
+	@Override
 	public void close() throws IOException {
 		// TODO fix differences between Java ME and Java SE
 

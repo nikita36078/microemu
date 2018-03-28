@@ -163,14 +163,17 @@ public class Gauge extends Item {
 	}
 	// ITEM methods
 
+	@Override
 	int getHeight() {
 		return super.getHeight() + HEIGHT;
 	}
 
+	@Override
 	boolean isFocusable() {
 		return interactive;
 	}
 
+	@Override
 	void keyPressed(int keyCode) {
 		if (Display.getGameAction(keyCode) == Canvas.LEFT && value > 0) {
 			value--;
@@ -181,6 +184,7 @@ public class Gauge extends Item {
 		}
 	}
 
+	@Override
 	int paint(Graphics g) {
 		super.paintContent(g);
 
@@ -217,6 +221,7 @@ public class Gauge extends Item {
 		return getHeight();
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 		if (gameKeyCode == Canvas.UP) {
 			if (top > 0) {
@@ -238,6 +243,7 @@ public class Gauge extends Item {
 
 	// override some methods to disallow modification
 	// when inside an Alert
+	@Override
 	public void setPreferredSize(int w, int h) {
 		Screen owner = this.getOwner();
 
@@ -247,6 +253,7 @@ public class Gauge extends Item {
 			super.setPreferredSize(w, h);
 	}
 
+	@Override
 	public void setLayout(int layout) {
 		if (owner != null && owner instanceof Alert)
 			return;
@@ -254,6 +261,7 @@ public class Gauge extends Item {
 			super.setLayout(layout);
 	}
 
+	@Override
 	public void setLabel(String label) {
 		if (owner != null && owner instanceof Alert)
 			return;
@@ -261,6 +269,7 @@ public class Gauge extends Item {
 			super.setLabel(label);
 	}
 
+	@Override
 	public void addCommand(Command cmd) {
 		if (owner != null && owner instanceof Alert)
 			return;
@@ -268,6 +277,7 @@ public class Gauge extends Item {
 			super.addCommand(cmd);
 	}
 
+	@Override
 	public void setDefaultCommand(Command cmd) {
 		if (owner != null && owner instanceof Alert)
 			return;
@@ -275,6 +285,7 @@ public class Gauge extends Item {
 			super.setDefaultCommand(cmd);
 	}
 
+	@Override
 	public void setItemCommandListener(ItemCommandListener l) {
 		if (owner != null && owner instanceof Alert)
 			return;

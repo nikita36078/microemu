@@ -80,6 +80,7 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 
 	private MouseAdapter mouseListener = new MouseAdapter() {
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			deviceComponent.requestFocus();
 			pressedPoint = e.getPoint();
@@ -125,6 +126,7 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 			}
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			if (MIDletBridge.getCurrentMIDlet() == null) {
 				return;
@@ -275,6 +277,7 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 		}
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		Device device = DeviceFactory.getDevice();
 		if (device == null) {
@@ -284,6 +287,7 @@ public class SwingDisplayComponent extends JComponent implements DisplayComponen
 		return new Dimension(device.getDeviceDisplay().getFullWidth(), device.getDeviceDisplay().getFullHeight());
 	}
 
+	@Override
 	protected void paintComponent(Graphics g) {
 		if (graphicsSurface != null) {
 			synchronized (graphicsSurface) {

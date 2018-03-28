@@ -21,6 +21,7 @@ package javax.microedition.lcdui.game;
 
 import javax.microedition.lcdui.Canvas;
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
 
 import org.microemu.GameCanvasKeyAccess;
 import org.microemu.MIDletBridge;
@@ -64,6 +65,8 @@ public abstract class GameCanvas extends Canvas {
 	// on call to getKeyState
 	private int actualKeyState;
 
+	private Image offscreenBuffer;
+
 	private class KeyAccess implements GameCanvasKeyAccess {
 
 		public boolean suppressedKeyEvents(GameCanvas canvas) {
@@ -92,13 +95,16 @@ public abstract class GameCanvas extends Canvas {
 		MIDletBridge.registerGameCanvasKeyAccess(this, new KeyAccess());
 
 		this.suppressKeyEvents = suppressKeyEvents;
+		this.offscreenBuffer = Image.createImage(getWidth(), getHeight());
 	}
 
 	protected Graphics getGraphics() {
 		return DeviceFactory.getDevice().getDeviceDisplay().getGraphics(this);
 	}
 
+	@Override
 	public void paint(Graphics g) {
+		g.drawImage(offscreenBuffer, 0, 0, Graphics.TOP | Graphics.LEFT);
 	}
 
 	public void flushGraphics(int x, int y, int width, int height) {

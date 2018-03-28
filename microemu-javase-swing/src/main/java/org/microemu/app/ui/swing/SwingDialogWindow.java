@@ -100,6 +100,7 @@ public class SwingDialogWindow {
 		};
 
 		WindowAdapter windowAdapter = new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				panel.state = false;
 				panel.hideNotify();

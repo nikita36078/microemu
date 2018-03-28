@@ -90,6 +90,7 @@ public class JMRUMenu extends JMenu implements MRUListListener {
 	/**
 	 * Do not create new Event
 	 */
+	@Override
 	protected void fireActionPerformed(ActionEvent event) {
 		Object[] listeners = listenerList.getListenerList();
 		// Process the listeners last to first, notifying

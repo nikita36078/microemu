@@ -55,6 +55,7 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 	}
 
 	// TODO to be removed when event dispatcher will run input method task
+	@Override
 	public void dispose() {
 		cancel = true;
 		synchronized (this) {
@@ -87,6 +88,7 @@ public abstract class InputMethodImpl extends InputMethod implements Runnable {
 		}
 	}
 
+	@Override
 	public void setInputMethodListener(InputMethodListener l) {
 		super.setInputMethodListener(l);
 

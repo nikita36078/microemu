@@ -53,6 +53,7 @@ public class GrayImageFilter extends RGBImageFilter {
 		Rb = (backgroundColor.getBlue() - foregroundColor.getBlue()) / 256d;
 	}
 
+	@Override
 	public int filterRGB(int x, int y, int rgb) {
 		int a = (rgb & 0xFF000000);
 		int r = (rgb & 0x00FF0000) >>> 16;

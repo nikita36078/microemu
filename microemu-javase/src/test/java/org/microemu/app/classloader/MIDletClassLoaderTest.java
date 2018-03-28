@@ -57,6 +57,7 @@ public class MIDletClassLoaderTest extends TestCase {
 
 	private boolean enhanceCatchBlockSave;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		capture = new EventCatureLoggerAppender();
@@ -64,6 +65,7 @@ public class MIDletClassLoaderTest extends TestCase {
 		enhanceCatchBlockSave = MIDletClassLoader.enhanceCatchBlock;
 	}
 
+	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		Logger.removeAppender(capture);

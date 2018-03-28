@@ -60,6 +60,7 @@ public class FileSystemConnectorImpl extends ConnectorAdapter implements Impleme
 		this.fsRoot = fsRoot;
 	}
 
+	@Override
 	public Connection open(final String name, int mode, boolean timeouts) throws IOException {
 		// file://<host>/<path>
 		if (!name.startsWith(PROTOCOL)) {

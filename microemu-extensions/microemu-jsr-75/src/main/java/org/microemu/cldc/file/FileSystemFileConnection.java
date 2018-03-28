@@ -204,6 +204,7 @@ public class FileSystemFileConnection implements FileConnection {
 	public boolean canRead() {
 		throwClosed();
 		return doPrivilegedBoolean(new PrivilegedBooleanAction() {
+			@Override
 			public boolean getBoolean() {
 				return file.canRead();
 			}
@@ -213,6 +214,7 @@ public class FileSystemFileConnection implements FileConnection {
 	public boolean canWrite() {
 		throwClosed();
 		return doPrivilegedBoolean(new PrivilegedBooleanAction() {
+			@Override
 			public boolean getBoolean() {
 				return file.canWrite();
 			}
@@ -278,6 +280,7 @@ public class FileSystemFileConnection implements FileConnection {
 	public boolean exists() {
 		throwClosed();
 		return doPrivilegedBoolean(new PrivilegedBooleanAction() {
+			@Override
 			public boolean getBoolean() {
 				return file.exists();
 			}
@@ -343,6 +346,7 @@ public class FileSystemFileConnection implements FileConnection {
 	public boolean isHidden() {
 		throwClosed();
 		return doPrivilegedBoolean(new PrivilegedBooleanAction() {
+			@Override
 			public boolean getBoolean() {
 				return file.isHidden();
 			}
@@ -446,6 +450,7 @@ public class FileSystemFileConnection implements FileConnection {
 		this.opendInputStream = (InputStream) doPrivilegedIO(new PrivilegedExceptionAction() {
 			public Object run() throws IOException {
 				return new FileInputStream(file) {
+					@Override
 					public void close() throws IOException {
 						FileSystemFileConnection.this.opendInputStream = null;
 						super.close();
@@ -478,6 +483,7 @@ public class FileSystemFileConnection implements FileConnection {
 		this.opendOutputStream = (OutputStream) doPrivilegedIO(new PrivilegedExceptionAction() {
 			public Object run() throws IOException {
 				return new FileOutputStream(file, append) {
+					@Override
 					public void close() throws IOException {
 						FileSystemFileConnection.this.opendOutputStream = null;
 						super.close();
@@ -520,6 +526,7 @@ public class FileSystemFileConnection implements FileConnection {
 				RandomAccessFile raf = new RandomAccessFile(file, "rw");
 				raf.seek(byteOffset);
 				return new FileOutputStream(raf.getFD()) {
+					@Override
 					public void close() throws IOException {
 						FileSystemFileConnection.this.opendOutputStream = null;
 						super.close();

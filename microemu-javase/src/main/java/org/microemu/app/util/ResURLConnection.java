@@ -43,9 +43,11 @@ public class ResURLConnection extends URLConnection {
 		this.entries = entries;
 	}
 
+	@Override
 	public void connect() throws IOException {
 	}
 
+	@Override
 	public InputStream getInputStream() throws IOException {
 		String location = url.toString();
 		int idx = location.indexOf(PREFIX);

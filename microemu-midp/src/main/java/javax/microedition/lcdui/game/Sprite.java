@@ -380,6 +380,7 @@ public class Sprite extends Layer {
 		}
 	}
 
+	@Override
 	public final void paint(Graphics g) {
 		if (!isVisible())
 			return;

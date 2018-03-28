@@ -76,6 +76,7 @@ public class ImageItem extends Item {
 		return img;
 	}
 
+	@Override
 	public int getLayout() {
 		return super.getLayout();
 	}
@@ -94,10 +95,12 @@ public class ImageItem extends Item {
 		((ImageStringItemUI) ui).setImage(img);
 	}
 
+	@Override
 	public void setLayout(int layout) {
 		super.setLayout(layout);
 	}
 
+	@Override
 	int getHeight() {
 		if (img == null) {
 			return super.getHeight();
@@ -106,6 +109,7 @@ public class ImageItem extends Item {
 		}
 	}
 
+	@Override
 	int paint(Graphics g) {
 		super.paintContent(g);
 
@@ -126,6 +130,7 @@ public class ImageItem extends Item {
 		return getHeight();
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 		Font f = Font.getDefaultFont();
 

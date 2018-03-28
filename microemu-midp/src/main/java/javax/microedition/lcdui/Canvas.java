@@ -104,6 +104,7 @@ public abstract class Canvas extends Displayable {
 		return device.hasRepeatEvents();
 	}
 
+	@Override
 	protected void hideNotify() {
 	}
 
@@ -111,30 +112,39 @@ public abstract class Canvas extends Displayable {
 		return true;
 	}
 
+	@Override
 	protected void keyPressed(int keyCode) {
 	}
 
+	@Override
 	protected void keyRepeated(int keyCode) {
 	}
 
+	@Override
 	protected void keyReleased(int keyCode) {
 	}
 
+	@Override
 	protected abstract void paint(Graphics g);
 
+	@Override
 	protected void pointerPressed(int x, int y) {
 	}
 
+	@Override
 	protected void pointerReleased(int x, int y) {
 	}
 
+	@Override
 	protected void pointerDragged(int x, int y) {
 	}
 
+	@Override
 	public final void repaint() {
 		super.repaint();
 	}
 
+	@Override
 	public final void repaint(int x, int y, int width, int height) {
 		super.repaint(x, y, width, height);
 	}
@@ -160,9 +170,11 @@ public abstract class Canvas extends Displayable {
 		}
 	}
 
+	@Override
 	protected void sizeChanged(int w, int h) {
 	}
 
+	@Override
 	protected void showNotify() {
 	}
 

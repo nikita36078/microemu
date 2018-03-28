@@ -76,6 +76,7 @@ public class Alert extends Screen {
 		super.setCommandListener(defaultListener);
 	}
 
+	@Override
 	public void addCommand(Command cmd) {
 		if (cmd == Alert.DISMISS_COMMAND) {
 			return;
@@ -85,6 +86,7 @@ public class Alert extends Screen {
 		}
 	}
 
+	@Override
 	public void removeCommand(Command cmd) {
 		if (cmd == Alert.DISMISS_COMMAND) {
 			return;
@@ -117,6 +119,7 @@ public class Alert extends Screen {
 		repaint();
 	}
 
+	@Override
 	public void setCommandListener(CommandListener l) {
 		if (l == null)
 			l = defaultListener;
@@ -199,15 +202,18 @@ public class Alert extends Screen {
 		return alertContent.getHeight();
 	}
 
+	@Override
 	int paintContent(Graphics g) {
 		return alertContent.paint(g);
 	}
 
+	@Override
 	void showNotify() {
 		super.showNotify();
 		viewPortY = 0;
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom) {
 		Font f = Font.getDefaultFont();
 

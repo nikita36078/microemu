@@ -70,14 +70,17 @@ public abstract class FullCanvas extends Canvas {
 	/** Commands are not supported by FullCanvas
 	 * @param cmd
 	 */
+	@Override
 	public void addCommand(Command cmd) {
 		throw new IllegalStateException();
 	}
 
+	@Override
 	public int getWidth() {
 		return super.getWidth();
 	}
 
+	@Override
 	public int getHeight() {
 		return super.getHeight();
 	}
@@ -85,6 +88,7 @@ public abstract class FullCanvas extends Canvas {
 	/** Commands are not supported by FullCanvas
 	 * @param l
 	 */
+	@Override
 	public void setCommandListener(CommandListener l) {
 		throw new IllegalStateException();
 	}

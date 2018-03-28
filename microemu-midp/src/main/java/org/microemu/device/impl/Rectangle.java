@@ -80,6 +80,7 @@ public class Rectangle extends Shape {
 		}
 	}
 
+	@Override
 	public boolean contains(int x, int y) {
 		if (x >= this.x && x < this.x + this.width && y >= this.y
 				&& y < this.y + this.height) {
@@ -89,6 +90,7 @@ public class Rectangle extends Shape {
 		}
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return this;
 	}

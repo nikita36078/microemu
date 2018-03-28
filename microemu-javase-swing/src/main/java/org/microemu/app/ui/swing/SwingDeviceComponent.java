@@ -145,6 +145,7 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 
 		}
 
+		@Override
 		public void run() {
 			if (inputMethod != null) {
 				inputMethod.buttonPressed(button, '\0');
@@ -155,6 +156,7 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 
 	private MouseAdapter mouseListener = new MouseAdapter() {
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			requestFocus();
 			mouseButtonDown = true;
@@ -201,6 +203,7 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 			}
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			mouseButtonDown = false;
 			MouseRepeatedTimerTask.stop();
@@ -342,6 +345,7 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 		repaint();
 	}
 
+	@Override
 	public InputMethodRequests getInputMethodRequests() {
 		return this;
 	}
@@ -507,6 +511,7 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 		return mouseMotionListener;
 	}
 
+	@Override
 	protected void paintComponent(Graphics g) {
 		if (offg == null || offi.getWidth(null) != getSize().width || offi.getHeight(null) != getSize().height) {
 			offi = new J2SEMutableImage(getSize().width, getSize().height, false, 0x000000).getImage();
@@ -567,6 +572,7 @@ public class SwingDeviceComponent extends JPanel implements KeyListener, InputMe
 		g.setClip(clipSave);
 	}
 
+	@Override
 	public Dimension getPreferredSize() {
 		Device device = DeviceFactory.getDevice();
 		if (device == null) {

@@ -72,41 +72,48 @@ public class MIDletTimer extends Timer implements Runnable {
 	}
 
 	// TODO exceptions
+	@Override
 	public void schedule(TimerTask task, Date time) {
 		register(this);
 		schedule(task, time.getTime(), -1, false);
 	}
 
 	// TODO exceptions
+	@Override
 	public void schedule(TimerTask task, Date firstTime, long period) {
 		register(this);
 		schedule(task, firstTime.getTime(), period, false);
 	}
 
 	// TODO exceptions
+	@Override
 	public void schedule(TimerTask task, long delay) {
 		register(this);
 		schedule(task, System.currentTimeMillis() + delay, -1, false);
 	}
 
 	// TODO exceptions
+	@Override
 	public void schedule(TimerTask task, long delay, long period) {
 		register(this);
 		schedule(task, System.currentTimeMillis() + delay, period, false);
 	}
 
 	// TODO exceptions
+	@Override
 	public void scheduleAtFixedRate(TimerTask task, Date firstTime, long period) {
 		register(this);
 		schedule(task, firstTime.getTime(), period, true);
 	}
 
 	// TODO exceptions
+	@Override
 	public void scheduleAtFixedRate(TimerTask task, long delay, long period) {
 		register(this);
 		schedule(task, System.currentTimeMillis() + delay, period, true);
 	}
 
+	@Override
 	public void cancel() {
 		unregister(this);
 

@@ -46,6 +46,7 @@ public class RecordStoreChangePanel extends SwingDialogPanel {
 		add(selectStoreCombo);
 	}
 
+	@Override
 	protected void showNotify() {
 		if (common.getRecordStoreManager() instanceof FileRecordStoreManager) {
 			selectStoreCombo.setSelectedIndex(0);

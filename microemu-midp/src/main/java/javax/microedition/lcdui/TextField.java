@@ -292,14 +292,17 @@ public class TextField extends Item {
 		// TODO implement
 	}
 
+	@Override
 	boolean isFocusable() {
 		return true;
 	}
 
+	@Override
 	int getHeight() {
 		return super.getHeight() + stringComponent.getHeight() + 8;
 	}
 
+	@Override
 	int paint(Graphics g) {
 		super.paintContent(g);
 
@@ -322,6 +325,7 @@ public class TextField extends Item {
 		return getHeight();
 	}
 
+	@Override
 	void paintContent(Graphics g) {
 		stringComponent.paint(g);
 		if (caretVisible) {
@@ -339,6 +343,7 @@ public class TextField extends Item {
 		caretVisible = state;
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 		if (gameKeyCode == Canvas.UP) {
 			if (top > 0) {
@@ -358,6 +363,7 @@ public class TextField extends Item {
 		return 0;
 	}
 
+	@Override
 	void setFocus(boolean hasFocus) {
 		super.setFocus(hasFocus);
 		if (hasFocus) {

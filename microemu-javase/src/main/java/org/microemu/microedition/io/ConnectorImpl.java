@@ -71,6 +71,7 @@ public class ConnectorImpl extends ConnectorAdapter {
 		}
 	}
 
+	@Override
 	public Connection open(final String name, final int mode, final boolean timeouts) throws IOException {
 		try {
 			return (Connection) AccessController.doPrivileged(new PrivilegedExceptionAction() {

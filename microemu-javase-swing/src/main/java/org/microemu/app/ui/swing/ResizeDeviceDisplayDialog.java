@@ -56,6 +56,7 @@ public class ResizeDeviceDisplayDialog extends SwingDialogPanel {
 			this.maxValue = maxValue;
 		}
 
+		@Override
 		protected Document createDefaultModel() {
 			return new IntegerDocument();
 		}
@@ -64,6 +65,7 @@ public class ResizeDeviceDisplayDialog extends SwingDialogPanel {
 
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
 				if (str == null) {
 					return;

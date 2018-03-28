@@ -45,6 +45,7 @@ public class HttpConnectionTest extends BaseTestHttpConnection {
 		}
 	}
 
+	@Override
 	protected HttpConnection openHttpConnection(String query) throws IOException {
 		return (HttpConnection) Connector.open("http://" + TEST_HOST + query, Connector.READ, true);
 	}

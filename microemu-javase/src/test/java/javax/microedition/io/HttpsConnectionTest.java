@@ -34,11 +34,13 @@ public class HttpsConnectionTest extends BaseTestHttpConnection {
 
 	private static final String testInetHTTPUrl = "https://" + TEST_HOST + testFile;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		super.setupSSLContext();
 	}
 
+	@Override
 	protected HttpConnection openHttpConnection(String query) throws IOException {
 		return (HttpsConnection) Connector.open("https://" + TEST_HOST + query, Connector.READ, true);
 	}

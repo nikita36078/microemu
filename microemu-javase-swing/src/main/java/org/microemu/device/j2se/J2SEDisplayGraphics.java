@@ -38,7 +38,6 @@ import javax.microedition.lcdui.game.Sprite;
 
 import org.microemu.device.Device;
 import org.microemu.device.DeviceFactory;
-import org.microemu.device.j2se.J2SEGraphicsSurface;
 
 public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 
@@ -94,10 +93,12 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		}
 	}
 
+	@Override
 	public int getColor() {
 		return color;
 	}
 
+	@Override
 	public void setColor(int RGB) {
 		color = RGB;
 
@@ -113,10 +114,12 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		g.setColor(awtColor);
 	}
 
+	@Override
 	public javax.microedition.lcdui.Font getFont() {
 		return currentFont;
 	}
 
+	@Override
 	public void setFont(javax.microedition.lcdui.Font font) {
 		currentFont = font;
 		J2SEFont tmpFont = (J2SEFont) ((J2SEFontManager) DeviceFactory.getDevice().getFontManager())
@@ -124,10 +127,12 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		g.setFont(tmpFont.getFont());
 	}
 
+	@Override
 	public int getStrokeStyle() {
 		return strokeStyle;
 	}
 
+	@Override
 	public void setStrokeStyle(int style) {
 		if (style != SOLID && style != DOTTED) {
 			throw new IllegalArgumentException();
@@ -136,11 +141,13 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		this.strokeStyle = style;
 	}
 
+	@Override
 	public void clipRect(int x, int y, int width, int height) {
 		g.clipRect(x, y, width, height);
 		clip = g.getClipBounds();
 	}
 
+	@Override
 	public void setClip(int x, int y, int width, int height) {
 		g.setClip(x, y, width, height);
 		clip.x = x;
@@ -149,26 +156,32 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		clip.height = height;
 	}
 
+	@Override
 	public int getClipX() {
 		return clip.x;
 	}
 
+	@Override
 	public int getClipY() {
 		return clip.y;
 	}
 
+	@Override
 	public int getClipHeight() {
 		return clip.height;
 	}
 
+	@Override
 	public int getClipWidth() {
 		return clip.width;
 	}
 
+	@Override
 	public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
 		g.drawArc(x, y, width, height, startAngle, arcAngle);
 	}
 
+	@Override
 	public void drawImage(Image img, int x, int y, int anchor) {
 		int newx = x;
 		int newy = y;
@@ -195,10 +208,12 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		}
 	}
 
+	@Override
 	public void drawLine(int x1, int y1, int x2, int y2) {
 		g.drawLine(x1, y1, x2, y2);
 	}
 
+	@Override
 	public void drawRect(int x, int y, int width, int height) {
 		drawLine(x, y, x + width, y);
 		drawLine(x + width, y, x + width, y + height);
@@ -206,10 +221,12 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		drawLine(x, y + height, x, y);
 	}
 
+	@Override
 	public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
 		g.drawRoundRect(x, y, width, height, arcWidth, arcHeight);
 	}
 
+	@Override
 	public void drawString(String str, int x, int y, int anchor) {
 		int newx = x;
 		int newy = y;
@@ -236,22 +253,27 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		}
 	}
 
+	@Override
 	public void drawSubstring(String str, int offset, int len, int x, int y, int anchor) {
 		drawString(str.substring(offset, offset + len), x, y, anchor);
 	}
 
+	@Override
 	public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
 		g.fillArc(x, y, width, height, startAngle, arcAngle);
 	}
 
+	@Override
 	public void fillRect(int x, int y, int width, int height) {
 		g.fillRect(x, y, width, height);
 	}
 
+	@Override
 	public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
 		g.fillRoundRect(x, y, width, height, arcWidth, arcHeight);
 	}
 
+	@Override
 	public void translate(int x, int y) {
 		super.translate(x, y);
 		g.translate(x, y);
@@ -260,6 +282,7 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 	}
 
 	// Andres Navarro
+	@Override
 	public void drawRegion(Image src, int x_src, int y_src, int width, int height, int transform, int x_dst, int y_dst,
 			int anchor) {
 
@@ -399,6 +422,7 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		g.setTransform(savedT);
 	}
 
+	@Override
 	public void drawRGB(int[] rgbData, int offset, int scanlength, int x, int y, int width, int height,
 			boolean processAlpha) {
 		if (rgbData == null)
@@ -444,6 +468,7 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		}
 	}
 
+	@Override
 	public void fillTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
 		int[] xPoints = new int[3];
 		int[] yPoints = new int[3];
@@ -457,6 +482,7 @@ public class J2SEDisplayGraphics extends javax.microedition.lcdui.Graphics {
 		g.fillPolygon(xPoints, yPoints, 3);
 	}
 
+	@Override
 	public void copyArea(int x_src, int y_src, int width, int height, int x_dest, int y_dest, int anchor) {
 
 		// TODO check for Graphics Object size and

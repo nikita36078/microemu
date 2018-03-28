@@ -45,6 +45,7 @@ public class J2SEMutableImage extends MutableImage {
 		graphicsSurface = new J2SEGraphicsSurface(width, height, withAlpha, fillColor);
 	}
 
+	@Override
 	public javax.microedition.lcdui.Graphics getGraphics() {
 		Graphics2D g = graphicsSurface.getGraphics();
 		g.setTransform(new AffineTransform());
@@ -56,10 +57,12 @@ public class J2SEMutableImage extends MutableImage {
 		return displayGraphics;
 	}
 
+	@Override
 	public boolean isMutable() {
 		return true;
 	}
 
+	@Override
 	public int getHeight() {
 		return graphicsSurface.getImage().getHeight();
 	}
@@ -68,10 +71,12 @@ public class J2SEMutableImage extends MutableImage {
 		return graphicsSurface.getImage();
 	}
 
+	@Override
 	public int getWidth() {
 		return graphicsSurface.getImage().getWidth();
 	}
 
+	@Override
 	public int[] getData() {
 		if (grabber == null) {
 			pixels = new int[getWidth() * getHeight()];
@@ -88,6 +93,7 @@ public class J2SEMutableImage extends MutableImage {
 		return pixels;
 	}
 
+	@Override
 	public void getRGB(int[] argb, int offset, int scanlength,
 			int x, int y, int width, int height) {
 

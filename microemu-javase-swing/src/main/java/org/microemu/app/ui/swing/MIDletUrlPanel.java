@@ -44,6 +44,7 @@ public class MIDletUrlPanel extends SwingDialogPanel {
 		return jadUrlField.getText();
 	}
 
+	@Override
 	protected void showNotify() {
 		jadUrlField.setText("");
 	}

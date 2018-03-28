@@ -55,6 +55,7 @@ class ImageStringItem extends Item {
 		stringComponent.setText(text);
 	}
 
+	@Override
 	int getHeight() {
 		if (img != null && img.getHeight() > stringComponent.getHeight()) {
 			return img.getHeight();
@@ -67,6 +68,7 @@ class ImageStringItem extends Item {
 		stringComponent.invertPaint(state);
 	}
 
+	@Override
 	int paint(Graphics g) {
 		if (stringComponent == null) {
 			return 0;

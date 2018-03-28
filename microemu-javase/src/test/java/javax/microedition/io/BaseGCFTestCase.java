@@ -57,6 +57,7 @@ public class BaseGCFTestCase extends TestCase {
 	/**
 	 * TODO Support proxy configuration.
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		// Some tests may run via proxy but not all.
 		if (System.getProperty("http.proxyHost") == null) {

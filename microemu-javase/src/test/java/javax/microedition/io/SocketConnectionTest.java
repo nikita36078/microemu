@@ -94,6 +94,7 @@ public class SocketConnectionTest extends BaseGCFTestCase {
 			this.scn = scn;
 		}
 
+		@Override
 		public void run() {
 			try {
 				// Wait for a connection.

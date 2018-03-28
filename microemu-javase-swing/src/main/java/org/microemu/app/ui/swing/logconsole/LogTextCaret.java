@@ -40,6 +40,7 @@ public class LogTextCaret extends DefaultCaret {
 
 	private boolean visibilityAdjustmentEnabled = true;
 
+	@Override
 	protected void adjustVisibility(Rectangle nloc) {
 		if (visibilityAdjustmentEnabled) {
 			super.adjustVisibility(nloc);

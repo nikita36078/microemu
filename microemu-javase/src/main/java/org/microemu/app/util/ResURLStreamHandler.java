@@ -38,6 +38,7 @@ public class ResURLStreamHandler extends URLStreamHandler {
 		this.entries = entries;
 	}
 
+	@Override
 	protected URLConnection openConnection(URL url) throws IOException {
 		return new ResURLConnection(url, entries);
 	}

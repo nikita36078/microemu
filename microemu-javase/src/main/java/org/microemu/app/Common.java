@@ -259,6 +259,7 @@ public class Common implements MicroEmulator, CommonInterface {
 	private void runAutoTests(final String urlString, final boolean exitAtTheEnd) {
 		final Common common = getInstance();
 		Thread t = new Thread("AutoTestsThread") {
+			@Override
 			public void run() {
 				boolean firstJad = true;
 				do {

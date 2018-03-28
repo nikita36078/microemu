@@ -55,10 +55,12 @@ public class DropTransferHandler extends TransferHandler {
 
 	private static boolean debugImport = false;
 
+	@Override
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.COPY;
 	}
 
+	@Override
 	public boolean canImport(JComponent comp, DataFlavor transferFlavors[]) {
 		for (int i = 0; i < transferFlavors.length; i++) {
 			Class representationclass = transferFlavors[i].getRepresentationClass();
@@ -107,6 +109,7 @@ public class DropTransferHandler extends TransferHandler {
 		return false;
 	}
 
+	@Override
 	public boolean importData(JComponent comp, Transferable t) {
 		DataFlavor[] transferFlavors = t.getTransferDataFlavors();
 		for (int i = 0; i < transferFlavors.length; i++) {

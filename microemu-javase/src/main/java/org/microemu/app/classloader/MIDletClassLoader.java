@@ -149,6 +149,7 @@ public class MIDletClassLoader extends URLClassLoader {
 		return new URL(path.substring(0, path.length() - resource.length()));
 	}
 
+	@Override
 	public void addURL(URL url) {
 		if (debug) {
 			Logger.debug("addURL ", url.toString());
@@ -190,6 +191,7 @@ public class MIDletClassLoader extends URLClassLoader {
 	 * </ol>
 	 *
 	 */
+	@Override
 	protected synchronized Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
 		if (debug) {
 			Logger.debug("loadClass", name);
@@ -247,6 +249,7 @@ public class MIDletClassLoader extends URLClassLoader {
 	 *
 	 */
 
+	@Override
 	public URL getResource(final String name) {
 		try {
 			return (URL) AccessController.doPrivileged(new PrivilegedExceptionAction() {
@@ -269,6 +272,7 @@ public class MIDletClassLoader extends URLClassLoader {
 	/**
 	 * Allow access to resources
 	 */
+	@Override
 	public InputStream getResourceAsStream(String name) {
 		final URL url = getResource(name);
 		if (url == null) {
@@ -334,6 +338,7 @@ public class MIDletClassLoader extends URLClassLoader {
 		return className.replace('.', '/').concat(".class");
 	}
 
+	@Override
 	protected Class findClass(final String name) throws ClassNotFoundException {
 		if (debug) {
 			Logger.debug("findClass", name);

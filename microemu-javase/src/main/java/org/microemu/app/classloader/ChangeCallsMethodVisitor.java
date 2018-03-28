@@ -76,6 +76,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		return klass.getName().replace('.', '/');
 	}
 
+	@Override
 	public void visitFieldInsn(final int opcode, final String owner, final String name, final String desc) {
 		switch (opcode) {
 		case GETSTATIC:
@@ -97,6 +98,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		mv.visitFieldInsn(opcode, owner, name, desc);
 	}
 
+	@Override
 	public void visitMethodInsn(int opcode, String owner, String name, String desc) {
 		switch (opcode) {
 		case INVOKESTATIC:
@@ -138,6 +140,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		mv.visitMethodInsn(opcode, owner, name, desc);
 	}
 
+	@Override
 	public void visitTypeInsn(final int opcode, String desc) {
 		if ((opcode == NEW) && (config.isEnhanceThreadCreation())) {
 			if ("java/util/Timer".equals(desc)) {
@@ -151,6 +154,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 		mv.visitTypeInsn(opcode, desc);
 	}
 
+	@Override
 	public void visitTryCatchBlock(final Label start, final Label end, final Label handler, final String type) {
 		if (config.isEnhanceCatchBlock() && type != null) {
 			if (catchInfo == null) {
@@ -168,6 +172,7 @@ public class ChangeCallsMethodVisitor extends MethodAdapter implements Opcodes {
 	}
 
 	//TODO make this work for gMaps case
+	@Override
 	public void visitLabel(Label label) {
 		if (config.isEnhanceCatchBlock() && catchInfo != null) {
 			CatchInformation newHandler = (CatchInformation) catchInfo.get(label);

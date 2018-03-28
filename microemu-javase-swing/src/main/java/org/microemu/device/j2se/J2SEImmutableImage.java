@@ -52,6 +52,7 @@ public class J2SEImmutableImage extends javax.microedition.lcdui.Image {
 		this.height = -1;
 	}
 
+	@Override
 	public int getHeight() {
 		if (height == -1) {
 			ImageObserver observer = new ImageObserver() {
@@ -92,6 +93,7 @@ public class J2SEImmutableImage extends javax.microedition.lcdui.Image {
 		return img;
 	}
 
+	@Override
 	public int getWidth() {
 		if (width == -1) {
 			ImageObserver observer = new ImageObserver() {
@@ -128,6 +130,7 @@ public class J2SEImmutableImage extends javax.microedition.lcdui.Image {
 		return width;
 	}
 
+	@Override
 	public void getRGB(int[] argb, int offset, int scanlength, int x, int y, int width, int height) {
 
 		if (width <= 0 || height <= 0)

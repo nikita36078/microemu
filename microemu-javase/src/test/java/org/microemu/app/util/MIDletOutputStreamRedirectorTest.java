@@ -10,12 +10,14 @@ public class MIDletOutputStreamRedirectorTest extends TestCase {
 
 	EventCatureLoggerAppender capture;
 
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		capture = new EventCatureLoggerAppender();
 		Logger.addAppender(capture);
 	}
 
+	@Override
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		Logger.removeAppender(capture);
@@ -59,6 +61,7 @@ public class MIDletOutputStreamRedirectorTest extends TestCase {
 
 		private boolean success = false;
 
+		@Override
 		public void run() {
 			try {
 				final String message = "Test text from LogginThread";
@@ -199,6 +202,7 @@ public class MIDletOutputStreamRedirectorTest extends TestCase {
 
 		private Throwable throwable = null;
 
+		@Override
 		public void run() {
 			try {
 				final String message = "Test text from LogginThread";

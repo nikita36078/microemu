@@ -39,6 +39,7 @@ public class ExtensionFileFilter extends FileFilter {
 		this.description = description;
 	}
 
+	@Override
 	public boolean accept(File file) {
 		if (file != null) {
 			if (file.isDirectory()) {
@@ -57,6 +58,7 @@ public class ExtensionFileFilter extends FileFilter {
 		extensions.put(extension.toLowerCase(), this);
 	}
 
+	@Override
 	public String getDescription() {
 		return description;
 	}

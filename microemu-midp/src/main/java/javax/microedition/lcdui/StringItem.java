@@ -59,6 +59,7 @@ public class StringItem extends Item {
 		// TODO implement
 	}
 
+	@Override
 	public void setPreferredSize(int width, int height) {
 		// TODO implement
 	}
@@ -76,10 +77,12 @@ public class StringItem extends Item {
 		repaint();
 	}
 
+	@Override
 	int getHeight() {
 		return super.getHeight() + stringComponent.getHeight();
 	}
 
+	@Override
 	int paint(Graphics g) {
 		super.paintContent(g);
 
@@ -90,6 +93,7 @@ public class StringItem extends Item {
 		return getHeight();
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 		Font f = Font.getDefaultFont();
 

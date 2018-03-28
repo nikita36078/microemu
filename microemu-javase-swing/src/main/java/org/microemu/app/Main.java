@@ -469,6 +469,7 @@ public class Main extends JFrame {
 			if (recordStoreManagerDialog == null) {
 				recordStoreManagerDialog = new RecordStoreManagerDialog(Main.this, common);
 				recordStoreManagerDialog.addWindowListener(new WindowAdapter() {
+					@Override
 					public void windowClosing(WindowEvent e) {
 						menuRecordStoreManager.setState(false);
 					}
@@ -486,6 +487,7 @@ public class Main extends JFrame {
 			if (logConsoleDialog == null) {
 				logConsoleDialog = new SwingLogConsoleDialog(Main.this, Main.this.logQueueAppender);
 				logConsoleDialog.addWindowListener(new WindowAdapter() {
+					@Override
 					public void windowClosing(WindowEvent e) {
 						menuLogConsole.setState(false);
 					}
@@ -595,6 +597,7 @@ public class Main extends JFrame {
 					}
 				};
 				scaledDisplayFrame.addWindowListener(new WindowAdapter() {
+					@Override
 					public void windowClosing(WindowEvent event) {
 						selectedZoomLevelMenuItem.setSelected(false);
 					}
@@ -722,6 +725,7 @@ public class Main extends JFrame {
 
 		int count = 0;
 
+		@Override
 		public void componentResized(ComponentEvent e) {
 			count++;
 			DeviceDisplayImpl deviceDisplay = (DeviceDisplayImpl) DeviceFactory.getDevice().getDeviceDisplay();
@@ -735,6 +739,7 @@ public class Main extends JFrame {
 						timer = new Timer();
 					}
 					timer.schedule(new CountTimerTask(count) {
+						@Override
 						public void run() {
 							if (counter == count) {
 								Config.setDeviceEntryDisplaySize(deviceEntry, new Rectangle(0, 0, devicePanel
@@ -751,14 +756,17 @@ public class Main extends JFrame {
 	};
 
 	private WindowAdapter windowListener = new WindowAdapter() {
+		@Override
 		public void windowClosing(WindowEvent ev) {
 			menuExitListener.actionPerformed(null);
 		}
 
+		@Override
 		public void windowIconified(WindowEvent ev) {
 			MIDletBridge.getMIDletAccess(MIDletBridge.getCurrentMIDlet()).pauseApp();
 		}
 
+		@Override
 		public void windowDeiconified(WindowEvent ev) {
 			try {
 				MIDletBridge.getMIDletAccess(MIDletBridge.getCurrentMIDlet()).startApp();

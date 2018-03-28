@@ -60,6 +60,7 @@ public class PCTonePlayer extends BasicPlayer
 		return null;
 	}
 
+	@Override
 	public synchronized void start() throws MediaException {
 		try {
 			new Thread(this).start();
@@ -69,6 +70,7 @@ public class PCTonePlayer extends BasicPlayer
 		}
 	}
 
+	@Override
 	public synchronized void stop() throws MediaException {
 		try {
 			this.setRunning(false);

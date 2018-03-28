@@ -91,6 +91,7 @@ public abstract class CustomItem extends Item {
 		repaintOwner();
 	}
 
+	@Override
 	protected void keyPressed(int keyCode) {
 		// the default implementation of this method
 		// does nothing
@@ -123,6 +124,7 @@ public abstract class CustomItem extends Item {
 		// does nothing
 	}
 
+	@Override
 	protected final void repaint() {
 		if (ui == null) {
 			// ui is not initialized yet
@@ -169,6 +171,7 @@ public abstract class CustomItem extends Item {
 	// Keep track of current height and width
 	int width = 0, height = 0;
 
+	@Override
 	int paint(Graphics g) {
 		// Get preferred width and
 		width = getPrefContentWidth(-1);
@@ -184,10 +187,12 @@ public abstract class CustomItem extends Item {
 	}
 
 	// If this method is not implemented, the height of the component is not counted
+	@Override
 	int getHeight() {
 		return super.getHeight() + height;
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 		int[] inout = new int[4];
 		inout[0] = 0;
@@ -202,10 +207,12 @@ public abstract class CustomItem extends Item {
 		}
 	}
 
+	@Override
 	boolean isFocusable() {
 		return true;
 	}
 
+	@Override
 	boolean select() {
 		// send a FIRE keycode here, otherwise there does not appear
 		// to be a way for a CustomItem to use that key

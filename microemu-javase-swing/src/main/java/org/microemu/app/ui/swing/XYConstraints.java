@@ -103,6 +103,7 @@ public class XYConstraints implements Cloneable {
 		return false;
 	}
 
+	@Override
 	public Object clone() {
 		return new XYConstraints(x, y, width, height);
 	}

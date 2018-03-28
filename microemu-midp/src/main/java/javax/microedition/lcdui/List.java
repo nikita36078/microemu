@@ -155,6 +155,7 @@ public class List extends Screen implements Choice {
 		return choiceGroup.isSelected(elementNum);
 	}
 
+	@Override
 	public void removeCommand(Command cmd) {
 		// TODO implement
 		super.removeCommand(cmd);
@@ -194,16 +195,19 @@ public class List extends Screen implements Choice {
 		}
 	}
 
+	@Override
 	public void setTicker(Ticker ticker) {
 		super.setTicker(ticker);
 		// TODO size of changed probably
 	}
 
+	@Override
 	public void setTitle(String s) {
 		// TODO implement
 		super.setTitle(s);
 	}
 
+	@Override
 	void keyPressed(int keyCode) {
 		if (Display.getGameAction(keyCode) == Canvas.FIRE && choiceGroup.select() && super.getCommandListener() != null
 				&& choiceGroup.choiceType == Choice.IMPLICIT) {
@@ -213,6 +217,7 @@ public class List extends Screen implements Choice {
 		}
 	}
 
+	@Override
 	void pointerPressed(int x, int y) {
 		Ticker ticker = getTicker();
 		if (ticker != null) {
@@ -235,6 +240,7 @@ public class List extends Screen implements Choice {
 		}
 	}
 
+	@Override
 	void pointerReleased(int x, int y) {
 		Ticker ticker = getTicker();
 		if (ticker != null) {
@@ -255,6 +261,7 @@ public class List extends Screen implements Choice {
 		}
 	}
 
+	@Override
 	int paintContent(Graphics g) {
 		return choiceGroup.paint(g);
 	}
@@ -267,6 +274,7 @@ public class List extends Screen implements Choice {
 		}
 	}
 
+	@Override
 	void showNotify() {
 		super.showNotify();
 
@@ -286,6 +294,7 @@ public class List extends Screen implements Choice {
 		}
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom) {
 		int traverse = choiceGroup.traverse(gameKeyCode, top, bottom, true);
 		if (traverse == Item.OUTOFITEM) {

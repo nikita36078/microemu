@@ -123,6 +123,7 @@ public final class RecordStoreTest extends TestCase {
 
 	private RecordStoreImpl rs;
 
+	@Override
 	protected void setUp() throws Exception {
 
 		super.setUp();

@@ -36,14 +36,17 @@ import net.sf.jour.signature.SignatureTestCase;
  */
 public class JSR82APIDeclarationsTest extends SignatureTestCase {
 
+	@Override
 	public String getAPIPath() {
 		return getClassPath(LocalDevice.class);
 	}
 
+	@Override
 	public String getSupportingJarsPath() {
 		return getClassPath(Connection.class);
 	}
 
+	@Override
 	public String getSignatureXMLPath() {
 		return "jsr82-signature.xml";
 	}

@@ -292,6 +292,7 @@ public class VideoCaptureControl implements VideoControl {
 			m_stopped = true;
 		}
 
+		@Override
 		public void run() {
 			while (!m_stopped) {
 				m_canvas.repaint(m_displayX, m_displayY, m_displayWidth, m_displayHeight);

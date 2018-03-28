@@ -46,6 +46,7 @@ public class RGBImageFilter extends java.awt.image.RGBImageFilter {
 		Rb = foregroundColor.getBlue() - backgroundColor.getBlue();
 	}
 
+	@Override
 	public int filterRGB(int x, int y, int rgb) {
 		int a = (rgb & 0xFF000000);
 		int r = (rgb & 0x00FF0000) >>> 16;

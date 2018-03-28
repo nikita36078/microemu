@@ -69,6 +69,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 
 		}
 
+		@Override
 		public void run() {
 			if (repeatModeKeyCode != Integer.MIN_VALUE) {
 				MIDletAccess ma = MIDletBridge.getMIDletAccess();
@@ -104,6 +105,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 	 * @return the game action corresponding to this key, or <code>0</code> if
 	 *         none
 	 */
+	@Override
 	public int getGameAction(int keyCode) {
 		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext(); ) {
 			J2SEButton button = (J2SEButton) it.next();
@@ -121,6 +123,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 	 * @throws IllegalArgumentException
 	 *             if <code>gameAction</code> is not a valid game action
 	 */
+	@Override
 	public int getKeyCode(int gameAction) {
 		ButtonName name = ButtonDetaultDeviceKeyCodes.getButtonNameByGameAction(gameAction);
 		return J2SEDeviceButtonsHelper.getButton(name).getKeyCode();
@@ -131,6 +134,7 @@ public class J2SEInputMethod extends InputMethodImpl {
 	 * @throws IllegalArgumentException
 	 *             if <code>keyCode</code> is not a valid key code
 	 */
+	@Override
 	public String getKeyName(int keyCode) throws IllegalArgumentException {
 		for (Iterator it = DeviceFactory.getDevice().getButtons().iterator(); it.hasNext(); ) {
 			J2SEButton button = (J2SEButton) it.next();

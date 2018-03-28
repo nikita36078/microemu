@@ -117,6 +117,7 @@ public class Polygon extends Shape {
 		bounds.add(x, y);
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return bounds;
 	}
@@ -128,6 +129,7 @@ public class Polygon extends Shape {
 	 *            The GeoPoint to test.
 	 * @return boolean True if point is contained by this polygon.
 	 */
+	@Override
 	public boolean contains(int x, int y) {
 
 		/*if(!getMultiPartBounds().contains(p)){

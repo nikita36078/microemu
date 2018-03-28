@@ -45,15 +45,18 @@ public abstract class MIDlet {
 			destroyed = false;
 		}
 
+		@Override
 		public void startApp() throws MIDletStateChangeException {
 			MIDletBridge.setCurrentMIDlet(midlet);
 			midlet.startApp();
 		}
 
+		@Override
 		public void pauseApp() {
 			midlet.pauseApp();
 		}
 
+		@Override
 		public void destroyApp(boolean unconditional) throws MIDletStateChangeException {
 			if (!midlet.destroyed) {
 				midlet.destroyApp(unconditional);

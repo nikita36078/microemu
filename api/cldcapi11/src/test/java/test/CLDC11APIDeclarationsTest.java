@@ -35,20 +35,24 @@ import net.sf.jour.signature.SignatureTestCase;
  */
 public class CLDC11APIDeclarationsTest extends SignatureTestCase {
 
+	@Override
 	public String getAPIPath() {
 		return "./target/classes";
 	}
 
+	@Override
 	public boolean isUeSystemClassPath() {
 		return false;
 	}
 
+	@Override
 	public APICompareConfig getAPICompareConfig() {
 		APICompareConfig c = new APICompareConfig();
 		// c.setCompareLevelPackage();
 		return c;
 	}
 
+	@Override
 	public String getSignatureXMLPath() {
 		return "cldcapi11-signature.xml";
 	}

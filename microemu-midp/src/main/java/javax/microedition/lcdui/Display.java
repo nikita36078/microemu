@@ -413,6 +413,7 @@ public class Display {
 			this.alert = alert;
 		}
 
+		@Override
 		public void run() {
 			if (alert.isShown()) {
 				MIDletBridge.getMIDletAccess().getDisplayAccess().commandAction(
@@ -438,6 +439,7 @@ public class Display {
 			this.runnable = runnable;
 		}
 
+		@Override
 		public void run() {
 			eventDispatcher.put(runnable);
 		}

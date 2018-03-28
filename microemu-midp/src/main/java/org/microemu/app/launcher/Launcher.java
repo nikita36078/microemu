@@ -73,12 +73,15 @@ public class Launcher extends MIDlet implements CommandListener {
 		return null;
 	}
 
+	@Override
 	public void destroyApp(boolean unconditional) {
 	}
 
+	@Override
 	public void pauseApp() {
 	}
 
+	@Override
 	public void startApp() {
 		menuList = new List("Launcher", List.IMPLICIT);
 		menuList.addCommand(CMD_LAUNCH);

@@ -147,10 +147,12 @@ public class DateField extends Item {
 		}
 	}
 
+	@Override
 	boolean isFocusable() {
 		return true;
 	}
 
+	@Override
 	int getHeight() {
 		if (ui.getClass().getName().equals("org.microemu.android.device.ui.AndroidDateFieldUI")) {
 			return super.getHeight();
@@ -159,6 +161,7 @@ public class DateField extends Item {
 		}
 	}
 
+	@Override
 	int paint(Graphics g) {
 		super.paintContent(g);
 
@@ -169,6 +172,7 @@ public class DateField extends Item {
 		return getHeight();
 	}
 
+	@Override
 	void setFocus(boolean state) {
 		super.setFocus(state);
 
@@ -178,6 +182,7 @@ public class DateField extends Item {
 		}
 	}
 
+	@Override
 	boolean select() {
 		dateTime.select();
 
@@ -207,6 +212,7 @@ public class DateField extends Item {
 		return true;
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 		return dateTime.traverse(gameKeyCode, top, bottom, action);
 	}
@@ -273,6 +279,7 @@ class DateCanvas extends Canvas {
 		repaint();
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		int w = this.getWidth();
 		int h = this.getHeight();
@@ -358,6 +365,7 @@ class DateCanvas extends Canvas {
 		g.drawString(yearStr, yOff, y, Graphics.LEFT | Graphics.TOP);
 	}
 
+	@Override
 	public synchronized void keyPressed(int keycode) {
 		int k = getGameAction(keycode);
 
@@ -494,6 +502,7 @@ class TimeCanvas extends Canvas {
 		repaint();
 	}
 
+	@Override
 	public void paint(Graphics g) {
 		int w = this.getWidth();
 		int h = this.getHeight();
@@ -561,6 +570,7 @@ class TimeCanvas extends Canvas {
 		g.drawString(minutesStr, mOff, y, Graphics.LEFT | Graphics.TOP);
 	}
 
+	@Override
 	public synchronized void keyPressed(int keycode) {
 		int k = getGameAction(keycode);
 

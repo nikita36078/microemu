@@ -41,14 +41,17 @@ public class MIDletResourceInputStream extends InputStream {
 		this.is = is;
 	}
 
+	@Override
 	public int available() throws IOException {
 		return is.available();
 	}
 
+	@Override
 	public int read() throws IOException {
 		return is.read();
 	}
 
+	@Override
 	public int read(byte[] b) throws IOException {
 		int result = 0;
 		int count = 0;

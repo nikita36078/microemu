@@ -127,6 +127,7 @@ public class Main extends Applet implements MicroEmulator {
 		devicePanel.addKeyListener(devicePanel);
 	}
 
+	@Override
 	public void init() {
 		if (midlet != null) {
 			return;
@@ -258,10 +259,12 @@ public class Main extends Applet implements MicroEmulator {
 		return;
 	}
 
+	@Override
 	public void start() {
 		devicePanel.requestFocus();
 
 		new Thread("midlet_starter") {
+			@Override
 			public void run() {
 				try {
 					MIDletBridge.getMIDletAccess(midlet).startApp();
@@ -280,10 +283,12 @@ public class Main extends Applet implements MicroEmulator {
 		timer.start();
 	}
 
+	@Override
 	public void stop() {
 		MIDletBridge.getMIDletAccess(midlet).pauseApp();
 	}
 
+	@Override
 	public void destroy() {
 		try {
 			MIDletBridge.getMIDletAccess(midlet).destroyApp(true);
@@ -362,10 +367,12 @@ public class Main extends Applet implements MicroEmulator {
 		return null;
 	}
 
+	@Override
 	public String getAppletInfo() {
 		return "Title: MicroEmulator \nAuthor: Bartek Teodorczyk, 2001-2010";
 	}
 
+	@Override
 	public String[][] getParameterInfo() {
 		String[][] info = { { "midlet", "MIDlet class name", "The MIDlet class name. This field is mandatory." }, };
 

@@ -96,6 +96,7 @@ public class MIDletThread extends Thread {
 	}
 
 	//TODO overrite run() in user Threads using ASM
+	@Override
 	public void run() {
 		try {
 			super.run();
@@ -119,6 +120,7 @@ public class MIDletThread extends Thread {
 		if ((threads != null) && (threads.size() != 0)) {
 			terminator = true;
 			Thread terminator = new Thread("MIDletThreadsTerminator") {
+				@Override
 				public void run() {
 					terminateThreads(threads);
 				}

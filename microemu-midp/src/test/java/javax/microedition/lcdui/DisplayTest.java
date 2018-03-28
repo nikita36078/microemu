@@ -64,6 +64,7 @@ public class DisplayTest extends TestCase {
 			super("Mock");
 		}
 
+		@Override
 		final void paint(Graphics g) {
 
 			prePaintCount++;
@@ -380,6 +381,7 @@ public class DisplayTest extends TestCase {
 
 	private final Display display = device.getDisplay();
 
+	@Override
 	protected void setUp() throws Exception {
 
 		DeviceFactory.setDevice(this.device);

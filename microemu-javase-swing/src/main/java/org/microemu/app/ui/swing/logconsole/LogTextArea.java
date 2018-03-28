@@ -52,11 +52,13 @@ public class LogTextArea extends JTextArea {
 		setEditable(false);
 	}
 
+	@Override
 	public void setText(String t) {
 		super.setText(t);
 		caret.setVisibilityAdjustment(true);
 	}
 
+	@Override
 	public void append(String str) {
 
 		super.append(str);

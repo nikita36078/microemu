@@ -183,6 +183,7 @@ public class SwingLogConsoleDialog extends JFrame implements LoggerAppender {
 
 	}
 
+	@Override
 	public void setVisible(boolean b) {
 		super.setVisible(b);
 		isShown = true;

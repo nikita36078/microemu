@@ -47,6 +47,7 @@ public class JadProperties extends Manifest {
 
 	String correctedJarURL = null;
 
+	@Override
 	public void clear() {
 		super.clear();
 
@@ -142,6 +143,7 @@ public class JadProperties extends Manifest {
 	 * and newlines which is causing problems when passing in jads via
 	 * commandline
 	 */
+	@Override
 	public void read(InputStream is) throws IOException {
 		// TODO Auto-generated method stub
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();

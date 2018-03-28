@@ -493,10 +493,12 @@ public class ChoiceGroup extends Item implements Choice {
 		}
 	}
 
+	@Override
 	boolean isFocusable() {
 		return true;
 	}
 
+	@Override
 	int getHeight() {
 		int height = 0;
 		if (choiceType == Choice.POPUP) {
@@ -542,6 +544,7 @@ public class ChoiceGroup extends Item implements Choice {
 		return items[itemIndex].getHeight();
 	}
 
+	@Override
 	int paint(Graphics g) {
 		super.paintContent(g);
 
@@ -569,6 +572,7 @@ public class ChoiceGroup extends Item implements Choice {
 		return getHeight();
 	}
 
+	@Override
 	boolean select() {
 		if (numOfItems == 0) {
 			return false;
@@ -589,6 +593,7 @@ public class ChoiceGroup extends Item implements Choice {
 		return true;
 	}
 
+	@Override
 	int traverse(int gameKeyCode, int top, int bottom, boolean action) {
 
 		if (this.choiceType == Choice.POPUP) {
@@ -663,6 +668,7 @@ public class ChoiceGroup extends Item implements Choice {
 		return 0;
 	}
 
+	@Override
 	void repaint() {
 		// the popup list should be repainted
 		// in the case it is being shown
@@ -688,6 +694,7 @@ public class ChoiceGroup extends Item implements Choice {
 			return font;
 		}
 
+		@Override
 		public void setImage(Image img) {
 			this.img = img;
 
@@ -701,6 +708,7 @@ public class ChoiceGroup extends Item implements Choice {
 			stringComponent.setWidthDecreaser(width);
 		}
 
+		@Override
 		int getHeight() {
 			int height = 0;
 			if (box != null)
@@ -714,6 +722,7 @@ public class ChoiceGroup extends Item implements Choice {
 			return height;
 		}
 
+		@Override
 		int paint(Graphics g) {
 			if (stringComponent == null) {
 				return 0;
