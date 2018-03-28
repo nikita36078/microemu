@@ -94,7 +94,7 @@ public class MIDletResourceLoader {
 				name = baseName.substring(0, index).replace('.', '/') + "/" + name;
 			}
 		} else {
-			name = name.substring(1);
+			name = name.replaceFirst("/+", "");
 		}
 		return name;
 	}
