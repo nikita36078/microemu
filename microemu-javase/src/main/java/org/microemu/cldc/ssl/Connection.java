@@ -41,11 +41,11 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import org.microemu.cldc.CertificateImpl;
-import org.microemu.cldc.ClosedConnection;
 import org.microemu.cldc.SecurityInfoImpl;
+import org.microemu.microedition.io.ConnectionImplementation;
 
 public class Connection extends org.microemu.cldc.socket.SocketConnection
-		implements SecureConnection, ClosedConnection {
+		implements SecureConnection, ConnectionImplementation {
 
 	private SecurityInfo securityInfo;
 
@@ -53,7 +53,7 @@ public class Connection extends org.microemu.cldc.socket.SocketConnection
 		securityInfo = null;
 	}
 
-	public javax.microedition.io.Connection open(String name) throws IOException {
+	public javax.microedition.io.Connection openConnection(String name, int mode, boolean timeouts) throws IOException {
 
 		if (!org.microemu.cldc.http.Connection.isAllowNetworkConnection()) {
 			throw new IOException("No network");

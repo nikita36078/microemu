@@ -32,8 +32,6 @@ import javax.microedition.io.Connection;
 
 /**
  *
- * This proper name for original <code>ClosedConnection</code> interface.
- *
  * @author vlads
  *
  */

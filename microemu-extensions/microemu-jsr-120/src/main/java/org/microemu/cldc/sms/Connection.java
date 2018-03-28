@@ -24,6 +24,8 @@
 
 package org.microemu.cldc.sms;
 
+import org.microemu.microedition.io.ConnectionImplementation;
+
 import java.io.IOException;
 import java.io.InterruptedIOException;
 
@@ -31,11 +33,9 @@ import javax.wireless.messaging.Message;
 import javax.wireless.messaging.MessageConnection;
 import javax.wireless.messaging.MessageListener;
 
-import org.microemu.cldc.ClosedConnection;
+public class Connection implements MessageConnection, ConnectionImplementation {
 
-public class Connection implements MessageConnection, ClosedConnection {
-
-	public javax.microedition.io.Connection open(String name) throws IOException {
+	public javax.microedition.io.Connection openConnection(String name, int mode, boolean timeouts) throws IOException {
 		// TODO Auto-generated method stub
 		return null;
 	}

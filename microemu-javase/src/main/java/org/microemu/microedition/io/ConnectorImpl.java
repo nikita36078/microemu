@@ -37,7 +37,6 @@ import java.util.Vector;
 import javax.microedition.io.Connection;
 import javax.microedition.io.ConnectionNotFoundException;
 
-import org.microemu.cldc.ClosedConnection;
 import org.microemu.log.Logger;
 
 import com.sun.cdc.io.ConnectionBaseInterface;
@@ -136,11 +135,7 @@ public class ConnectorImpl extends ConnectorAdapter {
 				className = "org.microemu.cldc." + protocol + ".Connection";
 				Class cl = Class.forName(className);
 				Object inst = cl.newInstance();
-				if (inst instanceof ConnectionImplementation) {
-					return ((ConnectionImplementation) inst).openConnection(name, mode, timeouts);
-				} else {
-					return ((ClosedConnection) inst).open(name);
-				}
+				return ((ConnectionImplementation) inst).openConnection(name, mode, timeouts);
 			} catch (ClassNotFoundException e) {
 				try {
 					className = "com.sun.cdc.io.j2me." + protocol + ".Protocol";
