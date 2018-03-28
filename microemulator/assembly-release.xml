@@ -67,6 +67,10 @@
             <source>${basedir}/../microemu-extensions/microemu-nokiaui/target/microemu-nokiaui-${project.version}.jar</source>
             <destName>${artifactId}-${version}/lib/microemu-nokiaui.jar</destName>
         </file>
+        <file>
+            <source>${basedir}/../microemu-extensions/microemu-siemensapi/target/microemu-siemensapi-${project.version}.jar</source>
+            <destName>${artifactId}-${version}/lib/microemu-siemensapi.jar</destName>
+        </file>
 
         <file>
             <source>${basedir}/../api/cldcapi10/target/cldcapi10-${project.version}.jar</source>
